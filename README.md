@@ -1,4 +1,4 @@
 Bharath's Blog
 ======================
 
-This is Bharath's blog - tread with care!
+This is my blog - tread with care!
