@@ -3,23 +3,27 @@ layout: layout
 ---
 
 <section class="content">
-  <h1>
-    <a href="{{ page.url }}">{{ page.title }}</a>
-  </h1>
+    <h1>
+        <a href="{{ page.url }}">{{ page.title }}</a>
+    </h1>
 
-  <section class="byline">
-    {{ page.date | date: "%B %e, %Y" }}
-  </section>
-  <hr>
-  <table>
-  	<tr>
-  	 <td>{% include twitter.html %}</td>
-  	 <td><iframe src="http://www.facebook.com/plugins/like.php?layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=140&amp;href={{ site.url }}{{ post.url }}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:28px;" allowTransparency="true"></iframe></td>
-  	</tr>
-  </table>
-  <hr>
-  {{ content }}
-  <div class="pull"></div>  
-  <hr>
-  {% include disqus.html %}
+    <section class="byline">
+        {{ page.date | date: "%B %e, %Y" }}
+    </section>
+    <hr>
+    <table>
+        <tr>
+            <td>{% include twitter.html %}</td>
+            <td>
+                <iframe src="http://www.facebook.com/plugins/like.php?layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=140&amp;href={{ site.url }}{{ post.url }}"
+                        scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:28px;"
+                        allowTransparency="true"></iframe>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    {{ content }}
+    <div class="pull"></div>
+    <hr>
+    {% include disqus.html %}
 </section>
