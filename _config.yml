@@ -3,14 +3,14 @@ pygments: true
 permalink: /posts/:title
 rdiscount:
   extensions: [smart]
-title : Carlos Becker
-production_url : http://carlosbecker.com
-description: "Througths, flamewars, utilities, tutorials, codes, projects and other things by Carlos Alexandro Becker."
-disqus_shortname: caarlos0blog
-analytics: UA-32899481-1
-gauges: 50f2b533613f5d7c8000000c
+title : Bharadwaj
+production_url : http://bharath12345.github.io
+description: "thoughts, musings, writings"
+disqus_shortname: bharath12345
+analytics: 
+gauges: 
 author :
-  name : Carlos Alexandro Becker
-  github : caarlos0
-  twitter : caarlos0
-  email: caarlos0@gmail.com
+  name : Bharadwaj
+  github : bharath12345
+  twitter : bharathtalks
+  email: bharath12345@gmail.com
