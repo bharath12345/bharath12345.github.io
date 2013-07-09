@@ -8,6 +8,9 @@ production_url : http://bharath12345.github.io
 description: "thoughts, musings, writings"
 disqus_shortname: bharathtalks
 analytics: 
+  provider : google
+  google : 
+      tracking_id : 'UA-42349821-1'
 gauges: 
 author :
   name : Bharadwaj
