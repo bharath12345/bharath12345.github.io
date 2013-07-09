@@ -5,6 +5,7 @@ rdiscount:
   extensions: [smart]
 title : Bharadwaj
 production_url : http://bharath12345.github.io
+url: http://bharath12345.github.io
 description: "thoughts, musings, writings"
 disqus_shortname: bharathtalks
 analytics: 

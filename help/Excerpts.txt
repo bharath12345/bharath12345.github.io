@@ -1,0 +1,6 @@
+Excerpts
+
+http://blog.darkrefraction.com/2012/jekyll-excerpt-plugin.html
+
+Surround the text you want to excerpt in {% excerpt %} and {% endexcerpt %} tags. 
+After that, you can simply use post.excerpt_tag to get the contents of the excerpt tags.
