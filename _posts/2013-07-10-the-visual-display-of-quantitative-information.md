@@ -4,7 +4,7 @@ title: "The Visual Display of Quantitative Information"
 category: posts
 ---
 
-For the last couple of years I have been in search of simpler theories in Data Visualization. To educate myself on the fundamentals. My search has taken me to many books and blogs. But none as remarkable as Edward Tufte [book](http://www.amazon.com/The-Visual-Display-Quantitative-Information/dp/0961392142) seminal work on the subject. This is a short refresher of the core concepts. Even as I write for myself, it may be of some use to a passing busy programmer.
+For the last couple of years I have been in search of theories in Data Visualization. Educate myself on the fundamentals. My search has taken me to many books and blogs. But none as remarkable as Edward Tufte [book](http://www.amazon.com/The-Visual-Display-Quantitative-Information/dp/0961392142) seminal work on the subject. This is a short refresher of the core concepts. Even as I write for myself, it may be of some use to a passing busy programmer.
 
 * Graphical Excellence: that which gives a viewer maximum ideas in shortest time with least ink in the smallest space
 * Graphical excellence is nearly always multivariate. Charts depicting behavior of two variables with respect to each other are always more insightful than simple time-series or progression graphs
