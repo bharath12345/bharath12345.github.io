@@ -10,9 +10,8 @@
 
     <link rel="alternate" type="application/rss+xml" href="/atom.xml"/>
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300'
-          rel='stylesheet' type='text/css'>
-
+    <!-- CSS -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link href="/lib/up/up.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
@@ -60,12 +59,21 @@
                     </a>
                 </li>
                 <li>
-                    <a class="hidden-sm" href="/atom.xml" title="Atom Feed">
-                        <i class="icon-rss icon-large"></i>
+                    <a class="hidden-sm" title="Follow me" href="https://twitter.com/{{ site.author.twitter }}">
+                        <i class="icon-twitter icon-large"></i>
                     </a>
-                    <a class="visible-sm" href="/atom.xml" title="Atom Feed">
-                        <i class="icon-rss icon-large"></i>
-                        Atom Feed
+                    <a class="visible-sm" title="Atom Feed" href="https://twitter.com/{{ site.author.twitter }}">
+                        <i class="icon-twitter icon-large"></i>
+                        Follow me
+                    </a>
+                </li>
+                <li>
+                    <a class="hidden-sm" title="Follow me" href="https://github.com/{{ site.author.github }}">
+                        <i class="icon-github icon-large"></i>
+                    </a>
+                    <a class="visible-sm" title="Atom Feed" href="https://github.com/{{ site.author.github }}">
+                        <i class="icon-github icon-large"></i>
+                        On GitHub
                     </a>
                 </li>
             </ul>
@@ -81,22 +89,6 @@
     <section class="meta">
         <div class="container">
             <div class="row">
-                <div class="col col-lg-2 col-offset-4">
-                    <a href="https://twitter.com/{{ site.author.twitter }}">
-                        <i class="icon icon-twitter icon-4x"></i>
-
-                        <div>Follow me on Twitter.</div>
-                    </a>
-                </div>
-                <div class="col col-lg-2 next">
-                    <a href="https://github.com/{{ site.author.github }}">
-                        <i class="icon icon-github icon-4x"></i>
-
-                        <div>
-                            See my github profile.
-                        </div>
-                    </a>
-                </div>
             </div>
         </div>
     </section>

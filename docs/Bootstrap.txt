@@ -1,0 +1,6 @@
+On Using Twitter Bootstrap
+
+- The underlying UP theme uses Twitter Bootstrap. up.css has it.
+- It is difficult to separate it out. So instead of trying to bring-in the whole of bootstrap for any new widget
+    or CSS, just customize bootstrap for just that piece and get that in individually. This way the conflicts will be
+    minimum
