@@ -41,8 +41,7 @@ Lets start with the fine-grained piece…
 *  And thats just half the story. Our user afterall wants the thread and JVM memory stats too. Lets suppose that he is okay with 2 minute interval of collection for these - so we have 54 Million inserts per month for say 4 metrics (one for threads and rest for memory)
 *  Adding that we get around 162 Million records to insert
 *  From the querying perspective, lets say we have only 2 users in our IT Operations team who will be actively querying this data.
-*  If you think you can make this work with something in open-source RDBMS, then its time to stop reading this article right here and conserve some time...
-
+*  If you think you can make this work with something in open-source RDBMS with <10sec response times OOTB, then stop reading this article right here and conserve some time...
 
 #### Before we start data modeling... 
 ######Data Access methods in Cassandra

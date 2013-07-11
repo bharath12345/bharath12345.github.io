@@ -1,9 +1,9 @@
 ---
-layout: page
+layout: post
 title: "Quotes"
 description: ""
+published: false
 ---
-{% include JB/setup %}
 
 #### Data Visualization
 
