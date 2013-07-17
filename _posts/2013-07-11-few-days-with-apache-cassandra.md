@@ -131,20 +131,16 @@ Here are few of the broad guidelines I set and followed -
 
 ##### Keyspace Configuration
 
-    For JVM Method metrics
+###### For JVM Method metrics
 
     CREATE KEYSPACE JvmMethodMetrics    WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
-    
--
 
-    For JVM wide statistics
+###### For JVM wide statistics
     
     CREATE KEYSPACE JvmMetrics          WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
 
 ##### Column Families in JvmMethodMetrics KEYSPACE
-
-    Raw Trend Query Tables
-    ~~~~~~~~~~~~~~~~~~~~~~
+###### Raw Trend Query Tables
     CREATE TABLE JvmMethodIdNameMap (
         jvm_id int,
         method_id int,
@@ -165,10 +161,8 @@ Here are few of the broad guidelines I set and followed -
     );
 
     CREATE INDEX jvm_method_id ON JvmMethodMetricsRaw (method_id);
--
 
-    Trend Query Roll-up Tables
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+###### Trend Query Roll-up Tables
     CREATE TABLE JvmMethodMetricsHourly (
         jvm_id int,
         hour int,
@@ -204,11 +198,9 @@ Here are few of the broad guidelines I set and followed -
         response_time float,
         PRIMARY KEY (jvm_id)
     );
--
 
-    TopN Query Tables
-    ~~~~~~~~~~~~~~~~~
-    Data in these tables is kept sorted by maximum (response-time/invocations) to minimum
+###### TopN Query Tables
+Data in these tables is kept sorted by maximum (response-time/invocations) to minimum
     
     CREATE TABLE JvmMethodTopNHourly (
         jvm_id int,
@@ -255,19 +247,12 @@ Here are few of the broad guidelines I set and followed -
       day_time int,          
       total_live_threads int,
       
-      HEAP MAP
-      		committed bigint,
-            max bigint,
-            used bigint,
-      NON HEAP MAP
-      		committed bigint,
-            max bigint,
-            used bigint,
-            
-      DataSource MAP by datasource_id int,
-			free_pool_size bigint,    
-            usetime bigint,           // avg query time over 1 minute
-         
+      mem_heap set<bigint>, 			// 3 data points - commited, max, used
+      mem_nonheap set<bigint>,
+      		
+      ds_freepool map<int, bigint>,	// key is datasource_id, free pool of
+	  ds_usetime map<int, bigint>		// threads, avg query time over 1 min
+	  		
       PRIMARY KEY (jvm_id, date)
     );
 
