@@ -13,6 +13,9 @@
     <!-- CSS -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link href="/lib/up/up.css" rel="stylesheet">
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/lib/fontawesome/css/font-awesome.min.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -38,16 +41,11 @@
 </head>
 
 <body>
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top navbar-inner">
     <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
         <a class="navbar-brand" href="/">{{ site.title }}</a>
 
-        <div class="nav-collapse collapse navbar-responsive-collapse">
+        <div class="nav-collapse collapse">
             <ul class="nav navbar-nav pull-right hidden-print">
                 <li>
                     <a class="hidden-sm" title="About me" href="/pages/about.html">
@@ -123,6 +121,6 @@
 {% include analytics.html %}
 {% include gauges.html %}
 </body>
+<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="/lib/jQuery/jquery-1.10.2.min.js"></script>
-<script src="/lib/up/up.js"></script>
 </html>
