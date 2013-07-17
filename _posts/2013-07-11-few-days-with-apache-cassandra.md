@@ -2,7 +2,7 @@
 layout: post
 title: "Few days with Apache Cassandra"
 category: posts
-published: false
+published: true
 ---
 
 Few years ago I was a product developer at a big software (but non-database) company. We were writing the v2 of a new product after a fairly successful development round of v1. For everything OLTP, we used the wonderful open-source database - Postgres. But by v2, we had new, hight-volume data like NetFlow coming in. This would have intensely tested Postgres's scalability and read/write performance. And we had some datawarehousing and OLAP requirements too. A hard look at our queries told us that column-stores would be a great-fit. Looking back, the options for a new product to store and query on massive data volumes boiled down to these few options -
@@ -105,7 +105,14 @@ Recent articles and blogs suggest that supercolumns are a bad design and will go
 One of the central ideas in column-stores is to model data per the queries expected. Also denormalize, that is, store multiple replicas of data if required. Both these ideas have strong theoratical backing. Let me state just two -
 
 * DB schema per query requirements - One of the gurus of database design, Professor Stonebraker has suggested that in enterprise applications OLTP queries are well known in advance, few in number, and do not change often. Refer to [this paper](http://cs-www.cs.yale.edu/homes/dna/papers/vldb07hstore.pdf).
-* Denormalization - RDBMS belongs to the era when storage was expensive. Its not so anymore. CPUs are far more expensive (in both ways - CapEx and OpEx ). And DB queries take CPU cycles. And a waiting user could have tangible/intangile revenue implications of web companies. All put together, model database sparsely and denormalized. Store multiple versions and replicas of data. Do anything to make queries faster! 
+* Denormalization - RDBMS belongs to the era when storage was expensive. Its not so anymore. CPUs are far more expensive (in both ways - CapEx and OpEx ). And DB queries take CPU cycles. And a waiting user could have tangible/intangile revenue implications of web companies. All put together, model database sparsely and denormalized. Store multiple versions and replicas of data. Do anything to make queries faster!
+
+######Code Itself 
+The JBoss7 based implementation of this prototype can be found in my github [repository](https://github.com/bharath12345/JvmDataStorage). You will find a couple of MBean's - JvmMethodMetricsDAO and JvmMethodIdNameDAO which have the persist() and find() methods. The procedure to use this is -
+
+1. Build the artifact using maven - 'mvn clean install' at the top level directory
+2. Deploy the jim-ear.ear in JBoss's standalone/deployments
+3. Start JBoss's jconsole and you should be able to see these MBean's in the jconsole's UI
 
 #### Data Modeling
 Here are few of the broad guidelines I set and followed -
@@ -130,7 +137,6 @@ Here are few of the broad guidelines I set and followed -
 	* Monthly Roll-up: 720 days => 4 * 15,552,000     => 62,208,000
 
 ##### Keyspace Configuration
-
 ###### For JVM Method metrics
 
     CREATE KEYSPACE JvmMethodMetrics    WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
@@ -238,7 +244,6 @@ Data in these tables is kept sorted by maximum (response-time/invocations) to mi
         PRIMARY KEY (jvm_id, hour)
     );
 
-
 ##### Column Families in JvmMetricsRaw KEYSPACE
 
     CREATE TABLE JvmMetricsRaw (
@@ -256,11 +261,17 @@ Data in these tables is kept sorted by maximum (response-time/invocations) to mi
       PRIMARY KEY (jvm_id, date)
     );
 
+#### Query Code
+CQL3 packs a [QueryBuilder](http://www.datastax.com/documentation/developer/java-driver/1.0/index.html#java-driver/reference/queryBuilder_r.html) utility that offers some basic features. Refer to the QueryBuild JavaDocs for more info. I was able to build simple queries for 'select' using different 'where' clauses for time and ID's without much effort. I would recommend users to extend Cassandra's QueryBuilder in their DAO layer to provide model specific functionality and catch errors. The prototype offers a Entity/DAO model which can be easily understood by those familiar with JPA/Hibernate. (However I am not a fan of the many ORM frameworks that are coming up for Cassandra - the knowledge of 'entity' modeling is critical for performance problems which Cassandra proposes to handle. Using a Cassandra ORM framework would mean lesser knowlege of data model and consequently less performant queries. Stay away from them!)
+
+#### Read/Write Performance
+Post modeling and unit testing I ran the application on my laptop (MacBookPro 2.9GHz/8GB RAM). Since my laptop is not an ideal performance test environment (I have multiple applications running, no tuning of cassandra or JBoss) I see no point in publishing the numbers or charts. However, I was able to 'write' literally millions of records per minute and read them back. Since I run MySql as well on my laptop, one thing I can vouch for is that Cassandra's write performance is definitely far ahead of what I would have expected from my OOTB MySql. 
 
 #### Conclusion
+Cassandra has come a long way from the 0.8 days. I did not come across any bugs working on my prototype. CQL3 and data modeling was a breeze. And there are a plethora of resources on this topic on the web. I would certainly recommend Cassandra for those looking to get a quick hang of NoSql and Column stores. If you are planning to use Cassandra as part of your application and have done the due deligence on the performance side, then, let me assure you - programming with Cassandra should not take any more time than using a ORM framework like JPA/Hibernate. And if you are like me, wanting to write a prototype then you should be able to wrap it all up from zero to running in a single working week. Ping me if you run into any issues using my code, understanding my blog or anything else. Thanks for reading!
 
 #### Reading Recommendations
-* Good introduction on the subject - [Oriell's Cassandra Definitive Guide](http://shop.oreilly.com/product/0636920010852.do), 
+* Good introduction on the subject - [O'Reilly's Cassandra Definitive Guide](http://shop.oreilly.com/product/0636920010852.do), 
 * Data Modeling - [this](http://www.ebaytechblog.com/2012/07/16/cassandra-data-modeling-best-practices-part-1/) wonderful blog by Jay Patel from Ebay
 * Performance comparisons - [this](http://www.datastax.com/dev/blog/2012-in-review-performance) article really nails it (pay attention to the chart!)
 
