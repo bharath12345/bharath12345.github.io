@@ -91,7 +91,7 @@ There are couple of VERY IMPORTANT things to realize before going further -
 * The temporal distribution of inserts is not even. The hourly roll-up kicks in at the end of each hour. Daily roll-up at the end-of-day and so on (not considering the timezone adjustments required for roll-ups)
 
 
-Small-data problem??
+Small-data problem? Its just a prototype!!
 
 
 #### Before we start data modeling... 
@@ -108,7 +108,169 @@ One of the central ideas in column-stores is to model data per the queries expec
 * Denormalization - RDBMS belongs to the era when storage was expensive. Its not so anymore. CPUs are far more expensive (in both ways - CapEx and OpEx ). And DB queries take CPU cycles. And a waiting user could have tangible/intangile revenue implications of web companies. All put together, model database sparsely and denormalized. Store multiple versions and replicas of data. Do anything to make queries faster! 
 
 #### Data Modeling
-* Cassandra focuses on modeling the database per the queries. So by looking at the above usecase, what queries can I expect from the database modeler's perspective?    
+Here are few of the broad guidelines I set and followed -
+
+* One Keyspace each for both types of data (JVM methods and JVM-wide stats). Each keyspace holds raw (fine grained) and roll-up data
+* As few strings as possible in the stores
+* Keep row-key and columm-key string names small
+* Many data items like JVM_ID will need a mapping table to map JVM-Name to a UUID
+* Row Key -
+	* For fine grained, minutely data, row key is a combination of JVM_ID and date (20130628 for 28th June 2013)
+	* All roll-up tables have JVM_ID as the row key
+* Columns for roll-up data
+	* Hourly  Roll-up: 60 days,  2 months  => 24 * 60 = 1440 columns
+	* Daily   Roll-up: 180 days, 6 months  => 180 columns
+	* Weekly  Roll-up: 350 days, 50 weeks  => 50  columns
+	* Monthly Roll-up: 720 days, 24 months => 24  columns
+* Cassandra has this superb concept of tombstones and data cleanup. This can be triggered by setting a TTL field during inserts. TTL is set in seconds and I used the following setting in this prototype -
+	* Raw:             30  days => 30 * 24 * 60 * 60  => 2,592,000
+	* Hourly  Roll-up: 60  days => 2 * 2,592,000      => 5,184,000
+	* Daily   Roll-up: 180 days => 3 * 5,184,000      => 15,552,000
+	* Weekly  Roll-up: 350 days => 350 * 24 * 60 * 60 => 30,240,000
+	* Monthly Roll-up: 720 days => 4 * 15,552,000     => 62,208,000
+
+##### Keyspace Configuration
+
+    For JVM Method metrics
+
+    CREATE KEYSPACE JvmMethodMetrics    WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
+    
+-
+
+    For JVM wide statistics
+    
+    CREATE KEYSPACE JvmMetrics          WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
+
+##### Column Families in JvmMethodMetrics KEYSPACE
+
+    Raw Trend Query Tables
+    ~~~~~~~~~~~~~~~~~~~~~~
+    CREATE TABLE JvmMethodIdNameMap (
+        jvm_id int,
+        method_id int,
+        method_name varchar,
+        PRIMARY KEY (jvm_id)
+    );
+
+    CREATE INDEX jvm_method_name ON JvmMethodIdNameMap (method_name);
+
+    CREATE TABLE JvmMethodMetricsRaw (
+        jvm_id int,
+        date varchar,
+        day_time int,
+        method_id int,
+        invocations bigint,
+        response_time float,
+        PRIMARY KEY (jvm_id, date)
+    );
+
+    CREATE INDEX jvm_method_id ON JvmMethodMetricsRaw (method_id);
+-
+
+    Trend Query Roll-up Tables
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    CREATE TABLE JvmMethodMetricsHourly (
+        jvm_id int,
+        hour int,
+        method_id bigint,
+        invocations bigint,
+        response_time float,
+        PRIMARY KEY (jvm_id)
+    );
+
+    CREATE TABLE JvmMethodMetricsDaily (
+        jvm_id int,
+        day int,
+        method_id bigint,
+        invocations bigint,
+        response_time float,
+        PRIMARY KEY (jvm_id)
+    );
+
+    CREATE TABLE JvmMethodMetricsWeekly (
+        jvm_id int,
+        week int,
+        method_id bigint,
+        invocations bigint,
+        response_time float,
+        PRIMARY KEY (jvm_id)
+    );
+
+    CREATE TABLE JvmMethodMetricsMonthly (
+        jvm_id int,
+        month int,
+        method_id bigint,
+        invocations bigint,
+        response_time float,
+        PRIMARY KEY (jvm_id)
+    );
+-
+
+    TopN Query Tables
+    ~~~~~~~~~~~~~~~~~
+    Data in these tables is kept sorted by maximum (response-time/invocations) to minimum
+    
+    CREATE TABLE JvmMethodTopNHourly (
+        jvm_id int,
+        hour int,
+        method_id_type varchar,      // Example: 100_RT => for method 100 response-time, 103_INV => for method 103 invocation count
+        response_time_map map<text, float>,
+        invocation_count_map map<text, long>,
+        PRIMARY KEY (jvm_id, hour)
+    );
+
+    CREATE TABLE JvmMethodTopNDaily (
+        jvm_id int,
+        day int,
+        method_id_type varchar,
+        response_time_map map<text, float>,
+        invocation_count_map map<text, long>,
+        PRIMARY KEY (jvm_id, hour)
+    );
+
+    CREATE TABLE JvmMethodTopNWeekly (
+        jvm_id int,
+        week int,
+        method_id_type varchar,
+        response_time_map map<text, float>,
+        invocation_count_map map<text, long>,
+        PRIMARY KEY (jvm_id, hour)
+    );
+
+    CREATE TABLE JvmMethodTopNMonthly (
+        jvm_id int,
+        month int,
+        method_id_type varchar,
+        response_time_map map<text, float>,
+        invocation_count_map map<text, long>,
+        PRIMARY KEY (jvm_id, hour)
+    );
+
+
+##### Column Families in JvmMetricsRaw KEYSPACE
+
+    CREATE TABLE JvmMetricsRaw (
+      jvm_id int,
+      date varchar,
+      day_time int,          
+      total_live_threads int,
+      
+      HEAP MAP
+      		committed bigint,
+            max bigint,
+            used bigint,
+      NON HEAP MAP
+      		committed bigint,
+            max bigint,
+            used bigint,
+            
+      DataSource MAP by datasource_id int,
+			free_pool_size bigint,    
+            usetime bigint,           // avg query time over 1 minute
+         
+      PRIMARY KEY (jvm_id, date)
+    );
+
 
 #### Conclusion
 
