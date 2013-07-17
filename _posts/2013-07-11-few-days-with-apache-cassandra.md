@@ -88,22 +88,32 @@ Number of data points collected PER DAY -
 There are couple of VERY IMPORTANT things to realize before going further -
 
 * In the DBMS world, multiple data points can fit into a single row. So, 90 data-points per second translates to fewer than 90 row inserts per second. But how fewer depends on the data modeling
-* The temporal distribution of inserts is not even. The hourly roll-up kicks in at the end of each hour. Daily roll-up at the end-of-day and so on (not considering the timezone adjustments required for roll-ups) 
+* The temporal distribution of inserts is not even. The hourly roll-up kicks in at the end of each hour. Daily roll-up at the end-of-day and so on (not considering the timezone adjustments required for roll-ups)
+
+
+Small-data problem??
+
 
 #### Before we start data modeling... 
 ######Data Access methods in Cassandra
-There are primarily three ways - Hector, Astyanax and CQL. Cassandra uses Thrift as the underlying RPC mechanism and has a Thrift API. Hector and Astyanax use the Thrift API to talk to the DBMS. CQL3 proposes a new SQL like API. This [slidedeck](http://www.slideshare.net/jericevans/cql-sql-in-cassandra) has CQL3 performance vis-a-vis Thrift-API by the main committer. Take your pick!
-
+Predominantly, there are three ways to interact with Cassandra - Hector, Astyanax and CQL. Cassandra supports Thrift by providing an API. Hector and Astyanax use the Thrift API to talk to the DBMS. CQL3 proposes a new SQL like API. This [slidedeck](http://www.slideshare.net/jericevans/cql-sql-in-cassandra) has CQL3 performance vis-a-vis Thrift-API by the main committer of this piece - Eric Evans. Take your pick! In this prototype, I use CQL3. 
 
 ######SuperColumns
-######Denormalization
+Recent articles and blogs suggest that supercolumns are a bad design and will go away in future releases of Cassandra. So I use composite keys and not supercolumns to model the data
+
+######Denormalization and Data Modeling by Queries
+One of the central ideas in column-stores is to model data per the queries expected. Also denormalize, that is, store multiple replicas of data if required. Both these ideas have strong theoratical backing. Let me state just two -
+
+* DB schema per query requirements - One of the gurus of database design, Professor Stonebraker has suggested that in enterprise applications OLTP queries are well known in advance, few in number, and do not change often. Refer to [this paper](http://cs-www.cs.yale.edu/homes/dna/papers/vldb07hstore.pdf).
+* Denormalization - RDBMS belongs to the era when storage was expensive. Its not so anymore. CPUs are far more expensive (in both ways - CapEx and OpEx ). And DB queries take CPU cycles. And a waiting user could have tangible/intangile revenue implications of web companies. All put together, model database sparsely and denormalized. Store multiple versions and replicas of data. Do anything to make queries faster! 
 
 #### Data Modeling
 * Cassandra focuses on modeling the database per the queries. So by looking at the above usecase, what queries can I expect from the database modeler's perspective?    
+
+#### Conclusion
 
 #### Reading Recommendations
 * Good introduction on the subject - [Oriell's Cassandra Definitive Guide](http://shop.oreilly.com/product/0636920010852.do), 
 * Data Modeling - [this](http://www.ebaytechblog.com/2012/07/16/cassandra-data-modeling-best-practices-part-1/) wonderful blog by Jay Patel from Ebay
 * Performance comparisons - [this](http://www.datastax.com/dev/blog/2012-in-review-performance) article really nails it (pay attention to the chart!)
 
- 
