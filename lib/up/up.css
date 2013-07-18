@@ -197,4 +197,10 @@ section.byline {
     text-transform: uppercase
 }
 
+.navbar a {
+    color: #555 !important;
+    text-decoration: none !important;
+    -webkit-transition: color .25s ease-in !important;
+    transition: color .25s ease-in !important;
+}
 
