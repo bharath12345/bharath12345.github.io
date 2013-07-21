@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "The Visual Display of Quantitative Information"
+tags: [Cassandra, Java, CQL, Database]
+categories: [Technical]
 category: posts
 ---
 

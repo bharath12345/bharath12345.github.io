@@ -2,6 +2,8 @@
 layout: post
 title: "Few days with Apache Cassandra"
 category: posts
+tags: [Cassandra, Java, CQL, Database]
+categories: [Technical]
 published: true
 ---
 

@@ -1,23 +1,64 @@
 ---
 layout: layout
-title: "404"
+title: 404
 ---
+<h1 style="margin-top: 50px">Sorry!</h1>
 
-<section class="content error">
-    <h1>404</h1>
-    <section class="error-text">
-        <p>
-            Sorry dude, I really didn't want to do this, but, well, you tried to
-            access a page that doesn't exists...
-        </p>
+<p>The page you're after isn't hosted here</p>
 
-        <p>
-            Ok, we still can be friends... I'll help you with this.. go to our
-            <a href="/">home</a>, and search what you want. Just that easy.
-        </p>
+<h1>Search for it ?</h1>
 
-        <p>Sorry again for the inconvenient!</p>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 
-        <p>I'll see you soon.</p>
-    </section>
-</section>
+<div ng-app="four04App" ng-controller="PostListCtrl">
+
+    <script>
+        angular.module('four04App',[]).filter('matchesQuery', function(){
+            return function(items, query){
+                var alternate = query.replace(/ /g,"_").toLowerCase();
+                var lcQuery = query.toLowerCase();
+                var arrayToReturn = [];
+                for (var i=0; i<items.length; i++){
+                    if (items[i].title.toLowerCase().indexOf(lcQuery) !== -1 || items[i].words.indexOf(alternate) !== -1) {
+                        arrayToReturn.push(items[i]);
+                    }
+                }
+                return arrayToReturn;
+            };
+        });
+
+        function PostListCtrl($scope, $http) {
+            // draft articles in _posts are hidden from public view, and begin 1970-01-01-
+            // this allows me to copy/paste the file name direct to the browser for sharing of previews.
+            if (window.location.href.indexOf("1970-01-01") !== -1 ) {
+                window.location.href = window.location.href.replace(/1970-01-01-/,"1970/01/01/").replace(/\.textile/,"").replace(/\.markdown/,"").replace(/_posts\//,"");
+            }
+            $scope.query = "";
+            $scope.posts = [];
+            $http.get('/ph_postings_meta.json').success(function(data) {
+                $scope.posts = data.posts;
+
+                console.log("data = " + data.posts);
+                var test = $('test');
+                for(var i=0;i<data.posts.length; i++) {
+                    var newli = document.createElement("li");
+                    test.appendChild(newli);
+
+                    var newa = document.createElement("a");
+                    a.href = data.posts[i].href;
+                    a.innerHTML = data.posts[i].title;
+                    newli.appendChild(newa);
+                }
+
+            });
+        }
+    </script>
+
+    <p>Subset to posts containing these words: <input ng-model="query"></p>
+    <p>Posts matching above query:</p>
+    <ul id="test">
+        <li ng-repeat="post in posts | matchesQuery:query">
+            <a ng-href="{{post.href}}">{{ post.title }}</a>
+        </li>
+    </ul>
+</div>
