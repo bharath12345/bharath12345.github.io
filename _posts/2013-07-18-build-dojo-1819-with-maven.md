@@ -20,11 +20,16 @@ The last article is very good but slightly dated. And here is what I propose to 
 
 Now, here is the how…
 
-### Step 1: Installing Dojo in Maven Repository and Unpack Task
+### Task 1: Installing Dojo in Maven Repository and Unpack Task
 This is no different from the Step 1 & 2 in Mahieu blog. The unzipped sources are placed in src/main/js of my maven hierarchy. I dont do any renaming of this directory.
 
-### Step 2: Build Dojo
-For this, I use antrun plugin
+### Task 2: Move Dojo sources
+The unpack task unzips the dojo sources in ""src/main/js/dojo-release-${dojo.version}-src" directory. This is okay but not good for repeated builds. I like a structure like shown in the picture below - all my JS libraries under src/main/js. 
+
+![image](http://) 
+
+### Task 2: Build Dojo
+For this, I use antrun plugin. This build leads to creation of dojo/dijit/dojox directories under src/main/js.
 
     <plugin>
     	<artifactId>maven-antrun-plugin</artifactId>
@@ -54,6 +59,9 @@ For this, I use antrun plugin
     	</executions>
     </plugin>
 
+### Task 3: The Dojo Profile
+[This is the link](https://github.com/bharath12345/uiDashboard/blob/master/uiJS/dashboard.profile.js) to the profile script I use. One can find a lot of options to tune the Dojo build by specifying options in the profile. The comments in my script speak thus -
+* I name my JS project as "Dashboard" - so I want the built artifacts to be in  
 
 
 Readers can refer to this [pom.xml](https://github.com/bharath12345/uiDashboard/blob/master/uiJS/pom.xml) from one of my projects on GitHub. It has 2 profiles -
