@@ -110,7 +110,7 @@ For this, I use antrun plugin. This build leads to creation of dojo/dijit/dojox 
 * Including my project's JS - which are present in the "dashboard" directory and are AMD complying JS
 * Finally I want to see less verbose prints on my console - so I set the logging level to only SEVERE
 
-### Clean the Uncompressed JavaScript
+### Task 5: Clean the Uncompressed JavaScript
 Dojo build generates minimized JS. And in the process of doing so it retains the originial JS in renames files which have "uncompressed" in their filenames. This is useful for debugging purposes. But surely, we dont want these uncompressed JS to be part of the built WAR. They increase the size of WAR (at least double it - taking it above 50MB!). So, a task to remove these uncompressed JS from target directory is required. This maven stub does just that -
 
      <plugin>
@@ -166,8 +166,32 @@ Dojo build generates minimized JS. And in the process of doing so it retains the
           </executions>
     </plugin>
 
+### Task 6: Copy Other JavaScript libraries
+By now, the "target/dashboard/js" has all the dojo sources along with project specific built in it. The next task is to copy other JS library dependencies. In my project, I typically use D3, jQuery and jsPlumb. So here is I copy them into this directory into maven's target by stub's like these -
 
-
+    <plugin>
+    	<artifactId>maven-resources-plugin</artifactId>
+        <version>2.6</version>
+        <executions>
+        	<execution>
+            	<id>copy-d3</id>
+                <phase>process-resources</phase>
+                <goals>
+                	<goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                	<outputDirectory>${gui.target.gui.location}/js/d3</outputDirectory>
+                   <resources>
+                   		<resource>
+                       		<directory>${js-dir}/d3</directory>
+                       </resource>
+                   </resources>
+                </configuration>
+              </execution>
+          </executions>
+    </plugin>
+    
+                                
 Readers can refer to this [pom.xml](https://github.com/bharath12345/uiDashboard/blob/master/uiJS/pom.xml) from one of my projects on GitHub. It has 2 profiles -
 1. Full Build: Unarchives the Dojo 'source' bundle. Builds Dojo. Packages user written JS. And builds a WAR
 2. Faster build: Assumes the presence of unarchived dojo bundle in the source tree. Since dojo ZIP download from maven repository can be slow (dojo source is upwards of 35MB in size) and unzip even slower, the "-DskipFullBuild" is an optimization for developers
