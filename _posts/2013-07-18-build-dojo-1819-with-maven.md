@@ -26,9 +26,52 @@ This is no different from the Step 1 & 2 in Mahieu blog. The unzipped sources ar
 ### Task 2: Move Dojo sources
 The unpack task unzips the dojo sources in ""src/main/js/dojo-release-${dojo.version}-src" directory. This is okay but not good for repeated builds. I like a structure like shown in the picture below - all my JS libraries under src/main/js. 
 
-![image](http://) 
+![image](https://raw.github.com/bharath12345/bharath12345.github.io/master/images/dojo%20blog/dojo%20blog%20structure.png) 
 
-### Task 2: Build Dojo
+This structure helps in one other major way - it helps my WebStorm IDE to index the JS. I use antrun for its ability to run parallel copy tasks - parallelism helps in making the build much faster. And I delete the original unzipped directory at the end.
+
+    <plugin>
+    	<artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+        	<execution>
+            	<id>Copy Dojo</id>
+                <configuration>
+                	<tasks>
+                   		<parallel>
+                       		<copy todir="${js-dir}/" failonerror="false">
+                           		<fileset dir="${dojoSrc}">
+                               		<include name="dijit/"/>
+                               </fileset>
+                           </copy>
+                           <copy todir="${js-dir}/" failonerror="false">
+                           		<fileset dir="${dojoSrc}">
+                               		<include name="dojox/"/>
+                               </fileset>
+                           </copy>
+                           <copy todir="${js-dir}/" failonerror="false">
+                           		<fileset dir="${dojoSrc}">
+                               		<include name="dojo/"/>
+                               </fileset>
+                           </copy>
+                           <copy todir="${js-dir}/" failonerror="false">
+                           		<fileset dir="${dojoSrc}">
+                               		<include name="util/"/>
+                               </fileset>
+                           </copy>
+                       </parallel>
+                       <delete dir="${dojoSrc}" quiet="true"/>
+                   </tasks>
+                </configuration>
+                <phase>process-sources</phase>
+                <goals>
+                	<goal>run</goal>
+                </goals>
+           </execution>
+        </executions>
+    </plugin>
+                            
+                            
+### Task 3: Build Dojo
 For this, I use antrun plugin. This build leads to creation of dojo/dijit/dojox directories under src/main/js.
 
     <plugin>
@@ -59,9 +102,70 @@ For this, I use antrun plugin. This build leads to creation of dojo/dijit/dojox 
     	</executions>
     </plugin>
 
-### Task 3: The Dojo Profile
+### Task 4: The Dojo Profile
 [This is the link](https://github.com/bharath12345/uiDashboard/blob/master/uiJS/dashboard.profile.js) to the profile script I use. One can find a lot of options to tune the Dojo build by specifying options in the profile. The comments in my script speak thus -
-* I name my JS project as "Dashboard" - so I want the built artifacts to be in  
+* I name my JS project as "Dashboard" - so I want the built artifacts to be in the target/dashboard directory
+* I use the closure compiler
+* I use both dgrid and gridx in my project along with its dependencies (xstyle, dbind, put-selector) - so those have to be included
+* Including my project's JS - which are present in the "dashboard" directory and are AMD complying JS
+* Finally I want to see less verbose prints on my console - so I set the logging level to only SEVERE
+
+### Clean the Uncompressed JavaScript
+Dojo build generates minimized JS. And in the process of doing so it retains the originial JS in renames files which have "uncompressed" in their filenames. This is useful for debugging purposes. But surely, we dont want these uncompressed JS to be part of the built WAR. They increase the size of WAR (at least double it - taking it above 50MB!). So, a task to remove these uncompressed JS from target directory is required. This maven stub does just that -
+
+     <plugin>
+     	<artifactId>maven-clean-plugin</artifactId>
+        <version>2.5</version>
+        <executions>
+        	<execution>
+            	<id>clean-js</id>
+                <phase>prepare-package</phase>
+                <goals>
+                	<goal>clean</goal>
+                </goals>
+                <configuration>
+                <filesets>
+                	<fileset>
+                		<directory>${release-dir}/dojo</directory>
+                		<includes>
+                   			<include>**/*uncompressed.js</include>
+                		</includes>
+                		<followSymlinks>true</followSymlinks>
+                   </fileset>
+                   <fileset>
+                   		<directory>${release-dir}/dijit</directory>
+                       <includes>
+                       		<include>**/*uncompressed.js</include>
+                       </includes>
+                       <followSymlinks>true</followSymlinks>
+                   </fileset>
+                   <fileset>
+                   		<directory>${release-dir}/dojox</directory>
+                       <includes>
+                   			<include>**/*uncompressed.js</include>
+                       </includes>
+                       <followSymlinks>true</followSymlinks>
+                    </fileset>
+                    <fileset>
+                    	<directory>${release-dir}/gridx</directory>
+                       <includes>
+                       		<include>**/*uncompressed.js</include>
+                       </includes>
+                       <followSymlinks>true</followSymlinks>
+                    </fileset>
+                    <fileset>
+                    	<directory>${release-dir}/../css</directory>
+                       <includes>
+                       		<include>**/*merged.css</include>
+                       </includes>
+                       <followSymlinks>true</followSymlinks>
+                    </fileset>
+                </filesets>
+                </configuration>
+             </execution>
+          </executions>
+    </plugin>
+
 
 
 Readers can refer to this [pom.xml](https://github.com/bharath12345/uiDashboard/blob/master/uiJS/pom.xml) from one of my projects on GitHub. It has 2 profiles -
