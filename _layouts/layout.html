@@ -19,7 +19,11 @@
     <!-- CSS -->
     <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,300'>
     <link rel='stylesheet' type='text/css' href="/lib/up/up.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' type='text/css' href="/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type='text/css' href="/lib/bootstrap/css/docs.css">
+
     <link rel='stylesheet' type='text/css' href="/lib/bootstrap/css/bootstrap-responsive.min.css">
     <link rel='stylesheet' type='text/css' href="/lib/fontawesome/css/font-awesome.min.css">
 
@@ -71,28 +75,34 @@
     }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="navbar navbar-inverse navbar-fixed-top navbar-inner">
+<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
     <div class="container">
         <a class="navbar-brand" href="/">{{ site.title }}</a>
 
-        <div class="nav-collapse">
-            <ul class="nav">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="nav-collapse collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav">
                 <li>
-                    <a class="navbar-link" href="/tags.html">Tags</a>
+                    <a href="/tags.html">Tags</a>
                 </li>
                 <li>
-                    <a class="navbar-link" href="/categories.html">Categories</a>
+                    <a href="/categories.html">Categories</a>
                 </li>
                 <li>
-                    <a class="navbar-link" href="/index.html">Index</a>
+                    <a href="/index.html">Index</a>
                 </li>
                 <li>
-                    <a class="navbar-link" href="/search.html">Search</a>
+                    <a href="/search.html">Search</a>
                 </li>
             </ul>
         </div>
 
-        <div class="nav-collapse collapse">
+        <div class="nav-collapse collapse bs-navbar-collapse">
             <ul class="nav navbar-nav pull-right hidden-print">
                 <li>
                     <a class="hidden-sm" title="About me" href="/pages/about.html">
@@ -157,14 +167,10 @@
     {{ content }}
 </div>
 
-<div id="footer" class="hidden-print">
-    <section class="meta">
-        <div class="container">
-            <div class="row">
-            </div>
-        </div>
-    </section>
-</div>
+<footer class="bs-footer">
+<p>Powered by GitHub, Jekyll, Bootstrap, jQuery, Dojo, UP (Carlos Becker) and Google Search!</p>
+</footer>
+
 {% include analytics.html %}
 {% include gauges.html %}
 </body>

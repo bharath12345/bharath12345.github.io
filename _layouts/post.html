@@ -11,16 +11,20 @@ layout: layout
         {{ page.date | date: "%B %e, %Y" }}
     </section>
     <hr>
-    <table>
-        <tr>
-            <td>{% include twitter.html %}</td>
-            <td>
-                <div class="fb-like" data-send="false" data-layout="standard" data-width="450" data-show-faces="false" data-colorscheme="light" data-action="like"></div>
-            </td>
-        </tr>
-    </table>
-    <hr>
+    {% if page.tweetfb %}
+        <table>
+            <tr>
+                <td>{% include twitter.html %}</td>
+                <td>{% include facebook.html %}</td>
+            </tr>
+        </table>
+        <hr>
+    {% endif %}
+
     {{ content }}
+
     <hr>
-    {% include disqus.html %}
+    {% if page.disqus %}
+        {% include disqus.html %}
+    {% endif %}
 </section>

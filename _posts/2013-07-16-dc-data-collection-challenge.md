@@ -3,6 +3,10 @@ layout: post
 title: "DC Data Collection Challenge"
 category: posts
 published: false
+tags: []
+categories: [Technical]
+tweetfb: true
+disqus: true
 ---
 
 Small Data Center Configuration

@@ -2,7 +2,23 @@
 layout: post
 title: "About"
 description: ""
+published: true
+tags: []
+categories: [NonTechnical]
+tweetfb: true
+disqus: true
 ---
+
+<div class="navbar">
+  <ul class="nav navbar-nav">
+    <li class="active"><a href="#">Work</a></li>
+    <li><a href="#">Philosophy</a></li>
+    <li><a href="#">Twitter</a></li>
+    <li><a href="#">Movies</a></li>
+    <li><a href="#">Books</a></li>
+    <li><a href="#">Favorite Quotes</a></li>
+  </ul>
+</div>
 
 Hello! Will soon write about myself!
 

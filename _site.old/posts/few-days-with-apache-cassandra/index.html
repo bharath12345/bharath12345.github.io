@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+    <meta http-equiv="Cache-Control" content="no-store"/>
+    <meta http-equiv="Content-Encoding" content="gzip"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+
+    <title>Bharath's Blog</title>
+
+    <meta name="author" content="Bharadwaj"/>
+    <meta name="description" content="thoughts, musings, writings"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="alternate" type="application/rss+xml" href="/atom.xml"/>
+
+    <!-- CSS -->
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,300'>
+    <link rel='stylesheet' type='text/css' href="/lib/up/up.css">
+    <link rel='stylesheet' type='text/css' href="/lib/bootstrap/css/bootstrap.min.css">
+    <link rel='stylesheet' type='text/css' href="/lib/bootstrap/css/bootstrap-responsive.min.css">
+    <link rel='stylesheet' type='text/css' href="/lib/fontawesome/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-42349821-1', 'bharath12345.github.io');
+        ga('send', 'pageview');
+    </script>
+</head>
+
+<body>
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function() {
+        // init the FB JS SDK
+        FB.init({
+            appId      : '557536207641096',                        // App ID from the app dashboard
+            channelUrl : '//bharathwrites.in/channel.html', // Channel file for x-domain comms
+            status     : true,                                 // Check Facebook Login status
+            xfbml      : true                                  // Look for social plugins on the page
+        });
+
+        // Additional initialization code such as adding Event Listeners goes here
+    };
+
+    // Load the SDK asynchronously
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="navbar navbar-inverse navbar-fixed-top navbar-inner">
+    <div class="container">
+        <a class="navbar-brand" href="/">Bharadwaj</a>
+
+        <div class="nav-collapse">
+            <ul class="nav">
+                <li>
+                    <a class="navbar-link" href="/tags.html">Tags</a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="/categories.html">Categories</a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="/index.html">Index</a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="/search.html">Search</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="nav-collapse collapse">
+            <ul class="nav navbar-nav pull-right hidden-print">
+                <li>
+                    <a class="hidden-sm" title="About me" href="/pages/about.html">
+                        <i class="icon-user icon-fixed-width"></i>
+                    </a>
+                    <a class="visible-sm" title="About me" href="/pages/about.html">
+                        <i class="icon-user icon-fixed-width"></i>
+                        About me
+                    </a>
+                </li>
+                <li>
+                    <a class="hidden-sm" title="Follow me" href="https://twitter.com/bharathtalks">
+                        <i class="icon-twitter icon-fixed-width"></i>
+                    </a>
+                    <a class="visible-sm" title="Atom Feed" href="https://twitter.com/bharathtalks">
+                        <i class="icon-twitter icon-fixed-width"></i>
+                        Follow me
+                    </a>
+                </li>
+                <li>
+                    <a class="hidden-sm" title="Projects" href="https://github.com/bharath12345">
+                        <i class="icon-github icon-fixed-width"></i>
+                    </a>
+                    <a class="visible-sm" title="Projects" href="https://github.com/bharath12345">
+                        <i class="icon-github icon-fixed-width"></i>
+                        GitHub Projects
+                    </a>
+                </li>
+                <li>
+                    <a class="hidden-sm" title="CV" href="http://www.linkedin.com/in/bharadwajn">
+                        <i class="icon-linkedin icon-fixed-width"></i>
+                    </a>
+                    <a class="visible-sm" title="CV" href="http://www.linkedin.com/in/bharadwajn">
+                        <i class="icon-linkedin icon-fixed-width"></i>
+                        CV
+                    </a>
+                </li>
+                <li>
+                    <a class="hidden-sm" title="Facebook" href="https://www.facebook.com/bharadwajn">
+                        <i class="icon-facebook icon-fixed-width"></i>
+                    </a>
+                    <a class="visible-sm" title="Facebook" href="https://www.facebook.com/bharadwajn">
+                        <i class="icon-facebook icon-fixed-width"></i>
+                        Facebook
+                    </a>
+                </li>
+                <li>
+                    <a class="hidden-sm" title="Videos" href="http://www.youtube.com/user/bharadwajnarasimha">
+                        <i class="icon-youtube icon-fixed-width"></i>
+                    </a>
+                    <a class="visible-sm" title="Videos" href="http://www.youtube.com/user/bharadwajnarasimha">
+                        <i class="icon-youtube icon-fixed-width"></i>
+                        YouTube Videos
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <section class="content">
+    <h1>
+        <a href="/posts/few-days-with-apache-cassandra">Few days with Apache Cassandra</a>
+    </h1>
+
+    <section class="byline">
+        July 11, 2013
+    </section>
+    <hr>
+    <table>
+        <tr>
+            <td><a  href="https://twitter.com/share" class="twitter-share-button"
+data-via="bharathtalks" data-lang="en" data-size="medium">Tweet</a>
+<script>
+!function(d,s,id){
+  var js,fjs=d.getElementsByTagName(s)[0];
+  if(!d.getElementById(id)){
+    js=d.createElement(s);
+    js.id=id;
+    js.src="//platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js,fjs);
+  }
+}(document,"script","twitter-wjs");
+</script>
+</td>
+            <td>
+                <div class="fb-like" data-send="false" data-layout="standard" data-width="450" data-show-faces="false" data-colorscheme="light" data-action="like"></div>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <p>Few years ago I was a product developer at a big software (but non-database) company. We were writing the v2 of a new product after a fairly successful development round of v1. For everything OLTP, we used the wonderful open-source database - Postgres. But by v2, we had new, hight-volume data like NetFlow coming in. This would have intensely tested Postgres&rsquo;s scalability and read/write performance. And we had some datawarehousing and OLAP requirements too. A hard look at our queries told us that column-stores would be a great-fit. Looking back, the options for a new product to store and query on massive data volumes boiled down to these few options -</p>
+
+<ul>
+<li>Throw more hardware: Tell the needy customer to invest more in hardware. But no one really knew how much more hardware was really going to nail it</li>
+<li>Tune, Shard, Rebuild, Redeploy: Invest in tuning our software and database for specific queries. Shard, re-model and/or do whatever that could be done by the development and implementation teams around what we had</li>
+<li>Use Oracle
+
+<ul>
+<li>This did not make good business sense for a big product company - tying itself deep into Oracle</li>
+<li>CTO and architects did not think Oracle could nail the data volumes anyway (actually none of the engineers who understood the problem thought Oracle would nail it anyway!)</li>
+</ul>
+</li>
+<li>Use column-stores like Sybase, Vertica</li>
+</ul>
+
+
+<p>The fact was, there were no open-source, reliable, horizontally scalable column-stores or parallel DBMS to consider.</p>
+
+<p>Times have improved. We now have Cassandra, HBase, Hypertable etc (MongoDB, CouchDB etc are document stores with less of modeling - here the context is of schema-full data with rich data-type support).</p>
+
+<p>So, I decided to try and understand Cassandra. Wanted to answer the simple question - if I were to re-live the product development scenario described above, would I choose Cassandra? So in this article I talk about my experiment with Cassandra. Here, I choose a very specific use-case to illustrate what I found - Monitoring JVM metrics in a small data center.</p>
+
+<h4>A Simple Usecase</h4>
+
+<ul>
+<li>A web company running 50 JVMs. The JVMs could be Apache-Tomcat servlet containers hosting the application</li>
+<li>Each Tomcat instance hosts 50 URLs and thereby, say, 50 front-ending servlet classes each extending HttpServlet</li>
+<li>Method metrics are collected on these servlets (through logs or bytecode instrumentation or aspect-driven). Specifically, the metrics collected - number of invocations and time-spent - just 2 method level metrics!</li>
+<li>Idea is to analyze the metrics to get insights into - how to deploy the servets servers? Are there any hotspots and, if so, where - which URL (object) is being accessed most/least? at what times? trends? and so on…</li>
+<li>Along with monitoring these specific servlet method&rsquo;s also keep a tab on overall application health. The number of active-threads in all JVM&rsquo;s. Various JVM memory parameters. A few MBean stat&rsquo;s. Etc…</li>
+<li>Minimum data view granularity requirements -
+
+<ul>
+<li>Last 30 days  - per-minute, per-hour, per-day, per-week, per-month</li>
+<li>Last 60 days  - per-hour, per-day, per-week, per-month</li>
+<li>Last 180 days - per-day, per-week, per-month</li>
+<li>Last 360 days - per-week (52 weeks), per-month</li>
+<li>Last 720 days - per-month (24 months)</li>
+</ul>
+</li>
+<li>User primarily requires &lsquo;trend&rsquo; and &lsquo;topN&rsquo; charts. Examples -
+
+<ul>
+<li>Chart of Top-10 most invoked servlets in last 2 months at per-hour granularity</li>
+<li>Trend of three specific servlet&rsquo;s response-times {max, min, avg, 1st and 3rd quartile} over last 6 months plotted per day</li>
+</ul>
+</li>
+<li>User also wants JVM wide statistics like - active threads, memory stats and datasource stats - all following the same granularities as above. Lets suppose that these combine to 6 separate metrics in all.</li>
+<li>From the querying perspective, lets say we have only 2 users in our IT Operations team who will be actively querying this data.</li>
+</ul>
+
+
+<h4>Data Volumes</h4>
+
+<h6>Fine-grained Data</h6>
+
+<ul>
+<li>JVM Method data:
+
+<ul>
+<li>50 JVMs * 50 Methods * 24 Hours in a day * 60 minutes per hour * 2 metric-types = 7.2 Million data-points per day.</li>
+<li>7.2 Million * 30 = 216 Million data points per month</li>
+</ul>
+</li>
+<li>JVM-wide stats:
+
+<ul>
+<li>50 JVMs * 24 Hours * 60 minutes * 6 metric-types = 432K data points per day</li>
+<li>432K * 30 = 12.96 Million per month</li>
+</ul>
+</li>
+</ul>
+
+
+<h6>Coarse-grained Data</h6>
+
+<ul>
+<li>This corresponds to roll-ups. Hourly, Daily, Weekly and Monthly.</li>
+<li>Hourly rollup for last 60 days
+
+<ul>
+<li>JVM method data: 50 JVMs * 50 Methods * 24 Hours * 60 days * 2 metric-types = 7.2 Million data points over last 60 days. Or, 120K data points per day</li>
+<li>JVM-wide stats: 50 JVMs * 24 Hours * 60 days * 6 metric-types = 432K data points over last 60 days. Or, 7.2K data points per day</li>
+</ul>
+</li>
+<li>Daily rollup for last 180 days
+
+<ul>
+<li>JVM Method data: 50 JVMs * 50 Methods * 180 days * 2 metric-types = 900K data points in 180 days. Or, 5K data points per day</li>
+<li>JVM-wide stats: 50 JVMs * 180 days * 6 metric-types = 54K data points in 180 days. Or, 300 data points per day</li>
+</ul>
+</li>
+<li>Weekly rollup for last 52 weeks
+
+<ul>
+<li>JVM Method data: 50 JVMs * 50 Methods * 52 weeks * 2 metric-types = 260K data points over last 52 weeks. Or, 5K data points per week. Or, 700 data points per day</li>
+<li>JVM-wide stats: 50 JVMs * 52 weeks * 6 metric-types = 15.6K data points over last 52 weeks. Or, 300 data points per week. Or, 40 data points per day</li>
+</ul>
+</li>
+<li>Monthly rollup for last 24 months
+
+<ul>
+<li>JVM Method data: 50 JVMs * 50 Methods * 24 months * 2 metric-types = 120K data points for last 24 months. Or, 5K data points per month. Or, 170 data points per day</li>
+<li>JVM-wide stats: 50 JVMs * 30 days * 6 metric-types = 9000 data points per month. Or, 300 data points per month. Or 10 data points per day</li>
+</ul>
+</li>
+</ul>
+
+
+<h6>Adding it all up!</h6>
+
+<p>Number of data points collected PER DAY -</p>
+
+<ul>
+<li>JVM Method data:
+
+<ul>
+<li>Fine grained minute data points = 7.2 Million</li>
+<li>Hourly rollup = 120K</li>
+<li>Daily rollup = 5K</li>
+<li>Weekly rollup = 700</li>
+<li>Monthly rollup = 170</li>
+<li>Total (approx) = 7.32 Million</li>
+</ul>
+</li>
+<li>JVM-wide stats:
+
+<ul>
+<li>Fine grained minute data points = 432K</li>
+<li>Hourly rollup = 7.2K</li>
+<li>Daily rollup = 300</li>
+<li>Weekly rollup = 40</li>
+<li>Monthly rollup = 10</li>
+<li>Total (approx) = 440K</li>
+</ul>
+</li>
+<li>Total of totals = 7.76 Million data points per day. Or, 320K data points per hour. Or, 5500 data points per minute. Or 90 data-points per second</li>
+</ul>
+
+
+<p>There are couple of VERY IMPORTANT things to realize before going further -</p>
+
+<ul>
+<li>In the DBMS world, multiple data points can fit into a single row. So, 90 data-points per second translates to fewer than 90 row inserts per second. But how fewer depends on the data modeling</li>
+<li>The temporal distribution of inserts is not even. The hourly roll-up kicks in at the end of each hour. Daily roll-up at the end-of-day and so on (not considering the timezone adjustments required for roll-ups)</li>
+</ul>
+
+
+<p>Small-data problem? Its just a prototype!!</p>
+
+<h4>Before we start data modeling&hellip;</h4>
+
+<h6>Data Access methods in Cassandra</h6>
+
+<p>Predominantly, there are three ways to interact with Cassandra - Hector, Astyanax and CQL. Cassandra supports Thrift by providing an API. Hector and Astyanax use the Thrift API to talk to the DBMS. CQL3 proposes a new SQL like API. This <a href="http://www.slideshare.net/jericevans/cql-sql-in-cassandra">slidedeck</a> has CQL3 performance vis-a-vis Thrift-API by the main committer of this piece - Eric Evans. Take your pick! In this prototype, I use CQL3.</p>
+
+<h6>SuperColumns</h6>
+
+<p>Recent articles and blogs suggest that supercolumns are a bad design and will go away in future releases of Cassandra. So I use composite keys and not supercolumns to model the data</p>
+
+<h6>Denormalization and Data Modeling by Queries</h6>
+
+<p>One of the central ideas in column-stores is to model data per the queries expected. Also denormalize, that is, store multiple replicas of data if required. Both these ideas have strong theoratical backing. Let me state just two -</p>
+
+<ul>
+<li>DB schema per query requirements - One of the gurus of database design, Professor Stonebraker has suggested that in enterprise applications OLTP queries are well known in advance, few in number, and do not change often. Refer to <a href="http://cs-www.cs.yale.edu/homes/dna/papers/vldb07hstore.pdf">this paper</a>.</li>
+<li>Denormalization - RDBMS belongs to the era when storage was expensive. Its not so anymore. CPUs are far more expensive (in both ways - CapEx and OpEx ). And DB queries take CPU cycles. And a waiting user could have tangible/intangile revenue implications of web companies. All put together, model database sparsely and denormalized. Store multiple versions and replicas of data. Do anything to make queries faster!</li>
+</ul>
+
+
+<h6>Code Itself</h6>
+
+<p>The JBoss7 based implementation of this prototype can be found in my github <a href="https://github.com/bharath12345/JvmDataStorage">repository</a>. You will find a couple of MBean&rsquo;s - JvmMethodMetricsDAO and JvmMethodIdNameDAO which have the persist() and find() methods. The procedure to use this is -</p>
+
+<ol>
+<li>Build the artifact using maven - &lsquo;mvn clean install&rsquo; at the top level directory</li>
+<li>Deploy the jim-ear.ear in JBoss&rsquo;s standalone/deployments</li>
+<li>Start JBoss&rsquo;s jconsole and you should be able to see these MBean&rsquo;s in the jconsole&rsquo;s UI</li>
+</ol>
+
+
+<h4>Data Modeling</h4>
+
+<p>Here are few of the broad guidelines I set and followed -</p>
+
+<ul>
+<li>One Keyspace each for both types of data (JVM methods and JVM-wide stats). Each keyspace holds raw (fine grained) and roll-up data</li>
+<li>As few strings as possible in the stores</li>
+<li>Keep row-key and columm-key string names small</li>
+<li>Many data items like JVM_ID will need a mapping table to map JVM-Name to a UUID</li>
+<li>Row Key -
+
+<ul>
+<li>For fine grained, minutely data, row key is a combination of JVM_ID and date (20130628 for 28th June 2013)</li>
+<li>All roll-up tables have JVM_ID as the row key</li>
+</ul>
+</li>
+<li>Columns for roll-up data
+
+<ul>
+<li>Hourly  Roll-up: 60 days,  2 months  => 24 * 60 = 1440 columns</li>
+<li>Daily   Roll-up: 180 days, 6 months  => 180 columns</li>
+<li>Weekly  Roll-up: 350 days, 50 weeks  => 50  columns</li>
+<li>Monthly Roll-up: 720 days, 24 months => 24  columns</li>
+</ul>
+</li>
+<li>Cassandra has this superb concept of tombstones and data cleanup. This can be triggered by setting a TTL field during inserts. TTL is set in seconds and I used the following setting in this prototype -
+
+<ul>
+<li>Raw:             30  days => 30 * 24 * 60 * 60  => 2,592,000</li>
+<li>Hourly  Roll-up: 60  days => 2 * 2,592,000      => 5,184,000</li>
+<li>Daily   Roll-up: 180 days => 3 * 5,184,000      => 15,552,000</li>
+<li>Weekly  Roll-up: 350 days => 350 * 24 * 60 * 60 => 30,240,000</li>
+<li>Monthly Roll-up: 720 days => 4 * 15,552,000     => 62,208,000</li>
+</ul>
+</li>
+</ul>
+
+
+<h5>Keyspace Configuration</h5>
+
+<h6>For JVM Method metrics</h6>
+
+<pre><code>CREATE KEYSPACE JvmMethodMetrics    WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
+</code></pre>
+
+<h6>For JVM wide statistics</h6>
+
+<pre><code>CREATE KEYSPACE JvmMetrics          WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
+</code></pre>
+
+<h5>Column Families in JvmMethodMetrics KEYSPACE</h5>
+
+<h6>Raw Trend Query Tables</h6>
+
+<pre><code>CREATE TABLE JvmMethodIdNameMap (
+    jvm_id int,
+    method_id int,
+    method_name varchar,
+    PRIMARY KEY (jvm_id)
+);
+
+CREATE INDEX jvm_method_name ON JvmMethodIdNameMap (method_name);
+
+CREATE TABLE JvmMethodMetricsRaw (
+    jvm_id int,
+    date varchar,
+    day_time int,
+    method_id int,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id, date)
+);
+
+CREATE INDEX jvm_method_id ON JvmMethodMetricsRaw (method_id);
+</code></pre>
+
+<h6>Trend Query Roll-up Tables</h6>
+
+<pre><code>CREATE TABLE JvmMethodMetricsHourly (
+    jvm_id int,
+    hour int,
+    method_id bigint,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id)
+);
+
+CREATE TABLE JvmMethodMetricsDaily (
+    jvm_id int,
+    day int,
+    method_id bigint,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id)
+);
+
+CREATE TABLE JvmMethodMetricsWeekly (
+    jvm_id int,
+    week int,
+    method_id bigint,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id)
+);
+
+CREATE TABLE JvmMethodMetricsMonthly (
+    jvm_id int,
+    month int,
+    method_id bigint,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id)
+);
+</code></pre>
+
+<h6>TopN Query Tables</h6>
+
+<p>Data in these tables is kept sorted by maximum (response-time/invocations) to minimum</p>
+
+<pre><code>CREATE TABLE JvmMethodTopNHourly (
+    jvm_id int,
+    hour int,
+    method_id_type varchar,      // Example: 100_RT =&gt; for method 100 response-time, 103_INV =&gt; for method 103 invocation count
+    response_time_map map&lt;text, float&gt;,
+    invocation_count_map map&lt;text, long&gt;,
+    PRIMARY KEY (jvm_id, hour)
+);
+
+CREATE TABLE JvmMethodTopNDaily (
+    jvm_id int,
+    day int,
+    method_id_type varchar,
+    response_time_map map&lt;text, float&gt;,
+    invocation_count_map map&lt;text, long&gt;,
+    PRIMARY KEY (jvm_id, hour)
+);
+
+CREATE TABLE JvmMethodTopNWeekly (
+    jvm_id int,
+    week int,
+    method_id_type varchar,
+    response_time_map map&lt;text, float&gt;,
+    invocation_count_map map&lt;text, long&gt;,
+    PRIMARY KEY (jvm_id, hour)
+);
+
+CREATE TABLE JvmMethodTopNMonthly (
+    jvm_id int,
+    month int,
+    method_id_type varchar,
+    response_time_map map&lt;text, float&gt;,
+    invocation_count_map map&lt;text, long&gt;,
+    PRIMARY KEY (jvm_id, hour)
+);
+</code></pre>
+
+<h5>Column Families in JvmMetricsRaw KEYSPACE</h5>
+
+<pre><code>CREATE TABLE JvmMetricsRaw (
+  jvm_id int,
+  date varchar,
+  day_time int,          
+  total_live_threads int,
+
+  mem_heap set&lt;bigint&gt;,             // 3 data points - commited, max, used
+  mem_nonheap set&lt;bigint&gt;,
+
+  ds_freepool map&lt;int, bigint&gt;, // key is datasource_id, free pool of
+  ds_usetime map&lt;int, bigint&gt;       // threads, avg query time over 1 min
+
+  PRIMARY KEY (jvm_id, date)
+);
+</code></pre>
+
+<h4>Query Code</h4>
+
+<p>CQL3 packs a <a href="http://www.datastax.com/documentation/developer/java-driver/1.0/index.html#java-driver/reference/queryBuilder_r.html">QueryBuilder</a> utility that offers some basic features. Refer to the QueryBuild JavaDocs for more info. I was able to build simple queries for &lsquo;select&rsquo; using different &lsquo;where&rsquo; clauses for time and ID&rsquo;s without much effort. I would recommend users to extend Cassandra&rsquo;s QueryBuilder in their DAO layer to provide model specific functionality and catch errors. The prototype offers a Entity/DAO model which can be easily understood by those familiar with JPA/Hibernate. (However I am not a fan of the many ORM frameworks that are coming up for Cassandra - the knowledge of &lsquo;entity&rsquo; modeling is critical for performance problems which Cassandra proposes to handle. Using a Cassandra ORM framework would mean lesser knowlege of data model and consequently less performant queries. Stay away from them!)</p>
+
+<h4>Read/Write Performance</h4>
+
+<p>Post modeling and unit testing I ran the application on my laptop (MacBookPro 2.9GHz/8GB RAM). Since my laptop is not an ideal performance test environment (I have multiple applications running, no tuning of cassandra or JBoss) I see no point in publishing the numbers or charts. However, I was able to &lsquo;write&rsquo; literally millions of records per minute and read them back. Since I run MySql as well on my laptop, one thing I can vouch for is that Cassandra&rsquo;s write performance is definitely far ahead of what I would have expected from my OOTB MySql.</p>
+
+<h4>Conclusion</h4>
+
+<p>Cassandra has come a long way from the 0.8 days. I did not come across any bugs working on my prototype. CQL3 and data modeling was a breeze. And there are a plethora of resources on this topic on the web. I would certainly recommend Cassandra for those looking to get a quick hang of NoSql and Column stores. If you are planning to use Cassandra as part of your application and have done the due deligence on the performance side, then, let me assure you - programming with Cassandra should not take any more time than using a ORM framework like JPA/Hibernate. And if you are like me, wanting to write a prototype then you should be able to wrap it all up from zero to running in a single working week. Ping me if you run into any issues using my code, understanding my blog or anything else. Thanks for reading!</p>
+
+<h4>Reading Recommendations</h4>
+
+<ul>
+<li>Good introduction on the subject - <a href="http://shop.oreilly.com/product/0636920010852.do">O'Reilly&rsquo;s Cassandra Definitive Guide</a>,</li>
+<li>Data Modeling - <a href="http://www.ebaytechblog.com/2012/07/16/cassandra-data-modeling-best-practices-part-1/">this</a> wonderful blog by Jay Patel from Ebay</li>
+<li>Performance comparisons - <a href="http://www.datastax.com/dev/blog/2012-in-review-performance">this</a> article really nails it (pay attention to the chart!)</li>
+</ul>
+
+
+    <hr>
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'bharathtalks';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</section>
+
+</div>
+
+<div id="footer" class="hidden-print">
+    <section class="meta">
+        <div class="container">
+            <div class="row">
+            </div>
+        </div>
+    </section>
+</div>
+
+<script type="text/javascript">
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', '{"provider"=>"google", "google"=>{"tracking_id"=>"UA-42349821-1"}}']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+</script>
+
+
+
+
+</body>
+
+<script type="text/javascript" src="/lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/lib/jQuery/jquery-1.10.2.min.js"></script>
+<script data-dojo-config="async: 1, dojoBlankHtmlUrl: '/blank.html',
+        packages: [ {
+            name: 'custom',
+            location: location.pathname.replace(/\/[^/]+$/, '') + '/js/custom'
+        } ]"
+        src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js">
+
+    require(["dojo/dom", "dojo/domReady!"], function(dom){
+
+        console.log("loaded = " + dom);
+    });
+</script>
+</html>

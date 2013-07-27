@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Bharadwaj</title>
+ <link href="http://bharath12345.github.io/atom.xml" rel="self"/>
+ <link href="http://bharath12345.github.io/"/>
+ <updated>2013-07-27T15:01:26+05:30</updated>
+ <id>http://bharath12345.github.io</id>
+ <author>
+   <name>Bharadwaj</name>
+ </author>
+
+ 
+ <entry>
+   <title>Build Dojo 1.7/1.8/1.9 with Maven</title>
+   <link href="http://bharath12345.github.io/posts/build-dojo-1819-with-maven"/>
+   <updated>2013-07-18T00:00:00+05:30</updated>
+   <id>http://bharath12345.github.io/posts/build-dojo-1819-with-maven</id>
+   <content type="html">&lt;p&gt;I have been a Dojo user for many years now. Also use many JavaScript libraries (jQuery, backbone, bootstrap, D3, highsoft) all the while but Dojo is what I really love. I would not embark on any &amp;ldquo;professional&amp;rdquo; development work without being armed with Dojo. But I rest my opinions and comparisons of different JS libraries for a different blog. Here the context is to &amp;ldquo;build&amp;rdquo; Dojo. After all every professional project should do a build of their JS - compilers like Google Closure can find bugs, obfuscate and eventually make execution faster.&lt;/p&gt;
+
+&lt;p&gt;I still am mainly a Java programmer (the enterprise products I have built are predominantly in Java… time split between Java/JavaScript may be 70/30). So am used to Maven as my primary build tool. And Maven I shall use to build Dojo.&lt;/p&gt;
+
+&lt;p&gt;Folks who have not tried to build Dojo should probably start-off by reading these two articles -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://dojotoolkit.org/documentation/tutorials/1.9/build/&quot;&gt;Creating Builds&lt;/a&gt; from Dojo documentation&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.mahieu.org/?p=3&quot;&gt;Creating custom Dojo builds in Maven&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;The last article is very good but slightly dated. And here is what I propose to add to it -&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Use dojo v1.9 (v1.8 and v1.7 with AMD should also work perfectly)&lt;/li&gt;
+&lt;li&gt;I use WebStorm as my JavaScript IDE. It has excellent contextual support including that for Dojo. However, it requires Dojo to be at a constant referencable path from where it could index. Once the indexes are built, typing a &amp;ldquo;.&amp;rdquo; after an object should show up the list of methods and variables belonging to that object. This is extremely useful for fast development&lt;/li&gt;
+&lt;li&gt;Dojo builds are slow. A typical build from source download to unzip to compile to build WAR can take anywhere between 5 to 15 minutes. This can be painful and needs to be made faster&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Now, here is the how…&lt;/p&gt;
+
+&lt;h4&gt;Task 1: Installing Dojo in Maven Repository and Unpack Task&lt;/h4&gt;
+
+&lt;p&gt;This is no different from the Step 1 &amp;amp; 2 in Mahieu blog. The unzipped sources are placed in src/main/js of my maven hierarchy. I dont do any renaming of this directory.&lt;/p&gt;
+
+&lt;h4&gt;Task 2: Move Dojo sources&lt;/h4&gt;
+
+&lt;p&gt;The unpack task unzips the dojo sources in &amp;ldquo;src/main/js/dojo-release-${dojo.version}-src&amp;rdquo; directory. This is okay but not good for repeated builds. I would like a structure like shown in the picture below - all my JS libraries under src/main/js.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.github.com/bharath12345/bharath12345.github.io/master/images/dojo%20blog/dojo%20blog%20structure.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This structure helps in one major way - it helps my WebStorm IDE to index the JS. The Dojo JS are always in &amp;ldquo;src/main/js&amp;rdquo; alongwith other libraries and WebStorm understands this very well!&lt;/p&gt;
+
+&lt;p&gt;I use antrun for its ability to run &lt;strong&gt;parallel copy tasks&lt;/strong&gt; - parallelism helps in making the build much faster. And I &lt;strong&gt;delete&lt;/strong&gt; the original unzipped directory at the end.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;plugin&amp;gt;
+    &amp;lt;artifactId&amp;gt;maven-antrun-plugin&amp;lt;/artifactId&amp;gt;
+    &amp;lt;executions&amp;gt;
+        &amp;lt;execution&amp;gt;
+            &amp;lt;id&amp;gt;Copy Dojo&amp;lt;/id&amp;gt;
+            &amp;lt;configuration&amp;gt;
+                &amp;lt;tasks&amp;gt;
+                    &amp;lt;parallel&amp;gt;
+                        &amp;lt;copy todir=&quot;${js-dir}/&quot; failonerror=&quot;false&quot;&amp;gt;
+                            &amp;lt;fileset dir=&quot;${dojoSrc}&quot;&amp;gt;
+                                &amp;lt;include name=&quot;dijit/&quot;/&amp;gt;
+                           &amp;lt;/fileset&amp;gt;
+                       &amp;lt;/copy&amp;gt;
+                       &amp;lt;copy todir=&quot;${js-dir}/&quot; failonerror=&quot;false&quot;&amp;gt;
+                            &amp;lt;fileset dir=&quot;${dojoSrc}&quot;&amp;gt;
+                                &amp;lt;include name=&quot;dojox/&quot;/&amp;gt;
+                           &amp;lt;/fileset&amp;gt;
+                       &amp;lt;/copy&amp;gt;
+                       &amp;lt;copy todir=&quot;${js-dir}/&quot; failonerror=&quot;false&quot;&amp;gt;
+                            &amp;lt;fileset dir=&quot;${dojoSrc}&quot;&amp;gt;
+                                &amp;lt;include name=&quot;dojo/&quot;/&amp;gt;
+                           &amp;lt;/fileset&amp;gt;
+                       &amp;lt;/copy&amp;gt;
+                       &amp;lt;copy todir=&quot;${js-dir}/&quot; failonerror=&quot;false&quot;&amp;gt;
+                            &amp;lt;fileset dir=&quot;${dojoSrc}&quot;&amp;gt;
+                                &amp;lt;include name=&quot;util/&quot;/&amp;gt;
+                           &amp;lt;/fileset&amp;gt;
+                       &amp;lt;/copy&amp;gt;
+                   &amp;lt;/parallel&amp;gt;
+                   &amp;lt;delete dir=&quot;${dojoSrc}&quot; quiet=&quot;true&quot;/&amp;gt;
+               &amp;lt;/tasks&amp;gt;
+            &amp;lt;/configuration&amp;gt;
+            &amp;lt;phase&amp;gt;process-sources&amp;lt;/phase&amp;gt;
+            &amp;lt;goals&amp;gt;
+                &amp;lt;goal&amp;gt;run&amp;lt;/goal&amp;gt;
+            &amp;lt;/goals&amp;gt;
+       &amp;lt;/execution&amp;gt;
+    &amp;lt;/executions&amp;gt;
+&amp;lt;/plugin&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Task 3: Build Dojo&lt;/h4&gt;
+
+&lt;p&gt;For this again, I use the antrun plugin. This build leads to creation of dojo/dijit/dojox directories under src/main/js.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;plugin&amp;gt;
+    &amp;lt;artifactId&amp;gt;maven-antrun-plugin&amp;lt;/artifactId&amp;gt;
+    &amp;lt;executions&amp;gt;
+        &amp;lt;execution&amp;gt;
+            &amp;lt;id&amp;gt;AppsOne dojo ${dojo.version} Custom Build&amp;lt;/id&amp;gt;
+            &amp;lt;phase&amp;gt;compile&amp;lt;/phase&amp;gt;
+            &amp;lt;configuration&amp;gt;
+                &amp;lt;tasks&amp;gt;
+                    &amp;lt;parallel&amp;gt;
+                        &amp;lt;java classname=&quot;org.mozilla.javascript.tools.shell.Main&quot;
+                    fork=&quot;true&quot; maxmemory=&quot;512m&quot; failonerror=&quot;false&quot;
+                    classpath=&quot;${shrinksafe-dir}/js.jar${path.separator}${closure-dir}/compiler.jar${path.separator}${shrinksafe-dir}/shrinksafe.jar&quot;&amp;gt;
+                            &amp;lt;arg value=&quot;${js-dir}/dojo/dojo.js&quot;/&amp;gt;
+                            &amp;lt;arg value=&quot;baseUrl=${js-dir}/dojo&quot;/&amp;gt;
+                            &amp;lt;arg value=&quot;load=build&quot;/&amp;gt;
+                            &amp;lt;arg line=&quot;--profile ${basedir}/dashboard.profile.js&quot;/&amp;gt;
+                            &amp;lt;arg value=&quot;--release&quot;/&amp;gt;
+                        &amp;lt;/java&amp;gt;
+                    &amp;lt;/parallel&amp;gt;
+                &amp;lt;/tasks&amp;gt;
+            &amp;lt;/configuration&amp;gt;
+            &amp;lt;goals&amp;gt;
+                &amp;lt;goal&amp;gt;run&amp;lt;/goal&amp;gt;
+            &amp;lt;/goals&amp;gt;
+        &amp;lt;/execution&amp;gt;
+    &amp;lt;/executions&amp;gt;
+&amp;lt;/plugin&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Task 4: The Dojo Profile&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/bharath12345/uiDashboard/blob/master/uiJS/dashboard.profile.js&quot;&gt;This is the link&lt;/a&gt; to the profile script I use. It has a lot of comments for the reader to understand. One can find a lot of options to tune the Dojo build by specifying options in the profile. The profile specifies thus -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I name my JS project as &amp;ldquo;Dashboard&amp;rdquo; - so I want the built artifacts to be in the target/dashboard directory&lt;/li&gt;
+&lt;li&gt;Use the closure compiler&lt;/li&gt;
+&lt;li&gt;I use both dgrid and gridx in my project along with its dependencies (xstyle, dbind, put-selector) - so those have to be included&lt;/li&gt;
+&lt;li&gt;Including my project&amp;rsquo;s JS - which are present in the &amp;ldquo;dashboard&amp;rdquo; directory and are AMD complying JS&lt;/li&gt;
+&lt;li&gt;Finally I want to see less verbose prints on my console - so I set the logging level to SEVERE&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h4&gt;Task 5: Clean the Uncompressed JavaScript&lt;/h4&gt;
+
+&lt;p&gt;Dojo build generates minimized JS. And in the process of doing so it retains the originial JS but renames them to have &amp;ldquo;uncompressed&amp;rdquo; in their filenames. This is useful for debugging purposes. But surely, we dont want these uncompressed JS to be part of the built WAR. It increases the size of the WAR (at least doubles it - taking it well above 50MB!). So, a task to remove these uncompressed JS from target directory is required. This maven stub does just that -&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; &amp;lt;plugin&amp;gt;
+    &amp;lt;artifactId&amp;gt;maven-clean-plugin&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;2.5&amp;lt;/version&amp;gt;
+    &amp;lt;executions&amp;gt;
+        &amp;lt;execution&amp;gt;
+            &amp;lt;id&amp;gt;clean-js&amp;lt;/id&amp;gt;
+            &amp;lt;phase&amp;gt;prepare-package&amp;lt;/phase&amp;gt;
+            &amp;lt;goals&amp;gt;
+                &amp;lt;goal&amp;gt;clean&amp;lt;/goal&amp;gt;
+            &amp;lt;/goals&amp;gt;
+            &amp;lt;configuration&amp;gt;
+            &amp;lt;filesets&amp;gt;
+                &amp;lt;fileset&amp;gt;
+                    &amp;lt;directory&amp;gt;${release-dir}/dojo&amp;lt;/directory&amp;gt;
+                    &amp;lt;includes&amp;gt;
+                        &amp;lt;include&amp;gt;**/*uncompressed.js&amp;lt;/include&amp;gt;
+                    &amp;lt;/includes&amp;gt;
+                    &amp;lt;followSymlinks&amp;gt;true&amp;lt;/followSymlinks&amp;gt;
+               &amp;lt;/fileset&amp;gt;
+            &amp;lt;/configuration&amp;gt;
+         &amp;lt;/execution&amp;gt;
+      &amp;lt;/executions&amp;gt;
+&amp;lt;/plugin&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Task 6: Copy Other JavaScript libraries&lt;/h4&gt;
+
+&lt;p&gt;By now, the &amp;ldquo;target/dashboard/js&amp;rdquo; has all the dojo sources along with project specific built in it. The next task is to copy other JS library dependencies. In my project, I typically use D3, jQuery and jsPlumb. So here is I copy them into this directory into maven&amp;rsquo;s target by stub&amp;rsquo;s like these -&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;plugin&amp;gt;
+    &amp;lt;artifactId&amp;gt;maven-resources-plugin&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;2.6&amp;lt;/version&amp;gt;
+    &amp;lt;executions&amp;gt;
+        &amp;lt;execution&amp;gt;
+            &amp;lt;id&amp;gt;copy-d3&amp;lt;/id&amp;gt;
+            &amp;lt;phase&amp;gt;process-resources&amp;lt;/phase&amp;gt;
+            &amp;lt;goals&amp;gt;
+                &amp;lt;goal&amp;gt;copy-resources&amp;lt;/goal&amp;gt;
+            &amp;lt;/goals&amp;gt;
+            &amp;lt;configuration&amp;gt;
+                &amp;lt;outputDirectory&amp;gt;${gui.target.gui.location}/js/d3&amp;lt;/outputDirectory&amp;gt;
+               &amp;lt;resources&amp;gt;
+                    &amp;lt;resource&amp;gt;
+                        &amp;lt;directory&amp;gt;${js-dir}/d3&amp;lt;/directory&amp;gt;
+                   &amp;lt;/resource&amp;gt;
+               &amp;lt;/resources&amp;gt;
+            &amp;lt;/configuration&amp;gt;
+          &amp;lt;/execution&amp;gt;
+      &amp;lt;/executions&amp;gt;
+&amp;lt;/plugin&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Task 7: A fast build profile&lt;/h4&gt;
+
+&lt;p&gt;Dojo ZIP is upwards of 35MB in size with thousands of files. Downloading, unarchiving and moving it around makes it a heavy duty operation which is painfully slow. This makes a maven profile for faster build absolutely necessary. This profile does the following -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Assumes the presence of unarchived dojo bundle in the source tree under &amp;ldquo;src/main/js&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;It thus does none of the unarchiving or file movements and starts off directly with a closure build&lt;/li&gt;
+&lt;li&gt;Does not delete the dojo/dijit/dojox directories from under src/main/js after the build is complete&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Readers can refer to this &lt;a href=&quot;https://github.com/bharath12345/uiDashboard/blob/master/uiJS/pom.xml&quot;&gt;pom.xml&lt;/a&gt; from one of my projects on GitHub. It has all that I have described above. Ping me if you run into any issues using my code, understanding my blog or anything else. Thanks for reading!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Few days with Apache Cassandra</title>
+   <link href="http://bharath12345.github.io/posts/few-days-with-apache-cassandra"/>
+   <updated>2013-07-11T00:00:00+05:30</updated>
+   <id>http://bharath12345.github.io/posts/few-days-with-apache-cassandra</id>
+   <content type="html">&lt;p&gt;Few years ago I was a product developer at a big software (but non-database) company. We were writing the v2 of a new product after a fairly successful development round of v1. For everything OLTP, we used the wonderful open-source database - Postgres. But by v2, we had new, hight-volume data like NetFlow coming in. This would have intensely tested Postgres&amp;rsquo;s scalability and read/write performance. And we had some datawarehousing and OLAP requirements too. A hard look at our queries told us that column-stores would be a great-fit. Looking back, the options for a new product to store and query on massive data volumes boiled down to these few options -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Throw more hardware: Tell the needy customer to invest more in hardware. But no one really knew how much more hardware was really going to nail it&lt;/li&gt;
+&lt;li&gt;Tune, Shard, Rebuild, Redeploy: Invest in tuning our software and database for specific queries. Shard, re-model and/or do whatever that could be done by the development and implementation teams around what we had&lt;/li&gt;
+&lt;li&gt;Use Oracle
+
+&lt;ul&gt;
+&lt;li&gt;This did not make good business sense for a big product company - tying itself deep into Oracle&lt;/li&gt;
+&lt;li&gt;CTO and architects did not think Oracle could nail the data volumes anyway (actually none of the engineers who understood the problem thought Oracle would nail it anyway!)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Use column-stores like Sybase, Vertica&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;The fact was, there were no open-source, reliable, horizontally scalable column-stores or parallel DBMS to consider.&lt;/p&gt;
+
+&lt;p&gt;Times have improved. We now have Cassandra, HBase, Hypertable etc (MongoDB, CouchDB etc are document stores with less of modeling - here the context is of schema-full data with rich data-type support).&lt;/p&gt;
+
+&lt;p&gt;So, I decided to try and understand Cassandra. Wanted to answer the simple question - if I were to re-live the product development scenario described above, would I choose Cassandra? So in this article I talk about my experiment with Cassandra. Here, I choose a very specific use-case to illustrate what I found - Monitoring JVM metrics in a small data center.&lt;/p&gt;
+
+&lt;h4&gt;A Simple Usecase&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A web company running 50 JVMs. The JVMs could be Apache-Tomcat servlet containers hosting the application&lt;/li&gt;
+&lt;li&gt;Each Tomcat instance hosts 50 URLs and thereby, say, 50 front-ending servlet classes each extending HttpServlet&lt;/li&gt;
+&lt;li&gt;Method metrics are collected on these servlets (through logs or bytecode instrumentation or aspect-driven). Specifically, the metrics collected - number of invocations and time-spent - just 2 method level metrics!&lt;/li&gt;
+&lt;li&gt;Idea is to analyze the metrics to get insights into - how to deploy the servets servers? Are there any hotspots and, if so, where - which URL (object) is being accessed most/least? at what times? trends? and so on…&lt;/li&gt;
+&lt;li&gt;Along with monitoring these specific servlet method&amp;rsquo;s also keep a tab on overall application health. The number of active-threads in all JVM&amp;rsquo;s. Various JVM memory parameters. A few MBean stat&amp;rsquo;s. Etc…&lt;/li&gt;
+&lt;li&gt;Minimum data view granularity requirements -
+
+&lt;ul&gt;
+&lt;li&gt;Last 30 days  - per-minute, per-hour, per-day, per-week, per-month&lt;/li&gt;
+&lt;li&gt;Last 60 days  - per-hour, per-day, per-week, per-month&lt;/li&gt;
+&lt;li&gt;Last 180 days - per-day, per-week, per-month&lt;/li&gt;
+&lt;li&gt;Last 360 days - per-week (52 weeks), per-month&lt;/li&gt;
+&lt;li&gt;Last 720 days - per-month (24 months)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;User primarily requires &amp;lsquo;trend&amp;rsquo; and &amp;lsquo;topN&amp;rsquo; charts. Examples -
+
+&lt;ul&gt;
+&lt;li&gt;Chart of Top-10 most invoked servlets in last 2 months at per-hour granularity&lt;/li&gt;
+&lt;li&gt;Trend of three specific servlet&amp;rsquo;s response-times {max, min, avg, 1st and 3rd quartile} over last 6 months plotted per day&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;User also wants JVM wide statistics like - active threads, memory stats and datasource stats - all following the same granularities as above. Lets suppose that these combine to 6 separate metrics in all.&lt;/li&gt;
+&lt;li&gt;From the querying perspective, lets say we have only 2 users in our IT Operations team who will be actively querying this data.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h4&gt;Data Volumes&lt;/h4&gt;
+
+&lt;h6&gt;Fine-grained Data&lt;/h6&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JVM Method data:
+
+&lt;ul&gt;
+&lt;li&gt;50 JVMs * 50 Methods * 24 Hours in a day * 60 minutes per hour * 2 metric-types = 7.2 Million data-points per day.&lt;/li&gt;
+&lt;li&gt;7.2 Million * 30 = 216 Million data points per month&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;JVM-wide stats:
+
+&lt;ul&gt;
+&lt;li&gt;50 JVMs * 24 Hours * 60 minutes * 6 metric-types = 432K data points per day&lt;/li&gt;
+&lt;li&gt;432K * 30 = 12.96 Million per month&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h6&gt;Coarse-grained Data&lt;/h6&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This corresponds to roll-ups. Hourly, Daily, Weekly and Monthly.&lt;/li&gt;
+&lt;li&gt;Hourly rollup for last 60 days
+
+&lt;ul&gt;
+&lt;li&gt;JVM method data: 50 JVMs * 50 Methods * 24 Hours * 60 days * 2 metric-types = 7.2 Million data points over last 60 days. Or, 120K data points per day&lt;/li&gt;
+&lt;li&gt;JVM-wide stats: 50 JVMs * 24 Hours * 60 days * 6 metric-types = 432K data points over last 60 days. Or, 7.2K data points per day&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Daily rollup for last 180 days
+
+&lt;ul&gt;
+&lt;li&gt;JVM Method data: 50 JVMs * 50 Methods * 180 days * 2 metric-types = 900K data points in 180 days. Or, 5K data points per day&lt;/li&gt;
+&lt;li&gt;JVM-wide stats: 50 JVMs * 180 days * 6 metric-types = 54K data points in 180 days. Or, 300 data points per day&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Weekly rollup for last 52 weeks
+
+&lt;ul&gt;
+&lt;li&gt;JVM Method data: 50 JVMs * 50 Methods * 52 weeks * 2 metric-types = 260K data points over last 52 weeks. Or, 5K data points per week. Or, 700 data points per day&lt;/li&gt;
+&lt;li&gt;JVM-wide stats: 50 JVMs * 52 weeks * 6 metric-types = 15.6K data points over last 52 weeks. Or, 300 data points per week. Or, 40 data points per day&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Monthly rollup for last 24 months
+
+&lt;ul&gt;
+&lt;li&gt;JVM Method data: 50 JVMs * 50 Methods * 24 months * 2 metric-types = 120K data points for last 24 months. Or, 5K data points per month. Or, 170 data points per day&lt;/li&gt;
+&lt;li&gt;JVM-wide stats: 50 JVMs * 30 days * 6 metric-types = 9000 data points per month. Or, 300 data points per month. Or 10 data points per day&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h6&gt;Adding it all up!&lt;/h6&gt;
+
+&lt;p&gt;Number of data points collected PER DAY -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JVM Method data:
+
+&lt;ul&gt;
+&lt;li&gt;Fine grained minute data points = 7.2 Million&lt;/li&gt;
+&lt;li&gt;Hourly rollup = 120K&lt;/li&gt;
+&lt;li&gt;Daily rollup = 5K&lt;/li&gt;
+&lt;li&gt;Weekly rollup = 700&lt;/li&gt;
+&lt;li&gt;Monthly rollup = 170&lt;/li&gt;
+&lt;li&gt;Total (approx) = 7.32 Million&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;JVM-wide stats:
+
+&lt;ul&gt;
+&lt;li&gt;Fine grained minute data points = 432K&lt;/li&gt;
+&lt;li&gt;Hourly rollup = 7.2K&lt;/li&gt;
+&lt;li&gt;Daily rollup = 300&lt;/li&gt;
+&lt;li&gt;Weekly rollup = 40&lt;/li&gt;
+&lt;li&gt;Monthly rollup = 10&lt;/li&gt;
+&lt;li&gt;Total (approx) = 440K&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Total of totals = 7.76 Million data points per day. Or, 320K data points per hour. Or, 5500 data points per minute. Or 90 data-points per second&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;There are couple of VERY IMPORTANT things to realize before going further -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;In the DBMS world, multiple data points can fit into a single row. So, 90 data-points per second translates to fewer than 90 row inserts per second. But how fewer depends on the data modeling&lt;/li&gt;
+&lt;li&gt;The temporal distribution of inserts is not even. The hourly roll-up kicks in at the end of each hour. Daily roll-up at the end-of-day and so on (not considering the timezone adjustments required for roll-ups)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Small-data problem? Its just a prototype!!&lt;/p&gt;
+
+&lt;h4&gt;Before we start data modeling&amp;hellip;&lt;/h4&gt;
+
+&lt;h6&gt;Data Access methods in Cassandra&lt;/h6&gt;
+
+&lt;p&gt;Predominantly, there are three ways to interact with Cassandra - Hector, Astyanax and CQL. Cassandra supports Thrift by providing an API. Hector and Astyanax use the Thrift API to talk to the DBMS. CQL3 proposes a new SQL like API. This &lt;a href=&quot;http://www.slideshare.net/jericevans/cql-sql-in-cassandra&quot;&gt;slidedeck&lt;/a&gt; has CQL3 performance vis-a-vis Thrift-API by the main committer of this piece - Eric Evans. Take your pick! In this prototype, I use CQL3.&lt;/p&gt;
+
+&lt;h6&gt;SuperColumns&lt;/h6&gt;
+
+&lt;p&gt;Recent articles and blogs suggest that supercolumns are a bad design and will go away in future releases of Cassandra. So I use composite keys and not supercolumns to model the data&lt;/p&gt;
+
+&lt;h6&gt;Denormalization and Data Modeling by Queries&lt;/h6&gt;
+
+&lt;p&gt;One of the central ideas in column-stores is to model data per the queries expected. Also denormalize, that is, store multiple replicas of data if required. Both these ideas have strong theoratical backing. Let me state just two -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;DB schema per query requirements - One of the gurus of database design, Professor Stonebraker has suggested that in enterprise applications OLTP queries are well known in advance, few in number, and do not change often. Refer to &lt;a href=&quot;http://cs-www.cs.yale.edu/homes/dna/papers/vldb07hstore.pdf&quot;&gt;this paper&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Denormalization - RDBMS belongs to the era when storage was expensive. Its not so anymore. CPUs are far more expensive (in both ways - CapEx and OpEx ). And DB queries take CPU cycles. And a waiting user could have tangible/intangile revenue implications of web companies. All put together, model database sparsely and denormalized. Store multiple versions and replicas of data. Do anything to make queries faster!&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h6&gt;Code Itself&lt;/h6&gt;
+
+&lt;p&gt;The JBoss7 based implementation of this prototype can be found in my github &lt;a href=&quot;https://github.com/bharath12345/JvmDataStorage&quot;&gt;repository&lt;/a&gt;. You will find a couple of MBean&amp;rsquo;s - JvmMethodMetricsDAO and JvmMethodIdNameDAO which have the persist() and find() methods. The procedure to use this is -&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Build the artifact using maven - &amp;lsquo;mvn clean install&amp;rsquo; at the top level directory&lt;/li&gt;
+&lt;li&gt;Deploy the jim-ear.ear in JBoss&amp;rsquo;s standalone/deployments&lt;/li&gt;
+&lt;li&gt;Start JBoss&amp;rsquo;s jconsole and you should be able to see these MBean&amp;rsquo;s in the jconsole&amp;rsquo;s UI&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;h4&gt;Data Modeling&lt;/h4&gt;
+
+&lt;p&gt;Here are few of the broad guidelines I set and followed -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;One Keyspace each for both types of data (JVM methods and JVM-wide stats). Each keyspace holds raw (fine grained) and roll-up data&lt;/li&gt;
+&lt;li&gt;As few strings as possible in the stores&lt;/li&gt;
+&lt;li&gt;Keep row-key and columm-key string names small&lt;/li&gt;
+&lt;li&gt;Many data items like JVM_ID will need a mapping table to map JVM-Name to a UUID&lt;/li&gt;
+&lt;li&gt;Row Key -
+
+&lt;ul&gt;
+&lt;li&gt;For fine grained, minutely data, row key is a combination of JVM_ID and date (20130628 for 28th June 2013)&lt;/li&gt;
+&lt;li&gt;All roll-up tables have JVM_ID as the row key&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Columns for roll-up data
+
+&lt;ul&gt;
+&lt;li&gt;Hourly  Roll-up: 60 days,  2 months  =&gt; 24 * 60 = 1440 columns&lt;/li&gt;
+&lt;li&gt;Daily   Roll-up: 180 days, 6 months  =&gt; 180 columns&lt;/li&gt;
+&lt;li&gt;Weekly  Roll-up: 350 days, 50 weeks  =&gt; 50  columns&lt;/li&gt;
+&lt;li&gt;Monthly Roll-up: 720 days, 24 months =&gt; 24  columns&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cassandra has this superb concept of tombstones and data cleanup. This can be triggered by setting a TTL field during inserts. TTL is set in seconds and I used the following setting in this prototype -
+
+&lt;ul&gt;
+&lt;li&gt;Raw:             30  days =&gt; 30 * 24 * 60 * 60  =&gt; 2,592,000&lt;/li&gt;
+&lt;li&gt;Hourly  Roll-up: 60  days =&gt; 2 * 2,592,000      =&gt; 5,184,000&lt;/li&gt;
+&lt;li&gt;Daily   Roll-up: 180 days =&gt; 3 * 5,184,000      =&gt; 15,552,000&lt;/li&gt;
+&lt;li&gt;Weekly  Roll-up: 350 days =&gt; 350 * 24 * 60 * 60 =&gt; 30,240,000&lt;/li&gt;
+&lt;li&gt;Monthly Roll-up: 720 days =&gt; 4 * 15,552,000     =&gt; 62,208,000&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h5&gt;Keyspace Configuration&lt;/h5&gt;
+
+&lt;h6&gt;For JVM Method metrics&lt;/h6&gt;
+
+&lt;pre&gt;&lt;code&gt;CREATE KEYSPACE JvmMethodMetrics    WITH replication = {&#39;class&#39;: &#39;SimpleStrategy&#39;, &#39;replication_factor&#39; : 1};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6&gt;For JVM wide statistics&lt;/h6&gt;
+
+&lt;pre&gt;&lt;code&gt;CREATE KEYSPACE JvmMetrics          WITH replication = {&#39;class&#39;: &#39;SimpleStrategy&#39;, &#39;replication_factor&#39; : 1};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5&gt;Column Families in JvmMethodMetrics KEYSPACE&lt;/h5&gt;
+
+&lt;h6&gt;Raw Trend Query Tables&lt;/h6&gt;
+
+&lt;pre&gt;&lt;code&gt;CREATE TABLE JvmMethodIdNameMap (
+    jvm_id int,
+    method_id int,
+    method_name varchar,
+    PRIMARY KEY (jvm_id)
+);
+
+CREATE INDEX jvm_method_name ON JvmMethodIdNameMap (method_name);
+
+CREATE TABLE JvmMethodMetricsRaw (
+    jvm_id int,
+    date varchar,
+    day_time int,
+    method_id int,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id, date)
+);
+
+CREATE INDEX jvm_method_id ON JvmMethodMetricsRaw (method_id);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6&gt;Trend Query Roll-up Tables&lt;/h6&gt;
+
+&lt;pre&gt;&lt;code&gt;CREATE TABLE JvmMethodMetricsHourly (
+    jvm_id int,
+    hour int,
+    method_id bigint,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id)
+);
+
+CREATE TABLE JvmMethodMetricsDaily (
+    jvm_id int,
+    day int,
+    method_id bigint,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id)
+);
+
+CREATE TABLE JvmMethodMetricsWeekly (
+    jvm_id int,
+    week int,
+    method_id bigint,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id)
+);
+
+CREATE TABLE JvmMethodMetricsMonthly (
+    jvm_id int,
+    month int,
+    method_id bigint,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id)
+);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6&gt;TopN Query Tables&lt;/h6&gt;
+
+&lt;p&gt;Data in these tables is kept sorted by maximum (response-time/invocations) to minimum&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CREATE TABLE JvmMethodTopNHourly (
+    jvm_id int,
+    hour int,
+    method_id_type varchar,      // Example: 100_RT =&amp;gt; for method 100 response-time, 103_INV =&amp;gt; for method 103 invocation count
+    response_time_map map&amp;lt;text, float&amp;gt;,
+    invocation_count_map map&amp;lt;text, long&amp;gt;,
+    PRIMARY KEY (jvm_id, hour)
+);
+
+CREATE TABLE JvmMethodTopNDaily (
+    jvm_id int,
+    day int,
+    method_id_type varchar,
+    response_time_map map&amp;lt;text, float&amp;gt;,
+    invocation_count_map map&amp;lt;text, long&amp;gt;,
+    PRIMARY KEY (jvm_id, hour)
+);
+
+CREATE TABLE JvmMethodTopNWeekly (
+    jvm_id int,
+    week int,
+    method_id_type varchar,
+    response_time_map map&amp;lt;text, float&amp;gt;,
+    invocation_count_map map&amp;lt;text, long&amp;gt;,
+    PRIMARY KEY (jvm_id, hour)
+);
+
+CREATE TABLE JvmMethodTopNMonthly (
+    jvm_id int,
+    month int,
+    method_id_type varchar,
+    response_time_map map&amp;lt;text, float&amp;gt;,
+    invocation_count_map map&amp;lt;text, long&amp;gt;,
+    PRIMARY KEY (jvm_id, hour)
+);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5&gt;Column Families in JvmMetricsRaw KEYSPACE&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;CREATE TABLE JvmMetricsRaw (
+  jvm_id int,
+  date varchar,
+  day_time int,          
+  total_live_threads int,
+
+  mem_heap set&amp;lt;bigint&amp;gt;,             // 3 data points - commited, max, used
+  mem_nonheap set&amp;lt;bigint&amp;gt;,
+
+  ds_freepool map&amp;lt;int, bigint&amp;gt;, // key is datasource_id, free pool of
+  ds_usetime map&amp;lt;int, bigint&amp;gt;       // threads, avg query time over 1 min
+
+  PRIMARY KEY (jvm_id, date)
+);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Query Code&lt;/h4&gt;
+
+&lt;p&gt;CQL3 packs a &lt;a href=&quot;http://www.datastax.com/documentation/developer/java-driver/1.0/index.html#java-driver/reference/queryBuilder_r.html&quot;&gt;QueryBuilder&lt;/a&gt; utility that offers some basic features. Refer to the QueryBuild JavaDocs for more info. I was able to build simple queries for &amp;lsquo;select&amp;rsquo; using different &amp;lsquo;where&amp;rsquo; clauses for time and ID&amp;rsquo;s without much effort. I would recommend users to extend Cassandra&amp;rsquo;s QueryBuilder in their DAO layer to provide model specific functionality and catch errors. The prototype offers a Entity/DAO model which can be easily understood by those familiar with JPA/Hibernate. (However I am not a fan of the many ORM frameworks that are coming up for Cassandra - the knowledge of &amp;lsquo;entity&amp;rsquo; modeling is critical for performance problems which Cassandra proposes to handle. Using a Cassandra ORM framework would mean lesser knowlege of data model and consequently less performant queries. Stay away from them!)&lt;/p&gt;
+
+&lt;h4&gt;Read/Write Performance&lt;/h4&gt;
+
+&lt;p&gt;Post modeling and unit testing I ran the application on my laptop (MacBookPro 2.9GHz/8GB RAM). Since my laptop is not an ideal performance test environment (I have multiple applications running, no tuning of cassandra or JBoss) I see no point in publishing the numbers or charts. However, I was able to &amp;lsquo;write&amp;rsquo; literally millions of records per minute and read them back. Since I run MySql as well on my laptop, one thing I can vouch for is that Cassandra&amp;rsquo;s write performance is definitely far ahead of what I would have expected from my OOTB MySql.&lt;/p&gt;
+
+&lt;h4&gt;Conclusion&lt;/h4&gt;
+
+&lt;p&gt;Cassandra has come a long way from the 0.8 days. I did not come across any bugs working on my prototype. CQL3 and data modeling was a breeze. And there are a plethora of resources on this topic on the web. I would certainly recommend Cassandra for those looking to get a quick hang of NoSql and Column stores. If you are planning to use Cassandra as part of your application and have done the due deligence on the performance side, then, let me assure you - programming with Cassandra should not take any more time than using a ORM framework like JPA/Hibernate. And if you are like me, wanting to write a prototype then you should be able to wrap it all up from zero to running in a single working week. Ping me if you run into any issues using my code, understanding my blog or anything else. Thanks for reading!&lt;/p&gt;
+
+&lt;h4&gt;Reading Recommendations&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Good introduction on the subject - &lt;a href=&quot;http://shop.oreilly.com/product/0636920010852.do&quot;&gt;O&#39;Reilly&amp;rsquo;s Cassandra Definitive Guide&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;Data Modeling - &lt;a href=&quot;http://www.ebaytechblog.com/2012/07/16/cassandra-data-modeling-best-practices-part-1/&quot;&gt;this&lt;/a&gt; wonderful blog by Jay Patel from Ebay&lt;/li&gt;
+&lt;li&gt;Performance comparisons - &lt;a href=&quot;http://www.datastax.com/dev/blog/2012-in-review-performance&quot;&gt;this&lt;/a&gt; article really nails it (pay attention to the chart!)&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>The Visual Display of Quantitative Information</title>
+   <link href="http://bharath12345.github.io/posts/the-visual-display-of-quantitative-information"/>
+   <updated>2013-07-10T00:00:00+05:30</updated>
+   <id>http://bharath12345.github.io/posts/the-visual-display-of-quantitative-information</id>
+   <content type="html">&lt;p&gt;For the last couple of years I have been in search of theories in Data Visualization. Educate myself on the fundamentals. My search has taken me to many books and blogs. But none as remarkable as Edward Tufte &lt;a href=&quot;http://www.amazon.com/The-Visual-Display-Quantitative-Information/dp/0961392142&quot;&gt;book&lt;/a&gt; seminal work on the subject. This is a short refresher of the core concepts. Even as I write for myself, it may be of some use to a passing busy programmer.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Graphical Excellence: that which gives a viewer maximum ideas in shortest time with least ink in the smallest space&lt;/li&gt;
+&lt;li&gt;Graphical excellence is nearly always multivariate. Charts depicting behavior of two variables with respect to each other are always more insightful than simple time-series or progression graphs&lt;/li&gt;
+&lt;li&gt;&amp;lsquo;Graphical Integrity&amp;rsquo; reigns supreme. Beware of distortions. Thre representation of numbers as physically measured on the surface of the graphic itself should be directly proportional to the numerical quantities represented (as an aside, &lt;a href=&quot;http://www.amazon.com/How-Lie-Statistics-Darrell-Huff/dp/0393310728&quot;&gt;this book&lt;/a&gt; might be a good read on distortions!)&lt;/li&gt;
+&lt;li&gt;The number of information carrying (variable) dimensions depicted should not exceed the number of dimensions in the data. Beware of area charts depicting single variable variations&lt;/li&gt;
+&lt;li&gt;Maximize the data-ink ratio, within reason. Erase non-data-ink, within reason. Revise. Rethink.&lt;/li&gt;
+&lt;li&gt;Moire vibrations in statistical charts are chartjunk. Gridlines, often, are chartjunk. 3D, often, is chartjunk. More than 3 colors are, often, chartjunk. Piecharts are always chartjunk. Easy graphing software is leading to more chartjunk and more amazing chartjunk&lt;/li&gt;
+&lt;li&gt;Awesome examples of clarity by revision -  redesigning boxplots, barcharts and my personal favorite - the super intuitive dot-dash plot combining marginal distribution with a bivariate distribution!&lt;/li&gt;
+&lt;li&gt;Use coordinates and axes with thought - maximize data-ink&lt;/li&gt;
+&lt;li&gt;Organize and order the flow of graphical information presented to the eye - charts should intelligently use what are known facts on cognitive abilities of human brain&lt;/li&gt;
+&lt;li&gt;Balance and optimize data-density = (number of data entries)/(area of the graphic). Try to maximize it. Else shrink the graphic&lt;/li&gt;
+&lt;li&gt;Pay attention to line weights&lt;/li&gt;
+&lt;li&gt;Curious case of the &lt;a href=&quot;http://en.wikipedia.org/wiki/Golden_rectangle&quot;&gt;Golden Rectangle&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;And, finally, it was John Tukey who once said - there is no data that can be displayed in a pie chart, that cannot be displayed BETTER in some other type of chart.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+
+</feed>

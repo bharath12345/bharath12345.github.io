@@ -1,0 +1,23 @@
+{
+"posts" : [
+
+{
+"title": "Build Dojo 1.7/1.8/1.9 with Maven",
+"href": "/posts/build-dojo-1819-with-maven",
+"words": " posts"
+}
+
+{
+"title": "Few days with Apache Cassandra",
+"href": "/posts/few-days-with-apache-cassandra",
+"words": " cassandra java cql database posts"
+}
+
+{
+"title": "The Visual Display of Quantitative Information",
+"href": "/posts/the-visual-display-of-quantitative-information",
+"words": " cassandra java cql database posts"
+}
+
+]
+}

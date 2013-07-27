@@ -10,19 +10,11 @@ title: "Posts"
         {{ post.date | date: "%B %e, %Y" }}
     </section>
     <hr>
-    <table>
-        <tr>
-            <td>{% include twitter.html %}</td>
-            <td>
-                <div class="fb-like" data-send="false" data-layout="standard" data-width="450" data-show-faces="false" data-colorscheme="light" data-action="like"></div>
-            </td>
-        </tr>
-    </table>
-    <hr>
     {% if post.excerpt_tag %}
-    {{ post.excerpt_tag | markdownify }}
+        {{ post.excerpt_tag | markdownify }}
     {% else %}
-    {{ post.content }}
+        {{ post.content }}
     {% endif %}
+    <hr>
 </section>
 {% endfor %}
