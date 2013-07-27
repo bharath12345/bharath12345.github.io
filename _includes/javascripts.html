@@ -1,0 +1,14 @@
+<script type="text/javascript" src="/lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/lib/jQuery/jquery-1.10.2.min.js"></script>
+<script data-dojo-config="async: 1, dojoBlankHtmlUrl: '/blank.html',
+        packages: [ {
+            name: 'custom',
+            location: location.pathname.replace(/\/[^/]+$/, '') + '/js/custom'
+        } ]"
+        src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js">
+
+    require(["dojo/dom", "dojo/domReady!"], function(dom){
+
+        console.log("loaded = " + dom);
+    });
+</script>
