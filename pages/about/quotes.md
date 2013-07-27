@@ -1,12 +1,16 @@
 ---
-layout: post
+layout: about
 title: "Quotes"
 description: ""
-published: false
+published: true
+tags: []
+categories: [Technical]
+tweetfb: false
+disqus: false
 ---
 
 #### Computers and Business
-The successful professional for the twenty-first century is either a business-savvy technologist or a technology-savvy businessperson
+The successful professional for the twenty-first century is either a business-savvy technologist or a technology-savvy businessperson, and I am writing for this person. - Alan Cooper in 'Inmates are running the Asylum'
 
 “The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.”
 
