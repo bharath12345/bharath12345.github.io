@@ -161,5 +161,24 @@ section.byline {
     text-transform: uppercase
 }
 
+ul.listing {
+    padding: 0;
+    margin: 0 0 25px 0
+}
+
+ul.listing li {
+    padding: 7px 5px;
+    list-style-type: none;
+    border-bottom: 1px solid #EEE
+}
+
+ul.listing li span {
+    float: right;
+    padding-top: 3px;
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase
+}
+
 
 
