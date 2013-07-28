@@ -9,7 +9,6 @@ tweetfb: true
 disqus: true
 ---
 
-{% excerpt %}
 I have been a Dojo user for many years now. Also use many JavaScript libraries (jQuery, backbone, bootstrap, D3, highsoft) all the while but Dojo is what I really love. I would not embark on any "professional" development work without being armed with Dojo. But I rest my opinions and comparisons of different JS libraries for a different blog. Here the context is to "build" Dojo. After all every professional project should do a build of their JS - compilers like Google Closure can find bugs, obfuscate and eventually make execution faster.
 
 I still am mainly a Java programmer (the enterprise products I have built are predominantly in Java… time split between Java/JavaScript may be 70/30). So am used to Maven as my primary build tool. And Maven I shall use to build Dojo.
@@ -24,9 +23,6 @@ The last article is very good but slightly dated. And here is what I propose to 
 1. Use dojo v1.9 (v1.8 and v1.7 with AMD should also work perfectly)
 2. I use WebStorm as my JavaScript IDE. It has excellent contextual support including that for Dojo. However, it requires Dojo to be at a constant referencable path from where it could index. Once the indexes are built, typing a "." after an object should show up the list of methods and variables belonging to that object. This is extremely useful for fast development
 3. Dojo builds are slow. A typical build from source download to unzip to compile to build WAR can take anywhere between 5 to 15 minutes. This can be painful and needs to be made faster
-
-<a href="{{ page.url }}">Continue Reading</a>
-{% endexcerpt %}
 
 Now, here is the how…
 

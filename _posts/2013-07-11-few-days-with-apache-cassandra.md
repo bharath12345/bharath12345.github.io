@@ -8,7 +8,7 @@ categories: [Technical]
 tweetfb: true
 disqus: true
 ---
-{% excerpt %}
+
 Few years ago I was a product developer at a big software (but non-database) company. We were writing the v2 of a new product after a fairly successful development round of v1. For everything OLTP, we used the wonderful open-source database - Postgres. But by v2, we had new, hight-volume data like NetFlow coming in. This would have intensely tested Postgres's scalability and read/write performance. And we had some datawarehousing and OLAP requirements too. A hard look at our queries told us that column-stores would be a great-fit. Looking back, the options for a new product to store and query on massive data volumes boiled down to these few options -
 
 * Throw more hardware: Tell the needy customer to invest more in hardware. But no one really knew how much more hardware was really going to nail it
@@ -23,10 +23,6 @@ The fact was, there were no open-source, reliable, horizontally scalable column-
 Times have improved. We now have Cassandra, HBase, Hypertable etc (MongoDB, CouchDB etc are document stores with less of modeling - here the context is of schema-full data with rich data-type support).
 
 So, I decided to try and understand Cassandra. Wanted to answer the simple question - if I were to re-live the product development scenario described above, would I choose Cassandra? So in this article I talk about my experiment with Cassandra. Here, I choose a very specific use-case to illustrate what I found - Monitoring JVM metrics in a small data center.
-
-<a href="{{ page.url }}">Continue Reading</a>
-
-{% endexcerpt %}
 
 #### A Simple Usecase
 * A web company running 50 JVMs. The JVMs could be Apache-Tomcat servlet containers hosting the application
