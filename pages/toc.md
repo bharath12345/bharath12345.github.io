@@ -1,6 +1,6 @@
 ---
 layout: layout
-title: "Index"
+title: "Index of Posts by Date"
 category: posts
 published: true
 tags: []
@@ -9,7 +9,7 @@ tweetfb: false
 disqus: false
 ---
 
-# Index of Posts
+# Index of Posts by Date
 
 <ul class="listing">
     {% for post in site.posts %}

@@ -3,8 +3,8 @@ layout: post
 title: "Build Dojo 1.7/1.8/1.9 with Maven"
 category: posts
 published: true
-tags: []
-categories: [Technical]
+tags: javascript, dojo
+categories: Technical
 tweetfb: true
 disqus: true
 ---

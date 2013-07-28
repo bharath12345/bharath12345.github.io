@@ -3,8 +3,8 @@ layout: post
 title: "The Visual Display of Quantitative Information"
 category: posts
 published: true
-tags: []
-categories: [Technical]
+tags: visualization
+categories: Technical
 tweetfb: true
 disqus: true
 ---

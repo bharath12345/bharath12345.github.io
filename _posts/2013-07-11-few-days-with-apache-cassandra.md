@@ -3,8 +3,8 @@ layout: post
 title: "Few days with Apache Cassandra"
 category: posts
 published: true
-tags: [Cassandra, Java, CQL, Database]
-categories: [Technical]
+tags: Cassandra, Java, CQL, Database
+categories: Technical
 tweetfb: true
 disqus: true
 ---
