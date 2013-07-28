@@ -180,5 +180,9 @@ ul.listing li span {
     text-transform: uppercase
 }
 
+tr.tablerow {
+    text-align: center;
+}
+
 
 

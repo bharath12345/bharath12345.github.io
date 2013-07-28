@@ -11,12 +11,15 @@ disqus: false
 
 # Movies
 
-I love non-fiction. And even if they are fictional, I love movies that leave me feeling better about the world and myself - uplifting sort… The order below is completely random. By no means can I rank them! These are the movies that I dont mind watching again after every few years...
+* I love non-fiction. And even if they are fictional, I love movies that leave me feeling better about the world and myself - uplifting sort…
+* The order below is completely random. By no means can I rank them.
+* These are the movies that I dont mind watching again after every few years... (there are other movies like Batman that I have liked but I dont carry a strong urge to see them again)
+* I do not have a liking for slapstick comedy or horror
 
 ### English
 
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
-    <tr>
+    <tr class="tablerow"">
         <td>The World's Fastest Indian</td>
         <td>Inside Job</td>
         <td>The Pursuit of Happyness</td>
@@ -30,7 +33,7 @@ I love non-fiction. And even if they are fictional, I love movies that leave me 
         <td>Margin Call</td>
         <td>Searching for Sugar Man</td>
     </tr>
-    <tr>
+    <tr class="tablerow">
         <td>The Terminal</td>
         <td>Last King of Scotland</td>
         <td>Argo</td>
@@ -44,7 +47,7 @@ I love non-fiction. And even if they are fictional, I love movies that leave me 
         <td>Bridge on the River Kwai</td>
         <td>The Thin Red Line</td>
     </tr>
-    <tr>
+    <tr class="tablerow">
         <td>Letters from Iwo Jima</td>
         <td>Munich</td>
         <td>A Beautiful Mind</td>
@@ -52,6 +55,7 @@ I love non-fiction. And even if they are fictional, I love movies that leave me 
         <td>300</td>
         <td>Apocalypto</td>
         <td>The King's Speech</td>
+        <td>Valkyrie</td>
     </tr>
 </table>
 
