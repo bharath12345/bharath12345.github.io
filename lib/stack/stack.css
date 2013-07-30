@@ -39,6 +39,10 @@ a:not(:hover) {
   color: #969696;
 }
 
+.black {
+  color: #000000;
+}
+
 @media
 screen and (max-device-width: 1024px) {
   body {
@@ -54,10 +58,10 @@ screen and (max-device-width: 1024px) {
   }
 }
 
-li.first {
+.first {
     font-size: 40px;
 }
 
-li.second {
+.second {
     font-size: 26px;
 }
