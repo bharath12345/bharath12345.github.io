@@ -53,3 +53,11 @@ screen and (max-device-width: 1024px) {
     display: block;
   }
 }
+
+li.first {
+    font-size: 40px;
+}
+
+li.second {
+    font-size: 26px;
+}

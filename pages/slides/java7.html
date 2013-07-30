@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+@import url(../../lib/stack/stack.css);
+
+.big {
+  font-size: 128px;
+}
+
+.caption {
+  font-size: 96px;
+  text-align: center;
+  text-shadow: 0px 2px 6px rgba(0,0,0,.5);
+}
+
+</style>
+<body class="overview">
+
+<section>
+    <p class="grey">The VM specification
+    <br><b style="color:orangered;">NO LONGER</b>
+    <br>makes any reference to JLS (Java Lang Spec)
+</section>
+
+<section style="padding-top: 40px">
+    <p><b class="white">Project Coin</b>
+    <ul class="grey">
+        <li class="first">Strings in Switch</li>
+        <li class="first">Binary Literals</li>
+            <ul>
+                <li class="second">int x = Integer.parseInt("1100110", 2); ==> int x = 0b1100110;</li>
+                <li class="second">long anotherLong = 2_147_483_648L;</li>
+                <li class="second">int bitPattern = 0b0001_1100__0011_0111__0010_1011__1010_0011;</li>
+            </ul>
+        <li class="first">Multi-Catch</li>
+            <ul>
+                <li class="second">catch (FileNotFoundException|ParseException|ConfigurationException e)</li>
+            </ul>
+        <li class="first">Try With Resources</li>
+            <ul>
+                <li class="second">try (
+                    OutputStream out = new FileOutputStream(file);
+                    InputStream is = url.openStream()
+                    ) {
+                </li>
+            </ul>
+        <li class="first">Diamond Syntax</li>
+            <ul>
+                <li class="second">Earlier: Map<Integer, Map<String, String>> usersLists =
+                    new HashMap<Integer, Map<String, String>>();</li>
+                <li class="second">Now: Map<Integer, Map<String, String>> usersLists = new HashMap<>();</li>
+            </ul>
+
+    </ul>
+</section>
+
+<section>
+    <p class="white">What are the few <b style="color:orangered;">limitations of Java 6 I/O?</b></p>
+</section>
+
+<section>
+    <p class="white">What are the few <b style="color:orangered;">limitations of Java 6 I/O?</b></p>
+        <ul class="grey">
+            <li class="first">Performance</li>
+            <li class="first">There is no direct class or method support for navigating directory trees</li>
+            <li class="first">There is no way of detecting and dealing with symbolic links</li>
+            <li class="first">It’s not possible to read the attributes (such as readable, writable, or execut-
+                able) of a file in one easy operation</li>
+        </ul>
+    </p>
+</section>
+
+<script src="../../lib/stack/d3.v3.min.js"></script>
+<script src="../../lib/stack/stack.v0.min.js"></script>
