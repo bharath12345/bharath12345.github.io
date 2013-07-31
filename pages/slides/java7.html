@@ -101,5 +101,110 @@
         </ul>
 </section>
 
+<section>
+    <p class="white first">Why do we use Spring framework?
+    <br>What is the <b style="color:orangered;">main feature that frameworks like Spring/EJB provide?</b>
+</section>
+
+<section>
+    <p class="white first">Why do we use Spring framework?
+    <br>What is the <b style="color:orangered;">main feature that frameworks like Spring/EJB provide?</b>
+    <ul>
+        <li class="second">Inversion of Control</li>
+        <li class="second">Dependency Injection</li>
+    </ul>
+</section>
+
+<section>
+    <p class="white">JSR-330
+    <ul>
+        <li class="second">javax.inject</li>
+        <li class="second">@Inject, @Qualifier, @Named, @Scope, and @Singleton</li>
+        <li class="second">Guice 3 is the full RI for JSR-330</li>
+    </ul>
+</section>
+
+<section>
+    <p>A static block takes a <b style="color:orangered;">lock on what?</b>
+</section>
+
+<section>
+    <p>A static block takes a <b style="color:orangered;">lock on what?</b>
+        <br>
+        <br>
+        <br><b style="color:white;">'Class' object</b>
+</section>
+
+<section>
+    <p>A method takes a <b style="color:orangered;">lock on what?</b>
+</section>
+
+<section>
+    <p>A method takes a <b style="color:orangered;">lock on what?</b>
+        <br>
+        <br>
+        <br>
+        <b style="color:white;">this</b>
+</section>
+
+<section>
+    <p>A <b style="color:orangered;">static</b> method takes a lock on what?
+</section>
+
+<section>
+    <p>A <b style="color:orangered;">static</b> method takes a lock on what?
+        <br>
+        <br>
+        <br><b style="color:white;">'Class' object</b>
+</section>
+
+<section>
+    <p>Are locks in Java <b style="color:orangered;">re-entrant?</b>
+</section>
+
+<section>
+    <p>Are locks in Java <b style="color:orangered;">re-entrant?</b>
+        <br>
+        <br>
+        <br>Yes. thread holding a lock that encounters a synchronization point for the same lock will be allowed to continue
+</section>
+
+<section style="background: #ffffff">
+    <p class="black first">JMM: Synchronizes-with: “releases happen before acquires”
+    <img src="../../images/java7/synchronizes-with.png" style="padding-top: 100px; padding-left: 200px;">
+</section>
+
+<section style="background: #ffffff">
+    <p class="black first">JMM: Happens-before: usecases: program order and synchronizes-with
+    <img src="../../images/java7/happens-before.png" style="padding-top: 100px; padding-left: 200px;">
+</section>
+
+<section>
+    <p>Features of Java JMM
+    <ul>
+        <li class="first">Objects can be easily shared between all threads</li>
+        <li class="first">Objects can be changed by any threads that have a reference</li>
+        <li class="first">thread scheduler can swap threads on and off cores at any time</li>
+        <li class="first">Methods must be able to be swapped out while they’re running</li>
+        <li class="first">Objects can be locked</li>
+    </ul>
+</section>
+
+<section>
+    <p>Concurrency Design Concepts
+    <ul>
+        <li class="first">Safety: self consistent regardless of operations</li>
+        <li class="first">Liveness: eventually progresses or fails</li>
+        <li class="first">Performance</li>
+        <li class="first">Reusability</li>
+    </ul>
+</section>
+
+<section>
+    <p>Please explore <b style="color:orangered;">java.util.concurrent</b> package</p>
+</section>
+
+
+
 <script src="../../lib/stack/d3.v3.min.js"></script>
 <script src="../../lib/stack/stack.v0.min.js"></script>
