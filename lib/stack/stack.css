@@ -65,3 +65,7 @@ screen and (max-device-width: 1024px) {
 .second {
     font-size: 26px;
 }
+
+.imgcenter {
+    padding-left: 300px;
+}
