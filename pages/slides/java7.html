@@ -242,7 +242,7 @@
 </section>
 
 <section>
-    <p>A digression into Performance
+    <p>A Digression into Performance
 </section>
 
 <section>
@@ -313,6 +313,22 @@
     <p>What is <b style="color:orangered;">DEGRADATION?</b>
     <br>
     <br>At what point and by how much the scale begins to tip
+</section>
+
+<section>
+    <p class="second">Memory speed has improved more slowly than CPUs have added transistors, which means there’s a risk that the processing cores will fall <b style="color:orangered;">idle</b> due to not having the relevant data on hand to process
+    <br>
+    <br>Memory Latency Hierarchy
+    <ul style="margin-top: 1px; margin-bottom: 1px;">
+        <li class="second">Registers</li>
+        <li class="second">L1, L2, L3 Caches</li>
+        <li class="second">RAM</li>
+        <li class="second">SSD</li>
+        <li class="second">HDD</li>
+    </ul>
+    <p class="second"><br>Hardware techniques like instruction-level parallelism (ILP) and chip multithreading (CMT), were used to try to keep the CPU operating on data, even in the face of the widening gap between CPU capability and memory latency
+    <br>So, a large portion of CPU power is consumed in caching and data-locality and <b style="color:orangered;">NOT</b> in application processing
+    <br>This means the future of application performance is intimately tied to <b style="color:orangered;">good concurrency programming</b> - get your skills right
 </section>
 
 
