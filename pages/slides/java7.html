@@ -331,8 +331,123 @@
     <br>This means the future of application performance is intimately tied to <b style="color:orangered;">good concurrency programming</b> - get your skills right
 </section>
 
+<section>
+    <p>Clocks
+    <br>
+    <br>
+    <br>How many exist? And how do you get them?
+</section>
 
+<section>
+    <p>Clocks
+    <ul>
+        <li class="second">RTC (Real Time Clock) - Keeps running when PC is switched off</li>
+        <li class="second">8254 - System.currentTimeMillis()</li>
+        <li class="second">TSC (Time Stamp Counter) - System.nanoTime() - good only for delta's</li>
+        <li class="second">HPET (High Precision Event Timers)</li>
+    </ul>
+    <br>
+    <p class="second"><br>And these clocks <b style="color:orangered;">DRIFT AWAY</b>
+</section>
 
+<section>
+    <p>Areas of Memory
+        <br>
+        <br>
+        <br>How many exist?
+</section>
+
+<section>
+    <p>Areas of Memory
+    <ul>
+        <li class="second">Eden - Young Gen</li>
+        <li class="second">Survivor - Young Gen</li>
+        <li class="second">Tenured - Old Gen</li>
+        <li class="second">PermGen - Not actually Heap</li>
+    </ul>
+</section>
+
+<section>
+    <p>Garbage Collection (GC)
+        <br>
+        <br>
+        <br>How many exist?
+</section>
+
+<section>
+    <p>Garbage Collection (GC)
+    <ul>
+        <li class="second pad">Serial Collector</li>
+        <li class="second pad">Parallel Collector: Use the cores! But... still... STW</li>
+        <li class="second pad">Parallel Compacting Collector: Mark, Summary, Compaction - <b style="color:#87ceeb;">Old Gen Special, Regions within generations, Density calculation</b></li>
+        <li class="second pad">Concurrent Mark and Sweep Collector: Initial Mark, Concurrent Mark, ReMark, Sweep
+            <ul>
+                <li class="second"><b style="color:#87ceeb;">False Negatives Okay - due to concurrent marking</b></li>
+                <li class="second"><b style="color:#87ceeb;">Eventual Full Collections are inevitable</b></li>
+            </ul>
+        </li>
+        <li class="second pad"><b style="color:orangered;">G1 - The new one!</b></li>
+    </ul>
+</section>
+
+<section>
+    <p><b style="color:orangered;">G1</b>
+    <ul>
+        <li class="second">Pause Goals</li>
+        <li class="second">Regions in Heap itself - non-contiguous heap for each generation</li>
+        <li class="second">G1 will only collect as many regions as it has time</li>
+        <li class="second">Any generation can be collected to reach pause goal</li>
+        <li class="second">Good read - <a href="http://www.infoq.com/articles/G1-One-Garbage-Collector-To-Rule-Them-All">G1: One Garbage Collector To Rule Them All</a></li>
+        <li class="second">Least fragmentation with region size config</li>
+    </ul>
+</section>
+
+<section>
+    <p><b style="color:orangered;">JVM</b>
+        <br>
+        <br>
+        <br>How many do you know?
+</section>
+
+<section>
+    <p><b style="color:orangered;">JVM</b>
+    <ul>
+        <li class="second">HotSpot</li>
+        <li class="second">JRockit</li>
+        <li class="second">Dalvik</li>
+        <li class="second">Azul Zing - Dr. Cliff Clicks JVM</li>
+        <li class="second">Wiki - http://en.wikipedia.org/wiki/List_of_Java_virtual_machines</li>
+    </ul>
+</section>
+
+<section>
+    <p><b style="color:orangered;">Polyglot</b> Programming
+    <ul>
+        <li class="first">Groovy</li>
+        <li class="first">Scala</li>
+        <li class="first">Clojure</li>
+        <li class="first">And the CRAP - JRuby, Jython, Rhino</li>
+    </ul>
+</section>
+
+<section style="background: #ffffff">
+    <p><b style="color:orangered;">Polyglot</b>
+        <br>
+        <br><img src="../../images/java7/polyglot.png" style="padding-top: 100px; padding-left: 300px;">
+</section>
+
+<section>
+    <p>My Hypothesis
+    <ul>
+        <li class="first">Learn <b style="color:orangered;">Concurrency</b>, else you will perish</li>
+        <li class="first">Java will <b style="color:orangered;">Shrink</b> in JVM. Are you ready?</li>
+        <li class="first">Talk <b style="color:orangered;">Numbers</b>. Else, someone who can, will get the better job</li>
+    </ul>
+</section>
+
+<section>
+    <p>Thank you!!</p>
+</section>
 
 <script src="../../lib/stack/d3.v3.min.js"></script>
 <script src="../../lib/stack/stack.v0.min.js"></script>

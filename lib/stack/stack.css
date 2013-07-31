@@ -66,3 +66,6 @@ screen and (max-device-width: 1024px) {
     font-size: 26px;
 }
 
+.pad {
+    padding-bottom: 10px;
+}
