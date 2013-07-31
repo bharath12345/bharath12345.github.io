@@ -216,6 +216,106 @@
         <br><img src="../../images/java7/classloading2.png" style="padding-top: 100px; padding-left: 300px;">
 </section>
 
+<section>
+    <p>Method Handles and Method Types
+    <ul>
+        <li class="second">java.lang.invoke</li>
+        <li class="second">Logger lgr = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());</li>
+        <li class="second">Better than reflection and proxies</li>
+    </ul>
+</section>
+
+<section>
+    <p>Within Class Files...
+    <ul>
+        <li class="first">Java has 200 opcodes - each is a SINGLE byte</li>
+        <li class="first">Bytecode goes through JIT => conversion to machine level code</li>
+        <li class="first">Types of opcodes:
+            <ul>
+                <li class="second">Load and Store</li>
+                <li class="second">Arithmetic</li>
+                <li class="second">Execution control</li>
+                <li class="second">Invocation - method calling - <b style="color:orangered;">invokedynamic</b></li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <p>A digression into Performance
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">LATENCY?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">LATENCY?</b>
+    <br>
+    <br>Latency is the end-to-end time taken to process a single work-unit at a given workload
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">THROUGHPUT?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">THROUGHPUT?</b>
+    <br>
+    <br>Throughput is the number of units of work that a system can perform in some time period with given resources
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">UTILIZATION?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">UTILIZATION?</b>
+    <br>
+    <br>Utilization represents the percentage of available resources that are being used to han- dle work units, instead of housekeeping tasks
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">EFFICIENCY?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">EFFICIENCY?</b>
+        <br>
+        <br>The efficiency of a system is equal to the throughput divided by the resources used
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">CAPACITY?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">CAPACITY?</b>
+        <br>
+        <br>Capacity is the number of work units (such as transactions) that can be in flight through the system at any time
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">SCALABILITY?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">SCALABILITY?</b>
+        <br>
+        <br>Change in throughput or latency as resources are added is the scalability of a system
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">DEGRADATION?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">DEGRADATION?</b>
+    <br>
+    <br>At what point and by how much the scale begins to tip
+</section>
+
+
 
 
 <script src="../../lib/stack/d3.v3.min.js"></script>
