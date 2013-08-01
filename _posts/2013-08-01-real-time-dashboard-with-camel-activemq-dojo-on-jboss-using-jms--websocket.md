@@ -4,7 +4,7 @@ title: "Real Time Dashboard with Camel, ActiveMQ & Dojo... On JBoss7 and using J
 category: posts
 tags: []
 categories: []
-published: false
+published: true
 tweetfb: true
 disqus: true
 ---
@@ -56,7 +56,7 @@ Am no expert in RESTful design. But I know for sure that many implementations (e
 </table>
 
 #### 3. Comet
-Comet, Reverse-Ajax et al. are hacks and not solutions. The idea is that the browser makes an Ajax request to the server, which is kept open until the server has new data to send to the browser. Once the server has the event it wants to send, it sends it on this already open channel. And soon after getting a response the browser initiates a new long polling request in order to obtain subsequent events. Multiple frameworks exist to accomplish the job from both server and client side. But the technology is riddled with bugs, browser incompatibilities and total mess.
+Comet, Reverse-Ajax et al. are hacks and not solutions. The idea is that the browser makes an Ajax request to the server, which is kept open until the server has new data to send to the browser. Once the server has the event it wants to send, it sends it on this already open channel. And soon after getting a response the browser initiates a new long polling request in order to obtain subsequent events. Multiple frameworks exist to accomplish the job from both server and client side. But the technology is riddled with bugs, browser incompatibilities and is a total mess.
 
 #### 4. WebSocket
 Websockets are a new protocol. The protocol specifies for setting up of a full duplex communication channel between client and server on top of HTTP(S). The HTTP header from client side has a "upgrade" field set to *websocket* and "connection" field set to *upgrade*. All modern browsers support this by the new JavaScript API WebSocket(). So the question boils down to - whats the best way to handle these upgrade requests on the server side? There are upcoming frameworks like [Atmosphere](https://github.com/Atmosphere/atmosphere) which interoperate with popular existing server and client frameworks promising easy adoption.
@@ -67,25 +67,25 @@ A real time *alerts* dashboard. In any monitoring/management/analytics system, e
 ### Design
 The image below shows the 5 components of the implementation of my usecase. The code is posted on GitHub [here](https://github.com/bharath12345/RealTimeDashboard).
 
-**AsyncHttpClient**: This is just a data feed. In most data-center scenario's the data-feed to IT management/analytics/monitoring services is separated by a firewall. I use [Ning HTTP client](http://www.ning.com/code/2010/03/introducing-nings-asynchronous-http-client-library/) - it is based on the superb Jetty NIO2 implementation and works well with JBoss. For the prototype's sake, I have taken the data itself to be just the HTTP headers. It could be anything from the payload also. And it could be from other type of sources like SNMP etc
+**1. AsyncHttpClient**: This is just a data feed. In most data-center scenario's the data-feed to IT management/analytics/monitoring services is separated by a firewall. I use [Ning HTTP client](http://www.ning.com/code/2010/03/introducing-nings-asynchronous-http-client-library/) - it is based on the superb Jetty NIO2 implementation and works well with JBoss. For the prototype's sake, I have taken the data itself to be just the HTTP headers. It could be anything from the payload also. And it could be from other type of sources like SNMP etc
 
-**AsyncHttpServer**: Camel provides a Jetty NIO2 based Async Server implementation. I use that to receive the client connections and pick the data (http headers in my case). 
+**2. AsyncHttpServer**: Camel provides a Jetty NIO2 based Async Server implementation. I use that to receive the client connections and pick the data (http headers in my case). 
 
-**JMS Broker**: I use ActiveMQ. JBoss packages HornetQ natively. But ActiveMQ is by far the most popular JMS broker on planet earth. 
+**3. JMS Broker**: I use ActiveMQ. JBoss packages HornetQ natively. But ActiveMQ is by far the most popular JMS broker on planet earth. 
 
-**Multiple JMS Topics**: The data receiver can publish the received data into a chosen JMS topic (depending on the data received). The first publish is of Serializable Java POJO. The receiver on this JMS topic picks the POJO, transforms it to JSON and publishes to a different set of JMS topic's just for JSON (this is not shown in the image below but can be seen in the code).
+**4. Multiple JMS Topics**: The data receiver can publish the received data into a chosen JMS topic (depending on the data received). The first publish is of Serializable Java POJO. The receiver on this JMS topic picks the POJO, transforms it to JSON and publishes to a different set of JMS topic's just for JSON (this is not shown in the image below but can be seen in the code).
 
-**Camel JMS to WebSocket Route**: Camel route is used to pick data from the JSON JMS topic and post it to both - WebSocket & log file - together. A final JSON level transformation can be applied in this stage if need be.
+**5. Camel JMS to WebSocket Route**: Camel route is used to pick data from the JSON JMS topic and post it to both - WebSocket & log file - together. A final JSON level transformation can be applied in this stage if need be.
 
-**JavaScript UI**: A JavaScript WebSocket() connects and waits for JSON messages to appear. Received messages are shown in a grid (Dojo's GridX actually)
+**6. JavaScript UI**: A JavaScript WebSocket() connects and waits for JSON messages to appear. Received messages are shown in a grid (Dojo's GridX actually)
 
 ![image](http://bharathwrites.in/images/camel-websocket/camel%20jms%20websocket.png)
 
-### Answering the Why's? 
-##### Why Apache Camel?
+### The Why's? 
+#### 1. Why Apache Camel?
 (1) I wanted to learn Camel (2) Apache Camel is brilliant for plumbing purposes between modules/services within an enterprise product. The number of supported components is dizzying. Despite the heavy sounding ESB word being thrown around with it I have found it quite easy to grasp and it just works like a charm!  
 
-##### Why ActiveMQ and not Camel's native JMS implementation?
+#### 2. Why ActiveMQ and not Camel's native JMS implementation?
 One of my dear friends, [Sumanth](http://in.linkedin.com/in/sumanthn83), pointed this rather subtle mention on performance aspect in Camel's JMS page.
 
 	http://camel.apache.org/jms.html
@@ -94,7 +94,7 @@ One of my dear friends, [Sumanth](http://in.linkedin.com/in/sumanthn83), pointed
 	
 Further to this, I am slowly developing an aversion to everything Spring. I opine that it is better to avoid Spring in any new development project of scale. And Camel JMS is based on Spring. So better to use ActiveMQ directly.
 
-##### Why WebSocket?
+#### 3. Why WebSocket?
 Experts in RESTful design like [Bill Burke](http://bill.burkecentral.com/2012/02/28/web-sockets-a-disaster-in-waiting/) denounce WebSockets sharply. There are [others](http://www.infoq.com/news/2012/02/websockets-rest) who welcome it anyway. Personally, I like the idea of a full duplex channel on top of HTTP. I dont think WebSockets maybe a good idea for companies and applications to expose there data and services - which exactly is the usecase for RESTful. WebSockets quite beautifully fit within enterprise products/applications where services are consumed internally between modules/known-applications and are deployed in a distributed setup where they cross multiple DMZ. With the upcoming [draft of HTTP 2.0](http://apiux.com/2013/07/23/http2-0-initial-draft-released/) which will hopefully support -
 
 * Binary
@@ -102,14 +102,15 @@ Experts in RESTful design like [Bill Burke](http://bill.burkecentral.com/2012/02
 * Multiple open streams 
 * Priorities
 
-##### Why JBoss7?
+#### 4. Why JBoss7?
 In the world of open source Java, JBoss is simply the best application container around. I used the [Wildfly](http://wildfly.org) 8.0 Alpha3 for this prototype 
-
 
 ### How to use and results
 1. A "mvn clean install" would build the EAR which should be deployed in JBoss 7+
 2. From the JBoss JMX Console, use the firePostRequests() operation to send HTTP client side requests (com.bharath.http.client)
-3. The snapshot of the dashboard UI - 
+![image](http://bharathwrites.in/images/camel-websocket/jmx.png)
+3. The snapshot of the dashboard UI -
+![image](http://bharathwrites.in/images/camel-websocket/dashboard.png) 
 
-### Conclusion
-Asynchronous processing by pushing to multiple JMS topic's when combined with Apache Camels routing and WebSocket capabilities can provide for building a truely fast and efficient events/alerts pipeline for a realtime alerts dashboard
+### My Conclusion!!
+Asynchronous processing by pushing to multiple JMS topic's when combined with Apache Camel's routing and WebSocket capabilities can provide for building a truely fast and efficient events/alerts pipeline for a realtime alerts dashboard
