@@ -25,11 +25,24 @@ Ajax requires a client side request to get data to the browser. So the simplest 
 	</tr>
 </table>
 
-#### 2. Stateful
-Maintain 'states' between requests. Either, 
+#### 2. Stateful and RESTful
+Maintain 'states' at either server or client to reduce what is queried and transmit size. Actually there are two options,
 
-* **Client-side stateful**: Client asks for only the incremental. A timestamp based method could be adopted by the client to get the incrementals (by doing so the timestamp becomes the 'state'). There are some wonderful JavaScript frameworks that make state maintenance possible. For example one might use [BackboneJS](http://backbonejs.org) or Dojo's [Observable](http://dojotoolkit.org/reference-guide/1.9/dojo/store/Observable.html) pattern to build a store in the browser and update the UI only on the incremental changes.
-* **Server-side stateful**: Server can respond with *only* the incremental when a request from the same client arrives. One can use RESTful API's to publish incremental data of different types and filtering. A session handshake or client-subscription is required before the start (server has to maintain state for each client). RESTful APIs give a good technology platform to build such stacks. But RESTful is a deep field and there are a plethora of good, bad and horrible libraries/designs.
+* Client side stateful
+* Server side stateful
+
+But [REST mandates](http://en.wikipedia.org/wiki/Representational_state_transfer#Constraints) the following 2 constrains -
+
+	Stateless
+	The client–server communication is further constrained by no client context being stored on the server between requests. Each request from any client contains all of the information necessary to service the request, and any session state is held in the client.
+
+	Cacheable
+	As on the World Wide Web, clients can cache responses. Responses must therefore, implicitly or explicitly, define themselves as cacheable, or not, to prevent clients reusing stale or inappropriate data in response to further requests. Well-managed caching partially or completely eliminates some client–server interactions, further improving scalability and performance.
+
+Am no expert in RESTful design. But I know for sure that many implementations (especially those with the go by name streaming) relax the stateless at server constraint. So, statefulness can go thus -
+
+* **Client-side stateful**: Client asks for only the incremental. For example a timestamp based method could be adopted by the client to get the incrementals (by doing so the timestamp becomes the 'state'). There are some wonderful JavaScript frameworks that make state maintenance possible. One can use [BackboneJS](http://backbonejs.org) or Dojo's [Observable](http://dojotoolkit.org/reference-guide/1.9/dojo/store/Observable.html) pattern to build a store in the browser and update the UI only on the incremental changes. Combined with RESTful HTTP APIs on the server-side, one can build robust applications
+* **Server-side stateful**: Server can respond with *only* the incremental when a request from the same client arrives. Server side HTTP API's publish incremental data of different types and filtering. A session handshake or client-subscription is required before the start (server has to maintain state for each client).
 
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
 	<tr>
@@ -43,9 +56,11 @@ Maintain 'states' between requests. Either,
 </table>
 
 #### 3. COMET
-##### Pro
-##### Con
+Comet, Reverse-Ajax et al. are hacks and not solutions. The idea is that the browser makes an Ajax request to the server, which is kept open until the server has new data to send to the browser. Once the server has the event it wants to send, it sends it on this already open channel. And soon after getting a response the browser initiates a new long polling request in order to obtain subsequent events. Multiple frameworks exist to accomplish the job from both server and client side. But the technology is riddled with bugs, browser incompatibilities and so on.
 
 #### 4. WebSocket
-##### Pro
-##### Con
+Websockets are a no protocol. The protocol specifies for setting up of a full duplex communication channel between client and server on top of HTTP. The HTTP header from client side has "upgrade" field set to *websocket* and "Connection" field set to *upgrade*. All modern browsers support this by the new JavaScript API WebSocket(). So the question boils down to - whats the best way to handle these upgrade requests? There are upcoming frameworks like [Atmosphere](https://github.com/Atmosphere/atmosphere) which interoperate with popular existing server and client frameworks promising easy adoption. But from a JavaEE developer's perspective, are they required?
+
+### My Usecase
+
+![image](http://)
