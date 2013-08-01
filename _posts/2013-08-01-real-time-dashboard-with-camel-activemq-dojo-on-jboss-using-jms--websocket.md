@@ -61,6 +61,18 @@ Comet, Reverse-Ajax et al. are hacks and not solutions. The idea is that the bro
 #### 4. WebSocket
 Websockets are a no protocol. The protocol specifies for setting up of a full duplex communication channel between client and server on top of HTTP. The HTTP header from client side has "upgrade" field set to *websocket* and "Connection" field set to *upgrade*. All modern browsers support this by the new JavaScript API WebSocket(). So the question boils down to - whats the best way to handle these upgrade requests? There are upcoming frameworks like [Atmosphere](https://github.com/Atmosphere/atmosphere) which interoperate with popular existing server and client frameworks promising easy adoption. But from a JavaEE developer's perspective, are they required?
 
-### My Usecase
+### Usecase and Design
 
-![image](http://)
+The image below shows the 5 components of the implementation of my usecase. The code is posted on GitHub [here](https://github.com/bharath12345/RealTimeDashboard).
+
+**AsyncHttpClient**: This is just my data feed. In most data-center scenario's the data-feed to IT management/analytics/monitoring services is separated by a firewall. I use Ning HTTP client - it is based on the superb Jetty NIO2 implementation and works well with JBoss. I have taken the data itself to be HTTP headers. It could be anything from the payload. And it could be from other type of sources like SNMP
+
+**AsyncHttpServer**: Camel provides a Jetty based Async Server implementation. I use that to receive the client connections and pick the data (http headers). 
+
+**JMS Broker**: I use ActiveMQ. JBoss packages HornetQ natively. But ActiveMQ is by far the most popular JMS broker out there. 
+
+**Multiple JMS Topics**: The data receiver can publish the received data into a chosen JMS topic (depending on the data received). The first publish is of Serializable Java POJO. The receiver on this JMS topic picks the POJO, transforms it to JSON and publishes to a different set of JMS topic's just for JSON (this is not shown in the image below but can be seen in the code).
+
+**Camel JMS to WebSocket Route**: Camel route is used to pick data from the JSON JMS topic and post it to both - WebSocket & log file - together. A final JSON level transformation can be applied in this stage if need be.
+
+![image](http://bharathwrites.in/resources/camel%20jms%20websocket.png)
