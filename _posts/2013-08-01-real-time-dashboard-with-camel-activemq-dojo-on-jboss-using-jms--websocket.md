@@ -95,12 +95,14 @@ One of my dear friends, [Sumanth](http://in.linkedin.com/in/sumanthn83), pointed
 Further to this, I am slowly developing an aversion to everything Spring. I opine that it is better to avoid Spring in any new development project of scale. And Camel JMS is based on Spring. So better to use ActiveMQ directly.
 
 #### 3. Why WebSocket?
-Experts in RESTful design like [Bill Burke](http://bill.burkecentral.com/2012/02/28/web-sockets-a-disaster-in-waiting/) denounce WebSockets sharply. There are [others](http://www.infoq.com/news/2012/02/websockets-rest) who welcome it anyway. Personally, I like the idea of a full duplex channel on top of HTTP. I dont think WebSockets maybe a good idea for companies and applications to expose there data and services - which exactly is the usecase for RESTful. WebSockets quite beautifully fit within enterprise products/applications where services are consumed internally between modules/known-applications and are deployed in a distributed setup where they cross multiple DMZ. With the upcoming [draft of HTTP 2.0](http://apiux.com/2013/07/23/http2-0-initial-draft-released/) which will hopefully support -
+Experts in RESTful design like [Bill Burke](http://bill.burkecentral.com/2012/02/28/web-sockets-a-disaster-in-waiting/) denounce WebSockets sharply. There are [others](http://www.infoq.com/news/2012/02/websockets-rest) who welcome it anyway. Personally, I like the idea of a full duplex channel on top of HTTP. I dont think WebSockets maybe a good idea for companies and applications to expose there data and services - which exactly is the usecase for RESTful. WebSockets quite beautifully fit within enterprise products/applications where services are consumed internally between modules/known-applications and are deployed in a distributed setup where they cross multiple DMZ. Along with the upcoming [draft of HTTP 2.0](http://apiux.com/2013/07/23/http2-0-initial-draft-released/) which will hopefully support -
 
 * Binary
 * Connections remain open so long as user stays on the page
 * Multiple open streams 
 * Priorities
+
+having WebSockets will make HTTP a dependable channel for realtime!
 
 #### 4. Why JBoss7?
 In the world of open source Java, JBoss is simply the best application container around. I used the [Wildfly](http://wildfly.org) 8.0 Alpha3 for this prototype 
@@ -108,9 +110,12 @@ In the world of open source Java, JBoss is simply the best application container
 ### How to use and results
 1. A "mvn clean install" would build the EAR which should be deployed in JBoss 7+
 2. From the JBoss JMX Console, use the firePostRequests() operation to send HTTP client side requests (com.bharath.http.client)
+
 ![image](http://bharathwrites.in/images/camel-websocket/jmx.png)
-3. The snapshot of the dashboard UI -
-![image](http://bharathwrites.in/images/camel-websocket/dashboard.png) 
+
+The snapshot of the dashboard UI -
+
+![image](http://bharathwrites.in/images/camel-websocket/dashboard.png)
 
 ### My Conclusion!!
 Asynchronous processing by pushing to multiple JMS topic's when combined with Apache Camel's routing and WebSocket capabilities can provide for building a truely fast and efficient events/alerts pipeline for a realtime alerts dashboard
