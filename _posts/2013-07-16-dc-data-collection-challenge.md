@@ -32,30 +32,37 @@ Now, how much IT resources will WebTraveller require? Since I am the de facto CI
   
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
 	<tr>
+		<td>#</td>
 		<td>Servers running WebTraveller's Ruby based dynamic Web-Application</td>
 		<td>25</td>
 	</tr>
 	<tr>
+		<td>1</td>
 		<td>Servers sourcing WebTraveller's static page and load-balancer (httpd/nginix)</td>
 		<td>15</td>
 	</tr>
 	<tr>
+		<td>2</td>
 		<td>Servers running WebTraveller Java interface with its data providers</td>
 		<td>25</td>
 	</tr>
 	<tr>
+		<td>3</td>
 		<td>WebTraveller database servers</td>
 		<td>20</td>
 	</tr>
 	<tr>
+		<td>4</td>
 		<td>IT analytics</td>
 		<td>10</td>
 	</tr>
 	<tr>
+		<td>5</td>
 		<td>IT management/monitoring</td>
 		<td>5</td>
 	</tr>
 	<tr>
+		<td>-</td>
 		<td>Total Servers</td>
 		<td>100</td>
 	</tr>
@@ -68,60 +75,70 @@ Being the CIO, I want to understand how my IT is coping. So I need data. Data on
 
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
 	<tr>
+		<td>#</td>
 		<td>KPI Type</td>
 		<td>Approximate Number of KPIs per instance</td>
 		<td>Number of Instances (from the above table)</td>
 		<td>Total KPIs to collect</td>
 	</tr>
 	<tr>
+		<td>1</td>
 		<td>Operating system level KPIs - CPU, RAM, open sockets, HDD usage, network card stats etc</td>
 		<td>5</td>
 		<td>100</td>
 		<td>500</td>
 	</tr>
 	<tr>
+		<td>2</td>
 		<td>Ruby web-app KPIs</td>
 		<td>10</td>
 		<td>25</td>
 		<td>250</td>
 	</tr>
 	<tr>
+		<td>3</td>
 		<td>Ruby web-app runs on the Rails server. KPIs that speak Rails health</td>
 		<td>10</td>
 		<td>25</td>
 		<td>250</td>
 	</tr>
 	<tr>
+		<td>4</td>
 		<td>Java web-app KPIs</td>
 		<td>10</td>
 		<td>25</td>
 		<td>250</td>
 	</tr>
 	<tr>
+		<td>5</td>
 		<td>Java web-app's use a JVM and app-server (JBoss/Glassfish/Tomcat). KPIs that speak Java platform health</td>
 		<td>10</td>
 		<td>25</td>
 		<td>250</td>
 	</tr>
 	<tr>
+		<td>6</td>
 		<td>HTTPD or NGINIX KPIs</td>
 		<td>10</td>
 		<td>15</td>
 		<td>150</td>
 	</tr>
 	<tr>
+		<td>7</td>
 		<td>Database Server KPIs</td>
 		<td>20</td>
 		<td>20</td>
 		<td>400</td>
 	</tr>
 	<tr>
+		<td>8</td>
 		<td>KPIs from the Analytics system (say running Hadoop)</td>
 		<td>10</td>
 		<td>10</td>
 		<td>100</td>
 	</tr>
 	<tr>
+		<td>-</td>
 		<td>Total</td>
 		<td>-</td>
 		<td>-</td>
@@ -148,36 +165,42 @@ Looking at this list, Bean wants to chuck SNMP in v1.0 of the project. He wants 
 
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
 	<tr>
+		<td>#</td>
 		<td>Collection Method</td>
 		<td>Observation</td>
 		<td>Mean time to collect one KPI data-point (Optimistic)</td>
 		<td>Num of data-points that can be retrieved in 1 minute by a single thread</td>
 	</tr>
 	<tr>
+		<td>1</td>
 		<td>SSH</td>
 		<td>In doing a SSH to collect the uptime 99% of time is taken by connection establishment and teardown. Though multiple commands can be run on a remote SSH session and data retrieve, this optimisation comes at the cost of increased complexity of development</td>
 		<td>6 seconds</td>
 		<td>60/6 => 10 data-points</td>
 	</tr>
 	<tr>
+		<td>2</td>
 		<td>JMX</td>
 		<td>Problem with JMX - you cannot retrieve multiple variables in a single session. Every variable has connection establishment and authentication</td>
 		<td>10 seconds</td>
 		<td>60/10 => 6 data-points</td>
 	</tr>
 	<tr>
+		<td>3</td>
 		<td>JDBC</td>
 		<td>More than 1 KPI can be retrieved in a single JDBC session</td>
 		<td>Let us assume 20 seconds to retrieve all 20 database server KPIs of one instance</td>
 		<td>60 data-points</td>
 	</tr>
 	<tr>
+		<td>4</td>
 		<td>RPC or RMI</td>
 		<td>Not possible to group multiple KPIs in single session</td>
 		<td>10 seconds</td>
 		<td>60/10 => 6 data-points</td>
 	</tr>
 	<tr>
+		<td>5</td>
 		<td>SNMP</td>
 		<td>Highly dependent on the KPI itself and its agent implementation</td>
 		<td>NA</td>
@@ -189,38 +212,47 @@ With this understanding, Mr. Bean decides to use the following collection techno
 
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
 	<tr>
+		<td>#</td>
 		<td>KPI Type</td>
 		<td>Data Collection Technology</td>
 	</tr>
 	<tr>
+		<td>1</td>
 		<td>Operating system level KPIs - CPU, RAM, open sockets, HDD usage, network card stats etc</td>
 		<td>SSH</td>
 	</tr>
 	<tr>
+		<td>2</td>
 		<td>Ruby web-app KPIs</td>
 		<td>RPC or RMI</td>
 	</tr>
 	<tr>
+		<td>3</td>
 		<td>Ruby web-app runs on the Rails server. KPIs that speak Rails health</td>
 		<td>RPC or RMI</td>
 	</tr>
 	<tr>
+		<td>4</td>
 		<td>Java web-app KPIs</td>
 		<td>JMX</td>
 	</tr>
 	<tr>
+		<td>5</td>
 		<td>Java web-app's use a JVM and app-server (JBoss/Glassfish/Tomcat). KPIs that speak Java platform health</td>
 		<td>JMX</td>
 	</tr>
 	<tr>
+		<td>6</td>
 		<td>HTTPD or NGINIX KPIs</td>
 		<td>SSH</td>
 	</tr>
 	<tr>
+		<td>7</td>
 		<td>Database Server KPIs</td>
 		<td>JDBC</td>
 	</tr>
 	<tr>
+		<td>8</td>
 		<td>KPIs from the Analytics system (say running Hadoop)</td>
 		<td>SSH</td>
 	</tr>
@@ -230,26 +262,32 @@ After deciding on which technology to use for each KPI, Mr. Bean tabulates the t
 
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
 	<tr>
+		<td>#</td>
 		<td>Data Collection Technology</td>
 		<td>Total KPIs to collect</td>
 	</tr>
 	<tr>
+		<td>1</td>
 		<td>SSH</td>
 		<td>500 + 150 + 100 = 750</td>
 	</tr>
 	<tr>
+		<td>2</td>
 		<td>RPC or RMI</td>
 		<td>250 + 250 = 500</td>
 	</tr>
 	<tr>
+		<td>3</td>
 		<td>JMX</td>
 		<td>250 + 250 = 500</td>
 	</tr>
 	<tr>
+		<td>4</td>
 		<td>JDBC</td>
 		<td>400</td>
 	</tr>
 	<tr>
+		<td>-</td>
 		<td>Total</td>
 		<td>2150 (this tallies with the previously calculated # of KPIs)</td>
 	</tr>
@@ -263,36 +301,42 @@ So, Mr. Bean calculates the number of threads that his application will end-up w
 
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
 	<tr>
+		<td>#</td>
 		<td>Data Collection Technology</td>
 		<td>Num of data-points that can be retrieved in 1 minute by a single thread</td>
 		<td>Total KPIs to collect in a minute</td>
 		<td>Number of threads required to collect all KPIs in a minute</td>
 	</tr>
 	<tr>
+		<td>1</td>
 		<td>SSH</td>
 		<td>10</td>
 		<td>750</td>
 		<td>750/10 => 75</td>
 	</tr>
 	<tr>
+		<td>2</td>
 		<td>RPC or RMI</td>
 		<td>6</td>
 		<td>500</td>
 		<td>500/6 => 83</td>
 	</tr>
 	<tr>
+		<td>3</td>
 		<td>JMX</td>
 		<td>6</td>
 		<td>500</td>
 		<td>500/6 => 83</td>
 	</tr>
 	<tr>
+		<td>4</td>
 		<td>JDBC</td>
 		<td>60</td>
 		<td>400</td>
 		<td>400/60 => 7</td>		
 	</tr>
 	<tr>
+		<td>-</td>
 		<td>Total</td>
 		<td>82</td>
 		<td>2150</td>
@@ -304,66 +348,68 @@ So, Mr. Bean calculates the number of threads that his application will end-up w
 
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
 	<tr>
+		<td>#</td>
 		<td>Data Collection Technology</td>
 		<td>Total KPIs to collect in a minute</td>
 		<td>Observation on number of Asynchronous calls required</td>
 		<td>Potentially max number of threads running in a minute</td>
 	</tr>
 	<tr>
+		<td>1</td>
 		<td>SSH</td>
 		<td>750</td>
 		<td>One Async call per KPI</td>
 		<td>750</td>
 	</tr>
 	<tr>
+		<td>2</td>
 		<td>RPC or RMI</td>
 		<td>500</td>
 		<td>One Async call per KPI</td>
 		<td>500</td>
 	</tr>
 	<tr>
+		<td>3</td>
 		<td>JMX</td>
 		<td>500</td>
 		<td>One Async call per KPI</td>
 		<td>500</td>
 	</tr>
 	<tr>
+		<td>4</td>
 		<td>JDBC</td>
 		<td>400</td>
 		<td>20 database server KPIs of one instance in a single Async call</td>
 		<td>400/20 => 20</td>
 	</tr>
 	<tr>
+		<td>-</td>
 		<td>Total</td>
 		<td>-</td>
 		<td>-</td>
-		<td>Approx 1750</td>
+		<td>Approx 1770</td>
 	</tr>
 </table>
 
------------------
+So the realm of number of threads to gather information from the 100 server deployment at WebTraveller is between 250 threads to 1770. Usage of async libraries which provide a better temporal distribution and fault-safety has to be traded-off with the number of threads to manage. Potentially 1770 data collection threads could be getting forked EVERY MINUTE in WebTraveller's data-center.
 
-- Similarly the mean of JMX can be assumed to be around 10 seconds.  Let us assume there are 30 JVMs in our 300 node DC. And we want to retrieve 10 KPIs per JVM. Total data-points = 30 * 10 = 300. With a 10 second mean, 6 KPIs can be retrieved in a minute by a single thread. Total threads required to retrieve all KPIs = 300/6 = 50 threads
+#### Challenges
+The challenge becomes very visible if the company's IT resources grow by 5 times in the next 3 years. After all, between synchronous and asynchronous approaches, the average number of threads required to collect data thus varies between 
 
-- Suppose there are 20 data-base servers in the farm. JDBC mean times can be assumed to be no different than JMX. However more than 1 KPI can be retrieved in a single JDBC session. Suppose there are 10 Database KPIs to retrieve and assuming a single session to query 3 DB tables to retrieve all of them, the mean time to retrieve will be close to 15 seconds. Which is 4 DB servers can be polled per thread. Which gives us a requirement of 20/4 = 5 threads
+* Synchronous: 250/100 = 2.5 threads per server per minute
+* Asynchronous: 1770/100 = 17.7 threads per server per minute
 
-- 20 Apache front-end webservers and load-balancers. RPC to retrieve data. Again around 10 seconds mean time = 6 server per thread. Not possible to group multiple KPIs in single session. Around 6 KPIs per server, which is 20 * 6 = 120 data points. 120/6 = 20 threads
+And these numbers need to be coupled with the natural challenges of data collection, which are - 
 
-- RPC/RMI like mechanism to retrieve data from the Ruby/PHP applications. Similar to JVM. Gives us around 50 threads
+* Horizontal scalability
+* Fault tolerance
+* More accurate temporal distribution
+* Tired architecture induces delay in real-time collection and storage
 
------
+Mr. Bean realises that the choices of technology and path of development of this data collector are critical to his success.	
 
-Host data collector threads = 10
-JMX data collector threads = 50
-DB data collector threads = 5
-WebServer data collector threads = 20
-WebApp data collector threads = 50
-Total data collector threads = 135 threads
+#### Now, with Ganglia
+Potentially, Mr. Bean could do one other thing. He could choose a open-source framework like Ganglia to collect the data. Each of the 5 functional groups in WebTraveller's data-center need be configured as separate Ganglia clusters. The data collector then has to communicate with only 5 servers instead of 100 - because Ganglia stores the data collected in each cluster at all the nodes. 
 
-Connections per minute
-Host = 100 connections per minute
-JMX = 30 connections per minute
-JDBC = 20
-Apache = 20
-WebApp = 30
-Total = 200 connections per minute
+ToDo: Thread calculation with Ganglia
+
