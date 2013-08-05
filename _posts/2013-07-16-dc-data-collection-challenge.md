@@ -255,8 +255,91 @@ After deciding on which technology to use for each KPI, Mr. Bean tabulates the t
 	</tr>
 </table>
 
+With this knowledge of total KPIs, methodology for each and time taken for each, Mr. Bean wants to know the number of threads his application may have to run. Mr. Bean know that ideally, he would want to do Asynchronous collection for each of these - that is, start a request in Thread-A and retrieve the data from Thread-B when it arrives - there are many libraries that provide such Asynchronous capabilities for each of SSH, RPC, RMI, JMX, JDBC etc. However, Asynchronous communication does not lead to conservative number of threads - a thread gets forked whenever data arrives. For most conservative number of threads, a select-and-poll based method is most appropriate. The big deficiency of select-and-poll approach however is that data collection with time boundaries becomes tougher. There is no guarantee that the above mentioned mean times will always hold good. And also, the data that arrives is distributed wildly on the temporal scale. 
 
+So, Mr. Bean calculates the number of threads that his application will end-up with if he takes either of the approaches -
 
+##### With the more thread-conservative select-and-poll approach -
+
+<table class="table table-bordered table-striped table-condensed bs-docs-grid">
+	<tr>
+		<td>Data Collection Technology</td>
+		<td>Num of data-points that can be retrieved in 1 minute by a single thread</td>
+		<td>Total KPIs to collect in a minute</td>
+		<td>Number of threads required to collect all KPIs in a minute</td>
+	</tr>
+	<tr>
+		<td>SSH</td>
+		<td>10</td>
+		<td>750</td>
+		<td>750/10 => 75</td>
+	</tr>
+	<tr>
+		<td>RPC or RMI</td>
+		<td>6</td>
+		<td>500</td>
+		<td>500/6 => 83</td>
+	</tr>
+	<tr>
+		<td>JMX</td>
+		<td>6</td>
+		<td>500</td>
+		<td>500/6 => 83</td>
+	</tr>
+	<tr>
+		<td>JDBC</td>
+		<td>60</td>
+		<td>400</td>
+		<td>400/60 => 7</td>		
+	</tr>
+	<tr>
+		<td>Total</td>
+		<td>82</td>
+		<td>2150</td>
+		<td>Approx 250</td>
+	</tr>
+</table>
+ 
+##### Asynchronous approach
+
+<table class="table table-bordered table-striped table-condensed bs-docs-grid">
+	<tr>
+		<td>Data Collection Technology</td>
+		<td>Total KPIs to collect in a minute</td>
+		<td>Observation on number of Asynchronous calls required</td>
+		<td>Potentially max number of threads running in a minute</td>
+	</tr>
+	<tr>
+		<td>SSH</td>
+		<td>750</td>
+		<td>One Async call per KPI</td>
+		<td>750</td>
+	</tr>
+	<tr>
+		<td>RPC or RMI</td>
+		<td>500</td>
+		<td>One Async call per KPI</td>
+		<td>500</td>
+	</tr>
+	<tr>
+		<td>JMX</td>
+		<td>500</td>
+		<td>One Async call per KPI</td>
+		<td>500</td>
+	</tr>
+	<tr>
+		<td>JDBC</td>
+		<td>400</td>
+		<td>20 database server KPIs of one instance in a single Async call</td>
+		<td>400/20 => 20</td>
+	</tr>
+	<tr>
+		<td>Total</td>
+		<td>-</td>
+		<td>-</td>
+		<td>Approx 1750</td>
+	</tr>
+</table>
 
 -----------------
 
