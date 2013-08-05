@@ -134,13 +134,133 @@ So, the approximate total number of KPIs to collect is 2150. Which is an average
 #### The Developer's View
 'Mr. Bean' is the developer in WebTravellers IT team. Mr. Bean's task is cut out. He would be given one out of the 5 server's from IT management/monitoring team's quota to collect these KPIs and store them in the database (of the other 4 - one each for monitoring database, monitoring front-end, provisioning/configuration system and a single lone 'test-box' :-)).
 
+Mr. Bean does not know if one server is going to be sufficient. But being a seasoned developer, he knows for sure that to collect so many KPIs he needs to code a 'multi-threaded' application. So Bean decides to do some estimation. How many threads will his application need to capture 2150 KPIs every minute?
+
+First of all, what are the different methods that exist to capture these KPIs from a remote server? Here are the necessary few -
+
+* JMX to collect from Java applications
+* JDBC to collect from the databases itself
+* RPC/RMI or SSH based log-monitoring mechanism to retrieve data from the Ruby part
+* RPC/RMI or SSH based log-monitoring to retrieve data from HTTPD/NGINX
+* Server level stats through remote SSH or SNMP
+
+Looking at this list, Bean wants to chuck SNMP in v1.0 of the project. He wants to write as few connectors as possible and SSH seems to work for multiple KPIs. Bean calculates the response-time for various collection methods - 
+
+<table class="table table-bordered table-striped table-condensed bs-docs-grid">
+	<tr>
+		<td>Collection Method</td>
+		<td>Observation</td>
+		<td>Mean time to collect one KPI data-point (Optimistic)</td>
+		<td>Num of data-points that can be retrieved in 1 minute by a single thread</td>
+	</tr>
+	<tr>
+		<td>SSH</td>
+		<td>In doing a SSH to collect the uptime 99% of time is taken by connection establishment and teardown. Though multiple commands can be run on a remote SSH session and data retrieve, this optimisation comes at the cost of increased complexity of development</td>
+		<td>6 seconds</td>
+		<td>60/6 => 10 data-points</td>
+	</tr>
+	<tr>
+		<td>JMX</td>
+		<td>Problem with JMX - you cannot retrieve multiple variables in a single session. Every variable has connection establishment and authentication</td>
+		<td>10 seconds</td>
+		<td>60/10 => 6 data-points</td>
+	</tr>
+	<tr>
+		<td>JDBC</td>
+		<td>More than 1 KPI can be retrieved in a single JDBC session</td>
+		<td>Let us assume 20 seconds to retrieve all 20 database server KPIs of one instance</td>
+		<td>60 data-points</td>
+	</tr>
+	<tr>
+		<td>RPC or RMI</td>
+		<td>Not possible to group multiple KPIs in single session</td>
+		<td>10 seconds</td>
+		<td>60/10 => 6 data-points</td>
+	</tr>
+	<tr>
+		<td>SNMP</td>
+		<td>Highly dependent on the KPI itself and its agent implementation</td>
+		<td>NA</td>
+		<td>NA</td>
+	</tr>
+</table>
+
+With this understanding, Mr. Bean decides to use the following collection technology for each class of KPIs -
+
+<table class="table table-bordered table-striped table-condensed bs-docs-grid">
+	<tr>
+		<td>KPI Type</td>
+		<td>Data Collection Technology</td>
+	</tr>
+	<tr>
+		<td>Operating system level KPIs - CPU, RAM, open sockets, HDD usage, network card stats etc</td>
+		<td>SSH</td>
+	</tr>
+	<tr>
+		<td>Ruby web-app KPIs</td>
+		<td>RPC or RMI</td>
+	</tr>
+	<tr>
+		<td>Ruby web-app runs on the Rails server. KPIs that speak Rails health</td>
+		<td>RPC or RMI</td>
+	</tr>
+	<tr>
+		<td>Java web-app KPIs</td>
+		<td>JMX</td>
+	</tr>
+	<tr>
+		<td>Java web-app's use a JVM and app-server (JBoss/Glassfish/Tomcat). KPIs that speak Java platform health</td>
+		<td>JMX</td>
+	</tr>
+	<tr>
+		<td>HTTPD or NGINIX KPIs</td>
+		<td>SSH</td>
+	</tr>
+	<tr>
+		<td>Database Server KPIs</td>
+		<td>JDBC</td>
+	</tr>
+	<tr>
+		<td>KPIs from the Analytics system (say running Hadoop)</td>
+		<td>SSH</td>
+	</tr>
+</table>
+
+After deciding on which technology to use for each KPI, Mr. Bean tabulates the total KPIs in each category
+
+<table class="table table-bordered table-striped table-condensed bs-docs-grid">
+	<tr>
+		<td>Data Collection Technology</td>
+		<td>Total KPIs to collect</td>
+	</tr>
+	<tr>
+		<td>SSH</td>
+		<td>500 + 150 + 100 = 750</td>
+	</tr>
+	<tr>
+		<td>RPC or RMI</td>
+		<td>250 + 250 = 500</td>
+	</tr>
+	<tr>
+		<td>JMX</td>
+		<td>250 + 250 = 500</td>
+	</tr>
+	<tr>
+		<td>JDBC</td>
+		<td>400</td>
+	</tr>
+	<tr>
+		<td>Total</td>
+		<td>2150 (this tallies with the previously calculated # of KPIs)</td>
+	</tr>
+</table>
 
 
-Most optimistic data collection
 
-- In doing a SSH to collect the uptime 99% of time is taken by connection establishment and teardown. And the time taken itself can be assumed to have a mean of around 5~6 seconds. So a maximum of 10 hosts can be handled in a minute by a single thread. Let us assume multiple KPIs (CPU, memory etc) are retrieved by a single SSH. So for a small Data Center of 100 servers, the number of threads required is around 100/10 = 10 threads
 
-- Similarly the mean of JMX can be assumed to be around 10 seconds. Problem with JMX - you cannot retrieve multiple variables in a single session like JMX. Let us assume there are 30 JVMs in our 300 node DC. And we want to retrieve 10 KPIs per JVM. Total data-points = 30 * 10 = 300. With a 10 second mean, 6 KPIs can be retrieved in a minute by a single thread. Total threads required to retrieve all KPIs = 300/6 = 50 threads
+-----------------
+
+- Similarly the mean of JMX can be assumed to be around 10 seconds.  Let us assume there are 30 JVMs in our 300 node DC. And we want to retrieve 10 KPIs per JVM. Total data-points = 30 * 10 = 300. With a 10 second mean, 6 KPIs can be retrieved in a minute by a single thread. Total threads required to retrieve all KPIs = 300/6 = 50 threads
 
 - Suppose there are 20 data-base servers in the farm. JDBC mean times can be assumed to be no different than JMX. However more than 1 KPI can be retrieved in a single JDBC session. Suppose there are 10 Database KPIs to retrieve and assuming a single session to query 3 DB tables to retrieve all of them, the mean time to retrieve will be close to 15 seconds. Which is 4 DB servers can be polled per thread. Which gives us a requirement of 20/4 = 5 threads
 
