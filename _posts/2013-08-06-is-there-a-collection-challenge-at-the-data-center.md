@@ -32,32 +32,32 @@ Now, how much IT resources will WebTraveller require? Since I am the de facto CI
   
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
 	<tr>
-		<td>#</td>
+		<td>1</td>
 		<td>Servers running WebTraveller's Ruby based dynamic Web-Application</td>
 		<td>25</td>
 	</tr>
 	<tr>
-		<td>1</td>
+		<td>2</td>
 		<td>Servers sourcing WebTraveller's static page and load-balancer (httpd/nginix)</td>
 		<td>15</td>
 	</tr>
 	<tr>
-		<td>2</td>
+		<td>3</td>
 		<td>Servers running WebTraveller Java interface with its data providers</td>
 		<td>25</td>
 	</tr>
 	<tr>
-		<td>3</td>
+		<td>4</td>
 		<td>WebTraveller database servers</td>
 		<td>20</td>
 	</tr>
 	<tr>
-		<td>4</td>
+		<td>5</td>
 		<td>IT analytics</td>
 		<td>10</td>
 	</tr>
 	<tr>
-		<td>5</td>
+		<td>6</td>
 		<td>IT management/monitoring</td>
 		<td>5</td>
 	</tr>
@@ -149,7 +149,7 @@ Being the CIO, I want to understand how my IT is coping. So I need data. Data on
 So, the approximate total number of KPIs to collect is 2150. Which is an average of about 21 KPIs to be collected from the 100 servers of WebTraveller. Now, how frequently do we want to collect this data? I as the CIO of WebTraveller want my IT to be really AGILE - which means I don't want to miss any data (especially in its initial days!). And I also want to keep it SIMPLE. So I ask my monitoring team to collect all these KPIs *every minute*.  
 
 #### The Developer's View
-'Mr. Bean' is a developer in WebTraveller's IT team. Mr. Bean's task is cut out. Being a seasoned developer, he knows for sure that to collect so many KPIs he needs to code a 'multi-threaded' application. So Bean decides to do some estimation. How many threads will his application need to capture 2150 KPIs every minute?
+'Mr. Bean' is a developer in WebTraveller's IT team. Mr. Bean's task is cut out - he has to develop the monitoring app that collects 2150 metrics every minute by polling. Being a seasoned developer, he knows for sure that to collect so many KPIs he needs to code a 'multi-threaded' application. So Bean decides to do some estimation. How many threads will his application need to capture 2150 KPIs every minute?
 
 First of all, what are the different methods that exist to capture these KPIs from a remote server? Here are the necessary few -
 
@@ -159,7 +159,7 @@ First of all, what are the different methods that exist to capture these KPIs fr
 * RPC/RMI or SSH based log-monitoring to retrieve data from HTTPD/NGINX
 * Server level stats through remote SSH
 
-Me. Bean calculates the response-time for various collection methods - 
+Mr. Bean calculates the response-time for various collection methods - 
 
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
 	<tr>
@@ -287,6 +287,7 @@ So, Mr. Bean calculates the number of threads that his application will end-up w
 </table>
 
 So the realm of number of threads to gather information from the 100 server deployment at WebTraveller is approximately between 60 to 250 threads. The following factors are pertinent - 
+
 * Usage of async libraries would provide a better temporal distribution and fault-safety 
 * With a select-and-poll approach, the 64 threads will be active all the time. With Asynchronous approach 245 threads are forked every minute and they end much before the minute boundary (hopefully)
 * The number of socket descriptors required will have one-to-one correspondence with number of threads (in this case). So 64 sockets will be open at any point of time by the polling approach, while up to 245 sockets could be open at any point of time by the asynchronous approach
@@ -296,6 +297,7 @@ So the realm of number of threads to gather information from the 100 server depl
 The numbers say that on average 1 to 2 threads/sockets are required to collect data from each instance. This does not sound much in WebTraveller's case but one needs to pay attention to the following details - 
 
 * I have assumed that all data points are to be collected per minute. It could very well be that data is required at a much more granular level for certain metrics - say every 5 seconds. In which case, the number of threads and sockets would simply go up 12 times!
+* The average number of KPI per server, at 21, is a super conservative estimate. In most production environments, this number will at least double and generally, much much higher 
 * I have not considered the challenge (if there is one) on the persistence side of things - how easy is to to store all this data in a RDBMS (or NoSql!) and design queries for real-time?
 * And these numbers need to be coupled with the natural challenges of data collection, which are - 
 	* Horizontal scalability
