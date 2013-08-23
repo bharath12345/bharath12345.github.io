@@ -269,17 +269,46 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
     </tr>
     <tr class="tablerow"">
         <td>Favor generic types</td>
-        <td></td>
+        <td>Which of these is better and why?
+        <code>public class Stack {
+                private Object[] elements;
+                public void push(Object e) {
+                }
+                public Object pop() {
+                }
+             }
+        </code>
+        or
+        <code>public class Stack<E> {
+                private E[] elements;
+                public void push(E e) {
+                }
+                public E pop() {
+                }
+              }
+        </code>
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Favor generic methods</td>
-        <td></td>
+        <td>Which of these is better and why?
+        <code>public static Set union(Set s1, Set s2)</code>
+        or
+        <code>public static <E> Set<E> union(Set<E> s1, Set<E> s2)</code>
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use bounded wildcards to increase API flexibility</td>
-        <td></td>
+        <td>What is the PECS rule or Get-and-Put principle?
+        Bounded wildcards can be of two types -
+        <code>X<? extends E></code>
+        or
+        <code>Y<? super E></code>
+        PECS stands for producer-extends, consumer-super.
+        In other words, if a parameterized type represents a T producer, use <? extends T>; if it represents a T consumer, use <? super T>.
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
