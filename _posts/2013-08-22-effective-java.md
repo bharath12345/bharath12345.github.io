@@ -100,7 +100,8 @@ disqus: true
     </tr>
     <tr class="tablerow"">
         <td>Always override hashCode() when you override equals()</td>
-        <td>1. Iftwoobjectsareequalaccordingtotheequals(Object)method,thencall- ing the hashCode method on each of the two objects must produce the same integer result.
+        <td>
+        1. Iftwoobjectsareequalaccordingtotheequals(Object)method,thencall- ing the hashCode method on each of the two objects must produce the same integer result.
             2. Itisnotrequiredthatiftwoobjectsareunequalaccordingtotheequals(Ob- ject) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables.
             3. How will you compute the hashCode()? Do not be tempted to exclude significant parts of an object from the hash code computation to improve performance</td>
         <td></td>
@@ -112,7 +113,8 @@ disqus: true
     </tr>
     <tr class="tablerow"">
         <td>Override clone() judiciously</td>
-        <td>1. Does Cloneable interface have a clone() method? Why not?
+        <td>
+        1. Does Cloneable interface have a clone() method? Why not?
         Because the Java Object's clone() method (which is protected) is supposed to be used
         2. How does Java Object's clone() method work?
         If a class implements Cloneable, Object’s clone method returns a field-by-field copy of the object; otherwise it throws CloneNotSupportedException
@@ -132,7 +134,10 @@ disqus: true
     </tr>
     <tr class="tablerow"">
         <td>Consider implementing Comparable</td>
-        <td></td>
+        <td>
+        1. What is the use of the Comparable interface?
+        Helps in sorting when there is a natural order among the objects
+        2. Whats the difference between interfaces like Comparable and those like Cloneable/Serializable?</td>
         <td></td>
     </tr>
 </table>
@@ -141,7 +146,8 @@ disqus: true
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Minimize the accessibility of classes and members</td>
-        <td></td>
+        <td>What is package-private? How do you implement?
+        The member is accessible from any class in the package where it is declared. Technically known as default access, this is the access lev- el you get if no access modifier is specified.</td>
         <td></td>
     </tr>
     <tr class="tablerow"">
@@ -151,7 +157,17 @@ disqus: true
     </tr>
     <tr class="tablerow"">
         <td>Minimize mutability</td>
-        <td></td>
+        <td>
+1. Is it good or bad to minimize mutability? why?
+     If objects are immutable they are automatically thread-safe and no synchronization or locking is required
+2. How would you make an object immutable?
+    a. No mutators - no setters
+    b. Class cant be extended - class should be marked final
+    c. Make all fields final
+    d. Make all fields private
+    e. Ensure exclusive access to any mutable components
+    f. getters should return a new instance of the object
+</td>
         <td></td>
     </tr>
     <tr class="tablerow"">
@@ -166,12 +182,18 @@ disqus: true
     </tr>
     <tr class="tablerow"">
         <td>Prefer interfaces to abstract classes</td>
-        <td></td>
+        <td>Why are interfaces better than abstract classes?
+        1. Existing classes can be easily retrofitted to implement a new interface
+        2. Interfaces are ideal for defining mixins
+        3. Interfaces allow the construction of nonhierarchical type frameworks.
+        4. Interfaces enable safe, powerful functionality enhancements
+        5. combine the virtues of interfaces and abstract classes by providing an abstract skeletal implementation class to go with each nontrivial interface that you export</td>
         <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use interfaces only to define types</td>
-        <td></td>
+        <td>1. Is 'constants' in an interface a good programming pattern?
+        No. </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
@@ -186,7 +208,19 @@ disqus: true
     </tr>
     <tr class="tablerow"">
         <td>Favor static member classes over nonstatic</td>
-        <td></td>
+        <td>
+1. What are the 4 kinds of nested classes?
+    a. static member classes
+    b. nonstatic member classes
+    c. anonymous classes
+    d. local classes
+
+2. When will you make a nested class static?
+If an instance of a nested class can exist in isolation from an instance of its enclosing class, then the nested class must be a static member class: it is impossible to create an instance of a nonstatic member class without an enclosing instance. If you declare a member class that does not require access to an enclosing instance, always put the static modifier in its declaration
+
+3. Why would one prefer static classes?
+The association between a nonstatic member class instance and its enclosing instance is established when the former is created; it cannot be modified thereafter. Storing this reference costs time and space, and can result in the enclosing instance being retained when it would otherwise be eligible for garbage collection
+        </td>
         <td></td>
     </tr>
 </table>
@@ -498,3 +532,6 @@ disqus: true
         <td></td>
     </tr>
 </table>
+
+
+### Conclusion
