@@ -229,17 +229,42 @@ The association between a nonstatic member class instance and its enclosing inst
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Dont use raw types in new code</td>
-        <td></td>
+        <td>1. What is the problem with doing <code>private final Collection stamps = ... ;</code>
+        Loss of compile time type safety
+        2. Is List<String>.class legal? What will it give me?
+        It is not legal
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Eliminate unchecked warnings</td>
-        <td></td>
-        <td></td>
+        <td>
+1. How do you eliminate a unchecked warning?
+        suppress the warning with an @SuppressWarnings("unchecked") annotation.
+        </td>
+        <td>Always use the Suppress- Warnings annotation on the smallest scope possible.</td>
     </tr>
     <tr class="tablerow"">
         <td>Prefer lists to arrays</td>
-        <td></td>
+        <td>
+1. If Sub is a subtype of Super, then is the array Sub[] a subtype of Super[]?
+Yes. Arrays are covariant. Lists are invariant
+2. So which one is better? And why?
+Lists are better. Arrays are reified. This means that arrays know and enforce their element types at runtime. Generics, by contrast, are implemented by erasure. This means that they enforce their type constraints only at compile time and discard (or erase) their element type information at runtime.
+3. Test question -
+This code fragment is legal but fails at runtime! -
+                  <code>Object[] objectArray = new Long[1];
+                  objectArray[0] = "I don't fit in"; // Throws ArrayStoreException
+                  </code>
+                  But this one wont compile at all! -
+                  <code>List<Object> ol = new ArrayList<Long>(); // Incompatible types ol.add("I don't fit in");
+                  </code>
+4. Are these legal?
+<code>new List<E>[]
+new List<String>[]
+new E[]</code>
+No. It is illegal to create an array of a generic type, a parameterized type, or a type parameter. Types such as E, List<E>, and List<String> are technically known as non-reifiable types. Intuitively speaking, a non-reifiable type is one whose runtime representation contains less information than its compile-time representation.
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
