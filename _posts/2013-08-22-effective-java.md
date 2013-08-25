@@ -667,7 +667,7 @@ using apply()
         3. Why is it a bad idea to rely on Thread.yield or Java's thread priorities API?
         Not portable
 
-        4. 
+        4.
 
         </td>
         <td></td>
@@ -703,12 +703,24 @@ using apply()
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Implement serializable judiciously</td>
-        <td></td>
+        <td>
+        1. What is serialVersionUID?
+        Every serializable class has a unique identification number associated with it. If you do not specify this number explicitly by declaring a static final long field named serialVersionUID, the system automatically generates it at runtime by applying a complex procedure to the class. The automatically generated value is affected by the class’s name, the names of the interfaces it implements, and all of its public and protected members. If you change any of these things in any way, for example, by adding a trivial convenience method, the automatically generated serial version UID changes. If you fail to declare an explicit serial version UID, compatibility will be broken, resulting in an InvalidClassException at runtime. If no serial version UID is provided, an expensive computa- tion is required to generate one at runtime. If you ever want to make a new version of a class that is incompatible with existing versions, merely change the value in the serial version UID declaration.
+
+        2. Why should a class be made to implement Serilizable with caution?
+        A major cost of implementing Serializable is that it decreases the flexi- bility to change a class’s implementation once it has been released.
+
+
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Consider using a custom serialized form</td>
-        <td></td>
+        <td>
+        1. How good is Java's ObjectStream based Serialization? When would you implement your own custom serialized form?
+        The default serialized form of an object is a reasonably efficient encoding. The default serialized form is likely to be appropriate if an object’s phys- ical representation is identical to its logical content. Drawbacks - can be excessive in space consumption, not very fast, it permanently ties the exported API to the current internal representation
+
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
