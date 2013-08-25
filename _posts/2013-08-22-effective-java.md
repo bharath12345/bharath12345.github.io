@@ -322,22 +322,41 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Use enums instead of int constants</td>
-        <td></td>
+        <td>
+1. Does enum extend Java Object?
+They provide high-quality implementations of all the Object methods
+
+2. Which interfaces do enum implement?
+they implement Comparable and Serializable, and their serialized form is designed to withstand most changes to the enum type.
+
+3. How would you associate data with enums?
+To associate data with enum constants, declare instance fields and write a constructor that takes the data and stores it in the fields. Enums are by their nature immutable, so all fields should be final
+
+4. How would you associate a different behavior with every enum constant?
+using apply()
+
+</td>
         <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use instance fields instead of ordinals</td>
-        <td></td>
+        <td>Is using ordinals a bad idea? If so, what is the option?
+        Use instance fields
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use EnumSet instead of bit fields</td>
-        <td></td>
+        <td>Whats the usecase for EnumSets?
+        Instead of bit fields which look ugly like this <code>text.applyStyles(STYLE_BOLD | STYLE_ITALIC);</code>
+        one can do this -
+        <code>text.applyStyles(EnumSet.of(Style.BOLD, Style.ITALIC));</code>
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use EnumMap instead of ordinal indexing</td>
-        <td></td>
+        <td>It is rarely appropriate to use ordinals to index arrays: use EnumMap instead</td>
         <td></td>
     </tr>
     <tr class="tablerow"">
@@ -347,12 +366,21 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
     </tr>
     <tr class="tablerow"">
         <td>Prefer annotations to naming patterns</td>
-        <td></td>
+        <td>
+        1. Any usecase you can think of for custom annotations?
+        JUnit testing framework originally required its users to designate test methods by beginning their names with the characters test
+
+        2. Which annotation do you use most?
+        @Override, @Deprecated, @SuppressWarnings
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Consistently use the Override annotation</td>
-        <td></td>
+        <td>
+        1. What @Override for?
+        it indicates that the annotated method declaration overrides a declaration in a supertype
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
@@ -376,7 +404,10 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
     </tr>
     <tr class="tablerow"">
         <td>Design method signatures carefully</td>
-        <td></td>
+        <td>
+        1. Is Map as a method parameter better or HashMap - why?
+        Map is. This is super basic.
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
@@ -391,7 +422,10 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
     </tr>
     <tr class="tablerow"">
         <td>Return empty arrays or collections, not nulls</td>
-        <td></td>
+        <td>
+        1. What is better - returning null or empty collections?
+        Empty Collections
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
@@ -425,7 +459,15 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
     </tr>
     <tr class="tablerow"">
         <td>Prefer primitives to boxed primitives</td>
-        <td></td>
+        <td>
+        1. What makes the performance of this program bad?
+        <code>public static void main(String[] args) {
+                     Long sum = 0L;
+                     for (long i = 0; i < Integer.MAX_VALUE; i++) {
+                         sum += i;
+              }
+                     System.out.println(sum);
+                 }</code></td>
         <td></td>
     </tr>
     <tr class="tablerow"">
@@ -435,17 +477,27 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
     </tr>
     <tr class="tablerow"">
         <td>Beware the performance of string concatenation</td>
-        <td></td>
+        <td>1. Before 1.5, for string concatenation StringBuffer was preferred - what is it now?
+        StringBuilder</td>
         <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Refer to objects by their interfaces</td>
-        <td></td>
+        <td>1. Which one is better and why?
+        <code>
+        List<Subscriber> subscribers = new ArrayList<Subscriber>();
+        ArrayList<Subscriber> subscribers = new ArrayList<Subscriber>();
+        </code></td>
         <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Prefer interfaces to reflection</td>
-        <td></td>
+        <td>
+        1. Reflection allows one class to use another, even if the latter class did not exist when the former was compiled. So what are the problems using it?
+        * You lose all the benefits of compile-time type checking, including exception checking
+        * The code required to perform reflective access is clumsy and verbose
+        * Performance suffers
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
@@ -474,12 +526,30 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
     </tr>
     <tr class="tablerow"">
         <td>Use checked exceptions for recoverable conditions and runtime exceptions for programming errors</td>
-        <td></td>
+        <td>
+        1. What are the different types of exceptions?
+        * Checked exceptions
+        * Unchecked exceptions - runtime exceptions and errors
+        2. When would you code for checked exceptions?
+        when the caller is can reasonably expected to recover
+        3. When would you throw a runtime exception?
+        When the program is as good as dead
+        4. When would you throw a error?
+         there is a strong convention that errors are reserved for use by the JVM to indicate resource defi- ciencies, invariant failures, or other conditions that make it impossible to continue execution. Given the almost universal acceptance of this convention, it’s best not to implement any new Error subclasses. Therefore, all of the unchecked throw- ables you implement should subclass RuntimeException
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Avoid unnecessary use of checked exceptions</td>
-        <td></td>
+        <td>
+        1. Tell me the exceptions you know and when you would use them.
+        * IllegalArgumentException - argument aint right
+        * IllegalStateException - calling a method on an object before it is properly initialized
+        * NullPointerException - someone invokes a method on a null object
+        * ConcurrentModificationException - if a object designed to be used by a single thread is being concurrently modified
+        * IndexOutOfBoundException - accessing array beyond its data length
+        * UnsupportedOperationException - object does not support a method
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
@@ -518,7 +588,61 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Synchronize access to shared mutable data</td>
-        <td></td>
+        <td>
+        1. Is writing of all primitive data types atomic in Java?
+        reading or writing a variable is atomic unless the variable is of type long or double
+        2. How long would you expect this program to run?
+        <code>
+        public class StopThread {
+               private static boolean stopRequested;
+               public static void main(String[] args)
+                       throws InterruptedException {
+                   Thread backgroundThread = new Thread(new Runnable() {
+                       public void run() {
+                           int i = 0;
+                           while (!stopRequested)
+        i++; }
+                   });
+                   backgroundThread.start();
+                   TimeUnit.SECONDS.sleep(1);
+                   stopRequested = true;
+               }
+        }
+        </code>
+        Probably permanently. The VM might do what is called hoisting, the virtual machine might transform this code:
+        <code>while (!done)
+              i++;
+        </code>
+        into this code:
+        <code>if (!done)
+                while (true)
+                    i++;
+        </code>
+        How would you correct his?
+
+        3. Is this program thread safe? Can generateSerialNumber() be called from multiple threads safely?
+        <code>
+        private static volatile int nextSerialNumber = 0;
+           public static int generateSerialNumber() {
+               return nextSerialNumber++;
+        }
+
+        4. What are the 4 factors that need trade-off when writing multi-threaded concurrent programs?
+        Safety, Liveness, Efficiency, Reusability
+
+        5. Whats the tradeoff between Safety and Liveness?
+        safety: nothing bad happens
+        liveness: something good eventually happens
+
+        6. What is reentracy? Is Java reentrant?
+        Yes
+
+        7. Whats the difference between ArrayList and CopyOnWriteArrayList?
+        It is a variant of ArrayList in which all write operations are implemented by making a fresh copy of the entire underlying array. Because the internal array is never modified, iteration requires no locking and is very fast. For most uses, the performance of CopyOnWriteArrayList would be atrocious, but it’s perfect for observer lists, which are rarely modified and often traversed.
+
+
+        </code>
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
