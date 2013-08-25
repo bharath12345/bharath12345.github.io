@@ -478,7 +478,11 @@ using apply()
     <tr class="tablerow"">
         <td>Beware the performance of string concatenation</td>
         <td>1. Before 1.5, for string concatenation StringBuffer was preferred - what is it now?
-        StringBuilder</td>
+        StringBuilder
+
+        2. What is the difference between StringBuilder and StringBuffer?
+        StringBuider is unsynchronized - this makes it much faster. But should be used with care in concurrent programs
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
@@ -641,6 +645,7 @@ using apply()
         It is a variant of ArrayList in which all write operations are implemented by making a fresh copy of the entire underlying array. Because the internal array is never modified, iteration requires no locking and is very fast. For most uses, the performance of CopyOnWriteArrayList would be atrocious, but it’s perfect for observer lists, which are rarely modified and often traversed.
 
 
+
         </code>
         </td>
         <td></td>
@@ -652,7 +657,19 @@ using apply()
     </tr>
     <tr class="tablerow"">
         <td>Prefer executors and tasks to threads</td>
-        <td></td>
+        <td>
+        1. In the post Java 1.5 world, the use of 'Thread' is probably not a good idea due to the availability of new functionality in java.util.concurrent - what are they?
+                Executors and tasks
+
+        2. There are some data structures designed in Java collections specifically for concurrent usage - what are they and how do they work?
+         ConcurrentHashMap etc
+
+        3. Why is it a bad idea to rely on Thread.yield or Java's thread priorities API?
+        Not portable
+
+        4. 
+
+        </td>
         <td></td>
     </tr>
     <tr class="tablerow"">
