@@ -65,8 +65,7 @@ If the job to give out is important, technical interviews are not supposed to be
                        if (elements.length == size)
                            elements = Arrays.copyOf(elements, 2 * size + 1);
                    }
-            }
-            </pre>
+            }</pre>
         </div>
     </div>
     <div class="row show-grid">
@@ -106,29 +105,28 @@ If the job to give out is important, technical interviews are not supposed to be
     <div class="row show-grid">
         <div class="col-md-2 right">Override clone() judiciously</div>
         <div class="col-md-10 left">
-        1. Does Cloneable interface have a clone() method? Why not?
+        <h5>1. Does Cloneable interface have a clone() method? Why not?</h5>
         Because the Java Object's clone() method (which is protected) is supposed to be used
-        2. How does Java Object's clone() method work?
+        <h5>2. How does Java Object's clone() method work?</h5>
         If a class implements Cloneable, Object’s clone method returns a field-by-field copy of the object; otherwise it throws CloneNotSupportedException
-        3. What are the 3 rules for implementing Cloneable?
+        <h5>3. What are the 3 rules for implementing Cloneable?</h5>
             a. x.clone() != x
             b. x.clone().getClass() == x.getClass()
             c. x.clone().equals(x)
-        4. How to clone properly?
+        <h5>4. How to clone properly?</h5>
         All classes that implement Cloneable should override clone with a public method whose return type is the class itself. This method should first call super.clone and then fix any fields that need to be fixed. Typically, this means copying any mutable objects that comprise the internal “deep structure” of the object being cloned, and replacing the clone’s references to these objects with ref- erences to the copies. While these internal copies can generally be made by call- ing clone recursively, this is not always the best approach. If the class contains only primitive fields or references to immutable objects, then it is probably the case that no fields need to be fixed.
-        5. How come interfaces like Cloneable and Serializable have no methods? Why do they exist at all then? How does JVM use them?
+        <h5>5. How come interfaces like Cloneable and Serializable have no methods? Why do they exist at all then? How does JVM use them?</h5>
         The UID and custom readers/writers are accessed via reflection.
-        Serializable serves as a marker to the JRE/JVM, which may take action(s) based on its presence.
-        http://en.wikipedia.org/wiki/Marker_interface_pattern
-        An example of the application of marker interfaces from the Java programming language is the Serializable interface. A class implements this interface to indicate that its non-transient data members can be written to an ObjectOutputStream. The ObjectOutputStream private method writeObject() contains a series of instanceof tests to determine writeability, one of which looks for the Serializable interface. If any of these tests fails, the method throws a NotSerializableException.
+        Serializable serves as a marker to the JRE/JVM, which may take action(s) based on its presence. Refer to http://en.wikipedia.org/wiki/Marker_interface_pattern. An example of the application of marker interfaces from the Java programming language is the Serializable interface. A class implements this interface to indicate that its non-transient data members can be written to an ObjectOutputStream. The ObjectOutputStream private method writeObject() contains a series of instanceof tests to determine writeability, one of which looks for the Serializable interface. If any of these tests fails, the method throws a NotSerializableException.
         </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 right">Consider implementing Comparable</div>
         <div class="col-md-10 left">
-        1. What is the use of the Comparable interface?
+            <h5>1. What is the use of the Comparable interface?</h5>
         Helps in sorting when there is a natural order among the objects
-        2. Whats the difference between interfaces like Comparable and those like Cloneable/Serializable?</div>
+            <h5>2. Whats the difference between interfaces like Comparable and those like Cloneable/Serializable?</h5>
+        </div>
     </div>
 </table>
 
@@ -145,15 +143,17 @@ If the job to give out is important, technical interviews are not supposed to be
     <div class="row show-grid">
         <div class="col-md-2 right">Minimize mutability</div>
         <div class="col-md-10 left">
-1. Is it good or bad to minimize mutability? why?
+<h5>1. Is it good or bad to minimize mutability? why?</h5>
      If objects are immutable they are automatically thread-safe and no synchronization or locking is required
-2. How would you make an object immutable?
-    a. No mutators - no setters
-    b. Class cant be extended - class should be marked final
-    c. Make all fields final
-    d. Make all fields private
-    e. Ensure exclusive access to any mutable components
-    f. getters should return a new instance of the object
+<h5>2. How would you make an object immutable?</h5>
+<ul class="list-group">
+    <li class="list-group-item">No mutators - no setters</li>
+    <li class="list-group-item">Class cant be extended - class should be marked final</li>
+    <li class="list-group-item">Make all fields final</li>
+    <li class="list-group-item">Make all fields private</li>
+    <li class="list-group-item">Ensure exclusive access to any mutable components</li>
+    <li class="list-group-item">getters should return a new instance of the object</li>
+</ul>
 </div>
     </div>
     <div class="row show-grid">
@@ -164,17 +164,23 @@ If the job to give out is important, technical interviews are not supposed to be
     </div>
     <div class="row show-grid">
         <div class="col-md-2 right">Prefer interfaces to abstract classes</div>
-        <div class="col-md-10 left">Why are interfaces better than abstract classes?
-        1. Existing classes can be easily retrofitted to implement a new interface
-        2. Interfaces are ideal for defining mixins
-        3. Interfaces allow the construction of nonhierarchical type frameworks.
-        4. Interfaces enable safe, powerful functionality enhancements
-        5. combine the virtues of interfaces and abstract classes by providing an abstract skeletal implementation class to go with each nontrivial interface that you export</div>
+        <div class="col-md-10 left">
+            <h5>Why are interfaces better than abstract classes?</h5>
+            <ul class="list-group">
+                <li class="list-group-item">Existing classes can be easily retrofitted to implement a new interface</li>
+                <li class="list-group-item">Interfaces are ideal for defining mixins</li>
+                <li class="list-group-item">Interfaces allow the construction of nonhierarchical type frameworks.</li>
+                <li class="list-group-item">Interfaces enable safe, powerful functionality enhancements</li>
+                <li class="list-group-item">combine the virtues of interfaces and abstract classes by providing an abstract skeletal implementation class to go with each nontrivial interface that you export</li>
+            </ul>
+        </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 right">Use interfaces only to define types</div>
-        <div class="col-md-10 left">1. Is 'constants' in an interface a good programming pattern?
-        No. </div>
+        <div class="col-md-10 left">
+            <h5>Is 'constants' in an interface a good programming pattern?</h5>
+            No.
+        </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-12">Prefer class hierarchies to tagged classes</div>
@@ -185,16 +191,18 @@ If the job to give out is important, technical interviews are not supposed to be
     <div class="row show-grid">
         <div class="col-md-2 right">Favor static member classes over nonstatic</div>
         <div class="col-md-10 left">
-1. What are the 4 kinds of nested classes?
-    a. static member classes
-    b. nonstatic member classes
-    c. anonymous classes
-    d. local classes
+<h5>1. What are the 4 kinds of nested classes?</h5>
+            <ul class="list-group">
+                <li class="list-group-item">a. static member classes</li>
+                <li class="list-group-item">b. nonstatic member classes</li>
+                <li class="list-group-item">c. anonymous classes</li>
+                <li class="list-group-item">d. local classes</li>
+            </ul>
 
-2. When will you make a nested class static?
+<h5>2. When will you make a nested class static?</h5>
 If an instance of a nested class can exist in isolation from an instance of its enclosing class, then the nested class must be a static member class: it is impossible to create an instance of a nonstatic member class without an enclosing instance. If you declare a member class that does not require access to an enclosing instance, always put the static modifier in its declaration
 
-3. Why would one prefer static classes?
+<h5>3. Why would one prefer static classes?</h5>
 The association between a nonstatic member class instance and its enclosing instance is established when the former is created; it cannot be modified thereafter. Storing this reference costs time and space, and can result in the enclosing instance being retained when it would otherwise be eligible for garbage collection
         </div>
     </div>
@@ -204,35 +212,35 @@ The association between a nonstatic member class instance and its enclosing inst
 <div class="bs-docs-grid">
     <div class="row show-grid">
         <div class="col-md-2 right">Dont use raw types in new code</div>
-        <div class="col-md-10 left">1. What is the problem with doing <code>private final Collection stamps = ... ;</code>
+        <div class="col-md-10 left">
+<h5>1. What is the problem with doing <code>private final Collection stamps = ... ;</code></h5>
         Loss of compile time type safety
-        2. Is List<String>.class legal? What will it give me?
+<h5>2. Is List<String>.class legal? What will it give me?</h5>
         It is not legal
         </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 right">Eliminate unchecked warnings</div>
         <div class="col-md-10 left">
-1. How do you eliminate a unchecked warning?
-        suppress the warning with an @SuppressWarnings("unchecked") annotation. Always use the Suppress- Warnings annotation on the smallest scope possible.
+<h5>How do you eliminate a unchecked warning?</h5>
+        Suppress the warning with an @SuppressWarnings("unchecked") annotation. Always use the Suppress- Warnings annotation on the smallest scope possible.
         </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 right">Prefer lists to arrays</div>
         <div class="col-md-10 left">
-1. If Sub is a subtype of Super, then is the array Sub[] a subtype of Super[]?
+<h5>1. If Sub is a subtype of Super, then is the array Sub[] a subtype of Super[]?</h5>
 Yes. Arrays are covariant. Lists are invariant
-2. So which one is better? And why?
+<h5>2. So which one is better? And why?</h5>
 Lists are better. Arrays are reified. This means that arrays know and enforce their element types at runtime. Generics, by contrast, are implemented by erasure. This means that they enforce their type constraints only at compile time and discard (or erase) their element type information at runtime.
-3. Test question -
+<h5>3. Test question -</h5>
 This code fragment is legal but fails at runtime! -
-                  <pre>Object[] objectArray = new Long[1];
-                  objectArray[0] = "I don't fit in"; // Throws ArrayStoreException
-                  </pre>
+                  <pre>
+                  Object[] objectArray = new Long[1];
+                  objectArray[0] = "I don't fit in"; // Throws ArrayStoreException</pre>
                   But this one wont compile at all! -
-                  <pre>List&lt;Object&gt; ol = new ArrayList&lt;Long&gt;(); // Incompatible types ol.add("I don't fit in");
-                  </pre>
-4. Are these legal?
+                  <pre>List&lt;Object&gt; ol = new ArrayList&lt;Long&gt;(); // Incompatible types ol.add("I don't fit in");</pre>
+<h5>4. Are these legal?</h5>
 <pre>new List&lt;E&gt;[]
 new List&lt;String&gt;[]
 new E[]</pre>
@@ -242,23 +250,23 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
     <div class="row show-grid">
         <div class="col-md-2 right">Favor generic types</div>
         <div class="col-md-10 left">Which of these is better and why?
-        <pre>public class Stack {
-                private Object[] elements;
-                public void push(Object e) {
-                }
-                public Object pop() {
-                }
-             }
-        </pre>
+        <pre>
+        public class Stack {
+            private Object[] elements;
+            public void push(Object e) {
+            }
+            public Object pop() {
+            }
+        }</pre>
         or
-        <pre>public class Stack<E> {
-                private E[] elements;
-                public void push(E e) {
-                }
-                public E pop() {
-                }
-              }
-        </pre>
+        <pre>
+        public class Stack<E> {
+            private E[] elements;
+            public void push(E e) {
+            }
+            public E pop() {
+            }
+        }</pre>
         </div>
     </div>
     <div class="row show-grid">
@@ -290,23 +298,24 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
     <div class="row show-grid">
         <div class="col-md-2 right">Use enums instead of int constants</div>
         <div class="col-md-10 left">
-1. Does enum extend Java Object?
+<h5>1. Does enum extend Java Object?</h5>
 They provide high-quality implementations of all the Object methods
 
-2. Which interfaces do enum implement?
+<h5>2. Which interfaces do enum implement?</h5>
 they implement Comparable and Serializable, and their serialized form is designed to withstand most changes to the enum type.
 
-3. How would you associate data with enums?
+<h5>3. How would you associate data with enums?</h5>
 To associate data with enum constants, declare instance fields and write a constructor that takes the data and stores it in the fields. Enums are by their nature immutable, so all fields should be final
 
-4. How would you associate a different behavior with every enum constant?
+<h5>4. How would you associate a different behavior with every enum constant?</h5>
 using apply()
 
 </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 left">Use instance fields instead of ordinals</div>
-        <div class="col-md-10 right">Is using ordinals a bad idea? If so, what is the option?
+        <div class="col-md-10 right">
+<h5>Is using ordinals a bad idea? If so, what is the option?</h5>
         Use instance fields
         </div>
     </div>
@@ -328,17 +337,16 @@ using apply()
     <div class="row show-grid">
         <div class="col-md-2 right">Prefer annotations to naming patterns</div>
         <div class="col-md-10 left">
-1. Any usecase you can think of for custom annotations?
+<h5>1. Any usecase you can think of for custom annotations?</h5>
 JUnit testing framework originally required its users to designate test methods by beginning their names with the characters test
-2. Which annotation do you use most?
+<h5>2. Which annotation do you use most?</h5>
 @Override, @Deprecated, @SuppressWarnings
-
         </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 right">Consistently use the Override annotation</div>
         <div class="col-md-10 left">
-        1. What @Override for?
+<h5>What @Override for?</h5>
         it indicates that the annotated method declaration overrides a declaration in a supertype
         </div>
     </div>
@@ -358,7 +366,7 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-2 right">Design method signatures carefully</div>
         <div class="col-md-10 left">
-        1. Is Map as a method parameter better or HashMap - why?
+<h5>Is Map as a method parameter better or HashMap - why?</h5>
         Map is. This is super basic.
         </div>
     </div>
@@ -371,7 +379,7 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-2 right">Return empty arrays or collections, not nulls</div>
         <div class="col-md-10 left">
-        1. What is better - returning null or empty collections?
+<h5>What is better - returning null or empty collections?</h5>
         Empty Collections
         </div>
     </div>
@@ -397,43 +405,47 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-2 right">Prefer primitives to boxed primitives</div>
         <div class="col-md-10 left">
-        1. What makes the performance of this program bad?
-        <pre>public static void main(String[] args) {
-                     Long sum = 0L;
-                     for (long i = 0; i < Integer.MAX_VALUE; i++) {
-                         sum += i;
-              }
-                     System.out.println(sum);
-                 }</pre></div>
-
+<h5>What makes the performance of this program bad?</h5>
+            <pre>
+            public static void main(String[] args) {
+                Long sum = 0L;
+                for (long i = 0; i < Integer.MAX_VALUE; i++) {
+                    sum += i;
+                }
+                System.out.println(sum);
+            }</pre>
+        </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-12">Avoid strings when other types are more appropriate</div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 right">Beware the performance of string concatenation</div>
-        <div class="col-md-10 left">1. Before 1.5, for string concatenation StringBuffer was preferred - what is it now?
+        <div class="col-md-10 left">
+<h5>1. Before 1.5, for string concatenation StringBuffer was preferred - what is it now?</h5>
         StringBuilder
-
-        2. What is the difference between StringBuilder and StringBuffer?
+<h5>2. What is the difference between StringBuilder and StringBuffer?</h5>
         StringBuider is unsynchronized - this makes it much faster. But should be used with care in concurrent programs
         </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 right">Refer to objects by their interfaces</div>
-        <div class="col-md-10 left">1. Which one is better and why?
+        <div class="col-md-10 left">
+<h5>Which one is better and why?</h5>
         <pre>
         List<Subscriber> subscribers = new ArrayList<Subscriber>();
-        ArrayList<Subscriber> subscribers = new ArrayList<Subscriber>();
-        </pre></div>
+        ArrayList<Subscriber> subscribers = new ArrayList<Subscriber>();</pre>
+        </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 right">Prefer interfaces to reflection</div>
         <div class="col-md-10 left">
-        1. Reflection allows one class to use another, even if the latter class did not exist when the former was compiled. So what are the problems using it?
-        * You lose all the benefits of compile-time type checking, including exception checking
-        * The code required to perform reflective access is clumsy and verbose
-        * Performance suffers
+<h5>Reflection allows one class to use another, even if the latter class did not exist when the former was compiled. So what are the problems using it?</h5>
+    <ul class="list-group">
+        <li class="list-group-item">You lose all the benefits of compile-time type checking, including exception checking</li>
+        <li class="list-group-item">The code required to perform reflective access is clumsy and verbose</li>
+        <li class="list-group-item">Performance suffers</li>
+    </ul>
         </div>
     </div>
     <div class="row show-grid">
@@ -455,27 +467,29 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-2 right">Use checked exceptions for recoverable conditions and runtime exceptions for programming errors</div>
         <div class="col-md-10 left">
-        1. What are the different types of exceptions?
+<h5>1. What are the different types of exceptions?</h5>
         * Checked exceptions
         * Unchecked exceptions - runtime exceptions and errors
-        2. When would you code for checked exceptions?
+<h5>2. When would you code for checked exceptions?<h5>
         when the caller is can reasonably expected to recover
-        3. When would you throw a runtime exception?
+<h5>3. When would you throw a runtime exception?</h5>
         When the program is as good as dead
-        4. When would you throw a error?
+<h5>4. When would you throw a error?</h5>
          there is a strong convention that errors are reserved for use by the JVM to indicate resource defi- ciencies, invariant failures, or other conditions that make it impossible to continue execution. Given the almost universal acceptance of this convention, it’s best not to implement any new Error subclasses. Therefore, all of the unchecked throw- ables you implement should subclass RuntimeException
         </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 right">Avoid unnecessary use of checked exceptions</div>
         <div class="col-md-10 left">
-        1. Tell me the exceptions you know and when you would use them.
-        * IllegalArgumentException - argument aint right
-        * IllegalStateException - calling a method on an object before it is properly initialized
-        * NullPointerException - someone invokes a method on a null object
-        * ConcurrentModificationException - if a object designed to be used by a single thread is being concurrently modified
-        * IndexOutOfBoundException - accessing array beyond its data length
-        * UnsupportedOperationException - object does not support a method
+<h5>Tell me the exceptions you know and when you would use them</h5>
+<ul class="list-group">
+    <li class="list-group-item">IllegalArgumentException - argument aint right</li>
+    <li class="list-group-item">IllegalStateException - calling a method on an object before it is properly initialized</li>
+    <li class="list-group-item">NullPointerException - someone invokes a method on a null object</li>
+    <li class="list-group-item">ConcurrentModificationException - if a object designed to be used by a single thread is being concurrently modified</li>
+    <li class="list-group-item">IndexOutOfBoundException - accessing array beyond its data length</li>
+    <li class="list-group-item">UnsupportedOperationException - object does not support a method</li>
+</ul>
         </div>
     </div>
     <div class="row show-grid">
@@ -503,9 +517,9 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-2 right">Synchronize access to shared mutable data</div>
         <div class="col-md-10 left">
-        1. Is writing of all primitive data types atomic in Java?
+<h5>1. Is writing of all primitive data types atomic in Java?</h5>
         reading or writing a variable is atomic unless the variable is of type long or double
-        2. How long would you expect this program to run?
+<h5>2. How long would you expect this program to run?</h5>
         <pre>
         public class StopThread {
                private static boolean stopRequested;
@@ -515,47 +529,45 @@ JUnit testing framework originally required its users to designate test methods 
                        public void run() {
                            int i = 0;
                            while (!stopRequested)
-        i++; }
+                                i++;
+                       }
                    });
                    backgroundThread.start();
                    TimeUnit.SECONDS.sleep(1);
                    stopRequested = true;
                }
-        }
-        </pre>
+        }</pre>
         Probably permanently. The VM might do what is called hoisting, the virtual machine might transform this code:
-        <pre>while (!done)
-              i++;
-        </pre>
+        <pre>
+        while (!done)
+            i++;</pre>
         into this code:
-        <pre>if (!done)
-                while (true)
-                    i++;
-        </pre>
+        <pre>
+        if (!done)
+            while (true)
+                i++;</pre>
         How would you correct his?
 
-        3. Is this program thread safe? Can generateSerialNumber() be called from multiple threads safely?
+<h5>3. Is this program thread safe? Can generateSerialNumber() be called from multiple threads safely?</h5>
         <pre>
         private static volatile int nextSerialNumber = 0;
            public static int generateSerialNumber() {
                return nextSerialNumber++;
-        }
-        </pre>
+        }</pre>
 
-        4. What are the 4 factors that need trade-off when writing multi-threaded concurrent programs?
+<h5>4. What are the 4 factors that need trade-off when writing multi-threaded concurrent programs?</h5>
         Safety, Liveness, Efficiency, Reusability
 
-        5. Whats the tradeoff between Safety and Liveness?
+<h5>5. Whats the tradeoff between Safety and Liveness?</h5>
         safety: nothing bad happens
         liveness: something good eventually happens
 
-        6. What is reentracy? Is Java reentrant?
+<h5>6. What is reentracy? Is Java reentrant?</h5>
         Yes
 
-        7. Whats the difference between ArrayList and CopyOnWriteArrayList?
+<h5>7. Whats the difference between ArrayList and CopyOnWriteArrayList?</h5>
         It is a variant of ArrayList in which all write operations are implemented by making a fresh copy of the entire underlying array. Because the internal array is never modified, iteration requires no locking and is very fast. For most uses, the performance of CopyOnWriteArrayList would be atrocious, but it’s perfect for observer lists, which are rarely modified and often traversed.
         </div>
-
     </div>
     <div class="row show-grid">
         <div class="col-md-12">Avoid excessive synchronization</div>
@@ -563,18 +575,13 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-2 right">Prefer executors and tasks to threads</div>
         <div class="col-md-10 left">
-        1. In the post Java 1.5 world, the use of 'Thread' is probably not a good idea due to the availability of new functionality in java.util.concurrent - what are they?
+<h5>1. In the post Java 1.5 world, the use of 'Thread' is probably not a good idea due to the availability of new functionality in java.util.concurrent - what are they?</h5>
                 Executors and tasks
-
-        2. There are some data structures designed in Java collections specifically for concurrent usage - what are they and how do they work?
+ <h5>2. There are some data structures designed in Java collections specifically for concurrent usage - what are they and how do they work?</h5>
          ConcurrentHashMap etc
-
-        3. Why is it a bad idea to rely on Thread.yield or Java's thread priorities API?
+<h5>3. Why is it a bad idea to rely on Thread.yield or Java's thread priorities API?</h5>
         Not portable
-
-        4.
-
-        </div>
+      </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-12">Prefer concurrency utilities to wait and notify</div>
@@ -598,18 +605,17 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-2 right">Implement serializable judiciously</div>
         <div class="col-md-10 left">
-        1. What is serialVersionUID?
-        Every serializable class has a unique identification number associated with it. If you do not specify this number explicitly by declaring a static final long field named serialVersionUID, the system automatically generates it at runtime by applying a complex procedure to the class. The automatically generated value is affected by the class’s name, the names of the interfaces it implements, and all of its public and protected members. If you change any of these things in any way, for example, by adding a trivial convenience method, the automatically generated serial version UID changes. If you fail to declare an explicit serial version UID, compatibility will be broken, resulting in an InvalidClassException at runtime. If no serial version UID is provided, an expensive computa- tion is required to generate one at runtime. If you ever want to make a new version of a class that is incompatible with existing versions, merely change the value in the serial version UID declaration.
+<h5>1. What is serialVersionUID?</h5>
+ Every serializable class has a unique identification number associated with it. If you do not specify this number explicitly by declaring a static final long field named serialVersionUID, the system automatically generates it at runtime by applying a complex procedure to the class. The automatically generated value is affected by the class’s name, the names of the interfaces it implements, and all of its public and protected members. If you change any of these things in any way, for example, by adding a trivial convenience method, the automatically generated serial version UID changes. If you fail to declare an explicit serial version UID, compatibility will be broken, resulting in an InvalidClassException at runtime. If no serial version UID is provided, an expensive computation is required to generate one at runtime. If you ever want to make a new version of a class that is incompatible with existing versions, merely change the value in the serial version UID declaration.
 
-        2. Why should a class be made to implement Serilizable with caution?
-        A major cost of implementing Serializable is that it decreases the flexi- bility to change a class’s implementation once it has been released.
-
+<h5>2. Why should a class be made to implement Serilizable with caution?</h5>
+ A major cost of implementing Serializable is that it decreases the flexibility to change a class’s implementation once it has been released.
         </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 right">Consider using a custom serialized form</div>
         <div class="col-md-10 left">
-        1. How good is Java's ObjectStream based Serialization? When would you implement your own custom serialized form?
+<h5>How good is Java's ObjectStream based Serialization? When would you implement your own custom serialized form?</h5>
         The default serialized form of an object is a reasonably efficient encoding. The default serialized form is likely to be appropriate if an object’s phys- ical representation is identical to its logical content. Drawbacks - can be excessive in space consumption, not very fast, it permanently ties the exported API to the current internal representation
         </div>
     </div>
