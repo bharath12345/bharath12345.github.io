@@ -14,23 +14,23 @@ If the job to give out is important, technical interviews are not supposed to be
 #### Creating and Destorying Objects
 <div class="bs-docs-grid">
     <div class="row show-grid">
-        <div class="col-md-2">Consider static factory methods instead of constructors</div>
-        <div class="col-md-10">Similar to flyweight. valueof/of/getInstance/newInstance/getType/newType</div>
+        <div class="col-md-2 left">Consider static factory methods instead of constructors</div>
+        <div class="col-md-10 right">Similar to flyweight. valueof/of/getInstance/newInstance/getType/newType</div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-2">Consider a builder when faced with many constructor parameters</div>
-        <div class="col-md-10">Telescoping constructors are hard to read and write. Inconsistent state partway through the construction</div>
+        <div class="col-md-2 left">Consider a builder when faced with many constructor parameters</div>
+        <div class="col-md-10 right">Telescoping constructors are hard to read and write. Inconsistent state partway through the construction</div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-2">Enforce the singleton property with a private constructor or an enum type</div>
-        <div class="col-md-10">All instance fields should be transient. Provide a readResolve() method else serialization/deserialization can lead to new objects</div>
+        <div class="col-md-2 left">Enforce the singleton property with a private constructor or an enum type</div>
+        <div class="col-md-10 right">All instance fields should be transient. Provide a readResolve() method else serialization/deserialization can lead to new objects</div>
     </div>
     <div class="row show-grid">
         <div class="col-md-12">Enforce noninstantiability with a private constructor</div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-2">Avoid creating unnecessary objects</div>
-        <div class="col-md-10">A statement like this in a for loop can lead to huge number of unnecessary objects getting created -
+        <div class="col-md-2 right">Avoid creating unnecessary objects</div>
+        <div class="col-md-10 left">A statement like this in a for loop can lead to huge number of unnecessary objects getting created -
             <code>String s = new String("stringette");</code>
             The improved version is simply the following:
             <code>String s = "stringette";</code>
@@ -38,8 +38,8 @@ If the job to give out is important, technical interviews are not supposed to be
             The static factory method <code>Boolean.valueOf(String)</code> is almost always preferable to the constructor <code>Boolean(String)</code></div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-2">Eliminate obsolete object references</div>
-        <div class="col-md-10">Spot the memory leak in this program?
+        <div class="col-md-2 right">Eliminate obsolete object references</div>
+        <div class="col-md-10 left">Spot the memory leak in this program?
             <pre>
                public class Stack {
                    private Object[] elements;
@@ -69,8 +69,8 @@ If the job to give out is important, technical interviews are not supposed to be
         </div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-2">Avoid finalizers</div>
-        <div class="col-md-10">What is a finalizer? Is it always called by the GC? Is there a performance penalty to using finalizer? Why?</div>
+        <div class="col-md-2 left">Avoid finalizers</div>
+        <div class="col-md-10 right">What is a finalizer? Is it always called by the GC? Is there a performance penalty to using finalizer? Why?</div>
     </div>
 </div>
 
