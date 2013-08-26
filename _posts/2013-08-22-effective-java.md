@@ -9,27 +9,22 @@ tweetfb: true
 disqus: true
 ---
 
-### Creating and Destorying Objects
+#### Creating and Destorying Objects
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Consider static factory methods instead of constructors</td>
         <td>Similar to flyweight. valueof/of/getInstance/newInstance/getType/newType</td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Consider a builder when faced with many constructor parameters</td>
         <td>Telescoping constructors are hard to read and write. Inconsistent state partway through the construction</td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Enforce the singleton property with a private constructor or an enum type</td>
         <td>All instance fields should be transient. Provide a readResolve() method else serialization/deserialization can lead to new objects</td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Enforce noninstantiability with a private constructor</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Avoid creating unnecessary objects</td>
@@ -40,14 +35,11 @@ disqus: true
         This version uses a single String instance, rather than creating a new one each time it is executed. Furthermore, it is guaranteed that the object will be reused by any other code running in the same virtual machine that happens to con- tain the same string literal
         The static factory method <code>Boolean.valueOf(String)</code> is almost always preferable to the constructor <code>Boolean(String)</code>
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Eliminate obsolete object references</td>
-        <td>Is there a memory leak in this program?
-
-        <code>
-        // Can you spot the "memory leak"?
+        <td>Spot the memory leak in this program?
+        <pre>
            public class Stack {
                private Object[] elements;
                private int size = 0;
@@ -72,19 +64,16 @@ disqus: true
                    if (elements.length == size)
                        elements = Arrays.copyOf(elements, 2 * size + 1);
         } }
-        </code>
-
+        </pre>
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Avoid finalizers</td>
         <td>What is a finalizer? Is it always called by the GC? Is there a performance penalty to using finalizer? Why?</td>
-        <td></td>
     </tr>
 </table>
 
-### The Java methods common to all objects
+#### The Java methods common to all objects
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Obey the general contract when overriding equals()</td>
@@ -96,7 +85,6 @@ disqus: true
         4. Symmetric? Transivitve? Consistent?
         5. override hashCode()
         6. </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Always override hashCode() when you override equals()</td>
@@ -104,12 +92,9 @@ disqus: true
         1. Iftwoobjectsareequalaccordingtotheequals(Object)method,thencall- ing the hashCode method on each of the two objects must produce the same integer result.
             2. Itisnotrequiredthatiftwoobjectsareunequalaccordingtotheequals(Ob- ject) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables.
             3. How will you compute the hashCode()? Do not be tempted to exclude significant parts of an object from the hash code computation to improve performance</td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Always override toString()</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Override clone() judiciously</td>
@@ -130,7 +115,6 @@ disqus: true
         http://en.wikipedia.org/wiki/Marker_interface_pattern
         An example of the application of marker interfaces from the Java programming language is the Serializable interface. A class implements this interface to indicate that its non-transient data members can be written to an ObjectOutputStream. The ObjectOutputStream private method writeObject() contains a series of instanceof tests to determine writeability, one of which looks for the Serializable interface. If any of these tests fails, the method throws a NotSerializableException.
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Consider implementing Comparable</td>
@@ -138,22 +122,18 @@ disqus: true
         1. What is the use of the Comparable interface?
         Helps in sorting when there is a natural order among the objects
         2. Whats the difference between interfaces like Comparable and those like Cloneable/Serializable?</td>
-        <td></td>
     </tr>
 </table>
 
-### Classes and Interfaces
+#### Classes and Interfaces
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Minimize the accessibility of classes and members</td>
         <td>What is package-private? How do you implement?
         The member is accessible from any class in the package where it is declared. Technically known as default access, this is the access lev- el you get if no access modifier is specified.</td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>In public classes, use public classes not public fields</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Minimize mutability</td>
@@ -168,17 +148,12 @@ disqus: true
     e. Ensure exclusive access to any mutable components
     f. getters should return a new instance of the object
 </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Favor composition over inheritance</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Design and document for inheritance or else prohibit it</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Prefer interfaces to abstract classes</td>
@@ -188,23 +163,17 @@ disqus: true
         3. Interfaces allow the construction of nonhierarchical type frameworks.
         4. Interfaces enable safe, powerful functionality enhancements
         5. combine the virtues of interfaces and abstract classes by providing an abstract skeletal implementation class to go with each nontrivial interface that you export</td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use interfaces only to define types</td>
         <td>1. Is 'constants' in an interface a good programming pattern?
         No. </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Prefer class hierarchies to tagged classes</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use function objects to represent strategies</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Favor static member classes over nonstatic</td>
@@ -221,11 +190,10 @@ If an instance of a nested class can exist in isolation from an instance of its 
 3. Why would one prefer static classes?
 The association between a nonstatic member class instance and its enclosing instance is established when the former is created; it cannot be modified thereafter. Storing this reference costs time and space, and can result in the enclosing instance being retained when it would otherwise be eligible for garbage collection
         </td>
-        <td></td>
     </tr>
 </table>
 
-### Generics
+#### Generics
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Dont use raw types in new code</td>
@@ -234,7 +202,6 @@ The association between a nonstatic member class instance and its enclosing inst
         2. Is List<String>.class legal? What will it give me?
         It is not legal
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Eliminate unchecked warnings</td>
@@ -253,42 +220,40 @@ Yes. Arrays are covariant. Lists are invariant
 Lists are better. Arrays are reified. This means that arrays know and enforce their element types at runtime. Generics, by contrast, are implemented by erasure. This means that they enforce their type constraints only at compile time and discard (or erase) their element type information at runtime.
 3. Test question -
 This code fragment is legal but fails at runtime! -
-                  <code>Object[] objectArray = new Long[1];
+                  <pre>Object[] objectArray = new Long[1];
                   objectArray[0] = "I don't fit in"; // Throws ArrayStoreException
-                  </code>
+                  </pre>
                   But this one wont compile at all! -
-                  <code>List<Object> ol = new ArrayList<Long>(); // Incompatible types ol.add("I don't fit in");
-                  </code>
+                  <pre>List<Object> ol = new ArrayList<Long>(); // Incompatible types ol.add("I don't fit in");
+                  </pre>
 4. Are these legal?
-<code>new List<E>[]
+<pre>new List<E>[]
 new List<String>[]
-new E[]</code>
+new E[]</pre>
 No. It is illegal to create an array of a generic type, a parameterized type, or a type parameter. Types such as E, List<E>, and List<String> are technically known as non-reifiable types. Intuitively speaking, a non-reifiable type is one whose runtime representation contains less information than its compile-time representation.
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Favor generic types</td>
         <td>Which of these is better and why?
-        <code>public class Stack {
+        <pre>public class Stack {
                 private Object[] elements;
                 public void push(Object e) {
                 }
                 public Object pop() {
                 }
              }
-        </code>
+        </pre>
         or
-        <code>public class Stack<E> {
+        <pre>public class Stack<E> {
                 private E[] elements;
                 public void push(E e) {
                 }
                 public E pop() {
                 }
               }
-        </code>
+        </pre>
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Favor generic methods</td>
@@ -297,7 +262,6 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
         or
         <code>public static <E> Set<E> union(Set<E> s1, Set<E> s2)</code>
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use bounded wildcards to increase API flexibility</td>
@@ -309,16 +273,13 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
         PECS stands for producer-extends, consumer-super.
         In other words, if a parameterized type represents a T producer, use <? extends T>; if it represents a T consumer, use <? super T>.
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Consider typesafe heterogenous containers</td>
-        <td></td>
-        <td></td>
     </tr>
 </table>
 
-### Enums and Annotations
+#### Enums and Annotations
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Use enums instead of int constants</td>
@@ -336,14 +297,12 @@ To associate data with enum constants, declare instance fields and write a const
 using apply()
 
 </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use instance fields instead of ordinals</td>
         <td>Is using ordinals a bad idea? If so, what is the option?
         Use instance fields
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use EnumSet instead of bit fields</td>
@@ -352,17 +311,13 @@ using apply()
         one can do this -
         <code>text.applyStyles(EnumSet.of(Style.BOLD, Style.ITALIC));</code>
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use EnumMap instead of ordinal indexing</td>
         <td>It is rarely appropriate to use ordinals to index arrays: use EnumMap instead</td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Emulate extensible enums with interfaces</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Prefer annotations to naming patterns</td>
@@ -373,7 +328,6 @@ using apply()
         2. Which annotation do you use most?
         @Override, @Deprecated, @SuppressWarnings
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Consistently use the Override annotation</td>
@@ -381,26 +335,19 @@ using apply()
         1. What @Override for?
         it indicates that the annotated method declaration overrides a declaration in a supertype
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use marker interfaces to define types</td>
-        <td></td>
-        <td></td>
     </tr>
 </table>
 
-### Methods
+#### Methods
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Check parameters for validity</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Make defensive copies when needed</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Design method signatures carefully</td>
@@ -408,17 +355,12 @@ using apply()
         1. Is Map as a method parameter better or HashMap - why?
         Map is. This is super basic.
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use overloading judiciously</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use varargs judiciously</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Return empty arrays or collections, not nulls</td>
@@ -426,54 +368,41 @@ using apply()
         1. What is better - returning null or empty collections?
         Empty Collections
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Write doc comments for all exposed API comments</td>
-        <td></td>
-        <td></td>
     </tr>
 </table>
 
-### General Programming
+#### General Programming
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Minimize the scope of local variables</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Prefer foreach loops to traditional for loops</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Know and use the libraries</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Avoid float and double if exact answers are required</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Prefer primitives to boxed primitives</td>
         <td>
         1. What makes the performance of this program bad?
-        <code>public static void main(String[] args) {
+        <pre>public static void main(String[] args) {
                      Long sum = 0L;
                      for (long i = 0; i < Integer.MAX_VALUE; i++) {
                          sum += i;
               }
                      System.out.println(sum);
-                 }</code></td>
-        <td></td>
+                 }</pre></td>
+
     </tr>
     <tr class="tablerow"">
         <td>Avoid strings when other types are more appropriate</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Beware the performance of string concatenation</td>
@@ -483,16 +412,14 @@ using apply()
         2. What is the difference between StringBuilder and StringBuffer?
         StringBuider is unsynchronized - this makes it much faster. But should be used with care in concurrent programs
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Refer to objects by their interfaces</td>
         <td>1. Which one is better and why?
-        <code>
+        <pre>
         List<Subscriber> subscribers = new ArrayList<Subscriber>();
         ArrayList<Subscriber> subscribers = new ArrayList<Subscriber>();
-        </code></td>
-        <td></td>
+        </pre></td>
     </tr>
     <tr class="tablerow"">
         <td>Prefer interfaces to reflection</td>
@@ -502,31 +429,22 @@ using apply()
         * The code required to perform reflective access is clumsy and verbose
         * Performance suffers
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use native methods judiciously</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Optimize judiciously</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Adhere to generally accepted naming conventions</td>
-        <td></td>
-        <td></td>
     </tr>
 </table>
 
-### Exceptions
+#### Exceptions
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Use exceptions only for exceptional conditions</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use checked exceptions for recoverable conditions and runtime exceptions for programming errors</td>
@@ -541,7 +459,6 @@ using apply()
         4. When would you throw a error?
          there is a strong convention that errors are reserved for use by the JVM to indicate resource defi- ciencies, invariant failures, or other conditions that make it impossible to continue execution. Given the almost universal acceptance of this convention, it’s best not to implement any new Error subclasses. Therefore, all of the unchecked throw- ables you implement should subclass RuntimeException
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Avoid unnecessary use of checked exceptions</td>
@@ -554,41 +471,28 @@ using apply()
         * IndexOutOfBoundException - accessing array beyond its data length
         * UnsupportedOperationException - object does not support a method
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Favor the use of standard exceptions</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Throw exceptions appropriate to the abstraction</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Document all exceptions thrown by each method</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Include failure-capture information in detail messages</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Strive for failure atomicity</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Dont ignore exceptions</td>
-        <td></td>
-        <td></td>
     </tr>
 </table>
 
-### Concurrency
+#### Concurrency
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Synchronize access to shared mutable data</td>
@@ -596,7 +500,7 @@ using apply()
         1. Is writing of all primitive data types atomic in Java?
         reading or writing a variable is atomic unless the variable is of type long or double
         2. How long would you expect this program to run?
-        <code>
+        <pre>
         public class StopThread {
                private static boolean stopRequested;
                public static void main(String[] args)
@@ -612,24 +516,25 @@ using apply()
                    stopRequested = true;
                }
         }
-        </code>
+        </pre>
         Probably permanently. The VM might do what is called hoisting, the virtual machine might transform this code:
-        <code>while (!done)
+        <pre>while (!done)
               i++;
-        </code>
+        </pre>
         into this code:
-        <code>if (!done)
+        <pre>if (!done)
                 while (true)
                     i++;
-        </code>
+        </pre>
         How would you correct his?
 
         3. Is this program thread safe? Can generateSerialNumber() be called from multiple threads safely?
-        <code>
+        <pre>
         private static volatile int nextSerialNumber = 0;
            public static int generateSerialNumber() {
                return nextSerialNumber++;
         }
+        </pre>
 
         4. What are the 4 factors that need trade-off when writing multi-threaded concurrent programs?
         Safety, Liveness, Efficiency, Reusability
@@ -643,17 +548,11 @@ using apply()
 
         7. Whats the difference between ArrayList and CopyOnWriteArrayList?
         It is a variant of ArrayList in which all write operations are implemented by making a fresh copy of the entire underlying array. Because the internal array is never modified, iteration requires no locking and is very fast. For most uses, the performance of CopyOnWriteArrayList would be atrocious, but it’s perfect for observer lists, which are rarely modified and often traversed.
-
-
-
-        </code>
         </td>
-        <td></td>
+
     </tr>
     <tr class="tablerow"">
         <td>Avoid excessive synchronization</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Prefer executors and tasks to threads</td>
@@ -670,36 +569,25 @@ using apply()
         4.
 
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Prefer concurrency utilities to wait and notify</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Document thread safety</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Use lazy initialization judiciously</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Dont depend on the thread scheduler</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Avoid thread groups</td>
-        <td></td>
-        <td></td>
     </tr>
 </table>
 
-### Serialization
+#### Serialization
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
     <tr class="tablerow"">
         <td>Implement serializable judiciously</td>
@@ -710,35 +598,25 @@ using apply()
         2. Why should a class be made to implement Serilizable with caution?
         A major cost of implementing Serializable is that it decreases the flexi- bility to change a class’s implementation once it has been released.
 
-
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Consider using a custom serialized form</td>
         <td>
         1. How good is Java's ObjectStream based Serialization? When would you implement your own custom serialized form?
         The default serialized form of an object is a reasonably efficient encoding. The default serialized form is likely to be appropriate if an object’s phys- ical representation is identical to its logical content. Drawbacks - can be excessive in space consumption, not very fast, it permanently ties the exported API to the current internal representation
-
         </td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Write readObject methods defensively</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>For instance control prefer enum types than readResolve</td>
-        <td></td>
-        <td></td>
     </tr>
     <tr class="tablerow"">
         <td>Consider serialization proxies instead of serialized instances</td>
-        <td></td>
-        <td></td>
     </tr>
 </table>
 
 
-### Conclusion
+#### End Node
