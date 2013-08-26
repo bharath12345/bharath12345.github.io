@@ -41,22 +41,22 @@ If the job to give out is important, technical interviews are not supposed to be
         <div class="col-md-2 right">Eliminate obsolete object references</div>
         <div class="col-md-10 left">Spot the memory leak in this program?
             <pre>
-               public class Stack {
+            public class Stack {
                    private Object[] elements;
                    private int size = 0;
                    private static final int DEFAULT_INITIAL_CAPACITY = 16;
                    public Stack() {
                        elements = new Object[DEFAULT_INITIAL_CAPACITY];
-            }
+                   }
                    public void push(Object e) {
                        ensureCapacity();
                        elements[size++] = e;
-            }
+                   }
                    public Object pop() {
                        if (size == 0)
                            throw new EmptyStackException();
                        return elements[--size];
-            }
+                   }
                    /**
                     * Ensure space for at least one more element, roughly
                     * doubling the capacity each time the array needs to grow.
@@ -64,7 +64,8 @@ If the job to give out is important, technical interviews are not supposed to be
                    private void ensureCapacity() {
                        if (elements.length == size)
                            elements = Arrays.copyOf(elements, 2 * size + 1);
-            } }
+                   }
+            }
             </pre>
         </div>
     </div>
@@ -76,30 +77,35 @@ If the job to give out is important, technical interviews are not supposed to be
 
 #### The Java methods common to all objects
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
-    <tr class="tablerow"">
-        <td>Obey the general contract when overriding equals()</td>
-        <td>When do you override equals()? When a class has a notion of logical equality that differs from mere object identity, and a superclass has not already overridden equals to implement the desired behavior.
-        What are the main rules that you would follow to implement equals()?
-        1. Use == to check for same reference
-        2. Use instanceof to check if the agrument is of the correct type
-        3. Match all significant fields of the two objects
-        4. Symmetric? Transivitve? Consistent?
-        5. override hashCode()
-        6. </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Always override hashCode() when you override equals()</td>
-        <td>
-        1. Iftwoobjectsareequalaccordingtotheequals(Object)method,thencall- ing the hashCode method on each of the two objects must produce the same integer result.
-            2. Itisnotrequiredthatiftwoobjectsareunequalaccordingtotheequals(Ob- ject) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables.
-            3. How will you compute the hashCode()? Do not be tempted to exclude significant parts of an object from the hash code computation to improve performance</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Always override toString()</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Override clone() judiciously</td>
-        <td>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Obey the general contract when overriding equals()</div>
+        <div class="col-md-10 left">
+            <h5>1. When do you override equals()?</h5>
+            When a class has a notion of logical equality that differs from mere object identity, and a superclass has not already overridden equals to implement the desired behavior.
+            <h5>2. What are the main rules that you would follow to implement equals()?</h5>
+            <ul class="list-group">
+                <li class="list-group-item">Use == to check for same reference</li>
+                <li class="list-group-item">Use instanceof to check if the agrument is of the correct type</li>
+                <li class="list-group-item">Match all significant fields of the two objects</li>
+                <li class="list-group-item">Symmetric? Transivitve? Consistent?</li>
+                <li class="list-group-item">override hashCode()</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Always override hashCode() when you override equals()</div>
+        <div class="col-md-10 left">
+            <h6>1. If two objects are equal according to the equals (Object) method, then calling the hashCode method on each of the two objects must produce the same integer result.</h6>
+            <h6>2. It is not required that if two objects are unequal according to the equals (Object) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables.</h6>
+            <h6>3. How will you compute the hashCode()? Do not be tempted to exclude significant parts of an object from the hash code computation to improve performance</h6>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Always override toString()</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Override clone() judiciously</div>
+        <div class="col-md-10 left">
         1. Does Cloneable interface have a clone() method? Why not?
         Because the Java Object's clone() method (which is protected) is supposed to be used
         2. How does Java Object's clone() method work?
@@ -115,30 +121,30 @@ If the job to give out is important, technical interviews are not supposed to be
         Serializable serves as a marker to the JRE/JVM, which may take action(s) based on its presence.
         http://en.wikipedia.org/wiki/Marker_interface_pattern
         An example of the application of marker interfaces from the Java programming language is the Serializable interface. A class implements this interface to indicate that its non-transient data members can be written to an ObjectOutputStream. The ObjectOutputStream private method writeObject() contains a series of instanceof tests to determine writeability, one of which looks for the Serializable interface. If any of these tests fails, the method throws a NotSerializableException.
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Consider implementing Comparable</td>
-        <td>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Consider implementing Comparable</div>
+        <div class="col-md-10 left">
         1. What is the use of the Comparable interface?
         Helps in sorting when there is a natural order among the objects
-        2. Whats the difference between interfaces like Comparable and those like Cloneable/Serializable?</td>
-    </tr>
+        2. Whats the difference between interfaces like Comparable and those like Cloneable/Serializable?</div>
+    </div>
 </table>
 
 #### Classes and Interfaces
-<table class="table table-bordered table-striped table-condensed bs-docs-grid">
-    <tr class="tablerow"">
-        <td>Minimize the accessibility of classes and members</td>
-        <td>What is package-private? How do you implement?
-        The member is accessible from any class in the package where it is declared. Technically known as default access, this is the access lev- el you get if no access modifier is specified.</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>In public classes, use public classes not public fields</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Minimize mutability</td>
-        <td>
+<div class="bs-docs-grid">
+    <div class="row show-grid">
+        <div class="col-md-2 right">Minimize the accessibility of classes and members</div>
+        <div class="col-md-10 left">What is package-private? How do you implement?
+        The member is accessible from any class in the package where it is declared. Technically known as default access, this is the access lev- el you get if no access modifier is specified.</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">In public classes, use public classes not public fields</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Minimize mutability</div>
+        <div class="col-md-10 left">
 1. Is it good or bad to minimize mutability? why?
      If objects are immutable they are automatically thread-safe and no synchronization or locking is required
 2. How would you make an object immutable?
@@ -148,37 +154,37 @@ If the job to give out is important, technical interviews are not supposed to be
     d. Make all fields private
     e. Ensure exclusive access to any mutable components
     f. getters should return a new instance of the object
-</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Favor composition over inheritance</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Design and document for inheritance or else prohibit it</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Prefer interfaces to abstract classes</td>
-        <td>Why are interfaces better than abstract classes?
+</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Favor composition over inheritance</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Design and document for inheritance or else prohibit it</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Prefer interfaces to abstract classes</div>
+        <div class="col-md-10 left">Why are interfaces better than abstract classes?
         1. Existing classes can be easily retrofitted to implement a new interface
         2. Interfaces are ideal for defining mixins
         3. Interfaces allow the construction of nonhierarchical type frameworks.
         4. Interfaces enable safe, powerful functionality enhancements
-        5. combine the virtues of interfaces and abstract classes by providing an abstract skeletal implementation class to go with each nontrivial interface that you export</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Use interfaces only to define types</td>
-        <td>1. Is 'constants' in an interface a good programming pattern?
-        No. </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Prefer class hierarchies to tagged classes</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Use function objects to represent strategies</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Favor static member classes over nonstatic</td>
-        <td>
+        5. combine the virtues of interfaces and abstract classes by providing an abstract skeletal implementation class to go with each nontrivial interface that you export</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Use interfaces only to define types</div>
+        <div class="col-md-10 left">1. Is 'constants' in an interface a good programming pattern?
+        No. </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Prefer class hierarchies to tagged classes</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Use function objects to represent strategies</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Favor static member classes over nonstatic</div>
+        <div class="col-md-10 left">
 1. What are the 4 kinds of nested classes?
     a. static member classes
     b. nonstatic member classes
@@ -190,31 +196,30 @@ If an instance of a nested class can exist in isolation from an instance of its 
 
 3. Why would one prefer static classes?
 The association between a nonstatic member class instance and its enclosing instance is established when the former is created; it cannot be modified thereafter. Storing this reference costs time and space, and can result in the enclosing instance being retained when it would otherwise be eligible for garbage collection
-        </td>
-    </tr>
+        </div>
+    </div>
 </table>
 
 #### Generics
-<table class="table table-bordered table-striped table-condensed bs-docs-grid">
-    <tr class="tablerow"">
-        <td>Dont use raw types in new code</td>
-        <td>1. What is the problem with doing <code>private final Collection stamps = ... ;</code>
+<div class="bs-docs-grid">
+    <div class="row show-grid">
+        <div class="col-md-2 right">Dont use raw types in new code</div>
+        <div class="col-md-10 left">1. What is the problem with doing <code>private final Collection stamps = ... ;</code>
         Loss of compile time type safety
         2. Is List<String>.class legal? What will it give me?
         It is not legal
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Eliminate unchecked warnings</td>
-        <td>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Eliminate unchecked warnings</div>
+        <div class="col-md-10 left">
 1. How do you eliminate a unchecked warning?
-        suppress the warning with an @SuppressWarnings("unchecked") annotation.
-        </td>
-        <td>Always use the Suppress- Warnings annotation on the smallest scope possible.</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Prefer lists to arrays</td>
-        <td>
+        suppress the warning with an @SuppressWarnings("unchecked") annotation. Always use the Suppress- Warnings annotation on the smallest scope possible.
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Prefer lists to arrays</div>
+        <div class="col-md-10 left">
 1. If Sub is a subtype of Super, then is the array Sub[] a subtype of Super[]?
 Yes. Arrays are covariant. Lists are invariant
 2. So which one is better? And why?
@@ -225,18 +230,18 @@ This code fragment is legal but fails at runtime! -
                   objectArray[0] = "I don't fit in"; // Throws ArrayStoreException
                   </pre>
                   But this one wont compile at all! -
-                  <pre>List<Object> ol = new ArrayList<Long>(); // Incompatible types ol.add("I don't fit in");
+                  <pre>List&lt;Object&gt; ol = new ArrayList&lt;Long&gt;(); // Incompatible types ol.add("I don't fit in");
                   </pre>
 4. Are these legal?
-<pre>new List<E>[]
-new List<String>[]
+<pre>new List&lt;E&gt;[]
+new List&lt;String&gt;[]
 new E[]</pre>
-No. It is illegal to create an array of a generic type, a parameterized type, or a type parameter. Types such as E, List<E>, and List<String> are technically known as non-reifiable types. Intuitively speaking, a non-reifiable type is one whose runtime representation contains less information than its compile-time representation.
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Favor generic types</td>
-        <td>Which of these is better and why?
+No. It is illegal to create an array of a generic type, a parameterized type, or a type parameter. Types such as E, List&lt;E&gt;, and List<String> are technically known as non-reifiable types. Intuitively speaking, a non-reifiable type is one whose runtime representation contains less information than its compile-time representation.
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Favor generic types</div>
+        <div class="col-md-10 left">Which of these is better and why?
         <pre>public class Stack {
                 private Object[] elements;
                 public void push(Object e) {
@@ -254,37 +259,37 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
                 }
               }
         </pre>
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Favor generic methods</td>
-        <td>Which of these is better and why?
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Favor generic methods</div>
+        <div class="col-md-10 left">Which of these is better and why?
         <code>public static Set union(Set s1, Set s2)</code>
         or
-        <code>public static <E> Set<E> union(Set<E> s1, Set<E> s2)</code>
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Use bounded wildcards to increase API flexibility</td>
-        <td>What is the PECS rule or Get-and-Put principle?
+        <code>public static &lt;E&gt; Set&lt;E&gt; union(Set&lt;E&gt; s1, Set&lt;E&gt; s2)</code>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Use bounded wildcards to increase API flexibility</div>
+        <div class="col-md-10 left">What is the PECS rule or Get-and-Put principle?
         Bounded wildcards can be of two types -
-        <code>X<? extends E></code>
+        <code>X&lt;? extends E&gt;</code>
         or
-        <code>Y<? super E></code>
+        <code>Y&lt;? super E&gt;</code>
         PECS stands for producer-extends, consumer-super.
         In other words, if a parameterized type represents a T producer, use <? extends T>; if it represents a T consumer, use <? super T>.
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Consider typesafe heterogenous containers</td>
-    </tr>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Consider typesafe heterogenous containers</div>
+    </div>
 </table>
 
 #### Enums and Annotations
-<table class="table table-bordered table-striped table-condensed bs-docs-grid">
-    <tr class="tablerow"">
-        <td>Use enums instead of int constants</td>
-        <td>
+<div class="bs-docs-grid">
+    <div class="row show-grid">
+        <div class="col-md-2 right">Use enums instead of int constants</div>
+        <div class="col-md-10 left">
 1. Does enum extend Java Object?
 They provide high-quality implementations of all the Object methods
 
@@ -297,101 +302,101 @@ To associate data with enum constants, declare instance fields and write a const
 4. How would you associate a different behavior with every enum constant?
 using apply()
 
-</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Use instance fields instead of ordinals</td>
-        <td>Is using ordinals a bad idea? If so, what is the option?
+</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 left">Use instance fields instead of ordinals</div>
+        <div class="col-md-10 right">Is using ordinals a bad idea? If so, what is the option?
         Use instance fields
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Use EnumSet instead of bit fields</td>
-        <td>Whats the usecase for EnumSets?
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Use EnumSet instead of bit fields</div>
+        <div class="col-md-10 left">Whats the usecase for EnumSets?
         Instead of bit fields which look ugly like this <code>text.applyStyles(STYLE_BOLD | STYLE_ITALIC);</code>
         one can do this -
         <code>text.applyStyles(EnumSet.of(Style.BOLD, Style.ITALIC));</code>
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Use EnumMap instead of ordinal indexing</td>
-        <td>It is rarely appropriate to use ordinals to index arrays: use EnumMap instead</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Emulate extensible enums with interfaces</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Prefer annotations to naming patterns</td>
-        <td>
-        1. Any usecase you can think of for custom annotations?
-        JUnit testing framework originally required its users to designate test methods by beginning their names with the characters test
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 left">Use EnumMap instead of ordinal indexing</div>
+        <div class="col-md-10 right">It is rarely appropriate to use ordinals to index arrays: use EnumMap instead</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Emulate extensible enums with interfaces</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Prefer annotations to naming patterns</div>
+        <div class="col-md-10 left">
+1. Any usecase you can think of for custom annotations?
+JUnit testing framework originally required its users to designate test methods by beginning their names with the characters test
+2. Which annotation do you use most?
+@Override, @Deprecated, @SuppressWarnings
 
-        2. Which annotation do you use most?
-        @Override, @Deprecated, @SuppressWarnings
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Consistently use the Override annotation</td>
-        <td>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Consistently use the Override annotation</div>
+        <div class="col-md-10 left">
         1. What @Override for?
         it indicates that the annotated method declaration overrides a declaration in a supertype
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Use marker interfaces to define types</td>
-    </tr>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Use marker interfaces to define types</div>
+    </div>
 </table>
 
 #### Methods
-<table class="table table-bordered table-striped table-condensed bs-docs-grid">
-    <tr class="tablerow"">
-        <td>Check parameters for validity</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Make defensive copies when needed</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Design method signatures carefully</td>
-        <td>
+<div class="bs-docs-grid">
+    <div class="row show-grid">
+        <div class="col-md-12">Check parameters for validity</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Make defensive copies when needed</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Design method signatures carefully</div>
+        <div class="col-md-10 left">
         1. Is Map as a method parameter better or HashMap - why?
         Map is. This is super basic.
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Use overloading judiciously</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Use varargs judiciously</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Return empty arrays or collections, not nulls</td>
-        <td>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Use overloading judiciously</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Use varargs judiciously</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Return empty arrays or collections, not nulls</div>
+        <div class="col-md-10 left">
         1. What is better - returning null or empty collections?
         Empty Collections
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Write doc comments for all exposed API comments</td>
-    </tr>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Write doc comments for all exposed API comments</div>
+    </div>
 </table>
 
 #### General Programming
-<table class="table table-bordered table-striped table-condensed bs-docs-grid">
-    <tr class="tablerow"">
-        <td>Minimize the scope of local variables</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Prefer foreach loops to traditional for loops</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Know and use the libraries</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Avoid float and double if exact answers are required</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Prefer primitives to boxed primitives</td>
-        <td>
+<div class="bs-docs-grid">
+    <div class="row show-grid">
+        <div class="col-md-12">Minimize the scope of local variables</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Prefer foreach loops to traditional for loops</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Know and use the libraries</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Avoid float and double if exact answers are required</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Prefer primitives to boxed primitives</div>
+        <div class="col-md-10 left">
         1. What makes the performance of this program bad?
         <pre>public static void main(String[] args) {
                      Long sum = 0L;
@@ -399,57 +404,57 @@ using apply()
                          sum += i;
               }
                      System.out.println(sum);
-                 }</pre></td>
+                 }</pre></div>
 
-    </tr>
-    <tr class="tablerow"">
-        <td>Avoid strings when other types are more appropriate</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Beware the performance of string concatenation</td>
-        <td>1. Before 1.5, for string concatenation StringBuffer was preferred - what is it now?
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Avoid strings when other types are more appropriate</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Beware the performance of string concatenation</div>
+        <div class="col-md-10 left">1. Before 1.5, for string concatenation StringBuffer was preferred - what is it now?
         StringBuilder
 
         2. What is the difference between StringBuilder and StringBuffer?
         StringBuider is unsynchronized - this makes it much faster. But should be used with care in concurrent programs
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Refer to objects by their interfaces</td>
-        <td>1. Which one is better and why?
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Refer to objects by their interfaces</div>
+        <div class="col-md-10 left">1. Which one is better and why?
         <pre>
         List<Subscriber> subscribers = new ArrayList<Subscriber>();
         ArrayList<Subscriber> subscribers = new ArrayList<Subscriber>();
-        </pre></td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Prefer interfaces to reflection</td>
-        <td>
+        </pre></div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Prefer interfaces to reflection</div>
+        <div class="col-md-10 left">
         1. Reflection allows one class to use another, even if the latter class did not exist when the former was compiled. So what are the problems using it?
         * You lose all the benefits of compile-time type checking, including exception checking
         * The code required to perform reflective access is clumsy and verbose
         * Performance suffers
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Use native methods judiciously</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Optimize judiciously</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Adhere to generally accepted naming conventions</td>
-    </tr>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Use native methods judiciously</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Optimize judiciously</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Adhere to generally accepted naming conventions</div>
+    </div>
 </table>
 
 #### Exceptions
-<table class="table table-bordered table-striped table-condensed bs-docs-grid">
-    <tr class="tablerow"">
-        <td>Use exceptions only for exceptional conditions</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Use checked exceptions for recoverable conditions and runtime exceptions for programming errors</td>
-        <td>
+<div class="bs-docs-grid">
+    <div class="row show-grid">
+        <div class="col-md-12">Use exceptions only for exceptional conditions</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Use checked exceptions for recoverable conditions and runtime exceptions for programming errors</div>
+        <div class="col-md-10 left">
         1. What are the different types of exceptions?
         * Checked exceptions
         * Unchecked exceptions - runtime exceptions and errors
@@ -459,11 +464,11 @@ using apply()
         When the program is as good as dead
         4. When would you throw a error?
          there is a strong convention that errors are reserved for use by the JVM to indicate resource defi- ciencies, invariant failures, or other conditions that make it impossible to continue execution. Given the almost universal acceptance of this convention, it’s best not to implement any new Error subclasses. Therefore, all of the unchecked throw- ables you implement should subclass RuntimeException
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Avoid unnecessary use of checked exceptions</td>
-        <td>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Avoid unnecessary use of checked exceptions</div>
+        <div class="col-md-10 left">
         1. Tell me the exceptions you know and when you would use them.
         * IllegalArgumentException - argument aint right
         * IllegalStateException - calling a method on an object before it is properly initialized
@@ -471,33 +476,33 @@ using apply()
         * ConcurrentModificationException - if a object designed to be used by a single thread is being concurrently modified
         * IndexOutOfBoundException - accessing array beyond its data length
         * UnsupportedOperationException - object does not support a method
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Favor the use of standard exceptions</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Throw exceptions appropriate to the abstraction</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Document all exceptions thrown by each method</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Include failure-capture information in detail messages</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Strive for failure atomicity</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Dont ignore exceptions</td>
-    </tr>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Favor the use of standard exceptions</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Throw exceptions appropriate to the abstraction</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Document all exceptions thrown by each method</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Include failure-capture information in detail messages</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Strive for failure atomicity</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Dont ignore exceptions</div>
+    </div>
 </table>
 
 #### Concurrency
-<table class="table table-bordered table-striped table-condensed bs-docs-grid">
-    <tr class="tablerow"">
-        <td>Synchronize access to shared mutable data</td>
-        <td>
+<div class="bs-docs-grid">
+    <div class="row show-grid">
+        <div class="col-md-2 right">Synchronize access to shared mutable data</div>
+        <div class="col-md-10 left">
         1. Is writing of all primitive data types atomic in Java?
         reading or writing a variable is atomic unless the variable is of type long or double
         2. How long would you expect this program to run?
@@ -549,15 +554,15 @@ using apply()
 
         7. Whats the difference between ArrayList and CopyOnWriteArrayList?
         It is a variant of ArrayList in which all write operations are implemented by making a fresh copy of the entire underlying array. Because the internal array is never modified, iteration requires no locking and is very fast. For most uses, the performance of CopyOnWriteArrayList would be atrocious, but it’s perfect for observer lists, which are rarely modified and often traversed.
-        </td>
+        </div>
 
-    </tr>
-    <tr class="tablerow"">
-        <td>Avoid excessive synchronization</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Prefer executors and tasks to threads</td>
-        <td>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Avoid excessive synchronization</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Prefer executors and tasks to threads</div>
+        <div class="col-md-10 left">
         1. In the post Java 1.5 world, the use of 'Thread' is probably not a good idea due to the availability of new functionality in java.util.concurrent - what are they?
                 Executors and tasks
 
@@ -569,54 +574,54 @@ using apply()
 
         4.
 
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Prefer concurrency utilities to wait and notify</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Document thread safety</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Use lazy initialization judiciously</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Dont depend on the thread scheduler</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Avoid thread groups</td>
-    </tr>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Prefer concurrency utilities to wait and notify</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Document thread safety</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Use lazy initialization judiciously</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Dont depend on the thread scheduler</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Avoid thread groups</div>
+    </div>
 </table>
 
 #### Serialization
-<table class="table table-bordered table-striped table-condensed bs-docs-grid">
-    <tr class="tablerow"">
-        <td>Implement serializable judiciously</td>
-        <td>
+<div class="bs-docs-grid">
+    <div class="row show-grid">
+        <div class="col-md-2 right">Implement serializable judiciously</div>
+        <div class="col-md-10 left">
         1. What is serialVersionUID?
         Every serializable class has a unique identification number associated with it. If you do not specify this number explicitly by declaring a static final long field named serialVersionUID, the system automatically generates it at runtime by applying a complex procedure to the class. The automatically generated value is affected by the class’s name, the names of the interfaces it implements, and all of its public and protected members. If you change any of these things in any way, for example, by adding a trivial convenience method, the automatically generated serial version UID changes. If you fail to declare an explicit serial version UID, compatibility will be broken, resulting in an InvalidClassException at runtime. If no serial version UID is provided, an expensive computa- tion is required to generate one at runtime. If you ever want to make a new version of a class that is incompatible with existing versions, merely change the value in the serial version UID declaration.
 
         2. Why should a class be made to implement Serilizable with caution?
         A major cost of implementing Serializable is that it decreases the flexi- bility to change a class’s implementation once it has been released.
 
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Consider using a custom serialized form</td>
-        <td>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right">Consider using a custom serialized form</div>
+        <div class="col-md-10 left">
         1. How good is Java's ObjectStream based Serialization? When would you implement your own custom serialized form?
         The default serialized form of an object is a reasonably efficient encoding. The default serialized form is likely to be appropriate if an object’s phys- ical representation is identical to its logical content. Drawbacks - can be excessive in space consumption, not very fast, it permanently ties the exported API to the current internal representation
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Write readObject methods defensively</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>For instance control prefer enum types than readResolve</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Consider serialization proxies instead of serialized instances</td>
-    </tr>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Write readObject methods defensively</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">For instance control prefer enum types than readResolve</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Consider serialization proxies instead of serialized instances</div>
+    </div>
 </table>
 
 
