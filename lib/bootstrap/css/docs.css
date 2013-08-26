@@ -314,9 +314,9 @@ body {
 /* Special grid styles
 -------------------------------------------------- */
 
-.show-grid {
+/*.show-grid {
   margin-bottom: 15px;
-}
+}*/
 .show-grid [class^="col-"] {
   padding-top: 10px;
   padding-bottom: 10px;

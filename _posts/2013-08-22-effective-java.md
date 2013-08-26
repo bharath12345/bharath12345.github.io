@@ -9,69 +9,70 @@ tweetfb: true
 disqus: true
 ---
 
+If the job to give out is important, technical interviews are not supposed to be easy. Both for the interviewee and the interviewer. Pressed into the interviewing job, I felt the need to brush-up the fundamental texts. This post is from my re-read of Joshua Bloch's epic book "[Effective Java](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683)" from a interviewer's perspective… trying to quickly refresh the elementary concepts to myself.
+
 #### Creating and Destorying Objects
-<table class="table table-bordered table-striped table-condensed bs-docs-grid">
-    <tr class="tablerow"">
-        <td>Consider static factory methods instead of constructors</td>
-        <td>Similar to flyweight. valueof/of/getInstance/newInstance/getType/newType</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Consider a builder when faced with many constructor parameters</td>
-        <td>Telescoping constructors are hard to read and write. Inconsistent state partway through the construction</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Enforce the singleton property with a private constructor or an enum type</td>
-        <td>All instance fields should be transient. Provide a readResolve() method else serialization/deserialization can lead to new objects</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Enforce noninstantiability with a private constructor</td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Avoid creating unnecessary objects</td>
-        <td>A statement like this in a for loop can lead to huge number of unnecessary objects getting created -
-        <code>String s = new String("stringette");</code>
-        The improved version is simply the following:
-        <code>String s = "stringette";</code>
-        This version uses a single String instance, rather than creating a new one each time it is executed. Furthermore, it is guaranteed that the object will be reused by any other code running in the same virtual machine that happens to con- tain the same string literal
-        The static factory method <code>Boolean.valueOf(String)</code> is almost always preferable to the constructor <code>Boolean(String)</code>
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Eliminate obsolete object references</td>
-        <td>Spot the memory leak in this program?
-        <pre>
-           public class Stack {
-               private Object[] elements;
-               private int size = 0;
-               private static final int DEFAULT_INITIAL_CAPACITY = 16;
-               public Stack() {
-                   elements = new Object[DEFAULT_INITIAL_CAPACITY];
-        }
-               public void push(Object e) {
-                   ensureCapacity();
-                   elements[size++] = e;
-        }
-               public Object pop() {
-                   if (size == 0)
-                       throw new EmptyStackException();
-                   return elements[--size];
-        }
-               /**
-                * Ensure space for at least one more element, roughly
-                * doubling the capacity each time the array needs to grow.
-                */
-               private void ensureCapacity() {
-                   if (elements.length == size)
-                       elements = Arrays.copyOf(elements, 2 * size + 1);
-        } }
-        </pre>
-        </td>
-    </tr>
-    <tr class="tablerow"">
-        <td>Avoid finalizers</td>
-        <td>What is a finalizer? Is it always called by the GC? Is there a performance penalty to using finalizer? Why?</td>
-    </tr>
-</table>
+<div class="bs-docs-grid">
+    <div class="row show-grid">
+        <div class="col-md-2">Consider static factory methods instead of constructors</div>
+        <div class="col-md-10">Similar to flyweight. valueof/of/getInstance/newInstance/getType/newType</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2">Consider a builder when faced with many constructor parameters</div>
+        <div class="col-md-10">Telescoping constructors are hard to read and write. Inconsistent state partway through the construction</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2">Enforce the singleton property with a private constructor or an enum type</div>
+        <div class="col-md-10">All instance fields should be transient. Provide a readResolve() method else serialization/deserialization can lead to new objects</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12">Enforce noninstantiability with a private constructor</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2">Avoid creating unnecessary objects</div>
+        <div class="col-md-10">A statement like this in a for loop can lead to huge number of unnecessary objects getting created -
+            <code>String s = new String("stringette");</code>
+            The improved version is simply the following:
+            <code>String s = "stringette";</code>
+            This version uses a single String instance, rather than creating a new one each time it is executed. Furthermore, it is guaranteed that the object will be reused by any other code running in the same virtual machine that happens to con- tain the same string literal
+            The static factory method <code>Boolean.valueOf(String)</code> is almost always preferable to the constructor <code>Boolean(String)</code></div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2">Eliminate obsolete object references</div>
+        <div class="col-md-10">Spot the memory leak in this program?
+            <pre>
+               public class Stack {
+                   private Object[] elements;
+                   private int size = 0;
+                   private static final int DEFAULT_INITIAL_CAPACITY = 16;
+                   public Stack() {
+                       elements = new Object[DEFAULT_INITIAL_CAPACITY];
+            }
+                   public void push(Object e) {
+                       ensureCapacity();
+                       elements[size++] = e;
+            }
+                   public Object pop() {
+                       if (size == 0)
+                           throw new EmptyStackException();
+                       return elements[--size];
+            }
+                   /**
+                    * Ensure space for at least one more element, roughly
+                    * doubling the capacity each time the array needs to grow.
+                    */
+                   private void ensureCapacity() {
+                       if (elements.length == size)
+                           elements = Arrays.copyOf(elements, 2 * size + 1);
+            } }
+            </pre>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2">Avoid finalizers</div>
+        <div class="col-md-10">What is a finalizer? Is it always called by the GC? Is there a performance penalty to using finalizer? Why?</div>
+    </div>
+</div>
 
 #### The Java methods common to all objects
 <table class="table table-bordered table-striped table-condensed bs-docs-grid">
