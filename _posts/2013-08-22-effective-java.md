@@ -7,9 +7,8 @@ categories: []
 published: false
 tweetfb: true
 disqus: true
+toc: true
 ---
-
-<div id="tocBlock"></div>
 
 If the job to give out is important, technical interviews are not supposed to be easy. Both for the interviewee and the interviewer. Pressed into the interviewing job, I felt the need to brush-up the fundamental texts. This post is from my re-read of Joshua Bloch's epic book "[Effective Java](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683)" from a interviewer's perspective… trying to quickly refresh the elementary concepts to myself.
 

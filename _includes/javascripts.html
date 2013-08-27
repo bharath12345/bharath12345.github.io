@@ -25,8 +25,11 @@
     }
 
     function generateTOC(startLevel, depth) {
+        var entryBlock = jQuery("#entryBlock");
+        var container = jQuery("<div id='tocBlock'></div>");
+        entryBlock.append(container);
+
         var heading = 'Table of Contents';
-        var container = jQuery("#tocBlock");
         container.append('<span class="tocHeading">' + heading + '</span>');
 
         var div = jQuery("<ul id='toc'></ul>");

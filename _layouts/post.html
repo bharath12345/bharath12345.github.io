@@ -3,6 +3,10 @@ layout: layout
 ---
 
 <section class="content">
+    <script type="text/javascript">
+        var pageTitle = "{{ page.title }}";
+    </script>
+
     <h3>
         <a href="{{ page.url }}">{{ page.title }}</a>
     </h3>
@@ -19,6 +23,10 @@ layout: layout
             </tr>
         </table>
         <hr>
+    {% endif %}
+
+    {% if page.toc == true %}
+        <div id="entryBlock"></div>
     {% endif %}
 
     {{ content }}
