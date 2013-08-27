@@ -13,6 +13,15 @@ disqus: true
 
 If the job to give out is important, technical interviews are not supposed to be easy. Both for the interviewee and the interviewer. Pressed into the interviewing job, I felt the need to brush-up the fundamental texts. This post is from my re-read of Joshua Bloch's epic book "[Effective Java](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683)" from a interviewer's perspective… trying to quickly refresh the elementary concepts to myself.
 
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+
 #### Creating and Destorying Objects
 <div class="bs-docs-grid">
     <div class="row show-grid">
