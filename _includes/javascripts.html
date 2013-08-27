@@ -32,7 +32,7 @@
         var heading = 'Table of Contents';
         container.append('<span class="tocHeading">' + heading + '</span>');
 
-        var div = jQuery("<ul id='toc'></ul>");
+        var div = jQuery("<ul id='toc' style='padding-left: 10px'></ul>");
         container.append(div);
 
         div.tableOfContents(document.body, {startLevel: startLevel, depth: depth});

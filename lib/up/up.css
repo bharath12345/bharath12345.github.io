@@ -223,20 +223,15 @@ div#tocBlock #toc ul {
 
 div#tocBlock #toc ul li {
     margin-left: 5px !important;
-    padding: 0 !important
+    padding: 0 !important;
 }
 
 div#tocBlock #toc {
     background: white !important
 }
 
-div#tocBlock #toc ul {
-    list-style: disc
-}
-
 div#tocBlock #toc li {
     margin-left: 1em !important;
-    padding-left: -20px;
     font-size: 12px;
 }
 
