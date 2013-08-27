@@ -82,7 +82,7 @@ Now planning to write few more blogs like these in the days to come… one surel
 </div>
 
 #### The Java methods common to all objects
-<table class="table table-bordered table-striped table-condensed bs-docs-grid">
+<div class="bs-docs-grid">
     <div class="row show-grid">
         <div class="col-md-2 right">Obey the general contract when overriding equals()</div>
         <div class="col-md-10 left">
@@ -135,7 +135,7 @@ Now planning to write few more blogs like these in the days to come… one surel
             <h5>2. Whats the difference between interfaces like Comparable and those like Cloneable/Serializable?</h5>
         </div>
     </div>
-</table>
+</div>
 
 #### Classes and Interfaces
 <div class="bs-docs-grid">
@@ -213,7 +213,7 @@ If an instance of a nested class can exist in isolation from an instance of its 
 The association between a nonstatic member class instance and its enclosing instance is established when the former is created; it cannot be modified thereafter. Storing this reference costs time and space, and can result in the enclosing instance being retained when it would otherwise be eligible for garbage collection
         </div>
     </div>
-</table>
+</div>
 
 #### Generics
 <div class="bs-docs-grid">
@@ -298,7 +298,7 @@ No. It is illegal to create an array of a generic type, a parameterized type, or
     <div class="row show-grid">
         <div class="col-md-12">Consider typesafe heterogenous containers</div>
     </div>
-</table>
+</div>
 
 #### Enums and Annotations
 <div class="bs-docs-grid">
@@ -360,7 +360,7 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-12">Use marker interfaces to define types</div>
     </div>
-</table>
+</div>
 
 #### Methods
 <div class="bs-docs-grid">
@@ -393,7 +393,7 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-12">Write doc comments for all exposed API comments</div>
     </div>
-</table>
+</div>
 
 #### General Programming
 <div class="bs-docs-grid">
@@ -464,7 +464,7 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-12">Adhere to generally accepted naming conventions</div>
     </div>
-</table>
+</div>
 
 #### Exceptions
 <div class="bs-docs-grid">
@@ -517,7 +517,7 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-12">Dont ignore exceptions</div>
     </div>
-</table>
+</div>
 
 #### Concurrency
 <div class="bs-docs-grid">
@@ -605,7 +605,7 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-12">Avoid thread groups</div>
     </div>
-</table>
+</div>
 
 #### Serialization
 <div class="bs-docs-grid">
@@ -635,7 +635,7 @@ JUnit testing framework originally required its users to designate test methods 
     <div class="row show-grid">
         <div class="col-md-12">Consider serialization proxies instead of serialized instances</div>
     </div>
-</table>
+</div>
 
 
 #### End Node
