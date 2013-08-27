@@ -10,7 +10,7 @@ disqus: false
 ---
 
 # Index of Posts by Date
-
+<hr>
 <ul class="listing">
     {% for post in site.posts %}
     <li>
