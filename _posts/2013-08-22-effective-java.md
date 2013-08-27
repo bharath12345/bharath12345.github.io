@@ -9,6 +9,8 @@ tweetfb: true
 disqus: true
 ---
 
+<div id="tocBlock"></div>
+
 If the job to give out is important, technical interviews are not supposed to be easy. Both for the interviewee and the interviewer. Pressed into the interviewing job, I felt the need to brush-up the fundamental texts. This post is from my re-read of Joshua Bloch's epic book "[Effective Java](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683)" from a interviewer's perspective… trying to quickly refresh the elementary concepts to myself.
 
 #### Creating and Destorying Objects
@@ -26,7 +28,7 @@ If the job to give out is important, technical interviews are not supposed to be
         <div class="col-md-10 right">All instance fields should be transient. Provide a readResolve() method else serialization/deserialization can lead to new objects</div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-12">Enforce noninstantiability with a private constructor</div>
+        <div class="col-md-12">Enforce non-instantiability with a private constructor</div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 right">Avoid creating unnecessary objects</div>
