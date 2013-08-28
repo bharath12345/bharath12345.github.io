@@ -1,25 +1,14 @@
 <script type="text/javascript" src="/lib/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/lib/jQuery/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="/lib/jquery.toc/js/jquery.tableofcontents.min.js"></script>
-<script data-dojo-config="async: 1, dojoBlankHtmlUrl: '/blank.html',
-        packages: [ {
-            name: 'custom',
-            location: location.pathname.replace(/\/[^/]+$/, '') + '/js/custom'
-        } ]"
-        src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js">
 
-    require(["dojo/dom", "dojo/domReady!"], function(dom){
-
-        console.log("loaded = " + dom);
-    });
-</script>
 <script>
     function adjustDivHeight() {
         var leftCol = document.getElementsByClassName("left");
         var rightCol = document.getElementsByClassName("right");
         console.log("num of elements = " + leftCol.length);
         for(var i=0;i<leftCol.length;i++) {
-            console.log("setting right height to = " + leftCol[i].clientHeight);
+            //console.log("setting right height to = " + leftCol[i].clientHeight);
             rightCol[i].style.height = leftCol[i].clientHeight+2+"px";
         }
     }

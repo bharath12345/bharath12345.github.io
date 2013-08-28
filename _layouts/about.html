@@ -14,9 +14,16 @@
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
+    <script type="text/javascript">
+        var pageType = "about";
+        var pageTitle = pageType;
+    </script>
+
 </head>
 
 <body>
+
+{% include javascripts.html %}
 
 {% include topmost-nav.html %}
 
@@ -41,8 +48,10 @@
 
 {% include footer.html %}
 
+{% include analytics.html %}
+{% include gauges.html %}
 </body>
 
-{% include javascripts.html %}
+{% include postpagescripts.html %}
 
 </html>

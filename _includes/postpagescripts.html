@@ -17,3 +17,35 @@
 
     }
 </script>
+
+<script>
+    var libLocation;
+    switch(pageType) {
+        case "post":
+            libLocation = location.pathname + '../../lib/dojoCustom';
+            break;
+
+        case "about":
+            libLocation = location.protocol + "//" + location.host + '/lib/dojoCustom';
+            break;
+
+        case "index":
+            libLocation = location.pathname + 'lib/dojoCustom';
+            break;
+    }
+    console.log("lib location = " + libLocation);
+
+    var dojoConfig = {
+        dojoBlankHtmlUrl: location.host + '/blank.html',
+        packages: [{
+            name: 'dojoCustom',
+            location: libLocation
+        }]
+    };
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>
+<script>
+    require([ "dojoCustom/thinger", "dojo/domReady!" ], function(thinger){
+        console.log("got thinger = " + thinger);
+    });
+</script>
