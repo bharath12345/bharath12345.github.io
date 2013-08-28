@@ -1,0 +1,6 @@
+{
+    "source":"FLXRET_IHS1",
+    "destination": "FLXRETWAS1",
+    "txCount": 123,
+    "responseTime": 111
+}

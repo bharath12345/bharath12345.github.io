@@ -50,9 +50,12 @@
             break;
 
         case "Topology graphs with D3 and jsPlumb":
-            require([ "my/d3AppGraph", "dojo/domReady!" ], function(D3AppGraph){
+            require([ "my/d3AppGraph", "my/JsPlumbAppGraph", "dojo/domReady!" ], function(D3AppGraph, JsPlumbAppGraph){
                 var d3AppGraph = new D3AppGraph();
                 d3AppGraph.launch();
+
+                var jsPlumbAppGraph = new JsPlumbAppGraph();
+                jsPlumbAppGraph.launch();
             });
             break;
 

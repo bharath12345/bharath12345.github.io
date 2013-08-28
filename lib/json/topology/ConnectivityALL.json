@@ -1,0 +1,159 @@
+[
+    {"nodes":["FLXRET_IHS1", "FLXRETWAS1"]},
+    {"nodes":["FLXRET_IHS1", "FLXRETWAS2"]},
+    {"nodes":["FLXRET_IHS1", "FLXRETWAS3"]},
+    {"nodes":["FLXRET_IHS1", "FLXRETWAS4"]},
+    {"nodes":["FLXRET_IHS1", "FLXRETWAS5"]},
+    {"nodes":["FLXRET_IHS1", "FLXRETWAS6"]},
+    {"nodes":["FLXRET_IHS1", "FLXRETWAS7"]},
+    {"nodes":["FLXRET_IHS1", "FLXRETWAS8"]},
+
+    {"nodes":["FLXRET_IHS2", "FLXRETWAS1"]},
+    {"nodes":["FLXRET_IHS2", "FLXRETWAS2"]},
+    {"nodes":["FLXRET_IHS2", "FLXRETWAS3"]},
+    {"nodes":["FLXRET_IHS2", "FLXRETWAS4"]},
+    {"nodes":["FLXRET_IHS2", "FLXRETWAS5"]},
+    {"nodes":["FLXRET_IHS2", "FLXRETWAS6"]},
+    {"nodes":["FLXRET_IHS2", "FLXRETWAS7"]},
+    {"nodes":["FLXRET_IHS2", "FLXRETWAS8"]},
+
+    {"nodes":["FLXRET_IHS3", "FLXRETWAS1"]},
+    {"nodes":["FLXRET_IHS3", "FLXRETWAS2"]},
+    {"nodes":["FLXRET_IHS3", "FLXRETWAS3"]},
+    {"nodes":["FLXRET_IHS3", "FLXRETWAS4"]},
+    {"nodes":["FLXRET_IHS3", "FLXRETWAS5"]},
+    {"nodes":["FLXRET_IHS3", "FLXRETWAS6"]},
+    {"nodes":["FLXRET_IHS3", "FLXRETWAS7"]},
+    {"nodes":["FLXRET_IHS3", "FLXRETWAS8"]},
+
+    {"nodes":["FLXRET_IHS4", "FLXRETWAS1"]},
+    {"nodes":["FLXRET_IHS4", "FLXRETWAS2"]},
+    {"nodes":["FLXRET_IHS4", "FLXRETWAS3"]},
+    {"nodes":["FLXRET_IHS4", "FLXRETWAS4"]},
+    {"nodes":["FLXRET_IHS4", "FLXRETWAS5"]},
+    {"nodes":["FLXRET_IHS4", "FLXRETWAS6"]},
+    {"nodes":["FLXRET_IHS4", "FLXRETWAS7"]},
+    {"nodes":["FLXRET_IHS4", "FLXRETWAS8"]},
+
+    {"nodes":["FLXRET_IHS5", "FLXRETWAS1"]},
+    {"nodes":["FLXRET_IHS5", "FLXRETWAS2"]},
+    {"nodes":["FLXRET_IHS5", "FLXRETWAS3"]},
+    {"nodes":["FLXRET_IHS5", "FLXRETWAS4"]},
+    {"nodes":["FLXRET_IHS5", "FLXRETWAS5"]},
+    {"nodes":["FLXRET_IHS5", "FLXRETWAS6"]},
+    {"nodes":["FLXRET_IHS5", "FLXRETWAS7"]},
+    {"nodes":["FLXRET_IHS5", "FLXRETWAS8"]},
+
+    {"nodes":["FLXRET_IHS6", "FLXRETWAS1"]},
+    {"nodes":["FLXRET_IHS6", "FLXRETWAS2"]},
+    {"nodes":["FLXRET_IHS6", "FLXRETWAS3"]},
+    {"nodes":["FLXRET_IHS6", "FLXRETWAS4"]},
+    {"nodes":["FLXRET_IHS6", "FLXRETWAS5"]},
+    {"nodes":["FLXRET_IHS6", "FLXRETWAS6"]},
+    {"nodes":["FLXRET_IHS6", "FLXRETWAS7"]},
+    {"nodes":["FLXRET_IHS6", "FLXRETWAS8"]},
+
+    {"nodes":["FLXRETWAS1", "FLXRETDB1"]},
+    {"nodes":["FLXRETWAS1", "HBNETPRODDB1"]},
+    {"nodes":["FLXRETWAS1", "HBNETPRODDB2"]},
+    {"nodes":["FLXRETWAS1", "CoreBankingDB"]},
+    {"nodes":["FLXRETWAS1", "ExternalDB1"]},
+    {"nodes":["FLXRETWAS1", "ExternalDB2"]},
+
+    {"nodes":["FLXRETWAS2", "FLXRETDB1"]},
+    {"nodes":["FLXRETWAS2", "HBNETPRODDB1"]},
+    {"nodes":["FLXRETWAS2", "HBNETPRODDB2"]},
+    {"nodes":["FLXRETWAS2", "CoreBankingDB"]},
+    {"nodes":["FLXRETWAS2", "ExternalDB1"]},
+    {"nodes":["FLXRETWAS2", "ExternalDB2"]},
+
+    {"nodes":["FLXRETWAS3", "FLXRETDB1"]},
+    {"nodes":["FLXRETWAS3", "HBNETPRODDB1"]},
+    {"nodes":["FLXRETWAS3", "HBNETPRODDB2"]},
+    {"nodes":["FLXRETWAS3", "CoreBankingDB"]},
+    {"nodes":["FLXRETWAS3", "ExternalDB1"]},
+    {"nodes":["FLXRETWAS3", "ExternalDB2"]},
+
+    {"nodes":["FLXRETWAS4", "FLXRETDB1"]},
+    {"nodes":["FLXRETWAS4", "HBNETPRODDB1"]},
+    {"nodes":["FLXRETWAS4", "HBNETPRODDB2"]},
+    {"nodes":["FLXRETWAS4", "CoreBankingDB"]},
+    {"nodes":["FLXRETWAS4", "ExternalDB1"]},
+    {"nodes":["FLXRETWAS4", "ExternalDB2"]},
+
+    {"nodes":["FLXRETWAS5", "FLXRETDB1"]},
+    {"nodes":["FLXRETWAS5", "HBNETPRODDB1"]},
+    {"nodes":["FLXRETWAS5", "HBNETPRODDB2"]},
+    {"nodes":["FLXRETWAS5", "CoreBankingDB"]},
+    {"nodes":["FLXRETWAS5", "ExternalDB1"]},
+    {"nodes":["FLXRETWAS5", "ExternalDB2"]},
+
+    {"nodes":["FLXRETWAS6", "FLXRETDB1"]},
+    {"nodes":["FLXRETWAS6", "HBNETPRODDB1"]},
+    {"nodes":["FLXRETWAS6", "HBNETPRODDB2"]},
+    {"nodes":["FLXRETWAS6", "CoreBankingDB"]},
+    {"nodes":["FLXRETWAS6", "ExternalDB1"]},
+    {"nodes":["FLXRETWAS6", "ExternalDB2"]},
+
+    {"nodes":["FLXRETWAS7", "FLXRETDB1"]},
+    {"nodes":["FLXRETWAS7", "HBNETPRODDB1"]},
+    {"nodes":["FLXRETWAS7", "HBNETPRODDB2"]},
+    {"nodes":["FLXRETWAS7", "CoreBankingDB"]},
+    {"nodes":["FLXRETWAS7", "ExternalDB1"]},
+    {"nodes":["FLXRETWAS7", "ExternalDB2"]},
+
+    {"nodes":["FLXRETWAS8", "FLXRETDB1"]},
+    {"nodes":["FLXRETWAS8", "HBNETPRODDB1"]},
+    {"nodes":["FLXRETWAS8", "HBNETPRODDB2"]},
+    {"nodes":["FLXRETWAS8", "CoreBankingDB"]},
+    {"nodes":["FLXRETWAS8", "ExternalDB1"]},
+    {"nodes":["FLXRETWAS8", "ExternalDB2"]},
+
+    {"nodes":["FLXRETWAS1", "RTGS_MSGQ"]},
+    {"nodes":["FLXRETWAS1", "NEFT_MSGQ"]},
+
+    {"nodes":["FLXRETWAS2", "RTGS_MSGQ"]},
+    {"nodes":["FLXRETWAS2", "NEFT_MSGQ"]},
+
+    {"nodes":["FLXRETWAS3", "RTGS_MSGQ"]},
+    {"nodes":["FLXRETWAS3", "NEFT_MSGQ"]},
+
+    {"nodes":["FLXRETWAS4", "RTGS_MSGQ"]},
+    {"nodes":["FLXRETWAS4", "NEFT_MSGQ"]},
+
+    {"nodes":["FLXRETWAS5", "RTGS_MSGQ"]},
+    {"nodes":["FLXRETWAS5", "NEFT_MSGQ"]},
+
+    {"nodes":["FLXRETWAS6", "RTGS_MSGQ"]},
+    {"nodes":["FLXRETWAS6", "NEFT_MSGQ"]},
+
+    {"nodes":["FLXRETWAS7", "RTGS_MSGQ"]},
+    {"nodes":["FLXRETWAS7", "NEFT_MSGQ"]},
+
+    {"nodes":["FLXRETWAS8", "RTGS_MSGQ"]},
+    {"nodes":["FLXRETWAS8", "NEFT_MSGQ"]},
+
+    {"nodes":["FLXRETWAS1", "TCP_ENDPNT1"]},
+    {"nodes":["FLXRETWAS1", "TCP_ENDPNT2"]},
+
+    {"nodes":["FLXRETWAS2", "TCP_ENDPNT1"]},
+    {"nodes":["FLXRETWAS2", "TCP_ENDPNT2"]},
+
+    {"nodes":["FLXRETWAS3", "TCP_ENDPNT1"]},
+    {"nodes":["FLXRETWAS3", "TCP_ENDPNT2"]},
+
+    {"nodes":["FLXRETWAS4", "TCP_ENDPNT1"]},
+    {"nodes":["FLXRETWAS4", "TCP_ENDPNT2"]},
+
+    {"nodes":["FLXRETWAS5", "TCP_ENDPNT1"]},
+    {"nodes":["FLXRETWAS5", "TCP_ENDPNT2"]},
+
+    {"nodes":["FLXRETWAS6", "TCP_ENDPNT1"]},
+    {"nodes":["FLXRETWAS6", "TCP_ENDPNT2"]},
+
+    {"nodes":["FLXRETWAS7", "TCP_ENDPNT1"]},
+    {"nodes":["FLXRETWAS7", "TCP_ENDPNT2"]},
+
+    {"nodes":["FLXRETWAS8", "TCP_ENDPNT1"]},
+    {"nodes":["FLXRETWAS8", "TCP_ENDPNT2"]}
+]

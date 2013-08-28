@@ -1,0 +1,6 @@
+{
+    "name": "FLXRET_IHS1",
+    "componentStaticAlerts": [0,10,20],
+    "componentDynamicAlerts": [1,5,8],
+    "componentAvailabilityAlerts": [2, 8, 3]
+}

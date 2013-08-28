@@ -1,0 +1,15 @@
+{
+    "sourceType": "WebServers",
+    "node":"FLXRET_IHS1",
+    "dstType": "AppServers",
+    "connections":[
+        "FLXRETWAS1",
+        "FLXRETWAS2",
+        "FLXRETWAS3",
+        "FLXRETWAS4",
+        "FLXRETWAS5",
+        "FLXRETWAS6",
+        "FLXRETWAS7",
+        "FLXRETWAS8"
+    ]
+}
