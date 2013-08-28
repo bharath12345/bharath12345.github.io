@@ -1,3 +1,37 @@
+<script>
+    var libLocation;
+    switch(pageType) {
+        case "post":
+            libLocation = location.pathname + '../../lib/my';
+            break;
+
+        case "about":
+            libLocation = location.protocol + "//" + location.host + '/lib/my';
+            break;
+
+        case "index":
+            libLocation = location.pathname + 'lib/my';
+            break;
+    }
+    console.log("lib location = " + libLocation);
+
+    var dojoConfig = {
+        dojoBlankHtmlUrl: location.host + '/blank.html',
+        packages: [{
+            name: 'my',
+            location: libLocation
+        }]
+    };
+</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>
+
+<script>
+    require([ "my/thinger", "dojo/domReady!" ], function(thinger){
+        console.log("got thinger = " + thinger);
+    });
+</script>
+
 <script type="text/javascript">
     switch(pageTitle) {
         case "Effective Java":
@@ -15,37 +49,12 @@
             generateTOC(3,3);
             break;
 
+        case "Topology graphs with D3 and jsPlumb":
+            require([ "my/d3AppGraph", "dojo/domReady!" ], function(D3AppGraph){
+                var d3AppGraph = new D3AppGraph();
+                d3AppGraph.launch();
+            });
+            break;
+
     }
-</script>
-
-<script>
-    var libLocation;
-    switch(pageType) {
-        case "post":
-            libLocation = location.pathname + '../../lib/dojoCustom';
-            break;
-
-        case "about":
-            libLocation = location.protocol + "//" + location.host + '/lib/dojoCustom';
-            break;
-
-        case "index":
-            libLocation = location.pathname + 'lib/dojoCustom';
-            break;
-    }
-    console.log("lib location = " + libLocation);
-
-    var dojoConfig = {
-        dojoBlankHtmlUrl: location.host + '/blank.html',
-        packages: [{
-            name: 'dojoCustom',
-            location: libLocation
-        }]
-    };
-</script>
-<script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>
-<script>
-    require([ "dojoCustom/thinger", "dojo/domReady!" ], function(thinger){
-        console.log("got thinger = " + thinger);
-    });
 </script>
