@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Topology graphs with D3"
+title: "Topology graphs with D3 and jsPlumb"
 category: posts
 published: false
 tags: []
