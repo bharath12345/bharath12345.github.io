@@ -1,6 +1,6 @@
 <script>
     var libLocation;
-    switch(pageType) {
+    switch (pageType) {
         case "post":
             libLocation = location.pathname + '../../lib/my';
             break;
@@ -16,47 +16,53 @@
     console.log("lib location = " + libLocation);
 
     var dojoConfig = {
-        dojoBlankHtmlUrl: location.host + '/blank.html',
-        packages: [{
-            name: 'my',
-            location: libLocation
-        }]
+        dojoBlankHtmlUrl:location.host + '/blank.html',
+        packages:[
+            {
+                name:'my',
+                location:libLocation
+            }
+        ]
     };
 </script>
 
 <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>
 
 <script>
-    require([ "my/thinger", "dojo/domReady!" ], function(thinger){
+    require([ "my/thinger", "dojo/domReady!" ], function (thinger) {
         console.log("got thinger = " + thinger);
     });
 </script>
 
 <script type="text/javascript">
-    switch(pageTitle) {
+    switch (pageTitle) {
         case "Effective Java":
-            generateTOC(4,1);
+            generateTOC(4, 1);
             adjustDivHeight();
             break;
 
         case "Few days with Apache Cassandra":
         case "Build Dojo 1.7/1.8/1.9 with Maven":
         case "System and Application health - Is there a data collection challenge at the DC?":
-            generateTOC(4,2);
+            generateTOC(4, 2);
             break;
 
         case "Real Time Dashboard with Camel, ActiveMQ & Dojo... On JBoss7 and using JMS & WebSocket":
-            generateTOC(3,3);
+            generateTOC(3, 3);
             break;
 
         case "Topology graphs with D3 and jsPlumb":
-            require([ "my/d3AppGraph", "my/JsPlumbAppGraph", "dojo/domReady!" ], function(D3AppGraph, JsPlumbAppGraph){
-                var d3AppGraph = new D3AppGraph();
-                d3AppGraph.launch();
+            require([ "my/topograph/initialize", "my/topograph/d3AppGraph", "my/topograph/JsPlumbAppGraph", "dojo/domReady!" ],
+                    function (Initialize, D3AppGraph, JsPlumbAppGraph) {
+                        var initialize = new Initialize();
+                        initialize.initialize();
 
-                var jsPlumbAppGraph = new JsPlumbAppGraph();
-                jsPlumbAppGraph.launch();
-            });
+                        var d3AppGraph = new D3AppGraph();
+                        d3AppGraph.launch();
+
+                        var jsPlumbAppGraph = new JsPlumbAppGraph();
+                        jsPlumbAppGraph.launch();
+                    });
             break;
 
     }

@@ -11,11 +11,7 @@ disqus: true
 
 testing
 
-<div id="D3AppGraph" style="width: 600px; height: 600px;"></div>
-
-<div style="width: 600px; height: 600px;">
-    <div id="JsPlumbAppGraph"></div>
-</div>
+<div id="graphs" style="width: 1000px; height: 1000px;"></div>
 
 
 
