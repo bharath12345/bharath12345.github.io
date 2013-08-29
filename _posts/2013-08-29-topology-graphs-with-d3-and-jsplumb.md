@@ -11,6 +11,7 @@ disqus: true
 
 testing
 
+<link rel="stylesheet" type="text/css" href="/lib/my/topograph/topograph.css"/>
 <div id="graphs" style="width: 1000px; height: 1000px;"></div>
 
 
