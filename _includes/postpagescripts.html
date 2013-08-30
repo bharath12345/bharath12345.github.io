@@ -55,13 +55,13 @@
             require([ "my/topograph/initialize", "my/topograph/d3AppGraph", "my/topograph/JsPlumbAppGraph", "dojo/domReady!" ],
                     function (Initialize, D3AppGraph, JsPlumbAppGraph) {
                         var initialize = new Initialize();
-                        initialize.initialize();
+                        var jsPlumbPane = initialize.initialize();
 
                         var d3AppGraph = new D3AppGraph();
                         d3AppGraph.launch();
 
                         var jsPlumbAppGraph = new JsPlumbAppGraph();
-                        jsPlumbAppGraph.launch();
+                        jsPlumbAppGraph.launch(jsPlumbPane);
                     });
             break;
 
