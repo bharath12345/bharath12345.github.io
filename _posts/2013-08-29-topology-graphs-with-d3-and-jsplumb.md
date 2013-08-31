@@ -2,7 +2,7 @@
 layout: post
 title: "Application Topology Graphs - Usecase, Different Product Offerings and a prototype using D3 and jsPlumb"
 category: posts
-published: false
+published: true
 tags: []
 categories: [Technical]
 tweetfb: true
@@ -18,6 +18,12 @@ There are many traditional areas of graph depictions like computer networks, soc
 
 <link rel="stylesheet" type="text/css" href="/lib/my/topograph/topograph.css"/>
 <div id="graphs" style="width: 1150px; height: 600px;"></div>
+
+### APM Products
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojox/image/resources/image.css" media="screen">
+<div id="apm"></div>
+
+
 
 
 
