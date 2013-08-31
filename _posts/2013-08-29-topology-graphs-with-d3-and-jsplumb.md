@@ -21,7 +21,48 @@ Before getting too deep into my ideas for application graphs I decided to work t
 http://stackoverflow.com/questions/7034/graph-visualization-code-in-javascript
 
 <link rel="stylesheet" type="text/css" href="/lib/my/topograph/topograph.css"/>
-<div id="graphs" style="width: 1150px; height: 600px;"></div>
+<div id="graphs" style="width: 1150px; height: 600px; border: 1px solid black;"></div>
+&nbsp;
+
+Now, here is a quick roundup of what I found about these two...
+
+<div class="bs-docs-grid">
+    <div class="row show-grid">
+        <div class="col-md-2 first"></div>
+        <div class="col-md-5 left">D3</div>
+        <div class="col-md-5 right">jsPlumb</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 first">Scalability</div>
+        <div class="col-md-5 left">D3 is built for scalability of visual components. Hundreds and thousands of nodes and edges can be quickly created and the visualization renders really fast (I did a quick scale test of close to 5000 nodes and few hundred thousand edges - one has to really see it to believe how fast the rendering is)</div>
+        <div class="col-md-5 right">jsPlumb is much slower than D3 in rendering. However that does not mean it is slow - D3 is simply too fast!</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 first">Layouts: Force etc</div>
+        <div class="col-md-5 left">D3 has pre-built force layout visualization with many options. https://github.com/mbostock/d3/wiki/Force-Layout. </div>
+        <div class="col-md-5 right"></div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 first">Visual Beauty</div>
+        <div class="col-md-5 left"></div>
+        <div class="col-md-5 right"></div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 first">Development Simplicity</div>
+        <div class="col-md-5 left"></div>
+        <div class="col-md-5 right"></div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 first">Rendering Speed</div>
+        <div class="col-md-5 left"></div>
+        <div class="col-md-5 right"></div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 first">Layer transitions, Panning, Zoom</div>
+        <div class="col-md-5 left"></div>
+        <div class="col-md-5 right"></div>
+    </div>
+</div>
 
 ### APM Products
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojox/image/resources/image.css" media="screen">

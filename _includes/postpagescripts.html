@@ -1,4 +1,4 @@
-<script>
+<script type="text/javascript">
     var libLocation;
     switch (pageType) {
         case "post":
@@ -28,46 +28,44 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>
 
-<script>
-    require([ "my/thinger", "dojo/domReady!" ], function (thinger) {
-        console.log("got thinger = " + thinger);
-    });
-</script>
-
 <script type="text/javascript">
-    switch (pageTitle) {
-        case "Effective Java":
-            generateTOC(4, 1);
-            adjustDivHeight();
-            break;
+    require([ "my/common", "dojo/domReady!" ], function (Common) {
 
-        case "Few days with Apache Cassandra":
-        case "Build Dojo 1.7/1.8/1.9 with Maven":
-        case "System and Application health - Is there a data collection challenge at the DC?":
-            generateTOC(4, 2);
-            break;
+        switch (pageTitle) {
+            case "Effective Java":
+                Common.GenerateTOC(4, 1);
+                Common.AdjustDivHeight();
+                break;
 
-        case "Real Time Dashboard with Camel, ActiveMQ & Dojo... On JBoss7 and using JMS & WebSocket":
-            generateTOC(3, 3);
-            break;
+            case "Few days with Apache Cassandra":
+            case "Build Dojo 1.7/1.8/1.9 with Maven":
+            case "System and Application health - Is there a data collection challenge at the DC?":
+                Common.GenerateTOC(4, 2);
+                break;
 
-        case "Application Topology Graphs - Usecase, Different Product Offerings, Prototype Using D3 and jsPlumb":
-            generateTOC(3, 2);
-            require([ "my/topograph/initialize", "my/topograph/d3AppGraph", "my/topograph/jsPlumbAppGraph", "dojo/domReady!" ],
-                    function (Initialize, D3AppGraph, JsPlumbAppGraph) {
-                        var initialize = new Initialize();
-                        var jsPlumbPane = initialize.initialize();
+            case "Real Time Dashboard with Camel, ActiveMQ & Dojo... On JBoss7 and using JMS & WebSocket":
+                Common.GenerateTOC(3, 3);
+                break;
 
-                        var d3AppGraph = new D3AppGraph();
-                        d3AppGraph.launch();
+            case "Application Topology Graphs - Usecase, Different Product Offerings, Prototype Using D3 and jsPlumb":
+                Common.GenerateTOC(3, 2);
+                Common.AdjustDivHeight();
+                require([ "my/topograph/initialize", "my/topograph/d3AppGraph", "my/topograph/jsPlumbAppGraph" ],
+                        function (Initialize, D3AppGraph, JsPlumbAppGraph) {
+                            var initialize = new Initialize();
+                            var jsPlumbPane = initialize.initialize();
 
-                        var jsPlumbAppGraph = new JsPlumbAppGraph();
-                        jsPlumbAppGraph.launch(jsPlumbPane);
+                            var d3AppGraph = new D3AppGraph();
+                            d3AppGraph.launch();
 
-                        initialize.createImageGallery();
+                            var jsPlumbAppGraph = new JsPlumbAppGraph();
+                            jsPlumbAppGraph.launch(jsPlumbPane);
 
-                    });
-            break;
+                            initialize.createImageGallery();
+                        });
+                break;
 
-    }
+        }
+
+    });
 </script>

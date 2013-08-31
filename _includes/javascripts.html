@@ -3,29 +3,3 @@
 <script type="text/javascript" src="/lib/jquery.toc/js/jquery.tableofcontents.min.js"></script>
 <script type="text/javascript" src="/lib/d3/d3-3.3.2.min.js"></script>
 <script type="text/javascript" src="/lib/jsPlumb/jquery.jsPlumb-1.5.2-min.js"></script>
-
-<script>
-    function adjustDivHeight() {
-        var leftCol = document.getElementsByClassName("left");
-        var rightCol = document.getElementsByClassName("right");
-        console.log("num of elements = " + leftCol.length);
-        for(var i=0;i<leftCol.length;i++) {
-            //console.log("setting right height to = " + leftCol[i].clientHeight);
-            rightCol[i].style.height = leftCol[i].clientHeight+2+"px";
-        }
-    }
-
-    function generateTOC(startLevel, depth) {
-        var entryBlock = jQuery("#entryBlock");
-        var container = jQuery("<div id='tocBlock'></div>");
-        entryBlock.append(container);
-
-        var heading = 'Table of Contents';
-        container.append('<span class="tocHeading">' + heading + '</span>');
-
-        var div = jQuery("<ul id='toc' style='padding-left: 10px'></ul>");
-        container.append(div);
-
-        div.tableOfContents(document.body, {startLevel: startLevel, depth: depth});
-    }
-</script>

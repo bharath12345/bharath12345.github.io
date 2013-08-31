@@ -5,13 +5,7 @@
     {"nodes":["WebServers_FLXRET_IHS1", "AppServers_FLXRETWAS4"]},
     {"nodes":["WebServers_FLXRET_IHS1", "AppServers_FLXRETWAS5"]},
     {"nodes":["WebServers_FLXRET_IHS1", "AppServers_FLXRETWAS6"]},
-    {"nodes":["WebServers_FLXRET_IHS1", "AppServers_FLXRETWAS7"]},
-    {"nodes":["WebServers_FLXRET_IHS1", "AppServers_FLXRETWAS8"]},
 
-    {"nodes":["AppServers_FLXRETWAS1", "Databases_FLXRETDB1"]},
-    {"nodes":["AppServers_FLXRETWAS1", "Databases_HBNETPRODDB1"]},
-    {"nodes":["AppServers_FLXRETWAS1", "Databases_HBNETPRODDB2"]},
-    {"nodes":["AppServers_FLXRETWAS1", "Databases_CoreBankingDB"]},
     {"nodes":["AppServers_FLXRETWAS1", "Databases_ExternalDB1"]},
     {"nodes":["AppServers_FLXRETWAS1", "Databases_ExternalDB2"]},
 
