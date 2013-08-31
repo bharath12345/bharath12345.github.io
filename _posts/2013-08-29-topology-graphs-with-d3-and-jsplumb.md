@@ -24,8 +24,28 @@ http://stackoverflow.com/questions/7034/graph-visualization-code-in-javascript
 <div id="graphs" style="width: 1150px; height: 600px; border: 1px solid black;"></div>
 &nbsp;
 
-Now, here is a quick roundup of what I found about these two...
+#### About these graphs
+<div class="bs-docs-grid">
+    <div class="row show-grid">
+        <div class="col-md-6 left">D3</div>
+        <div class="col-md-6 right">jsPlumb</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-6 left">
+            <ol>
+                <li>The two different types of icons stand for single-applications and application-groups</li>
+                <li>The graph can be panned and zoomed using. To pan => click on the graph and drag it. To zoom => use the mouse scroller</li>
+                <li>The graph actually represents a set of interconnected applications and application-groups</li>
+                <li>On top of this graph, it is not very difficult to add hover effect on nodes and links. It is also not difficult to add color effects to application nodes and edges</li>
+                <li>The icons, text and links are all SVG - so they scale beautifully on zooming</li>
+                <li>Every refresh of the page should lead to a re-rendering of the graph in a different way. This is so because the graph is rendered by D3 Force directed graph layout. The position of nodes and edges is not fixed but computed randomly each time. I have not done a very good or thorough job of getting the nitty gritties of this force layout right so that the graph appears perfectly within the coordinates of its box (or, the zoom level is just correct for a given viewport size). Such tuning however is very possible and will make the suitable for all form factors</li>
+            </ol>
+        </div>
+        <div class="col-md-6 right"></div>
+    </div>
+</div>
 
+#### Comparison
 <div class="bs-docs-grid">
     <div class="row show-grid">
         <div class="col-md-2 first"></div>
@@ -39,8 +59,8 @@ Now, here is a quick roundup of what I found about these two...
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first">Layouts: Force etc</div>
-        <div class="col-md-5 left">D3 has pre-built force layout visualization with many options. https://github.com/mbostock/d3/wiki/Force-Layout. </div>
-        <div class="col-md-5 right"></div>
+        <div class="col-md-5 left">D3 has pre-built force layout visualization with many options. https://github.com/mbostock/d3/wiki/Force-Layout. A force directed graph works beautifully when the real-estate available for rendering is dynamic along with a (probable) huge number of nodes and edges. The graph layout can optimize itself (per some settings) to be inferencable to the human eye</div>
+        <div class="col-md-5 right">jsPlumb provides endpoints and connectors. One can use the facilities to build a force directed graph but such rendering algorithms are not provided OOTB and coding these is not easy. However if the number of edges and nodes is know and falls into a clean pattern (like the above graph) then jsPlumb can be a very neat layout.</div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first">Visual Beauty</div>
