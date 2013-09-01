@@ -98,8 +98,26 @@ http://stackoverflow.com/questions/7034/graph-visualization-code-in-javascript
 </div>
 
 ### APM Products
+<ol>
+    <li>The nodes in the topology are representative of the components (in AppsOne terminology). The links in the topology are representative of transactions</li>
+    <li>multi-level Application Groups</li>
+    <li>heterogeneous groups</li>
+    <li>The n:n mapping between Application and Application-group is 'soft' or 'tag-like'. Customers want to easily create new application-groups and add/remove applications from existing groups (all the time). This calls for a flexible model</li>
+    <li>Different 'Users' might want to see application topology's with different applications and groups on them. Since the whole idea of Application Topology is logical and per user understanding (and not something physical) - a user would have multiple topology views with some applications and groups present in many. Example, a user could define -
+        <ol>
+            <li>Topology Layer 'A' with 2 applications - 'CRM', 'CoreBanking' - and 2 application groups - 'InternalBusinessApps', 'InternalOperationsApps'</li>
+            <li>Topology Layer 'B' with 1 application - 'CoreBanking' and 4 application groups - 'InternalBusinessApps', 'InternalOperationsApps', 'CustomerFacingApp', 'CriticalInterfacingApps'</li>
+            <li>So now, between Layer 'A' and Layer 'B' there is one overlapping application and 2 overlapping application-groups</li>
+        </ol>
+     </li>
+    <li>'origin' or 'destination' for individual transactions</li>
+    <li>Links in different layers would have a configurable set of transactions mapped on them. Going back to the earlier example of layers 'A' and 'B' - the link between CRM and InternalBusinessApps in layer-A can be configured to show the status per a configured set of Transactions, say TxA and TxB. While the link between the same CRM and InternalBusinessApps in layer-B can be configured to show the status per TxB and TxC</li>
+    <li>Nodes in different layers would have a configurable set of components mapped on them. Going back to the earlier example of layers 'A' and 'B' - the node for CRM in layer-A can be configured to show the status per a configured set of Components, say ServerA and DatabaseB. While the same CRM in layer-B can be configured to show the status per DatabaseB and AppServerC</li>
+    <li>Once a user defines multiple layers of topology he needs to stitch the transition. Transitions are invoked on double click of an Application Group/Tag. Apart from the configurable option, this action requires a default which will show a topology layer of all individual application constituents of a Application Group</li>
+    <li>'intra-application' and 'inter-application' views</li>
+    <li>User is presented with multiple topology views per definition of layers. User can group multiple topology views into a single directory per context</li>
+</ol>
 
-Hello World! Hello World! Hello World! Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojox/image/resources/image.css" media="screen">
 <div id="apm"></div>
 
