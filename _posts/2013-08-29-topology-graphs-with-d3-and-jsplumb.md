@@ -25,7 +25,7 @@ http://stackoverflow.com/questions/7034/graph-visualization-code-in-javascript
 &nbsp;
 
 #### About these graphs
-<div class="bs-docs-grid">
+<div class="bs-docs-grid" id="about">
     <div class="row show-grid">
         <div class="col-md-6 left alignCenter"><h5>D3</h5></div>
         <div class="col-md-6 right alignCenter"><h5>jsPlumb</h5></div>
@@ -54,7 +54,7 @@ http://stackoverflow.com/questions/7034/graph-visualization-code-in-javascript
 </div>
 
 #### Comparison
-<div class="bs-docs-grid">
+<div class="bs-docs-grid" id="comparison">
     <div class="row show-grid">
         <div class="col-md-2 first"></div>
         <div class="col-md-5 left alignCenter"><h5>D3</h5></div>
