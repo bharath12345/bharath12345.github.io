@@ -27,8 +27,8 @@ http://stackoverflow.com/questions/7034/graph-visualization-code-in-javascript
 #### About these graphs
 <div class="bs-docs-grid">
     <div class="row show-grid">
-        <div class="col-md-6 left">D3</div>
-        <div class="col-md-6 right">jsPlumb</div>
+        <div class="col-md-6 left alignCenter"><h5>D3</h5></div>
+        <div class="col-md-6 right alignCenter"><h5>jsPlumb</h5></div>
     </div>
     <div class="row show-grid">
         <div class="col-md-6 left">
@@ -41,7 +41,15 @@ http://stackoverflow.com/questions/7034/graph-visualization-code-in-javascript
                 <li>Every refresh of the page should lead to a re-rendering of the graph in a different way. This is so because the graph is rendered by D3 Force directed graph layout. The position of nodes and edges is not fixed but computed randomly each time. I have not done a very good or thorough job of getting the nitty gritties of this force layout right so that the graph appears perfectly within the coordinates of its box (or, the zoom level is just correct for a given viewport size). Such tuning however is very possible and will make the suitable for all form factors</li>
             </ol>
         </div>
-        <div class="col-md-6 right"></div>
+        <div class="col-md-6 right">
+            <ol>
+                <li>This depicts a typical web-application with its 3-tiers: web-layer, app-layer and datasource (database, external etc).</li>
+                <li>jsPlumb provides many different types of connectors and endpoints. After playing with the options for a while I have the left the connections to look like 'Z' - it just looked interesting to me! Maybe the more appropriate links are straight lines. Also have chosen the source endpoint of the connections to have a blue dot. And the connections to have an arrow - there are many choices for all these settings</li>
+                <li>Mouse-over the links to see the color change from yellow to blue - all this needs is a simple css setting</li>
+                <li>To differentiate the 3-layers I have used Dojo Titlepane's. I have a liking for their neat rendering</li>
+                <li>The icons are SVG. Did not try to implement zoom, pan or node/link movement. They are very much possible though non-trivial and I did not attempt for this prototype</li>
+            </ol>
+        </div>
     </div>
 </div>
 
@@ -49,36 +57,36 @@ http://stackoverflow.com/questions/7034/graph-visualization-code-in-javascript
 <div class="bs-docs-grid">
     <div class="row show-grid">
         <div class="col-md-2 first"></div>
-        <div class="col-md-5 left">D3</div>
-        <div class="col-md-5 right">jsPlumb</div>
+        <div class="col-md-5 left alignCenter"><h5>D3</h5></div>
+        <div class="col-md-5 right alignCenter"><h5>jsPlumb</h5></div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-2 first">Scalability</div>
+        <div class="col-md-2 first"><h5>Scalability</h5></div>
         <div class="col-md-5 left">D3 is built for scalability of visual components. Hundreds and thousands of nodes and edges can be quickly created and the visualization renders really fast (I did a quick scale test of close to 5000 nodes and few hundred thousand edges - one has to really see it to believe how fast the rendering is)</div>
         <div class="col-md-5 right">jsPlumb is much slower than D3 in rendering. However that does not mean it is slow - D3 is simply too fast!</div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-2 first">Layouts: Force etc</div>
+        <div class="col-md-2 first"><h5>Layouts: Force etc</h5></div>
         <div class="col-md-5 left">D3 has pre-built force layout visualization with many options. https://github.com/mbostock/d3/wiki/Force-Layout. A force directed graph works beautifully when the real-estate available for rendering is dynamic along with a (probable) huge number of nodes and edges. The graph layout can optimize itself (per some settings) to be inferencable to the human eye</div>
         <div class="col-md-5 right">jsPlumb provides endpoints and connectors. One can use the facilities to build a force directed graph but such rendering algorithms are not provided OOTB and coding these is not easy. However if the number of edges and nodes is know and falls into a clean pattern (like the above graph) then jsPlumb can be a very neat layout.</div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-2 first">Visual Beauty</div>
+        <div class="col-md-2 first"><h5>Visual Beauty</h5></div>
         <div class="col-md-5 left"></div>
         <div class="col-md-5 right"></div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-2 first">Development Simplicity</div>
+        <div class="col-md-2 first"><h5>Development Simplicity</h5></div>
         <div class="col-md-5 left"></div>
         <div class="col-md-5 right"></div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-2 first">Rendering Speed</div>
+        <div class="col-md-2 first"><h5>Rendering Speed</h5></div>
         <div class="col-md-5 left"></div>
         <div class="col-md-5 right"></div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-2 first">Layer transitions, Panning, Zoom</div>
+        <div class="col-md-2 first"><h5>Layer transitions, Panning, Zoom</h5></div>
         <div class="col-md-5 left"></div>
         <div class="col-md-5 right"></div>
     </div>
