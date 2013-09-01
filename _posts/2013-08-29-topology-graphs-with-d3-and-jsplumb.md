@@ -72,23 +72,28 @@ http://stackoverflow.com/questions/7034/graph-visualization-code-in-javascript
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first"><h5>Visual Beauty</h5></div>
-        <div class="col-md-5 left"></div>
-        <div class="col-md-5 right"></div>
+        <div class="col-md-5 left">Requires programming. One can search and lookup upteen amazing D3 visualizations including many that are graphs. One can use SVG for scalable zooming. Building a beautiful graph framework for a product with D3 will require some work</div>
+        <div class="col-md-5 right">Even the default setting can produce excellent looking graphs. Building better looking graphs with fewer elements should be considerably easier with jsPlumb</div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first"><h5>Development Simplicity</h5></div>
-        <div class="col-md-5 left"></div>
-        <div class="col-md-5 right"></div>
+        <div class="col-md-5 left">D3 takes some learning. The paradigm of create/update/destroy of elements along with modeling of json data for a particular library function can be complex. But once the mind gets used to the paradigm one realize the power and simplicity. Compared to all the JS visualization frameworks that I have used (Dojo, jQuery, Raphael, mootools, YUI, Google toolkit, FusionCharts etc) D3 is in a class of its own. Once you get hooked to creating charts/visuals the D3 way, I bet you wont go near the many others...</div>
+        <div class="col-md-5 right">jsPlumb is truly simple. As a well thought out, well written and well documented library, one can start having working graphs in less than a day (which would be quite a challenge for D3 newbie to accomplish). jsPlumb </div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first"><h5>Rendering Speed</h5></div>
-        <div class="col-md-5 left"></div>
-        <div class="col-md-5 right"></div>
+        <div class="col-md-5 left">No other JS framework in the world of JS can come close to D3 in speed. This is for sure!</div>
+        <div class="col-md-5 right">Definitely not slow</div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first"><h5>Layer transitions, Panning, Zoom</h5></div>
-        <div class="col-md-5 left"></div>
-        <div class="col-md-5 right"></div>
+        <div class="col-md-5 left">D3 is built for visual zooming, panning like functionality from bottoms-up. The transitions are smooth, fast and simply very nice</div>
+        <div class="col-md-5 right">Requires some doing</div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 first"><h5>Project Liveness, Community, Future roadmap</h5></div>
+        <div class="col-md-5 left">Super active. Its one of the most cloned projects in the JS world on GitHub. There is a large community of users and questions are quickly answered in StackOverflow, Google groups etc. With such strong foundations, I dont see the momentum behind D3 slowing down in near future</div>
+        <div class="col-md-5 right">Not as hot as D3 but nevertheless very popular. Enjoys a fairly large community of users and in the tradition of jQuery plugin's one can easily see, understand, tweak the library's code which seems straightforward to understand for good developers on a demanding project</div>
     </div>
 </div>
 
