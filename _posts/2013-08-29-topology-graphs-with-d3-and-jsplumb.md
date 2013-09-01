@@ -16,7 +16,7 @@ Graph depictions are common for problems like computer networks, social networks
 One aspect that makes application topologies a challenge is that they are logical. That is, the boundaries of a application are difficult to define. Its usual to find in web companies/banks one 'application owner' just responsible for the database systems while another for applications that make use of the database. The database thus becomes a shared application with potentially multiple owners. From the point of view of graphical representation of applications in the enterprise, the representation of running application thus becomes 'logical'. Depending upon the organization hierarchies different application components (both hardware resources like servers and software components like application servers ) may be required to be grouped differently. Inter and intra application views are required. And different users and user groups may require different layer transitions starting with a top level view of the application in focus and drilling through to its constituents details. Many Application Performance Management (APM) products provide such graphical views. A later section in this blog shows the application graph views of popular APM like AppDynamics, OpTier etc
 
 ### Prototype
-Before getting too deep into thinking about application graphs I decided to develop a prototype for such graph representations. After a few hours of looking through the world of JavaScript I discovered multiple libraries capable of good graph rendering. [This](http://stackoverflow.com/questions/7034/graph-visualization-code-in-javascript) StackOverflow thread is useful. One can buy libraries like [yFiles](http://www.yworks.com) or use open-source freewares like [GraphDracula](http://www.graphdracula.net), mxGraph etc. But the libraries that I was most impressed with were [D3](http://www.d3js.org) and [jsPlumb](http://www.jsplumbtoolkit.com). I have played with D3 for over a year now and it is one of the most exciting JavaScript libraries. The very paradigm of data-modeling and programming for D3 is enlightening and it provides for extremely vivid and smooth graphical representations of all kind. And just a visit to the jsPlumb website is good enough to excite any programmer of its potential. So I got cracking with D3 and jsPlumb. Below are the two graph prototypes I came up with (it did not take much of an effort to code these up using help from existing code available on web). The code for these prototypes are available on my GitHub repository. I use Dojo for modularising the code (AMD way) and draw up the containers.
+Before getting too deep into thinking about application graphs I decided to develop a prototype for such graph representations. After a few hours of looking through the world of JavaScript discovered multiple libraries capable of good graph rendering. [This](http://stackoverflow.com/questions/7034/graph-visualization-code-in-javascript) StackOverflow thread is useful. One can buy libraries like [yFiles](http://www.yworks.com) or use open-source freewares like [GraphDracula](http://www.graphdracula.net), mxGraph etc. But the libraries that I was most impressed with were [D3](http://www.d3js.org) and [jsPlumb](http://www.jsplumbtoolkit.com). I have played with D3 for over a year now and it is one of the most exciting JavaScript libraries. The very paradigm of data-modeling and programming for D3 is enlightening and it provides for extremely vivid and smooth graphical representations of all kind. And just a visit to the jsPlumb website is good enough to excite any programmer of its potential. So I got cracking with D3 and jsPlumb. Below are the two graph prototypes I came up with (it did not take much of an effort to code these up using help from existing code available on web). The code for these prototypes are available on my GitHub repository. I use Dojo for modularising the code (AMD way) and draw up the containers.
 
 <link rel="stylesheet" type="text/css" href="/lib/my/topograph/topograph.css"/>
 <div id="graphs" style="width: 1150px; height: 600px; border: 1px solid black;"></div>
@@ -25,27 +25,29 @@ Before getting too deep into thinking about application graphs I decided to deve
 #### About these graphs
 <div class="bs-docs-grid" id="about">
     <div class="row show-grid">
-        <div class="col-md-6 left alignCenter"><h5>D3</h5></div>
-        <div class="col-md-6 right alignCenter"><h5>jsPlumb</h5></div>
+        <div class="col-md-6 left alignCenter"><h5>D3 Graph</h5></div>
+        <div class="col-md-6 right alignCenter"><h5>jsPlumb Graph</h5></div>
     </div>
     <div class="row show-grid">
         <div class="col-md-6 left">
             <ol>
+                <li>This is more like a inter-applications and application-group view</li>
                 <li>The two different types of icons stand for single-applications and application-groups</li>
-                <li>The graph can be panned and zoomed using. To pan => click on the graph and drag it. To zoom => use the mouse scroller</li>
+                <li>The graph can be panned and zoomed. To pan click on the graph and drag it. To zoom use the mouse scroller</li>
                 <li>The graph actually represents a set of interconnected applications and application-groups</li>
-                <li>On top of this graph, it is not very difficult to add hover effect on nodes and links. It is also not difficult to add color effects to application nodes and edges</li>
+                <li>With D3 it is not very difficult to add hover effect on nodes and links atop such a graph. It is also not difficult to add color effects to application nodes and edges to signify status</li>
                 <li>The icons, text and links are all SVG - so they scale beautifully on zooming</li>
-                <li>Every refresh of the page should lead to a re-rendering of the graph in a different way. This is so because the graph is rendered by D3 Force directed graph layout. The position of nodes and edges is not fixed but computed randomly each time. I have not done a very good or thorough job of getting the nitty gritties of this force layout right so that the graph appears perfectly within the coordinates of its box (or, the zoom level is just correct for a given viewport size). Such tuning however is very possible and will make the suitable for all form factors</li>
+                <li>Every refresh of the page leads to a re-rendering of the graph in a different way. This is so because the graph is rendered using D3 Force directed graph layout. The position of nodes and edges is not fixed but computed each time by the algorithm for the given gravity, distance and charge setting (this prototype is not a thorough job of getting the nitty-gritty of a force layout with D3 right for the best possible rendering within the coordinates of a box. Thoughtful tuning of parameters should make the graph good for all form factors)</li>
             </ol>
         </div>
         <div class="col-md-6 right">
             <ol>
-                <li>This depicts a typical web-application with its 3-tiers: web-layer, app-layer and datasource (database, external etc).</li>
-                <li>jsPlumb provides many different types of connectors and endpoints. After playing with the options for a while I have the left the connections to look like 'Z' - it just looked interesting to me! Maybe the more appropriate links are straight lines. Also have chosen the source endpoint of the connections to have a blue dot. And the connections to have an arrow - there are many choices for all these settings</li>
-                <li>Mouse-over the links to see the color change from yellow to blue - all this needs is a simple css setting</li>
-                <li>To differentiate the 3-layers I have used Dojo Titlepane's. I have a liking for their neat rendering</li>
-                <li>The icons are SVG. Did not try to implement zoom, pan or node/link movement. They are very much possible though non-trivial and I did not attempt for this prototype</li>
+                <li>This is more like a intra-application view</li>
+                <li>This depicts a typical web-application with its 3-tiers: web-layer, app-layer and datasource (database, external etc)</li>
+                <li>jsPlumb provides many different types of connectors and endpoints. After playing with the options for a while I have the left the connections to look like 'Z' simply because it looked nice to me! (the more appropriate links would probably be straight lines, but this was just a playful prototype!). Have chosen the source endpoint of the connections to have a blue dot. The connections have an arrow on top (there are many choices for all such settings)</li>
+                <li>Mouse-over the links to see the color change from yellow to blue - all it takes to do this piece is to get a simple css setting right</li>
+                <li>To differentiate the 3-layers, I have used Dojo Titlepane's. I have a liking for their neat rendering</li>
+                <li>The icons are SVG. Did not try to implement zoom, pan or node/link movement. They are very much possible though non-trivial</li>
             </ol>
         </div>
     </div>
@@ -60,38 +62,38 @@ Before getting too deep into thinking about application graphs I decided to deve
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first"><h5>Scalability</h5></div>
-        <div class="col-md-5 left">D3 is built for scalability of visual components. Hundreds and thousands of nodes and edges can be quickly created and the visualization renders really fast (I did a quick scale test of close to 5000 nodes and few hundred thousand edges - one has to really see it to believe how fast the rendering is)</div>
+        <div class="col-md-5 left">D3 is built for scalability of visual components. Hundreds and thousands of nodes and edges can be quickly created/updated/removed and the visualization render and transition really fast (I did a quick scale test of close to 5000 nodes and few hundred thousand edges - one has to really see it to believe how fast the rendering is)</div>
         <div class="col-md-5 right">jsPlumb is much slower than D3 in rendering. However that does not mean it is slow - D3 is simply too fast!</div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first"><h5>Layouts: Force etc</h5></div>
-        <div class="col-md-5 left">D3 has pre-built force layout visualization with many options. https://github.com/mbostock/d3/wiki/Force-Layout. A force directed graph works beautifully when the real-estate available for rendering is dynamic along with a (probable) huge number of nodes and edges. The graph layout can optimize itself (per some settings) to be inferencable to the human eye</div>
-        <div class="col-md-5 right">jsPlumb provides endpoints and connectors. One can use the facilities to build a force directed graph but such rendering algorithms are not provided OOTB and coding these is not easy. However if the number of edges and nodes is know and falls into a clean pattern (like the above graph) then jsPlumb can be a very neat layout.</div>
+        <div class="col-md-5 left">D3 has pre-built [force layout](https://github.com/mbostock/d3/wiki/Force-Layout) visualization with many options. A force directed graph works beautifully when the real-estate available for rendering is dynamic along with a (probable) huge number of nodes and edges. The graph layout optimizes itself (per gravity/distance/charge settings) to provide the best cognitive view possible</div>
+        <div class="col-md-5 right">jsPlumb provides endpoints and connectors. One can use the facilities to build a force directed graph but such rendering algorithms are not provided OOTB (coding a force layout algorithm is not trivial). However if the number of edges and nodes is known, is not very huge and falls into a clean pattern (like the 3-layers in the above graph), jsPlumb can be used to create very neat layouts</div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first"><h5>Visual Beauty</h5></div>
         <div class="col-md-5 left">Requires programming. One can search and lookup upteen amazing D3 visualizations including many that are graphs. One can use SVG for scalable zooming. Building a beautiful graph framework for a product with D3 will require some work</div>
-        <div class="col-md-5 right">Even the default setting can produce excellent looking graphs. Building better looking graphs with fewer elements should be considerably easier with jsPlumb</div>
+        <div class="col-md-5 right">Even the default setting can produce excellent looking graphs. Building better looking graphs (with fewer elements) should be considerably easier with jsPlumb</div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first"><h5>Development Simplicity</h5></div>
-        <div class="col-md-5 left">D3 takes some learning. The paradigm of create/update/destroy of elements along with modeling of json data for a particular library function can be complex. But once the mind gets used to the paradigm one realize the power and simplicity. Compared to all the JS visualization frameworks that I have used (Dojo, jQuery, Raphael, mootools, YUI, Google toolkit, FusionCharts etc) D3 is in a class of its own. Once you get hooked to creating charts/visuals the D3 way, I bet you wont go near the many others...</div>
-        <div class="col-md-5 right">jsPlumb is truly simple. As a well thought out, well written and well documented library, one can start having working graphs in less than a day (which would be quite a challenge for D3 newbie to accomplish). jsPlumb </div>
+        <div class="col-md-5 left">D3 takes some learning. The paradigm of create/update/destroy of elements along with modelling of json data for a particular library function can be complex. But once the mind gets used to the paradigm one realizes its power and simplicity. Compared to all the JS visualization frameworks that I have used (Dojo, jQuery, Raphael, mootools, YUI, Google toolkit, FusionCharts etc) D3 is in a class of its own. Once you get hooked to creating charts/visuals the D3 way, I bet you wont go near anything else!</div>
+        <div class="col-md-5 right">jsPlumb is truly simple. As a well thought out, well written and well documented library, one can start having working graphs in less than a day (which would be quite a challenge for D3 newbie to accomplish)</div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first"><h5>Rendering Speed</h5></div>
-        <div class="col-md-5 left">No other JS framework in the world of JS can come close to D3 in speed. This is for sure!</div>
+        <div class="col-md-5 left">No other JS framework in that I have come across comes even in the vicinity of D3 in speed and performance. D3 is a class act. And this is for sure!</div>
         <div class="col-md-5 right">Definitely not slow</div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first"><h5>Layer transitions, Panning, Zoom</h5></div>
-        <div class="col-md-5 left">D3 is built for visual zooming, panning like functionality from bottoms-up. The transitions are smooth, fast and simply very nice</div>
+        <div class="col-md-5 left">D3 is built for zoom, pan like functionality from bottoms-up. The transitions are smooth, fast and just work</div>
         <div class="col-md-5 right">Requires some doing</div>
     </div>
     <div class="row show-grid">
         <div class="col-md-2 first"><h5>Project Liveness, Community, Future roadmap</h5></div>
-        <div class="col-md-5 left">Super active. Its one of the most cloned projects in the JS world on GitHub. There is a large community of users and questions are quickly answered in StackOverflow, Google groups etc. With such strong foundations, I dont see the momentum behind D3 slowing down in near future</div>
-        <div class="col-md-5 right">Not as hot as D3 but nevertheless very popular. Enjoys a fairly large community of users and in the tradition of jQuery plugin's one can easily see, understand, tweak the library's code which seems straightforward to understand for good developers on a demanding project</div>
+        <div class="col-md-5 left">Super active. Its one of the most cloned projects in the JS world on GitHub. There is a large community of users and questions are quickly answered on StackOverflow, Google groups etc. With such strong foundations, I dont see the momentum behind D3 slowing down in near future</div>
+        <div class="col-md-5 right">Not as hot as D3 but nevertheless very popular. Enjoys a fairly large community of users and in the tradition of jQuery plugin's one can easily see, understand, tweak the library's code which seems straightforward to understand for good developers on a demanding projects</div>
     </div>
 </div>
 
