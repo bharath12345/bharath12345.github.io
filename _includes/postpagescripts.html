@@ -29,7 +29,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>
 
 <script type="text/javascript">
-    require([ "my/common", "dojo/domReady!" ], function (Common) {
+    require([ "my/common.min", "dojo/domReady!" ], function (Common) {
 
         switch (pageTitle) {
             case "Effective Java":
@@ -51,7 +51,7 @@
                 Common.GenerateTOC(3, 2);
                 Common.AdjustDivHeight("about");
                 Common.AdjustDivHeight("comparison");
-                require([ "my/topograph/initialize", "my/topograph/d3AppGraph", "my/topograph/jsPlumbAppGraph" ],
+                require([ "my/topograph/initialize.min", "my/topograph/d3AppGraph.min", "my/topograph/jsPlumbAppGraph.min" ],
                         function (Initialize, D3AppGraph, JsPlumbAppGraph) {
                             var initialize = new Initialize();
                             var jsPlumbPane = initialize.initialize();

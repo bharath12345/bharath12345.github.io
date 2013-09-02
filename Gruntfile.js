@@ -10,19 +10,18 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         uglify: {
-            my: {
+            mycommon: {
                 files: {
                     'lib/my/common.min.js': 'lib/my/common.js'
                 }
-            }
-            /*,bootstrap: {
+            },
+            topograph: {
                 files: {
-                    'assets/js/bootstrap.min.js': ['components/bootstrap/js/bootstrap-collapse.js',
-                        'components/bootstrap/js/bootstrap-scrollspy.js',
-                        'components/bootstrap/js/bootstrap-button.js',
-                        'components/bootstrap/js/bootstrap-affix.js']
+                    'lib/my/topograph/initialize.min.js': 'lib/my/topograph/initialize.js',
+                    'lib/my/topograph/d3AppGraph.min.js': 'lib/my/topograph/d3AppGraph.js',
+                    'lib/my/topograph/jsPlumbAppGraph.min.js': 'lib/my/topograph/jsPlumbAppGraph.js'
                 }
-            }*/
+            }
         },
         /*copy: {
             bootstrap: {
