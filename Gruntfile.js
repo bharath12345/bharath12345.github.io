@@ -23,6 +23,19 @@ module.exports = function(grunt) {
                 }
             }
         },
+        jsdoc : {
+            dist : {
+                src: [
+                    'lib/my/common.js',
+                    'lib/my/topograph/initialize.js',
+                    'lib/my/topograph/d3AppGraph.js',
+                    'lib/my/topograph/jsPlumbAppGraph.js'
+                ],
+                options: {
+                    destination: 'docs'
+                }
+            }
+        },
         /*copy: {
             bootstrap: {
                 files: [
@@ -43,7 +56,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-exec');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
-    grunt.registerTask('default', [ 'uglify', /*'copy',*/ 'exec:serve' ]);
+    grunt.registerTask('default', [ 'uglify', 'jsdoc', 'exec:serve' ]);
 
 };

@@ -1,4 +1,31 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: topograph/jsPlumbAppGraph.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: topograph/jsPlumbAppGraph.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
  * Created with JetBrains WebStorm.
  * User: bharadwaj
  * Date: 28/08/13
@@ -56,7 +83,7 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
              */
             create:function (input) {
 
-                for (var i = 0; i < input.length; i++) {
+                for (var i = 0; i &lt; input.length; i++) {
                     var lhsDivName = input[i].nodes[0]  + RenderNodes.ENDPOINT_SUFFIX;
                     var rhsDivName = input[i].nodes[1] + RenderNodes.ENDPOINT_SUFFIX;
                     console.log("lhs div name = " + lhsDivName + " rhs div name = " + rhsDivName);
@@ -176,7 +203,7 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
              */
             createEndpoint:function (endPointsArray, endPointType, width, height) {
                 var styleString = "width: " + width + "; height: " + height + ";";
-                for (var i = 0; i < endPointsArray.length; i++) {
+                for (var i = 0; i &lt; endPointsArray.length; i++) {
                     var divCol = dojo.byId(endPointType + RenderNodes.ROW_SUFFIX);
                     var node = dojo.create("div");
                     node.id = endPointType + "_" + endPointsArray[i] + RenderNodes.ENDPOINT_SUFFIX;
@@ -232,12 +259,12 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
                     var styleString = "width: " + (width / (names.length)) + "; height: " + height + ";";
 
                     var titlePanes = [];
-                    for (var i = 0; i < names.length; i++) {
+                    for (var i = 0; i &lt; names.length; i++) {
                         console.log("new pane for = " + names[i]);
                         var titlePane = new ContentPane({
                             splitter:false,
                             style:styleString,
-                            content:"<div id='" + names[i] + RenderNodes.COLUMN_SUFFIX + "' style='width: 100%; height: 100%;'></div>",
+                            content:"&lt;div id='" + names[i] + RenderNodes.COLUMN_SUFFIX + "' style='width: 100%; height: 100%;'>&lt;/div>",
                             title:names[i],
                             toggleable:false
                         });
@@ -249,7 +276,7 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
                     gridContainer.disableDnd();
 
                     var j = 0, k = 0;
-                    for (var i = 0; i < names.length; i++) {
+                    for (var i = 0; i &lt; names.length; i++) {
                         j = (i % (names.length));
                         k = parseInt(i / (names.length));
                         gridContainer.addChild(titlePanes[i], j, k);
@@ -272,18 +299,18 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
             removeMargins:function (gridContainer) {
                 var innerPane = dojo.query(".dijitTitlePaneContentInner", gridContainer.domNode);
                 //console.log("inner len = " + innerPane.length);
-                for (var i = 0; i < innerPane.length; i++) {
+                for (var i = 0; i &lt; innerPane.length; i++) {
                     innerPane[i].style.padding = 0;
                 }
 
                 var head = dojo.query(".dijitTitlePaneTitle", gridContainer.domNode)
-                for (var i = 0; i < head.length; i++) {
+                for (var i = 0; i &lt; head.length; i++) {
                     head[i].style.padding = 0;
                     head[i].style.minHeight = 0;
                 }
 
                 var headFocus = dojo.query(".dijitTitlePaneTitleFocus", gridContainer.domNode)
-                for (var i = 0; i < headFocus.length; i++) {
+                for (var i = 0; i &lt; headFocus.length; i++) {
                     headFocus[i].style.margin = 0;
                     headFocus[i].style.padding = 0;
                 }
@@ -303,11 +330,11 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
                     var styleString = "width: " + width + "; height: " + hl + ";";
 
                     var innerPanes = [];
-                    for (var i = 0; i < layers.length; i++) {
+                    for (var i = 0; i &lt; layers.length; i++) {
                         var innerPane = new TitlePane({
                             splitter:false,
                             style:styleString,
-                            content:"<div id='" + layers[i] + RenderNodes.ROW_SUFFIX + "' style='" + styleString + "'></div>",
+                            content:"&lt;div id='" + layers[i] + RenderNodes.ROW_SUFFIX + "' style='" + styleString + "'>&lt;/div>",
                             title:layers[i],
                             toggleable:false
                         });
@@ -317,7 +344,7 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
                     var gridContainer = new GridContainer({nbZones:1, isAutoOrganized:true}, dojo.byId(name + RenderNodes.COLUMN_SUFFIX));
                     gridContainer.disableDnd();
 
-                    for (var i = 0; i < layers.length; i++) {
+                    for (var i = 0; i &lt; layers.length; i++) {
                         gridContainer.addChild(innerPanes[i], 1, i);
                     }
                     gridContainer.startup();
@@ -337,25 +364,25 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
             create:function (input) {
 
                 var layerTypes = [];
-                for (var i = 0; i < input.length; i++) {
+                for (var i = 0; i &lt; input.length; i++) {
                     layerTypes.push(input[i].layertype);
                 }
                 this.createColumnPanes(layerTypes, JsPlumbAppGraph.width, JsPlumbAppGraph.height);
 
                 var colWidth = JsPlumbAppGraph.width / layerTypes.length;
                 var divW = 60, divH = 60;
-                for (var i = 0; i < input.length; i++) {
+                for (var i = 0; i &lt; input.length; i++) {
                     console.log("layer type = " + layerTypes[i]);
 
                     var layer = input[i].layer;
                     console.log("layer length = " + layer.length);
                     var layerNames = [];
-                    for (var j = 0; j < layer.length; j++) {
+                    for (var j = 0; j &lt; layer.length; j++) {
                         console.log("layer inner name = " + layer[j].name);
                         layerNames.push(layer[j].name);
                     }
                     this.createInnerPanes(layerNames, layerTypes[i], colWidth, JsPlumbAppGraph.height);
-                    for (var j = 0; j < layer.length; j++) {
+                    for (var j = 0; j &lt; layer.length; j++) {
                         this.createEndpoint(layer[j].value, layer[j].name, divW, divH);
                     }
                 }
@@ -373,12 +400,12 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
                 }).then(lang.hitch(this, this.createConnectivity));
 
                 var innerPane = dojo.query(".dijitTitlePaneContentOuter", JsPlumbAppGraph.PANE.domNode);
-                for (var i = 0; i < innerPane.length; i++) {
+                for (var i = 0; i &lt; innerPane.length; i++) {
                     innerPane[i].style.border = 0;
                 }
 
                 var gridText = dojo.query(".dijitTitlePaneTextNode", JsPlumbAppGraph.PANE.domNode);
-                for (var i = 0; i < gridText.length; i++) {
+                for (var i = 0; i &lt; gridText.length; i++) {
                     gridText[i].style.display = "block";
                     gridText[i].style.textAlign = "center";
                 }
@@ -446,4 +473,26 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
         JsPlumbAppGraph.PANE;
 
         return JsPlumbAppGraph;
-    });
+    });</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-common.html">common</a></li></ul><h3>Classes</h3><ul><li><a href="constructor.html">constructor</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addCPstartBC">addCPstartBC</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#createColumnPanes">createColumnPanes</a></li><li><a href="global.html#createConnectivity">createConnectivity</a></li><li><a href="global.html#createEndpoint">createEndpoint</a></li><li><a href="global.html#createImageGallery">createImageGallery</a></li><li><a href="global.html#createInnerPanes">createInnerPanes</a></li><li><a href="global.html#createNodeLayout">createNodeLayout</a></li><li><a href="global.html#getBorderContainer">getBorderContainer</a></li><li><a href="global.html#getContentPane">getContentPane</a></li><li><a href="global.html#getSvgIcon">getSvgIcon</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#launch">launch</a></li><li><a href="global.html#removeMargins">removeMargins</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0</a> on Wed Sep 04 2013 22:37:40 GMT+0530 (IST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
