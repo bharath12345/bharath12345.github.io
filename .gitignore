@@ -3,23 +3,6 @@
 _site/
 node_modules/
 
-_layouts/about.html
-_layouts/layout.html
-
-_includes/analytics.html
-_includes/css.html
-_includes/disqus.html
-_includes/facebook.html
-_includes/fb-sdk.html
-_includes/footer.html
-_includes/gauges.html
-_includes/google-analytics.html
-_includes/javascripts.html
-_includes/meta.html
-_includes/postpagescripts.html
-_includes/topmost-nav.html
-_includes/twitter.html
-
 lib/my/common.min.js
 lib/my/common.min.css
 
