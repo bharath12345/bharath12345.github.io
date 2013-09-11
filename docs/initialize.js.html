@@ -30,23 +30,27 @@
  * User: bharadwaj
  * Date: 29/08/13
  * Time: 12:23 PM
- * To change this template use File | Settings | File Templates.
+ *
+ * A Model for users
+ * @module  initialize
+ * @exports initialize
+ * @extends none
  */
-
 define(["dojo/_base/declare", "dijit/layout/ContentPane", "dijit/layout/BorderContainer", "dijit/TitlePane",
     "dojox/image/Gallery", "dojo/data/ItemFileReadStore", "dojo/parser", "dojo/dom-construct"],
-
+    /** @lends module:initialize */
     function (declare, ContentPane, BorderContainer, TitlePane, Gallery, ItemFileReadStore, parser, domConstruct) {
 
-        var Initialize = declare("Initialize", null, {
+        var initialize = declare("initialize", null, {
 
             /**
              * Returns a Dojo Titlepane
-             * @param region placement of the titlepane
-             * @param splitter boolean for splitter
-             * @param style style string if any
-             * @param name name in the title bar
-             * @param id dom id of the element
+             * @memberOf module:initialize#
+             * @param {string} region placement of the titlepane
+             * @param {boolean} splitter boolean for splitter
+             * @param {string} style style string if any
+             * @param {string} name name in the title bar
+             * @param {string} id dom id of the element
              * @return {*}
              */
             getContentPane: function(region, splitter, style, name, id) {
@@ -63,6 +67,7 @@ define(["dojo/_base/declare", "dijit/layout/ContentPane", "dijit/layout/BorderCo
 
             /**
              * Returns a Dojo BorderContainer
+             * @memberOf module:initialize#
              * @return {*}
              */
             getBorderContainer: function() {
@@ -77,9 +82,10 @@ define(["dojo/_base/declare", "dijit/layout/ContentPane", "dijit/layout/BorderCo
 
             /**
              * Accept a list of Dojo ContentPane's, add them to the passed BorderContainer and start them all up
-             * @param bc
-             * @param cpList
-             * @param paneToPlace
+             * @memberOf module:initialize#
+             * @param {BorderContainer} Dojo BorderContainer Object
+             * @param {Array} list of Dojo ContentPane's
+             * @param {DomNode} dom node to place BorderContainer at
              */
             addCPstartBC: function(bc, cpList, paneToPlace) {
                 for(var i=0; i&lt; cpList.length; i++) {
@@ -92,6 +98,7 @@ define(["dojo/_base/declare", "dijit/layout/ContentPane", "dijit/layout/BorderCo
 
             /**
              * Create the skeleton for the two graph objects to be shown
+             * @memberOf module:initialize#
              * @return {*}
              */
             initialize: function() {
@@ -105,6 +112,7 @@ define(["dojo/_base/declare", "dijit/layout/ContentPane", "dijit/layout/BorderCo
 
             /**
              * Display other APM tools graph images using Dojo image gallery
+             * @memberOf module:initialize#
              */
             createImageGallery: function() {
                 var imageItemStore = new ItemFileReadStore({url: "../../lib/my/topograph/json/images.json"});
@@ -126,7 +134,7 @@ define(["dojo/_base/declare", "dijit/layout/ContentPane", "dijit/layout/BorderCo
 
         });
 
-        return Initialize;
+        return initialize;
     }
 );
 </code></pre>
@@ -139,13 +147,13 @@ define(["dojo/_base/declare", "dijit/layout/ContentPane", "dijit/layout/BorderCo
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-common.html">common</a></li></ul><h3>Classes</h3><ul><li><a href="constructor.html">constructor</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addCPstartBC">addCPstartBC</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#createColumnPanes">createColumnPanes</a></li><li><a href="global.html#createConnectivity">createConnectivity</a></li><li><a href="global.html#createEndpoint">createEndpoint</a></li><li><a href="global.html#createImageGallery">createImageGallery</a></li><li><a href="global.html#createInnerPanes">createInnerPanes</a></li><li><a href="global.html#createNodeLayout">createNodeLayout</a></li><li><a href="global.html#getBorderContainer">getBorderContainer</a></li><li><a href="global.html#getContentPane">getContentPane</a></li><li><a href="global.html#getSvgIcon">getSvgIcon</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#launch">launch</a></li><li><a href="global.html#removeMargins">removeMargins</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-common.html">common</a></li><li><a href="module-d3AppGraph.html">d3AppGraph</a></li><li><a href="module-initialize.html">initialize</a></li><li><a href="module-jsPlumbAppGraph.html">jsPlumbAppGraph</a></li><li><a href="module-renderConnectivity.html">renderConnectivity</a></li><li><a href="module-renderNodes.html">renderNodes</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0</a> on Wed Sep 04 2013 22:37:40 GMT+0530 (IST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0</a> on Wed Sep 11 2013 15:23:10 GMT+0530 (IST)
 </footer>
 
 <script> prettyPrint(); </script>

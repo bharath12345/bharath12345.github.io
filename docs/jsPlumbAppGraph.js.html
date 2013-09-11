@@ -34,18 +34,19 @@
  */
 
 define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "dijit/layout/ContentPane", "dojo/request/xhr", "dojo/_base/lang"],
-
+    /** @lends jsPlumbAppGraph */
     function (declare, GridContainer, TitlePane, ContentPane, xhr, lang) {
 
         /**
          * Creates the connectivity on jsPlumb graph
-         * @namespace
-         * @type {*}
+         * @class renderConnectivity
+         * @exports my/jsPlumbAppGraph/renderConnectivity
          */
-        var RenderConnectivity = declare("RenderConnectivity", null, {
+        var renderConnectivity = declare("renderConnectivity", null, {
 
             /**
              * @constructor
+             * @function
              */
             constructor:function () {
                 jsPlumb.importDefaults({
@@ -79,39 +80,40 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
 
             /**
              * Creates the connectivity on jsPlumb graph
+             * @function
              * @param input
              */
             create:function (input) {
 
                 for (var i = 0; i &lt; input.length; i++) {
-                    var lhsDivName = input[i].nodes[0]  + RenderNodes.ENDPOINT_SUFFIX;
-                    var rhsDivName = input[i].nodes[1] + RenderNodes.ENDPOINT_SUFFIX;
+                    var lhsDivName = input[i].nodes[0]  + renderNodes.ENDPOINT_SUFFIX;
+                    var rhsDivName = input[i].nodes[1] + renderNodes.ENDPOINT_SUFFIX;
                     console.log("lhs div name = " + lhsDivName + " rhs div name = " + rhsDivName);
 
                     // create Endpoint on LHS and RHS node
-                    var srcUuid = RenderConnectivity.FROM + input[i].nodes[0] + RenderConnectivity.TO + input[i].nodes[1];
-                    var dstUuid = RenderConnectivity.FROM + input[i].nodes[1] + RenderConnectivity.TO + input[i].nodes[0];
+                    var srcUuid = renderConnectivity.FROM + input[i].nodes[0] + renderConnectivity.TO + input[i].nodes[1];
+                    var dstUuid = renderConnectivity.FROM + input[i].nodes[1] + renderConnectivity.TO + input[i].nodes[0];
                     console.log("src uuid = " + srcUuid + " dst uuid = " + dstUuid);
 
                     var sourceEP = jsPlumb.addEndpoint(lhsDivName,
-                        RenderConnectivity.sourceEndpoint,
+                        renderConnectivity.sourceEndpoint,
                         {
                             uuid:srcUuid,
-                            container:JsPlumbAppGraph.PANE.domNode,
+                            container:jsPlumbAppGraph.PANE.domNode,
                             anchor:"RightMiddle"
                         });
 
 
                     var dstEP = jsPlumb.addEndpoint(rhsDivName,
-                        RenderConnectivity.targetEndpoint,
+                        renderConnectivity.targetEndpoint,
                         {
                             uuid:dstUuid,
-                            container:JsPlumbAppGraph.PANE.domNode,
+                            container:jsPlumbAppGraph.PANE.domNode,
                             anchor:"LeftMiddle"
                         });
 
                     // create connection link
-                    jsPlumb.connect({ source:sourceEP, target:dstEP, container:JsPlumbAppGraph.PANE.domNode });
+                    jsPlumb.connect({ source:sourceEP, target:dstEP, container:jsPlumbAppGraph.PANE.domNode });
 
                     // get and set the status of the connection link
                     var viewMeta = {
@@ -123,11 +125,11 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
             }
         });
 
-        RenderConnectivity.FROM = "FROM_";
-        RenderConnectivity.TO = "_TO_";
+        renderConnectivity.FROM = "FROM_";
+        renderConnectivity.TO = "_TO_";
 
         // this is the paint style for the connecting lines..
-        RenderConnectivity.connectorPaintStyle = {
+        renderConnectivity.connectorPaintStyle = {
             lineWidth:1,
             strokeStyle:"#deea18",
             joinstyle:"round",
@@ -136,20 +138,20 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
         };
 
         // .. and this is the hover style.
-        RenderConnectivity.connectorHoverStyle = {
+        renderConnectivity.connectorHoverStyle = {
             lineWidth:2,
             strokeStyle:"#2e2aF8"
         };
 
         // the definition of source endpoints (the small blue ones)
-        RenderConnectivity.sourceEndpoint = {
+        renderConnectivity.sourceEndpoint = {
             endpoint:"Dot",
             paintStyle:{ fillStyle:"#225588", radius:3 },
             isSource:true,
             connector:[ "Straight", { stub:[40, 60], gap:10 } ],
-            connectorStyle:RenderConnectivity.connectorPaintStyle,
-            hoverPaintStyle:RenderConnectivity.connectorHoverStyle,
-            connectorHoverStyle:RenderConnectivity.connectorHoverStyle,
+            connectorStyle:renderConnectivity.connectorPaintStyle,
+            hoverPaintStyle:renderConnectivity.connectorHoverStyle,
+            connectorHoverStyle:renderConnectivity.connectorHoverStyle,
             dragOptions:{},
             overlays:[
                 [ "Label", {
@@ -160,10 +162,10 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
             ]
         };
 
-        RenderConnectivity.targetEndpoint = {
+        renderConnectivity.targetEndpoint = {
             endpoint:"Dot",
             paintStyle:{ fillStyle:"#558822", radius:3 },
-            hoverPaintStyle:RenderConnectivity.connectorHoverStyle,
+            hoverPaintStyle:renderConnectivity.connectorHoverStyle,
             maxConnections:-1,
             dropOptions:{ hoverClass:"hover", activeClass:"active" },
             isTarget:true,
@@ -173,13 +175,15 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
         };
 
         /**
-         * @namespace
-         * @type {*}
+         * Node class
+         * @class renderNodes
+         * @exports my/jsPlumbAppGraph/renderNodes
          */
-        var RenderNodes = declare("RenderNodes", null, {
+        var renderNodes = declare("renderNodes", null, {
 
             /**
              * Returns SVG Icons
+             * @function
              * @param src
              * @param width
              * @param height
@@ -196,6 +200,7 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
 
             /**
              * Creates the graph endpoint with appropriate SVG image
+             * @function
              * @param endPointsArray
              * @param endPointType
              * @param width
@@ -204,9 +209,9 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
             createEndpoint:function (endPointsArray, endPointType, width, height) {
                 var styleString = "width: " + width + "; height: " + height + ";";
                 for (var i = 0; i &lt; endPointsArray.length; i++) {
-                    var divCol = dojo.byId(endPointType + RenderNodes.ROW_SUFFIX);
+                    var divCol = dojo.byId(endPointType + renderNodes.ROW_SUFFIX);
                     var node = dojo.create("div");
-                    node.id = endPointType + "_" + endPointsArray[i] + RenderNodes.ENDPOINT_SUFFIX;
+                    node.id = endPointType + "_" + endPointsArray[i] + renderNodes.ENDPOINT_SUFFIX;
                     node.className = "topoIconContainer";
                     node.style.cssText = styleString;
                     divCol.appendChild(node);
@@ -215,27 +220,27 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
 
                     var imgW = 50, imgH = 50;
                     switch (endPointType) {
-                        case RenderNodes.TYPE.WEBSERVER:
+                        case renderNodes.TYPE.WEBSERVER:
                             var svgIcon = this.getSvgIcon("../../images/topograph/osa_server_web.svg", imgW, imgH);
                             node.appendChild(svgIcon);
                             break;
 
-                        case RenderNodes.TYPE.APPSERVER:
+                        case renderNodes.TYPE.APPSERVER:
                             var svgIcon = this.getSvgIcon("../../images/topograph/osa_server_application.svg", imgW, imgH);
                             node.appendChild(svgIcon);
                             break;
 
-                        case RenderNodes.TYPE.DATABASES:
+                        case renderNodes.TYPE.DATABASES:
                             var svgIcon = this.getSvgIcon("../../images/topograph/osa_database.svg", imgW, imgH);
                             node.appendChild(svgIcon);
                             break;
 
-                        case RenderNodes.TYPE.MESSAGEQ:
+                        case renderNodes.TYPE.MESSAGEQ:
                             var svgIcon = this.getSvgIcon("../../images/topograph/Messaging_Queue.svg", imgW, imgH);
                             node.appendChild(svgIcon);
                             break;
 
-                        case RenderNodes.TYPE.TCPENDPOINTS:
+                        case renderNodes.TYPE.TCPENDPOINTS:
                             var svgIcon = this.getSvgIcon("../../images/topograph/osa_ics_drive.svg", imgW, imgH);
                             node.appendChild(svgIcon);
                             break;
@@ -249,6 +254,7 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
 
             /**
              * Creates inner column panes for jsPlumb layout
+             * @function
              * @param names
              * @param width
              * @param height
@@ -264,7 +270,7 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
                         var titlePane = new ContentPane({
                             splitter:false,
                             style:styleString,
-                            content:"&lt;div id='" + names[i] + RenderNodes.COLUMN_SUFFIX + "' style='width: 100%; height: 100%;'>&lt;/div>",
+                            content:"&lt;div id='" + names[i] + renderNodes.COLUMN_SUFFIX + "' style='width: 100%; height: 100%;'>&lt;/div>",
                             title:names[i],
                             toggleable:false
                         });
@@ -294,6 +300,7 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
 
             /**
              * Changes to default Dojo Titlepane layout to suit the graph
+             * @function
              * @param gridContainer
              */
             removeMargins:function (gridContainer) {
@@ -318,6 +325,7 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
 
             /**
              * Creates inner panes
+             * @function
              * @param layers
              * @param name
              * @param width
@@ -334,14 +342,14 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
                         var innerPane = new TitlePane({
                             splitter:false,
                             style:styleString,
-                            content:"&lt;div id='" + layers[i] + RenderNodes.ROW_SUFFIX + "' style='" + styleString + "'>&lt;/div>",
+                            content:"&lt;div id='" + layers[i] + renderNodes.ROW_SUFFIX + "' style='" + styleString + "'>&lt;/div>",
                             title:layers[i],
                             toggleable:false
                         });
                         innerPanes[i] = innerPane;
                     }
 
-                    var gridContainer = new GridContainer({nbZones:1, isAutoOrganized:true}, dojo.byId(name + RenderNodes.COLUMN_SUFFIX));
+                    var gridContainer = new GridContainer({nbZones:1, isAutoOrganized:true}, dojo.byId(name + renderNodes.COLUMN_SUFFIX));
                     gridContainer.disableDnd();
 
                     for (var i = 0; i &lt; layers.length; i++) {
@@ -359,6 +367,7 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
 
             /**
              * Creates jsPlumb graph
+             * @function
              * @param input
              */
             create:function (input) {
@@ -367,9 +376,9 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
                 for (var i = 0; i &lt; input.length; i++) {
                     layerTypes.push(input[i].layertype);
                 }
-                this.createColumnPanes(layerTypes, JsPlumbAppGraph.width, JsPlumbAppGraph.height);
+                this.createColumnPanes(layerTypes, jsPlumbAppGraph.width, jsPlumbAppGraph.height);
 
-                var colWidth = JsPlumbAppGraph.width / layerTypes.length;
+                var colWidth = jsPlumbAppGraph.width / layerTypes.length;
                 var divW = 60, divH = 60;
                 for (var i = 0; i &lt; input.length; i++) {
                     console.log("layer type = " + layerTypes[i]);
@@ -381,7 +390,7 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
                         console.log("layer inner name = " + layer[j].name);
                         layerNames.push(layer[j].name);
                     }
-                    this.createInnerPanes(layerNames, layerTypes[i], colWidth, JsPlumbAppGraph.height);
+                    this.createInnerPanes(layerNames, layerTypes[i], colWidth, jsPlumbAppGraph.height);
                     for (var j = 0; j &lt; layer.length; j++) {
                         this.createEndpoint(layer[j].value, layer[j].name, divW, divH);
                     }
@@ -396,15 +405,15 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
                     handleAs:"json",
                     method:"GET",
                     query:viewMeta,
-                    headers:JsPlumbAppGraph.JSON_HEADER
+                    headers:jsPlumbAppGraph.JSON_HEADER
                 }).then(lang.hitch(this, this.createConnectivity));
 
-                var innerPane = dojo.query(".dijitTitlePaneContentOuter", JsPlumbAppGraph.PANE.domNode);
+                var innerPane = dojo.query(".dijitTitlePaneContentOuter", jsPlumbAppGraph.PANE.domNode);
                 for (var i = 0; i &lt; innerPane.length; i++) {
                     innerPane[i].style.border = 0;
                 }
 
-                var gridText = dojo.query(".dijitTitlePaneTextNode", JsPlumbAppGraph.PANE.domNode);
+                var gridText = dojo.query(".dijitTitlePaneTextNode", jsPlumbAppGraph.PANE.domNode);
                 for (var i = 0; i &lt; gridText.length; i++) {
                     gridText[i].style.display = "block";
                     gridText[i].style.textAlign = "center";
@@ -412,67 +421,70 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
             },
 
             /**
-             *
+             * @function
              * @param input
              */
             createConnectivity:function (input) {
-                new RenderConnectivity().create(input);
+                new renderConnectivity().create(input);
             }
         });
 
-        RenderNodes.TYPE = {};
-        RenderNodes.TYPE.WEBSERVER = "WebServers";
-        RenderNodes.TYPE.APPSERVER = "AppServers";
-        RenderNodes.TYPE.DATABASES = "Databases";
-        RenderNodes.TYPE.MESSAGEQ = "MessageQueues";
-        RenderNodes.TYPE.TCPENDPOINTS = "TcpEndpoints";
+        renderNodes.TYPE = {};
+        renderNodes.TYPE.WEBSERVER = "WebServers";
+        renderNodes.TYPE.APPSERVER = "AppServers";
+        renderNodes.TYPE.DATABASES = "Databases";
+        renderNodes.TYPE.MESSAGEQ = "MessageQueues";
+        renderNodes.TYPE.TCPENDPOINTS = "TcpEndpoints";
 
-        RenderNodes.COLUMN_SUFFIX = "_col";
-        RenderNodes.ROW_SUFFIX = "_row";
-        RenderNodes.ENDPOINT_SUFFIX = "_endpoint";
+        renderNodes.COLUMN_SUFFIX = "_col";
+        renderNodes.ROW_SUFFIX = "_row";
+        renderNodes.ENDPOINT_SUFFIX = "_endpoint";
 
         /**
          * Creates jsPlumb graph
-         * @namespace
-         * @type {*}
+         * @class
+         * @exports my/topograph/jsPlumbAppGraph
+         * @module jsPlumbAppGraph
          */
-        var JsPlumbAppGraph = declare("JsPlumbAppGraph", null, {
+        var jsPlumbAppGraph = declare("jsPlumbAppGraph", null, {
 
             /**
              * launch point
+             * @function
              * @param pane
              */
             launch:function (pane) {
-                JsPlumbAppGraph.PANE = pane;
+                jsPlumbAppGraph.PANE = pane;
                 var node = document.getElementById("JsPlumbAppGraphPane");
-                JsPlumbAppGraph.width = node.clientWidth;
-                JsPlumbAppGraph.height = node.clientHeight;
-                console.log("view port width = " + JsPlumbAppGraph.width + " height = " + JsPlumbAppGraph.height);
+                jsPlumbAppGraph.width = node.clientWidth;
+                jsPlumbAppGraph.height = node.clientHeight;
+                console.log("view port width = " + jsPlumbAppGraph.width + " height = " + jsPlumbAppGraph.height);
 
                 xhr("../../lib/my/topograph/json/Nodes.json", {
                     handleAs:"json",
                     method:"GET",
-                    headers:JsPlumbAppGraph.JSON_HEADER
+                    headers:jsPlumbAppGraph.JSON_HEADER
                 }).then(lang.hitch(this, this.createNodeLayout));
             },
 
             /**
              * Callback from xhr
+             * @function
              * @param input
              */
             createNodeLayout:function (input) {
-                new RenderNodes().create(input);
+                new renderNodes().create(input);
             }
         });
 
-        JsPlumbAppGraph.JSON_HEADER = { 'Content-Type':'application/json' };
+        jsPlumbAppGraph.JSON_HEADER = { 'Content-Type':'application/json' };
 
-        JsPlumbAppGraph.width = 300;
-        JsPlumbAppGraph.height = 300;
+        jsPlumbAppGraph.width = 300;
+        jsPlumbAppGraph.height = 300;
 
-        JsPlumbAppGraph.PANE;
+        jsPlumbAppGraph.PANE;
 
-        return JsPlumbAppGraph;
+        return jsPlumbAppGraph;
     });</code></pre>
         </article>
     </section>
@@ -483,13 +495,13 @@ define(["dojo/_base/declare", "dojox/layout/GridContainer", "dijit/TitlePane", "
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-common.html">common</a></li></ul><h3>Classes</h3><ul><li><a href="constructor.html">constructor</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addCPstartBC">addCPstartBC</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#createColumnPanes">createColumnPanes</a></li><li><a href="global.html#createConnectivity">createConnectivity</a></li><li><a href="global.html#createEndpoint">createEndpoint</a></li><li><a href="global.html#createImageGallery">createImageGallery</a></li><li><a href="global.html#createInnerPanes">createInnerPanes</a></li><li><a href="global.html#createNodeLayout">createNodeLayout</a></li><li><a href="global.html#getBorderContainer">getBorderContainer</a></li><li><a href="global.html#getContentPane">getContentPane</a></li><li><a href="global.html#getSvgIcon">getSvgIcon</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#launch">launch</a></li><li><a href="global.html#removeMargins">removeMargins</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-common.html">common</a></li><li><a href="module-d3AppGraph.html">d3AppGraph</a></li><li><a href="module-initialize.html">initialize</a></li><li><a href="module-jsPlumbAppGraph.html">jsPlumbAppGraph</a></li><li><a href="module-renderConnectivity.html">renderConnectivity</a></li><li><a href="module-renderNodes.html">renderNodes</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0</a> on Wed Sep 04 2013 22:37:40 GMT+0530 (IST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0</a> on Wed Sep 11 2013 15:23:10 GMT+0530 (IST)
 </footer>
 
 <script> prettyPrint(); </script>

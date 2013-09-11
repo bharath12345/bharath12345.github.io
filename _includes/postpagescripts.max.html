@@ -29,28 +29,29 @@
 <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>
 
 <script type="text/javascript">
-    require([ "my/common.min", "dojo/domReady!" ], function (Common) {
+    require([ "my/common.min", "dojo/domReady!" ], function (common) {
 
         switch (pageTitle) {
             case "Effective Java":
-                Common.GenerateTOC(4, 1);
-                Common.AdjustDivHeight();
+                common.GenerateTOC(4, 1);
+                common.AdjustDivHeight();
                 break;
 
             case "Few days with Apache Cassandra":
             case "Build Dojo 1.7/1.8/1.9 with Maven":
             case "System and Application health - Is there a data collection challenge at the DC?":
-                Common.GenerateTOC(4, 2);
+                common.GenerateTOC(4, 2);
                 break;
 
             case "Real Time Dashboard with Camel, ActiveMQ & Dojo... On JBoss7 and using JMS & WebSocket":
-                Common.GenerateTOC(3, 3);
+            case "The Bleeding Edge Of A Web Application...":
+                common.GenerateTOC(3, 3);
                 break;
 
             case "Application Topology Graphs - Usecase, Different Product Offerings, Prototype Using D3 and jsPlumb":
-                Common.GenerateTOC(3, 2);
-                Common.AdjustDivHeight("about");
-                Common.AdjustDivHeight("comparison");
+                common.GenerateTOC(3, 2);
+                common.AdjustDivHeight("about");
+                common.AdjustDivHeight("comparison");
                 require([ "my/topograph/initialize.min", "my/topograph/d3AppGraph.min", "my/topograph/jsPlumbAppGraph.min" ],
                         function (Initialize, D3AppGraph, JsPlumbAppGraph) {
                             var initialize = new Initialize();
