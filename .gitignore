@@ -3,14 +3,6 @@
 _site/
 node_modules/
 
-lib/my/common.min.js
-lib/my/common.min.css
-
-lib/my/topograph/d3AppGraph.min.js
-lib/my/topograph/initialize.min.js
-lib/my/topograph/jsPlumbAppGraph.min.js
-lib/my/topograph/topograph.min.css
-
 ################
 .idea/
 .svn/
