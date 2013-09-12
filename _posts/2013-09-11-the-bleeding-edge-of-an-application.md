@@ -27,25 +27,35 @@ Before starting on the sections, I request my readers to have a look at these tw
 Here are the numbers from recently published articles on Twitter, WhatsApp and Facebook. There are others who could be far behind like Google Search, Wikipedia etc. 
 
 1. Twitter: [This recent article](http://highscalability.com/blog/2013/7/8/the-architecture-twitter-uses-to-deal-with-150m-active-users.html) says 300K requests per second for reading and 6000 RPS for writing. And Twitter's own [blog](https://blog.twitter.com/2013/new-tweets-per-second-record-and-how) talks about new peaks
-
 2. WhatsApp: [This article](http://thenextweb.com/mobile/2013/06/13/whatsapp-is-now-processing-a-record-27-billion-messages-per-day/) puts the numbers at 10 billion messages sent and received in one day recently
-
 3. Facebook: was getting no less than 12 million HTTP requests per second not very long ago per [this article](http://www.datadoghq.com/2013/07/the-best-of-velocity-and-devopsdays-2013-part-ii/) 
 
-### JVM based web-apps
-#### Web application stack
-##### Servlet Specification
-##### The Reactive Manifesto
-#### Web servers
-#### Tomcat
-#### Jetty
-#### Netty
+### Why is this hard?
+A good place to start understanding why these scales are hard on software systems is the [C10K problem](http://www.kegel.com/c10k.html).  
 
-### NodeJS - The JavaScript web-server
+1. Forking a process is too expensive a operation when a request arrives
+2. Forking a thread is less expensive but writing multi-threaded applications is tough (and forking a new thread when a request arrives is actually not that inexpensive)
+3. Usage of thread pools just shifts the bottleneck. Once you have a thread-pool, each thread has to do a select() or poll() to find the next nonblocking socket ready for IO. But doing a select() or poll() on a huge array of open socket descriptors is extremely inefficient
+4. The event driven model
 
-### C/C++ web-servers
-#### Apache
-#### Nginx
+### Roundup Of Web Application Stacks
+
+#### JVM
+The web-tier in JVM world is filled with 3 types of frameworks - (a) Web Servers that support the servlet specification (recent one is 3.x) (b) MVC frameworks © Asynchronous event-driven frameworks 
+##### Web Servers that support the servlet specification
+These include Tomcat, Jetty
+
+##### MVC Frameworks
+These include Spring MVC, Struts, Tapestry, Wicket etc
+
+##### Event driven
+Netty based frameworks like Play!, Vert.x etc
+
+#### NodeJS - JavaScript on the server side
+The [list](https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node) of companies and websites powered by NodeJS is long. However Node is still a newcomer. Why would somebody want to use Node?
+
+#### Ruby and PHP
+
 
 
 
