@@ -3,10 +3,16 @@
   "version": "0.0.1",
   "dependencies": {
     "grunt": "~0.4.1",
+
     "grunt-contrib-uglify": "*",
     "grunt-contrib-copy": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-htmlmin": "*",
+
     "bower": "*",
-    "grunt-exec": "*"
+    "grunt-exec": "*",
+    "grunt-jsdoc": "*"
   },
   "engines": {
     "npm": "1.2.x"
