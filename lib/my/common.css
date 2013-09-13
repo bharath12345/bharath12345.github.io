@@ -235,6 +235,10 @@ div#tocBlock #toc li {
     font-size: 12px;
 }
 
+pre {
+    font-size: 12px !important;
+}
+
 
 
 
