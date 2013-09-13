@@ -10,51 +10,80 @@ disqus: true
 toc: true
 ---
 
-... is the web server along with the HTTP software stack that powers it. Of the many reasons that make this layer extremely challenging for software development let me just state a few -
+Typical web applications have the well-known 3-tiered structure. WebTier > ApplicationTier > DataTier. Both WebTier and ApplicationTier have the web-layer to parse the incoming HTTP requests. Its in the WebTier that one deploy's load-balancing L4-routers like Apache/Nginx or Netscaler like appliances. HTTP requests are forwarded by the WebTier to the ApplicationTier which is generally served by a much bigger farm of servers. Web-layer in the ApplicationTier is the focus of this blog. Its one of the most challenging areas of software development. Among the reasons are - 
 
-* Huge quantum of requests. Both for static web pages and dynamic content
-* Change. Websites and services change very often
-* Variety of consumers. People read/write to web. And so do software applications using web-services etc
+* Huge quantum of requests, with *read* generally surpassing *write* by an order of magnitude or so
+* Change. Website content and web-service APIs both change very often
+* Variety of consumers. People read/write to the web. And so do other software applications
 
-A few weeks ago I decided to study this area thoroughly. Being a Java and JavaScript developer, my focus was on the emergent software stacks in these languages. And to understand what is/was lacking in the frameworks that exist/have-gone-by. Unearth the real problems of the web-layer from development and deployment standpoint. This blog is an attempt to digest what I discovered.In this blog, I start by quantifying the numbers that make the web-layer the bleeding edge for software development. I then have a look at some of the core technical problems. Finally a comparison of software stacks.
+Being a Java and JavaScript developer, my interest is in the emergent software stacks in these two languages. To understand their *raison d'être*. I intend to start by quantifying the numbers (HTTP requests). Then take a look at some of the core technical problems. Finally a comparison of the competing software stacks.
 
-Before starting on the sections, I request my readers to have a look at these two webpages before proceeding further -
+But before starting on the web-layer in the ApplicationTier it is instructive to look at the pure WebTier itself. Its instructive to read [Netcraft's September 2013 Web Server Survey](http://news.netcraft.com/archives/2013/09/05/september-2013-web-server-survey.html). All the top web-servers are C/C++ based. For those unfamiliar with actual application deployments, these web-servers are not used to host real applications. They serve static pages, act as L4-routers and load-balancers. They are placed at the very gate of modern web-shops and all requests go through them. Their tasks are simpler than business applications. So it makes sense to develop them in native languages for brute speed.   
 
-1. [Netcraft's September 2013 Web Server Survey](http://news.netcraft.com/archives/2013/09/05/september-2013-web-server-survey.html) - These graphs are instructive. All the top web-servers are C/C++ based. But for those who are not familiar with actual application deployments, the thing to note is that these web-servers are seldom used to host real applications. They serve static pages and act as load-balancers for dynamic ones. Firewalls and load-balancers are placed at the very gate of modern web-shops. Any and all requests go through them. And their tasks are generally simpler than business applications. So it makes sense to develop them in native languages for brute speed. A hundred load-balancing servers would generally be supporting 8X times or more of application servers. The requests that land at this C/C++ load-balancing web-tier are forwarded to the application-tier. And responses from the application-tier are sent back along the same path. The focus of this blog is on the web-layer at this application-tier and *not* at the web-tier.
-2. [The Reactive Manifesto](http://www.reactivemanifesto.org) - In this blog I plan to work my way through explaining why *the reactive manfiesto* and event-driven model are such fine ideas. However please do take some time out to read it. Especially that graph on Amdahl's Law…      
+<hr>   
 
-### Quantifying the 'Bleeding Edge'
-Here are the numbers from recently published articles on Twitter, WhatsApp and Facebook. There are others who could be far behind like Google Search, Wikipedia etc. 
+#### 1. Quantifying the 'Bleeding Edge'
+Here are the numbers from recently published articles on Twitter, WhatsApp and Facebook. There are others who could not be far behind like Google, Wikipedia, Amazon, Skype etc. 
 
-1. Twitter: [This recent article](http://highscalability.com/blog/2013/7/8/the-architecture-twitter-uses-to-deal-with-150m-active-users.html) says 300K requests per second for reading and 6000 RPS for writing. And Twitter's own [blog](https://blog.twitter.com/2013/new-tweets-per-second-record-and-how) talks about new peaks
-2. WhatsApp: [This article](http://thenextweb.com/mobile/2013/06/13/whatsapp-is-now-processing-a-record-27-billion-messages-per-day/) puts the numbers at 10 billion messages sent and received in one day recently
-3. Facebook: was getting no less than 12 million HTTP requests per second not very long ago per [this article](http://www.datadoghq.com/2013/07/the-best-of-velocity-and-devopsdays-2013-part-ii/) 
+1. Twitter: 300K requests per second (RPS) for reading and 6000 RPS for writing - [Source1](http://highscalability.com/blog/2013/7/8/the-architecture-twitter-uses-to-deal-with-150m-active-users.html), [Source2](https://blog.twitter.com/2013/new-tweets-per-second-record-and-how)
+2. WhatsApp: 10 billion requests sent and received in one day - [Source](http://thenextweb.com/mobile/2013/06/13/whatsapp-is-now-processing-a-record-27-billion-messages-per-day/) 
+3. Facebook: 12 million HTTP requests per second - [Source](http://www.datadoghq.com/2013/07/the-best-of-velocity-and-devopsdays-2013-part-ii/) 
 
-### Why is this hard?
-A good place to start understanding why these scales are hard on software systems is the [C10K problem](http://www.kegel.com/c10k.html).  
+(*All these articles are quite recent*)
 
-1. Forking a process is too expensive a operation when a request arrives
-2. Forking a thread is less expensive but writing multi-threaded applications is tough (and forking a new thread when a request arrives is actually not that inexpensive)
-3. Usage of thread pools just shifts the bottleneck. Once you have a thread-pool, each thread has to do a select() or poll() to find the next nonblocking socket ready for IO. But doing a select() or poll() on a huge array of open socket descriptors is extremely inefficient
-4. The event driven model
+<hr>
 
-### Roundup Of Web Application Stacks
+#### 2. Why Is It Hard?
+Two good resources to start understanding why these scales are hard on the ApplicationTier are -
 
-#### JVM
-The web-tier in JVM world is filled with 3 types of frameworks - (a) Web Servers that support the servlet specification (recent one is 3.x) (b) MVC frameworks © Asynchronous event-driven frameworks 
-##### Web Servers that support the servlet specification
-These include Tomcat, Jetty
+1. C10K problem by [Kegel](http://www.kegel.com/c10k.html) and [Felix von Leitner](http://bulk.fefe.de/scalable-networking.pdf)
+2. C10M problem by [Robert Graham](http://c10m.robertgraham.com/p/manifesto.html). And [this video](http://www.youtube.com/watch?v=D09jdbS6oSI) by him is very instructive 
 
-##### MVC Frameworks
+But let me state the problem(s) simply. The reasons why it is hard to handle HTTP requests in web-layer are -
+
+1. **Forking a process**: is too expensive a compute operation to perform everytime a request arrives
+2. **Forking a thread**: is less expensive on compute. But writing multi-threaded applications for multi-core systems is very tough (and *actually* forking a new thread is not inexpensive at all)
+3. **Use thread pools**: It just shifts the bottleneck. Once you have a thread-pool, each thread has to do a select() or poll() to find the next nonblocking socket ready for IO. But doing a select() or poll() on a huge array of open socket descriptors is extremely inefficient at the kernel level (checkout the deep analysis to C10K problem in the above mentioned links)
+4. **The Event driven model**: requires a paradigm shift in thinking and designing applications from bottoms-up. The best way to start grasping the idea is to read the [the Reactive Manifesto](http://www.reactivemanifesto.org). This model is not very different from the SEDA architecture. Reactive applications is a very fine idea and one of the reasons why I dwelled into this subject in the first place…
+
+In
+ this blog I plan to work my way through explaining why *the reactive manfiesto* and event-driven model are such fine ideas. However please do take some time out to read it. Especially that graph on Amdahl's Law… 
+
+<hr>
+
+#### 3. Software Development Of Web Application
+Broadly there are 3 different ways to develop web applications -
+
+* JVM Based
+* Ruby, PHP
+* NodeJS
+
+I dwell into each of these in the next few sections. However the quick question that arises for a developer is what are the usecases for each of these? When to use which one? Below is the guidance I would suggest -  
+
+##### A. JVM
+The web-layer in JVM world is filled with 3 types of frameworks - 
+
+1. Frameworks that support the servlet specification (latest one is 3.0) 
+2. MVC frameworks 
+3. Asynchronous event-driven frameworks based on Netty
+
+###### (i) Servlet Specification Frameworks
+These include Tomcat, Jetty. 
+
+###### (ii) MVC Frameworks
 These include Spring MVC, Struts, Tapestry, Wicket etc
 
-##### Event driven
+###### (iii) Asynchronous Event-Driven Frameworks
 Netty based frameworks like Play!, Vert.x etc
 
-#### NodeJS - JavaScript on the server side
+<hr>
+
+##### B. NodeJS - JavaScript on the server side
 The [list](https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node) of companies and websites powered by NodeJS is long. However Node is still a newcomer. Why would somebody want to use Node?
 
-#### Ruby and PHP
+<hr>
+
+##### C. Ruby and PHP
 
 
 
