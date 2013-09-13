@@ -51,39 +51,79 @@ In
 
 <hr>
 
-#### 3. Software Development Of Web Application
+#### 3. Software Development Of Web Applications
 Broadly there are 3 different ways to develop web applications -
 
 * JVM Based
 * Ruby, PHP
 * NodeJS
 
-I dwell into each of these in the next few sections. However the quick question that arises for a developer is what are the usecases for each of these? When to use which one? Below is the guidance I would suggest -  
+I dwell into each of these in the next few sections. However the quick question that arises for a developer is what are the usecases for each of these? When to use which one? Below is the guidance I would suggest albeit reluctantly. (Readers are free to disagree and I myself know of reasons aplenty to do so. But my idea of writing this is to paint broad strokes on the canvas. Exceptions among project/people always exist!)
 
-##### A. JVM
+<div class="bs-docs-grid" id="dev">
+    <div class="row show-grid">
+        <div class="col-md-2 right alignCenter"><h5>JVM Based</h5></div>
+        <div class="col-md-10 left">
+        	<ol>
+                <li>Performance: JVM is worlds best VM in performance. Ruby/PHP/NodeJS are interpreted and don't come close in performance (doing any new project in JRuby according to me is simply a bad idea). Facebook created the HipHop JIT compiler for PHP to make it scale - this counts as an exception. Twitter shifted from Ruby to Scala (which is JVM based) and achieved higher performance numbers. One can find umpteen examples like this…</li>
+                <li>Development Time: Java and other JVM languages are supposed to be slower to develop in compared to Ruby/PHP/NodeJS. This argument is very valid. And thats the reason why frameworks like Play! are trying to bridge the gap</li>
+                <li>Cost: Java developers are more expensive</li>
+                <li>Suited for: Large web applications. Enterprise products. Mission critical applications</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right alignCenter"><h5>Ruby, PHP</h5></div>
+        <div class="col-md-10 left">
+        	<ol>
+                <li>Performance: Definitely not bad</li>
+                <li>Development Time: Fast</li>
+                <li>Cost: Medium</li>
+                <li>Suited for: Medium sized projects</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right alignCenter"><h5>NodeJS</h5></div>
+        <div class="col-md-10 left">
+        	<ol>
+                <li>Performance: The jury is still out. NodeJS has found adaption in only smaller web shops. Large scale production quality Node applications are still some distance away</li>
+                <li>Development Time: Fast</li>
+                <li>Cost: Low, since the whole application is built on a single language stack the server-side developers and client-side developers can co-work</li>
+                <li>Suited for: Smaller chatty applications</li>
+            </ol>
+        </div>
+    </div>
+</div>
+   
+<hr>
+
+#### 4. JVM Based Web Apps
 The web-layer in JVM world is filled with 3 types of frameworks - 
 
 1. Frameworks that support the servlet specification (latest one is 3.0) 
 2. MVC frameworks 
 3. Asynchronous event-driven frameworks based on Netty
 
-###### (i) Servlet Specification Frameworks
-These include Tomcat, Jetty. 
+##### (i) Servlet Specification Frameworks
+These include Tomcat and Jetty. What is the main motivator for the servlet spec? It is to manage state information that does not exist in the stateless HTTP protocol. HttpServletRequest provides an API getSession() where the HttpSession object is a container to hold attributes for a single transaction spread across multiple HTTP request/responses. Apart from this central feature of sessions the servlet API also defines the interfaces that the servlet container has to adhere-to to provide concurrent request processing in a sandbox environment. So whats the drawback? The very idea of *state* brings down the performance of these containers. Thats the reason why developing highly performant RESTful APIs using servlet containers is a bad idea. (Many servlet containers can be tuned for statelessness - but then, that goes against one of the fundamental motivators for the spec)
 
-###### (ii) MVC Frameworks
+##### (ii) MVC Frameworks
 These include Spring MVC, Struts, Tapestry, Wicket etc
 
-###### (iii) Asynchronous Event-Driven Frameworks
+##### (iii) Asynchronous Event-Driven Frameworks
 Netty based frameworks like Play!, Vert.x etc
 
 <hr>
 
-##### B. NodeJS - JavaScript on the server side
+#### 5. NodeJS - JavaScript on the server side
 The [list](https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node) of companies and websites powered by NodeJS is long. However Node is still a newcomer. Why would somebody want to use Node?
 
 <hr>
 
-##### C. Ruby and PHP
+#### 6. Ruby and PHP
+
+#### What to use for my project?
 
 
 
