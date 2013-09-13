@@ -46,9 +46,6 @@ But let me state the problem(s) simply. The reasons why it is hard to handle HTT
 3. **Use thread pools**: It just shifts the bottleneck. Once you have a thread-pool, each thread has to do a select() or poll() to find the next nonblocking socket ready for IO. But doing a select() or poll() on a huge array of open socket descriptors is extremely inefficient at the kernel level (checkout the deep analysis to C10K problem in the above mentioned links)
 4. **The Event driven model**: requires a paradigm shift in thinking and designing applications from bottoms-up. The best way to start grasping the idea is to read the [the Reactive Manifesto](http://www.reactivemanifesto.org). This model is not very different from the SEDA architecture. Reactive applications is a very fine idea and one of the reasons why I dwelled into this subject in the first place…
 
-In
- this blog I plan to work my way through explaining why *the reactive manfiesto* and event-driven model are such fine ideas. However please do take some time out to read it. Especially that graph on Amdahl's Law… 
-
 <hr>
 
 #### 3. Software Development Of Web Applications
@@ -58,7 +55,37 @@ Broadly there are 3 different ways to develop web applications -
 * Ruby, PHP
 * NodeJS
 
-I dwell into each of these in the next few sections. However the quick question that arises for a developer is what are the usecases for each of these? When to use which one? Below is the guidance I would suggest albeit reluctantly. (Readers are free to disagree and I myself know of reasons aplenty to do so. But my idea of writing this is to paint broad strokes on the canvas. Exceptions among project/people always exist!)
+I dwell into each of these in the next few sections. 
+
+#### 4. JVM Based Web Apps
+The web-layer in JVM world is filled with 3 types of frameworks - 
+
+1. Frameworks that support the *servlet specification* (latest one is 3.0) 
+2. MVC frameworks 
+3. Asynchronous event-driven frameworks based on Netty
+
+##### (i) Servlet Specification Frameworks
+These include Tomcat and Jetty. What is the main motivator for the servlet spec? It is to manage state information that does not exist in the stateless HTTP protocol. [HttpServletRequest](http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html) provides an API getSession() where the HttpSession object is a container to hold attributes for a single transaction spread across multiple HTTP request/responses. Apart from this central feature of sessions the servlet API also defines the interfaces that the servlet container has to adhere-to to provide concurrent request processing in a sandbox environment. So whats the drawback? The very idea of *state* brings down the performance of these containers. Thats the reason why developing highly performant RESTful APIs using servlet containers is a bad idea. Client maintains the *state*, if required, in [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Many servlet containers can be tuned for statelessness - but then, that goes against one of the fundamental motivators for the spec. And my readings tell me that these frameworks don't become highly performant on turning off the statefullness.
+
+##### (ii) MVC Frameworks
+These include Spring MVC, Struts, Tapestry, Wicket etc. I have used two of these - [Struts2](http://struts.apache.org/) and [Wicket](http://wicket.apache.org/) in building applications that have seen deployment. The fundamental motivation for these frameworks is ease-of-development (annotations etc), clean separation of concerns (MVC design pattern), a lot of goodies (like templating etc) and integration with other JavaEE stacks (Struts2-Spring integration like). 
+
+##### (iii) Asynchronous Event-Driven Frameworks
+And now I come to the most interesting area of Java web application development. [Netty](http://netty.io/) based frameworks like [Play!](http://www.playframework.com/) and [Vert.x](http://vertx.io/). These frameworks do not comply to the servlet specification. They use Netty underneath for asynchronous event based handling of HTTP requests. The frameworks on top are being built to exceed the ease-of-dev and richness offered by the likes of Struts and Tapestry. So its an effort to mix performance and ease-of-dev. But eventful and asynchronous thinking is not straightforward. It needs a mind shift akin to a transition to Object-oriented-programming. But the promise they hold is to be able to build web applications that defy [Amdahl's law](http://en.wikipedia.org/wiki/Amdahl's_law)
+
+<hr>
+
+#### 5. NodeJS - JavaScript on the server side
+The [list](https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node) of companies and websites powered by NodeJS is long. However Node is still a newcomer. Why would somebody want to use Node?
+
+<hr>
+
+#### 6. Ruby and PHP
+
+<hr>
+
+#### 7. What to use for my project?
+The final question that arises for a developer is what are the usecases for each of these? When to use which one? Below is the guidance I would suggest albeit reluctantly. (Readers are free to disagree and I myself know of reasons aplenty to do so. But my idea of writing this is to paint broad strokes on the canvas. Exceptions among project/people always exist!)
 
 <div class="bs-docs-grid" id="dev">
     <div class="row show-grid">
@@ -95,35 +122,7 @@ I dwell into each of these in the next few sections. However the quick question 
         </div>
     </div>
 </div>
-   
-<hr>
 
-#### 4. JVM Based Web Apps
-The web-layer in JVM world is filled with 3 types of frameworks - 
-
-1. Frameworks that support the servlet specification (latest one is 3.0) 
-2. MVC frameworks 
-3. Asynchronous event-driven frameworks based on Netty
-
-##### (i) Servlet Specification Frameworks
-These include Tomcat and Jetty. What is the main motivator for the servlet spec? It is to manage state information that does not exist in the stateless HTTP protocol. HttpServletRequest provides an API getSession() where the HttpSession object is a container to hold attributes for a single transaction spread across multiple HTTP request/responses. Apart from this central feature of sessions the servlet API also defines the interfaces that the servlet container has to adhere-to to provide concurrent request processing in a sandbox environment. So whats the drawback? The very idea of *state* brings down the performance of these containers. Thats the reason why developing highly performant RESTful APIs using servlet containers is a bad idea. (Many servlet containers can be tuned for statelessness - but then, that goes against one of the fundamental motivators for the spec)
-
-##### (ii) MVC Frameworks
-These include Spring MVC, Struts, Tapestry, Wicket etc
-
-##### (iii) Asynchronous Event-Driven Frameworks
-Netty based frameworks like Play!, Vert.x etc
-
-<hr>
-
-#### 5. NodeJS - JavaScript on the server side
-The [list](https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node) of companies and websites powered by NodeJS is long. However Node is still a newcomer. Why would somebody want to use Node?
-
-<hr>
-
-#### 6. Ruby and PHP
-
-#### What to use for my project?
 
 
 
