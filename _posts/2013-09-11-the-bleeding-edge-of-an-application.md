@@ -87,15 +87,30 @@ The second promise of performance is more interesting. But before exploring why 
 But it pays to dwell a little more on the aspect of performance promised by event-driven asynchronous frameworks. The talk of such frameworks is increasing day-by-day. So how exactly does this help. NodeJS provides a good base to explore since one cannot do anything but asynchronous event-based HTTP processing with NodeJS! Let us study this code fragment for a while - (this comes from [this](http://shop.oreilly.com/product/0636920024606.do) excellent book on NodeJS by O'reilly)
 
 <pre>
-// load http modulevar http = require('http'); var fs = require('fs');
-// create http server 
-http.createServer(function (req, res) {	// open and read in a file
-	fs.readFile('textfile.txt', 'utf8', function(err, data) {		res.writeHead(200, {'Content-Type': 'text/plain'}); 		if (err) {			res.write('Could not find or open file for reading\n'); 
-		} else {			// if no error, write file to client			res.write(data); 
-		}		res.end();	});
-}).listen(8124, function() { 
-	console.log('bound to port 8124');
-});console.log('Server running on 8124/');
+        // load http module
+        var http = require('http');
+        var fs = require('fs');
+
+        // create http server
+        http.createServer(function (req, res) {
+
+	        // open and read in a file
+	        fs.readFile('textfile.txt', 'utf8', function(err, data) {
+		        res.writeHead(200, {'Content-Type': 'text/plain'});
+		        if (err) {
+			        res.write('Could not find or open file for reading\n');
+		        } else {
+			        // if no error, write file to client
+			        res.write(data);
+		        }
+		        res.end();
+	        });
+
+        }).listen(8124, function() {
+	        console.log('bound to port 8124');
+        });
+
+        console.log('Server running on 8124/');
 </pre>
 
 Following aspects need to be understood -
@@ -105,16 +120,25 @@ Following aspects need to be understood -
 * Multiple types of events are emitted and consumed in a single giant event loop with the framework
 * The application itself acts as one giant event-producing and event-consuming engine which should be seen as single-threaded and binding to a single-core
 * To make use of multiple-cores multiple-instances of NodeJS can be run on the same system
-* Large (NP-Hard) like computes should not be attempted - they take away all the processing core's bandwidth bringing the whole system to a halt. So, such event-based asynchronous processing is most suited for applications that can be broken down into multiple stages like a SEDA architecture  
+* Large (NP-Hard) like computes should not be attempted - they take away all the processing core's bandwidth bringing the whole system to a halt. So, such event-based asynchronous processing is most suited for applications that can be broken down into multiple stages like a SEDA architecture
+
+Finally NodeJS has found tremendous traction with developer community. Am heading to [JSFoo in Bangalore](https://jsfoo.in/2013/) next week, and one look at the speaker funnel will tell you that every second session has something to do with NodeJS. And the NodeJS based MVC frameworks like [Express](http://expressjs.com/), [Geddy](http://geddyjs.org/), [FlatironJS](http://flatironjs.org/), [EmberJS](http://emberjs.com/) etc are poised to give MVC frameworks in Ruby and PHP a run for their money in simplicity, performance and features. 
 
 <hr>
 
 #### 6. Ruby and PHP
-
+With JVM based frameworks occupying one end of the pipeline offering { high-performance + Maintainability } and NodeJS based frameworks taking the other end with { simplicity + low-cost + ease-of-dev }, how much of middle-ground is left for PHP and/or Ruby? I am not an expert in either of these two, so I will stay away from making predictions. One thing that is fair to say in favour of PHP/Ruby is that both are *proven* in large production applications while reactive Java frameworks and NodeJS are still not there. How long will this status last? Will NodeJS and Java reactive frameworks take away a chunk of web applications that would otherwise have been Ruby/PHP's? Or will the internet applications playing field get expanded with the entry of these new players and is there room for all?
+ 
 <hr>
 
 #### 7. What to use for my project?
-The final question that arises for a developer is what are the usecases for each of these? When to use which one? Below is the guidance I would suggest albeit reluctantly. (Readers are free to disagree and I myself know of reasons aplenty to do so. But my idea of writing this is to paint broad strokes on the canvas. Exceptions among project/people always exist!)
+I roundoff my blog with a guidance, albeit reluctantly. Apart from the usual suspects of time-to-market, capex-opex, engineering skill and requirements-complexity that make project delivery complex, I would propose that there are few more criterions that should be payed heed to -
+
+* Should projects be differentiate on the basis of packagable-products (bundled in a CDROM) from those delivered as part of a web company through a website or Saas?
+* Should there be a differentiation between intra-enterprise and open-internet usage?
+* Should there be a differentiation based on applications for human consumption to consumption by other software services?
+
+I leave those aspects to the good judgement of my readers. I would definitely like to get feedback on those who disagree from my guidance below. The idea of writing this guidance is to paint broad strokes... Exceptions among project/people always exist!
 
 <div class="bs-docs-grid" id="dev">
     <div class="row show-grid">
