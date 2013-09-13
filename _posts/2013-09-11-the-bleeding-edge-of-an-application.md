@@ -71,12 +71,41 @@ These include Tomcat and Jetty. What is the main motivator for the servlet spec?
 These include Spring MVC, Struts, Tapestry, Wicket etc. I have used two of these - [Struts2](http://struts.apache.org/) and [Wicket](http://wicket.apache.org/) in building applications that have seen deployment. The fundamental motivation for these frameworks is ease-of-development (annotations etc), clean separation of concerns (MVC design pattern), a lot of goodies (like templating etc) and integration with other JavaEE stacks (Struts2-Spring integration like). 
 
 ##### (iii) Asynchronous Event-Driven Frameworks
-And now I come to the most interesting area of Java web application development. [Netty](http://netty.io/) based frameworks like [Play!](http://www.playframework.com/) and [Vert.x](http://vertx.io/). These frameworks do not comply to the servlet specification. They use Netty underneath for asynchronous event based handling of HTTP requests. The frameworks on top are being built to exceed the ease-of-dev and richness offered by the likes of Struts and Tapestry. So its an effort to mix performance and ease-of-dev. But eventful and asynchronous thinking is not straightforward. It needs a mind shift akin to a transition to Object-oriented-programming. But the promise they hold is to be able to build web applications that defy [Amdahl's law](http://en.wikipedia.org/wiki/Amdahl's_law)
+And now I come to the most interesting area of Java web application development. [Netty](http://netty.io/) based frameworks like [Play!](http://www.playframework.com/) and [Vert.x](http://vertx.io/). These frameworks do not comply to the servlet specification. They use Netty underneath for asynchronous event based handling of HTTP requests (I cover *what-the-hell-is* asynchronous event-driven in the NodeJS section below). Netty is stateless - so the server side is automatically stateless and fast. The frameworks on top are built to exceed the ease-of-dev and richness offered by the likes of Struts and Tapestry. They also offer APIs for client-side statefulness. So these frameworks are an effort to mix high performance with ease-of-dev. But moving to event-based and asynchronous thinking is not straightforward. It needs a mind shift akin to a transition to Object-oriented-programming. However the promise they hold is to be able to build web applications that defy [Amdahl's law](http://en.wikipedia.org/wiki/Amdahl's_law). If you are a new shop with bright Java engineers wanting to build a highly scalable web-application, then, these are the frameworks you should start exploring first...
 
 <hr>
 
 #### 5. NodeJS - JavaScript on the server side
-The [list](https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node) of companies and websites powered by NodeJS is long. However Node is still a newcomer. Why would somebody want to use Node?
+The [list](https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node) of companies and websites powered by NodeJS is long. However Node is still a newcomer. Why would somebody want to use Node? NodeJS makes two very interesting promises -
+* End-to-end JavaScript shop for you web application
+* High performance through event-based asynchronous model
+
+The first promise is easy to understand. Any good web application requires a team of good designers and client-side programmers. If the programming language on both client-side and server-side are the same, then it reduces the risk of investment in diverse technologies and brings down the barriers between teams and moving people.
+
+The second promise of performance is more interesting. But before exploring why NodeJS claims to be fast it is good to pay a little attention to comparisons with the Java based async frameworks. Sample [this](http://www.cubrid.org/blog/dev-platform/inside-vertx-comparison-with-nodejs/) excellent comparison. It goes to show that NodeJS is no match to JVM based frameworks. (for me, that chart in the blog was very highly expected!)
+
+But it pays to dwell a little more on the aspect of performance promised by event-driven asynchronous frameworks. The talk of such frameworks is increasing day-by-day. So how exactly does this help. NodeJS provides a good base to explore since one cannot do anything but asynchronous event-based HTTP processing with NodeJS! Let us study this code fragment for a while - (this comes from [this](http://shop.oreilly.com/product/0636920024606.do) excellent book on NodeJS by O'reilly)
+
+<pre>
+// load http modulevar http = require('http'); var fs = require('fs');
+// create http server 
+http.createServer(function (req, res) {	// open and read in a file
+	fs.readFile('textfile.txt', 'utf8', function(err, data) {		res.writeHead(200, {'Content-Type': 'text/plain'}); 		if (err) {			res.write('Could not find or open file for reading\n'); 
+		} else {			// if no error, write file to client			res.write(data); 
+		}		res.end();	});
+}).listen(8124, function() { 
+	console.log('bound to port 8124');
+});console.log('Server running on 8124/');
+</pre>
+
+Following aspects need to be understood -
+
+* The two instances of asynchronous behavior
+* The program NEVER blocks
+* Multiple types of events are emitted and consumed in a single giant event loop with the framework
+* The application itself acts as one giant event-producing and event-consuming engine which should be seen as single-threaded and binding to a single-core
+* To make use of multiple-cores multiple-instances of NodeJS can be run on the same system
+* Large (NP-Hard) like computes should not be attempted - they take away all the processing core's bandwidth bringing the whole system to a halt. So, such event-based asynchronous processing is most suited for applications that can be broken down into multiple stages like a SEDA architecture  
 
 <hr>
 
