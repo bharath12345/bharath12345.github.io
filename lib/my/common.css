@@ -235,8 +235,23 @@ div#tocBlock #toc li {
     font-size: 12px;
 }
 
-pre {
-    font-size: 12px !important;
+@font-face {
+    font-family: "hermit";
+    src: url("../fonts/hermit/hermit.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "roboto-light";
+    src: url("../fonts/roboto/Roboto-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "roboto-regular";
+    src: url("../fonts/roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+body {
+    background-image: url(../../images/light_wool.png);
 }
 
 
