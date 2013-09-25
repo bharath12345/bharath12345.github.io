@@ -114,7 +114,7 @@ module.exports = function(grunt) {
     /*
      registerTask
      */
-    grunt.registerTask('default', [ 'clean', 'uglify', 'cssmin', 'htmlmin','jsdoc', 'exec:serve' ]);
+    grunt.registerTask('default', [ 'clean', 'uglify', 'cssmin', 'htmlmin', /*'jsdoc',*/ 'exec:serve' ]);
 
 
 };
