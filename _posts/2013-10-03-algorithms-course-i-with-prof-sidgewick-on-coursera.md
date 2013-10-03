@@ -9,6 +9,8 @@ tweetfb: true
 disqus: true
 ---
 
+### General
+
 1. Why study Algorithms and Data Structures? Why are they important?
 Computers, no matter how powerful, have space and time constraints. Poorly thought through implementations for computing problems can take years to compute even when computing resources are massive. For example -
 
@@ -65,4 +67,25 @@ if you have 1GB of memory on your computer (1 billion bytes), you cannot fit mor
 11. How many bytes in memory are required to store a reference to a Java Object?
 4 bytes on a 32 bit system. 8 bytes on a 64 bit system
 
-12.  
+### Sorting
+
+1. In Java what do you have to do to be able to sort an array of a custom object type?
+The class of the object should implement Comparable
+
+2. Performance of selection sort
+N<sup>2</sup>/2 compares and N exchanges
+
+3. About selection sort
+* it takes about as long to run selection sort for an array that is already in order or for an array with all keys equal as it does for a randomly-ordered array! 
+* Data movement is minimal
+
+4. Performance of insertion sort
+Insertion sort uses N<sup>2</sup>/4 compares and N<sup>2</sup>/4 exchanges to sort a randomly ordered array of length N with distinct keys, on the average. The worst case is N<sup>2</sup>/2 compares and N<sup>2</sup>/2 exchanges and the best case is N-1 compares and 0 exchanges.
+
+5. Performance of merge sort
+Top-down and bottom-up mergesort uses between 1⁄2NlogN and NlogN compares to sort any array of length N. Top-down mergesort uses at most 6NlogN array accesses to sort an array of length N. The primary drawback of mergesort is that it requires extra space proportional to N
+
+6. Upper limits to compare based sorting algorithms
+Compare-based algorithms that make their decisions about items only on the basis of comparing keys. A compare-based algorithm can do an ar- bitrary amount of computation between compares, but cannot get any information about a key except by comparing it with another one. No compare-based sorting algorithm can guarantee to sort N items with fewer than log(N!) ~ NlogN compares.
+
+7. 
