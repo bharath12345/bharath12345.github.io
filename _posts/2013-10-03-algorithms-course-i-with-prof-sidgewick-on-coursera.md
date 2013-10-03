@@ -86,6 +86,24 @@ Insertion sort uses N<sup>2</sup>/4 compares and N<sup>2</sup>/4 exchanges to so
 Top-down and bottom-up mergesort uses between 1⁄2NlogN and NlogN compares to sort any array of length N. Top-down mergesort uses at most 6NlogN array accesses to sort an array of length N. The primary drawback of mergesort is that it requires extra space proportional to N
 
 6. Upper limits to compare based sorting algorithms
-Compare-based algorithms that make their decisions about items only on the basis of comparing keys. A compare-based algorithm can do an ar- bitrary amount of computation between compares, but cannot get any information about a key except by comparing it with another one. No compare-based sorting algorithm can guarantee to sort N items with fewer than log(N!) ~ NlogN compares.
+Compare-based algorithms that make their decisions about items only on the basis of comparing keys. A compare-based algorithm can do an arbitrary amount of computation between compares, but cannot get any information about a key except by comparing it with another one. No compare-based sorting algorithm can guarantee to sort N items with fewer than log(N!) ~ NlogN compares.
 
-7. 
+7. Performance of quick sort
+The quicksort algorithm’s desirable features are that it is in-place (uses only a small auxiliary stack) and uses ~ 2NlogN compares and one-sixth that many ex- changes on the average to sort an array of length N with distinct keys.
+
+8. Whats the problem statement for priority queues?
+*insert* and *remove the maximum* have to be fast. Provide fast insert and access to a subset of data points among potentially infinite number of data points. Binary heaps provide the data structure to implement logarithmic time insert and remove-max. (Java natively provides a [PriorityQueue](http://stackoverflow.com/questions/683041/java-how-do-i-use-a-priorityqueue) implementation as part of collections)
+
+9. What is a binary heap?
+In a binary heap, the keys are stored in an *array* such that each key is guaranteed to be larger than (or equal to) the keys at two other specific positions. In turn, each of those keys must be larger than (or equal to) two additional keys, and so forth. The largest key in a heap-ordered binary tree is found at the root. Generally binary heaps are stored sequentially within an array by putting the nodes in level order, with the root at position 1, its children at positions 2 and 3, their children in positions 4, 5, 6, and 7, and so on.
+
+10. Performance of Priorty queues with binary heaps?
+In an N-key priority queue, the heap algorithms require no more than 1 + log N compares for insert and no more than 2logN compares for remove the maximum.
+
+11. Performance of heap sort
+Heapsort is significant because it is the only method that is optimal (within a constant factor) in its use of both time and space—it is guaranteed to use ~2NlogN compares and constant extra space in the worst case. When space is very tight (for example, in an embedded system or on a low-cost mobile device) it is popular because it can be implemented with just a few dozen lines (even in machine code) while still providing optimal performance. However, it is rarely used in typical applications on modern systems because it has poor *cache* (processor cache) performance: array entries are rarely compared with nearby array entries, so the number of cache misses is far higher than for quicksort, mergesort, and even shellsort, where most compares are with nearby entries.
+
+12. Application of PriorityQueue
+**TopN** by some particular order of prioritization. If you are looking for the top ten entries among a billion items, do you really want to sort a billion-entry array? With a priority queue, you can do it with a ten-entry priority queue.
+
+13. 
