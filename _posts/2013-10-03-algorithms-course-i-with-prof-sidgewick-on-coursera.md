@@ -40,5 +40,12 @@ Mergesort till Java6. TimSort from Java7 onwards...
 Here is the log-log plot (both size(N) x-axis and time(T) y-axis are in logarithms)
 ![image](http://bharathwrites.in/images/algorithms/orderofgrowth.png)
 
+8. Example of each -
 
-8. 
+constant time - assignment statement
+logarithmic - binary search
+linear - find the maximum value
+linearithmic - merge sort
+quadratic - double for/while loop
+cubic - triple for/while loop
+exponential - brute force search
