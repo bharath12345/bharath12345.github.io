@@ -7,9 +7,10 @@ categories: []
 published: false
 tweetfb: true
 disqus: true
+toc: true
 ---
 
-### General
+#### General
 
 1. Why study Algorithms and Data Structures? Why are they important?
 Computers, no matter how powerful, have space and time constraints. Poorly thought through implementations for computing problems can take years to compute even when computing resources are massive. For example -
@@ -67,7 +68,7 @@ if you have 1GB of memory on your computer (1 billion bytes), you cannot fit mor
 11. How many bytes in memory are required to store a reference to a Java Object?
 4 bytes on a 32 bit system. 8 bytes on a 64 bit system
 
-### Sorting
+#### Sorting
 
 1. In Java what do you have to do to be able to sort an array of a custom object type?
 The class of the object should implement Comparable
@@ -119,4 +120,27 @@ If it preserves the relative order of equal keys in the array. Read the beautifu
 16. Which sorting algorithms are stable?
 Only insertion sort and merge sort are stable
 
+#### Searching
 
+1. Popular data-structures to hold symbol tables?
+Binary search trees, Red black trees and hash tables
+
+2. Performance of brute force sequential search (unordered arrays or linked lists)
+Search misses and insertions in an (unordered) linked-list symbol table having N key-value pairs both require N compares, and search hits N compares in the worst case. In particular, inserting N distinct keys into an initially empty linked-list symbol table uses ~N<sup>2</sup>/2 compares. One useful measure is to compute the total cost of searching for all of the keys in the table, divided by N - for sequential search this is N/2
+
+3. Performance of binary search for symbol tables
+Binary search in an ordered array with N keys uses no more than logN + 1 compares for a search (successful or unsuccessful). But inserting a new key into an or- dered array of size N uses ~ 2N array accesses in the worst case, so inserting N keys into an initially empty table uses ~ N<sup>2</sup> array accesses in the worst case.
+
+4. Performance of BST (binary search trees) for symbol tables
+Search hits in a BST built from N random keys require ~ 1.39logN compares, on the average. Insertions and search misses in a BST built from N random keys require ~ 1.39logN compares, on the average.
+
+5. Shortcoming of BST
+The running times of algorithms on binary search trees depend on the shapes of the trees, which, in turn, CS depend on the order in which keys are inserted. In the best case, a tree with N nodes could be perfectly balanced, with ~ logN nodes between the root and each null link. In the worst case there could be N nodes on the search path. So to optimise, keys are inserted in random by purpose to tilt towards the average case search performance
+
+6. Performance of 2-3 Search trees
+Search and insert operations in a 2-3 tree with N keys are guaran- teed to visit at most logN nodes.
+
+7. Performance of Red-Black BST -
+![image](http://bharathwrites.in/images/algorithms/symbolperf.png)
+
+8. 
