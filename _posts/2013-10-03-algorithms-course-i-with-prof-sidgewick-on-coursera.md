@@ -106,4 +106,17 @@ Heapsort is significant because it is the only method that is optimal (within a 
 12. Application of PriorityQueue
 **TopN** by some particular order of prioritization. If you are looking for the top ten entries among a billion items, do you really want to sort a billion-entry array? With a priority queue, you can do it with a ten-entry priority queue.
 
-13. 
+13. When to use Java Comparable and when the Comparator?
+Implementing Comparable means implementing the compareTo method which is supposed to show the *natural ordering* in a set of objects of a certain type.
+There are many applications where we want to use differ- ent orders for the objects that we are sorting, depending on the situation. The Java Comparator interface allows us to build multiple orders within a single class. It has a single public method compare() that compares two objects. If we have a data type that implements this interface, we can pass a Comparator to sort(). In typical applications,items have multiple instance variables that might need to serve as sort keys. The Comparator mechanism is precisely what we need to allow this flexibility.
+
+14. Can comparators be used with PriorityQueues as well?
+Yes. See [http://stackoverflow.com/questions/683041/java-how-do-i-use-a-priorityqueue](http://stackoverflow.com/questions/683041/java-how-do-i-use-a-priorityqueue)
+
+15. When is a sorting method stable?
+If it preserves the relative order of equal keys in the array. Read the beautiful example on page 341
+
+16. Which sorting algorithms are stable?
+Only insertion sort and merge sort are stable
+
+
