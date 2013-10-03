@@ -33,5 +33,12 @@ Base-2. In terms of Big-O, the base doesn't matter because the change of base fo
 
 ![image](http://bharathwrites.in/images/algorithms/log.png)
 
+6. What does Java Arrays.sort() implement?
+Mergesort till Java6. TimSort from Java7 onwards...
 
-7. 
+7. Order of growth graph?
+Here is the log-log plot (both size(N) x-axis and time(T) y-axis are in logarithms)
+![image](http://bharathwrites.in/images/algorithms/orderofgrowth.png)
+
+
+8. 
