@@ -183,4 +183,8 @@ Both use separate chaining. Google guava libraries have some implementations for
 14. Space usage of BST vs. separate chaining vs. linear probing?
 ![image](http://bharathwrites.in/images/algorithms/space.png)
 
-15. 
+15. Performance of hashing vis-a-vis trees?
+![image](http://bharathwrites.in/images/algorithms/hashperf.png)
+
+
+16. 
