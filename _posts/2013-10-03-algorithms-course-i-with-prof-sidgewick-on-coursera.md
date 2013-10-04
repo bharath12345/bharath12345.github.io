@@ -143,4 +143,44 @@ Search and insert operations in a 2-3 tree with N keys are guaran- teed to visit
 7. Performance of Red-Black BST -
 ![image](http://bharathwrites.in/images/algorithms/symbolperf.png)
 
-8. 
+8. Why use hashing?
+To be able to handle more complicated keys (custom objects, strings)
+
+9. What are the two popular ways to hash collision resolution?
+Separate chaining - bag of items for each hash key
+Linear probing - also known as [Open addressing](http://en.wikipedia.org/wiki/Hash_table#Open_addressing)
+
+10. In Java, which is faster - HashSet or TreeSet? What is the usecase for each?
+**HashSet**
+* Almost constant time performance due to the usage hash functions for the basic operations (add, remove, contains and size)
+* does not guarantee that the order of elements will remain constant over time
+
+**TreeSet**
+* guarantees log(n) time cost for the basic operations (add, remove and contains)
+* guarantees that elements of set will be sorted (ascending, natural, or the one specified by you via it's constructor)
+* offers a few handy methods to deal with the ordered set like first(), last(), headSet(), and tailSet() etc
+* Internally uses a implementation close to Red-Black Trees
+
+**Common features**
+* Being sets, both offer duplicate-free collection of elements
+* It is generally faster to add elements to the HashSet and then convert the collection to a TreeSet for a duplicate-free sorted traversal
+* None of these implementation are synchronized
+* Java also has a LinkedHashSet - look it up to know about it more
+
+11. In Java, which is faster - HashMap or TreeMap? What is the usecase for each?
+On similar lines as HashSet vs. TreeSet. HashMap implements a hash function (uses hashCode and equals) on the keys. TreeMap uses Red-Black trees internally. HashMap is more time efficient. TreeMap is more space efficient. TreeMap has an internal ordering of keys which can also be specified using a construction time comparator. HashMap's have no internal ordering. One should use HashMap for fast lookup and TreeMap for sorted iteration. HashMap allows null keys and values. HashMap doesn't allow duplicate entries. HashMap iteration performance depends on *initial capacity* and *load factor* that can be passed during construction - TreeMap offers no such iteration performance tunables. 
+
+12. Why is order not maintained in Hash* collection implementations?
+The whole point of hashing is to uniformly disperse the keys, so any order in the keys is lost when hashing.
+
+12. In Java, what is the rule with implementing hashCode?
+* If hashCode's are equal then objects may or may not be equal
+* If hashCode's are not-equal the objects are not equal
+
+13. In Java, what kind of collision resolution scheme is implemented for HashMap and Hashtable?
+Both use separate chaining. Google guava libraries have some implementations for linear probing
+
+14. Space usage of BST vs. separate chaining vs. linear probing?
+![image](http://bharathwrites.in/images/algorithms/space.png)
+
+15. 
