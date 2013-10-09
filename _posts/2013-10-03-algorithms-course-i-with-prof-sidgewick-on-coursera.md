@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Algorithms Course I With Prof Sidgewick on Coursera"
+title: "Algorithms Course-1 With Prof Sidgewick on Coursera"
 category: posts
 tags: []
 categories: []
@@ -10,7 +10,11 @@ disqus: true
 toc: true
 ---
 
-#### General
+I did my engineering in electronics and communication systems. But my very first job was in software development. Having not studied theory of computing, databases, compilers and even algorithms/data-strutures as part of my graduation I went on to self-study these. However, deep down, have felt the need for more structured education. I don't remember when I first heard of [Coursera](https://www.coursera.org). But my early tryst with online education had been dismal (at my previous employer they would make me go through online training's mandatorily… and those used to absolutely suck). So even as I kept track of the courses offered on Coursera since early this year, I did not enroll. A couple of months ago I decided to give it a serious try… and I enrolled myself for the first course on Algorithms by Professor Sidgewick. I finished my final exam on the course yesterday. And it feels great to be done with all tests and programming assignments. The course was structured in the undergraduate training way… which is exactly what I wanted. The learning has been enormous. Anyone who has spent a decade in software development like me would know MergeSort and QuickSort anyway… but the scientific treatment of the subject both in the videos and the textbook gives me a sense of closure. And by the way, I think algorithms and data-structures is a field which a practicing engineer has to seriously brush-up, once in every few years, just to keep up…
+
+Like the few book reviews that I have done before on my blog, this is a quick refresher for myself on all that I have studied. Its not complete or thorough. And I hope there are no factual errors. So if a passing reader finds anything here useful, it makes me glad… 
+
+#### General questions on the study of Algorithms 
 
 1. Why study Algorithms and Data Structures? Why are they important?
 Computers, no matter how powerful, have space and time constraints. Poorly thought through implementations for computing problems can take years to compute even when computing resources are massive. For example -
@@ -186,5 +190,8 @@ Both use separate chaining. Google guava libraries have some implementations for
 15. Performance of hashing vis-a-vis trees?
 ![image](http://bharathwrites.in/images/algorithms/hashperf.png)
 
+16. What would be a good data-structure to use for counting all people within a income range (say 10k to 20k) in an age group (say 25 to 35 years) among a million people?
+Kd-trees because of the easy 2-dimensional split (at least one should say some kind of tree). Though Kd-trees can be used for n-dimensional searches very well too
 
-16. 
+17
+.   
