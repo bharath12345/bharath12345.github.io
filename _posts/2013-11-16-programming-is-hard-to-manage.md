@@ -16,19 +16,20 @@ Now the second incident. A month ago I logged into my (almost) discarded yahoo-m
      
 Over the years I have searched, read and re-read books which could broaden my understanding of the wonderful enterprise of software development. In this blog I shall be quoting from 7 such books. I would advise these books to anybody to whom Software development is dear. 
 
-##### Understand At The Team, Project and Organization Level
+#### Understand At The Team, Project and Organization Level
 1. **The Mythical Man Month** *by Dr. Fredrick Brooks Jr*
 3. **Adrenaline Junkies and Template Zombies** *by Tom DeMarco, Tim Lister et al*
 4. **The Inmates Are Running The Asylum** *by Alan Cooper* 
 
+<img src="http://bharathwrites.in/images/programmingIsHard/team.jpg" alt="Drawing" style="width: 500px;"/>
 
-
-
-##### Understand and Improve At The Individual level -
+#### Understand and Improve At The Individual level -
 1. **Hackers and Painters** *by Paul Graham*
 2. **Dreaming In Code** *by Scott Rosenberg*
 3. **Beautiful Code** *articles by Brian Kerninghan, Charles Petzold, Douglas Crockford, Jeffrey Dean, Sanjay Ghemawat and many more super programmers*
 4. **The Productive Programmer** *by Neal Ford*
+
+<img src="http://bharathwrites.in/images/programmingIsHard/individual.jpg" alt="Drawing" style="width: 500px;"/>
 
 <hr>
 
