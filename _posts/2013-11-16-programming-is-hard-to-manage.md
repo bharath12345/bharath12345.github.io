@@ -4,26 +4,34 @@ title: "Programming Is Hard To Manage"
 category: posts
 tags: []
 categories: []
-published: false
+published: true
 tweetfb: true
 disqus: true
 toc: true
 ---
 
-A couple of recent incidents triggered me to write this article. Few weeks ago, I met an old friend. A fellow software industry man. But unlike me, a people manager. As we both shared our our small experiences in software development, my friend picked on my recently acquired MBA. Give me something I can use my friend demanded. I promised him this blog.
+Couple of recent incidents triggered me to write this one. Few weeks ago, I met an old friend. A fellow software industry man. But unlike me, a people manager. As we shared our experiences in software development, my friend picked on my recently acquired MBA. Give me something to read, my friend demanded. I promised him this blog.
 
-Now the second incident. A month ago I logged into my (almost) discarded yahoo-mail. Had created it in 2001 and used it actively till around 2006 (when Gmail happened). In my yahoo mailbox I found a folder with a few of my musings from my early years as a software engineer.  One was titled *Bewilderment*. It was a list of processes, decisions and people's actions that were totally counter-intuitive to me. At the end of the piece I had advised myself to study psychology to understand these things! I closed my eyes for a minute and tried to think if I continued to find software development bewildering. I was happy to note that I could answer some of my own questions and 
-     
-Over the years I have searched, read and re-read books which could broaden my understanding of the wonderful enterprise of software development. In this blog I shall be quoting from 7 such books. I would advise these books to anybody to whom Software development is dear. 
+The second incident. A month ago I logged into my (almost) discarded yahoo-mail. And only valuable thing in that old mailbox is a folder with few musings from my early years as a software engineer.  I opened the folder out of curiosity. One of the notes was titled *Bewilderment*. It was a *list* of processes, decisions and people's actions that were totally counter-intuitive to me. At the end of the piece I had advised myself to study psychology to understand things!
 
-#### Understand At The Team, Project and Organization Level
+<hr>
+
+### Understanding Software Development    
+Over the years I have searched, read and re-read books which could broaden my understanding of this wonderful enterprise that we call software development. I broadly categorise these books into two groups: 
+
+1. Those explaining team behaviour, challenges 
+2. Those that throw light on individual behaviour and advise improvement. 
+
+And here is a short list of titles that I would highly recommend in these two categories - 
+
+#### Group Level
 1. **The Mythical Man Month** *by Dr. Fredrick Brooks Jr*
-3. **Adrenaline Junkies and Template Zombies** *by Tom DeMarco, Tim Lister et al*
-4. **The Inmates Are Running The Asylum** *by Alan Cooper* 
+2. **Adrenaline Junkies and Template Zombies** *by Tom DeMarco, Tim Lister et al*
+3. **The Inmates Are Running The Asylum** *by Alan Cooper* 
 
 <img src="http://bharathwrites.in/images/programmingIsHard/team.jpg" alt="Drawing" style="width: 500px;"/>
 
-#### Understand and Improve At The Individual level -
+#### Individual level
 1. **Hackers and Painters** *by Paul Graham*
 2. **Dreaming In Code** *by Scott Rosenberg*
 3. **Beautiful Code** *articles by Brian Kerninghan, Charles Petzold, Douglas Crockford, Jeffrey Dean, Sanjay Ghemawat and many more super programmers*
@@ -33,31 +41,50 @@ Over the years I have searched, read and re-read books which could broaden my un
 
 <hr>
 
-### The Mythical Man Month *- Dr. Fred Brooks*
+### Why Study?
+When it comes to studying about project management, programmers and managers alike, do not necessarily get excited about reading books. Among the arguments I have heard include...
 
-This is a brilliant must-read book for any one aspiring a career in software. Fred Brooks charts the complete territory - from programming languages to organization to design. And provides superbly constructed scientific arguments and thesis for all propositions. Let me state some of his hypothesis (for there is no way to capture the essence of this massive work)... 
-  
-> I believe the critical need to be the preservation of the conceptual integrity of the product itself
+* Busy programmers and managers have enough on their hands to do... why add more? 
+* Don't we all learn by *doing* things? This can be learnt only by *doing*
+* Technology has changed (whatever that means!) 
+* Software is an odd-ball industry - too *new* for theoretical dissection 
+* Software is too fast-paced and full of change for a scientific analysis
+* Better to spend time on technical books from career perspective (whatever that means!)
 
-> Joys of the craft of programming: Making things. Helping others. Solving complex problems. Learning. Working in such a tractable medium
+Deep down, I believe two things are absolutely critical for furthering of human cause - **Books** and **Institutions**. Neither should be undermined at the cost of other. And both are mutually dependent. A purposeful life would be one spent in either/both these endeavours. 
 
-> Woes: Perfection. Meet specifications. Inter-dependence. Bug fixing is painful. By the time one builds something usable on a technological base, the technologies are obsolete and the base has moved!
+To the arguments against studying of these books, all I can do is to offer a humble suggestion - as to what I have essentially learnt from them. These books, most importantly, have helped me to *articulate* the difficult situations I have found myself in during software projects. Both to myself and to others. How many of us can really explain our office scenario at home? To our friends in 5 minutes? But it is the self-articulation that is probably *far more important*. As project-people we often sense a pattern when things are going wrong (or right). The gut feeling. But it is difficult to understand why our gut says what it does. Let me give an example from my career. My first two jobs had been at large companies with thousands of employees. Each day was a routine - an hour's drive to office, clear-cut tasks, well funded projects and large teams. My contributions often felt small and inconsequential. But it was not so also. My managers pointed this out often. So what was it that sometimes made me uneasy? The phrase that articulates that feeling most accurately is *'Template Zombie'*.
 
-> Why do software projects go awry? Techniques of estimation are poor. Everyone in the trade confuses *effort* with *progress*. Software managers often lack stubbornness. Progress is poorly monitored. Too often managers try to counter schedule slippage by adding resources (people, hardware, software etc)
+<hr>
 
-> The man-month as a unit for measuring the size of a job is a dangerous and deceptive myth. It implies that men and months are interchangeable. Men and months are interchangeable commodities only when a task can be partitioned among many workers with no communication among them
-> Brooks Law: Adding manpower to a late software project makes it later.
+### A Quick Roundup...
+There is absolutely no way to give a quick and dirty summary of any of these books.  I hold each one very highly and dearly. Worth reading multiple times. So all I do here is to share **when** you might want to read each one.
 
-> Software construction is inherently a systems effort (an exercise in complex interrelationships) communication and training effort is great, and it quickly dominates the decrease in individual task time brought about by partitioning. Adding more men then lengthens, not shortens, the schedule.
+##### 1.The Mythical Man Month
+This is a brilliant book for anyone aspiring for a lifelong career in software (like me!). Fred Brooks charts the complete territory - from programming languages to organization to design-think. And provides superbly constructed scientific arguments and thesis for all propositions. My bewilderments of workings in a big organisation were considerably answered in this book. 
 
-> The ratio of performance of individuals in software has often averaged about 10:1 in productivity tests. And this ratio is further widening with the advent of more sophisticated programming languages and frameworks. Thus, to identify high performing individuals and assign roles so that their productivity is maximised, whilst accommodating lesser accomplished for tasks that are more mundane is a major organisational challenge which managers do not pay enough heed to.
+Sample the **Brooks law**: Adding manpower to a late software project makes it later.
 
-> Are not the architects a new aristocracy, an intellectual elite, set up to tell the poor dumb implementers what to do? The answer is partially both yes and no.  If a system is to have conceptual integrity, someone must control the concepts. That is an aristocracy that needs no apology. But 'No' because the implementation, given an architecture, requires and should allow as much creativity, as many new ideas
-and technical brilliance as the external specifications. Indeed, the cost-performance ratio of the product will depend most heavily on the implementer, just as ease of use depends most heavily on the architect.
 
-> The accusation that 'architects will get all the creative fun and shut out the inventiveness of the implementers' needs to be assuaged by constructive management that creative effort involves three distinct phases: architecture, implementation, and realization - none of which is lesser in intellectual challenge
+##### 2. Adrenaline Junkies and Template Zombies
+Are you making a switch from a big company to a startup? Or vice versa? From a big team to a small one? Or vice versa? If so, reading this book is highly advised.
 
-> Large projects need all types of communication - Informal, Formal. Oral (meetings) and written
 
-> Software entities are more complex for their size than perhaps any other human construct, because no two parts are alike. The physicist labors on, however, in a firm faith that there are unifying principles to be found, whether in quarks or in unified field theories. Einstein repeatedly argued that there must be simplified explanations of nature, because God is not capricious or arbitrary.No such faith comforts the software engineer. Much of the complexity he must master is arbitrary complexity, forced with- out rhyme or reason by the many human institutions and sys- tems to which his interfaces must conform. These differ from interface to interface, and from time to time, not because of ne- cessity but only because they were designed by different people, rather than by God.
-> Most fundamentally, as I have argued above, software is very difficult to visualize
+##### 3. The Inmates Are Running The Asylum
+Design issues? Conflicts at workplace? Politics? You will find some delightful answers here.
+
+
+##### 4. Hackers And Painters
+Long long ago, in my first year at work, a close friend who was a excellent mentor and a superb programmer told me something that I will never forget. Mimic'ing Amitabh Bachchan he said *'duniya mein sirf doh tarah ke log hote hain... ek jo programming kar paate hain... our dusre woh jo programming nahin kar paate hain...'*. This is a superb book if you feel like dwelling into that one!
+
+
+##### 5. Dreaming In Code
+This delightful book is every bit worth carrying to a vacation.
+
+
+##### 6. Beautiful Code
+An ideal present to a promising programmer. Such fascinating projects and such industrious engineers. Inspirational.
+
+
+##### 7. The Productive Programmer
+Programming fast is a real skill. Programming productively and fast is an even greater skill. This is a nice self help book for all programmers who aspire to do that.

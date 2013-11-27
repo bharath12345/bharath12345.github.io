@@ -8,32 +8,32 @@ layout: layout
         var pageType = "post";
     </script>
 
-    <h3>
+    <h2>
         <a href="{{ page.url }}">{{ page.title }}</a>
-    </h3>
+    </h2>
 
     <section class="byline">
         {{ page.date | date: "%B %e, %Y" }}
     </section>
     <hr>
     {% if page.tweetfb %}
-        <table>
-            <tr>
-                <td>{% include twitter.html %}</td>
-                <td>{% include facebook.html %}</td>
-            </tr>
-        </table>
-        <hr>
+    <table>
+        <tr>
+            <td>{% include twitter.html %}</td>
+            <td>{% include facebook.html %}</td>
+        </tr>
+    </table>
+    <hr>
     {% endif %}
 
     {% if page.toc == true %}
-        <div id="entryBlock"></div>
+    <div id="entryBlock"></div>
     {% endif %}
 
     {{ content }}
 
     <hr>
     {% if page.disqus %}
-        {% include disqus.html %}
+    {% include disqus.html %}
     {% endif %}
 </section>
