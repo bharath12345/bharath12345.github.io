@@ -66,6 +66,26 @@ Coming back to a point stated earlier - if you are looking to engineer on the JV
 Scala has taken a lot of good things from C# and Java, especially in the syntax area. The syntax seems to have been designed especially keeping the Java programmers in mind, all the while trying to reduce the verbosity. One of the very interesting features that seems to have been inspired by its C# counterpart is [Implicits](http://www.artima.com/pins1ed/implicit-conversions-and-parameters.html). They provide a means to extend libraries, help in type conversion etc. 
 
 ### Scala Ecosystem
+The greatest joy that working with Scala has brought to me is with the library ecosystem. One might be surprised that I say this. There has been quite some furore over backward compatibility of Scala's native libraries over releases 2.7 > 2.8 > 2.9 > 2.10 (present). The Actors model seem to have been written multiple times over - once as native scala.actors, once as part of the Lift library to what one hopes to be the final one - as part of Akka. But I started using Scala after some of these tides have come and gone. Let me first present a list of popular frameworks written and supporting Scala -
+
+Scala natively comes with an excellent collections framework supporting both immutable and mutable collections. Java JDK has no support for immutable collections.
+
+1. [Akka](https://github.com/akka/akka) for **Concurrency**
+2. [Scalaz](https://github.com/scalaz/scalaz) - **Data structures** for functional programming
+3. [RxJava](https://github.com/Netflix/RxJava) - composing asynchronous and event-based programs using observable sequences. Not written in Scala but, probably, most neat code if used with Scala! (one will go mad using this with the verbosity of Java) 
+4. [ScalaCheck](https://github.com/rickynils/scalacheck) - testing framework with Java equivalent (at least that I know of). Goes much ahead of JUnit etc. Inspired by Haskell's QuickCheck
+5. **Object Relational Mapping** -
+    a. [Slick](https://github.com/slick/slick) - Database access
+6. [SBT](https://github.com/sbt/sbt) - **Build and Packaging Tool** - more concise than Maven. No XML crap - build instructions as Scala DSL
+7. **Distributed Big Data Tasks**
+    a. [Finagle](https://github.com/twitter/finagle) - Fault tolerant, protocol agnostic RPC system
+    b. [Scalding](https://github.com/twitter/scalding) - MapReduce for Scala
+    c. [SummingBird](https://github.com/twitter/summingbird) - Streaming, continuous, real-time MapReduce on top of Scalding or Storm
+8. **Web Development** -
+    a. Lift for Web Development
+    b. Play! for Web Development
+    c. Spray.IO for Web Development, RESTful services etc
+
 
 #### Akka - Concurrency and ESB
 
