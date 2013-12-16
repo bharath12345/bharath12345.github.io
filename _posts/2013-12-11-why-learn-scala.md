@@ -9,20 +9,20 @@ tweetfb: true
 disqus: true
 toc: true
 ---
-I don't remember the first time I read this masterpiece of an article by the software engineering guru, Peter Norvig - [Teach Yourself Programming In Ten Years](http://norvig.com/21-days.html#answers). Peter advises wannabe programmers to learn at least a dozen programming languages. In my decade long career, I have worked deeply in only 4 languages - C++, Java, JavaScript and Perl. So taking stock of myself, about 6 months ago, I had two questions in mind - 
+It was a long time ago when I read this masterpiece by the software engineering guru, Peter Norvig - [Teach Yourself Programming In Ten Years](http://norvig.com/21-days.html#answers). Peter advises wannabe programmers to learn at least half a dozen programming languages. Taking stock of myself earlier this year I realised having terribly missed out. In my decade long career, I had worked deeply in only 4 languages - C++, Java, JavaScript and Perl. And *none* of them strongly functional as Peter advises (functional JavaScript hasn't come to me yet). I then posed two questions to myself - 
 
 * Why do I need another language? 
-* If at all, then which one?
+* If I have to pick one, then, which one?
 
-The answer to the first one was rather easy to find. I started by reading what was new in Java-7 and what was coming up in Java-8. Java-7 with its *invoke dynamic* and Java-8 built for writing *lambdas* were clearly pointing the finger in a certain direction. The JVM had started its embrace of Polyglotism and Functional Programming. On little more fact finding, the reasons were easy to realise. Java with its type-safety mess-up, lack of immutable data structures in the JDK to fight the menace of shared mutability and just sheer verbosity, were beginning to weigh heavy on the language. These factors, along with the more and more distributed multicore computing world with its new challenges, convinced me of the need to look to start anew.
+The answer to the first question came to me rather quickly. At that time I was exploring what was new with JVM-7. And what is expected with Java and JVM-8. JVM-7 with its *invoke dynamic* and Java-8 with *lambdas* were clearly pointing the finger in a certain direction. I realised JVM had started to embrace Polyglot and functional programming. On digging a little deeper, the reasons for this move were easy to realise. Java's issues with type-safety, lack of immutable collections (in the JDK), rampant usage of shared mutability etc., were beginning to weigh heavy. The distributed, multicore, big-data computing, realtime world were making Java a little too verbose, justifying the need to look for alternatives.
 
-Surprisingly, the second question turned out to be the tougher of the two to answer. The choice essentially is between Groovy, Scala and Clojure. I chose Scala. This article is a small attempt to articulate the reasons for the choice as I continue to climb the rather steep learning curve. My pre-learning decision has got richly rewarded by what I have learnt after taking the plunge. This write-up is a little too theoretical. For *show-me-the-code* types, I will soon write about a not-so-small 3-tier application I have built entirely with Scala. 
+Surprisingly, the second question turned out to be the tougher of the two. The choice essentially was between Groovy, Scala and Clojure. I chose Scala. My pre-learning decision has got richly rewarded by what I have learnt after taking the plunge into Scala. Even as I continue to make the (sometimes) steep climb, this is a small, humble attempt to articulate the amazing things I have learnt. This write-up is a little too theoretical. For *show-me-the-code* types, I will soon write about a *not-so-small* 3-tier (DB <=> Biz <=> UI) application I have built entirely with Scala. 
 
-In this post I will allude to three broad reasons for *Why Learn Scala* -
+In this post I allude to three broad reasons to *Why Learn Scala* -
 
 1. Scala is a great mix. It imbibes some of the best features of other popular, successful languages
-2. Scala ecosystem of libraries are mature
-3. Some features of Scala that have blown me off and made me an overall better programmer
+2. Scala ecosystem of frameworks/libraries is big, mature, created by some great people from academia/industry and very well documented cum supported
+3. Some features of Scala that have made me a more thoughtful, better programmer
 
 <hr>
 
