@@ -97,30 +97,15 @@ Scala natively comes with an excellent collections framework supporting both imm
 ### Unlearning and Relearning Programming
 For those coming from Java and no functional programming background Scala can be a steep learning curve. Apart from exposure to many concepts totally new to me, it has helped me a great deal in revisiting some of the most fundamentals I have made about programming. I now have clarity of things I need to *unlearn* to become a better programmer! I thought a passing reader might find this claim interesting. So here is a small list...
 
-1. Immutability
-    a. Tradeoffs in using the C/Java style innocuous looking *for* loop
-    b. Utility (and at times necessity) of Immutable collections (which do not exist in Oracle's Java JDK)
-2. Type safety
-	a. Strengths of Java/JVM style strict typing
-	b. [Problems](http://code.stephenmorley.org/articles/java-generics-type-erasure/) in Java's type safety offering
+1. Immutability: Tradeoffs in using the C/Java style innocuous looking *for* loop; Utility (and at times necessity) of Immutable collections (which do not exist in Oracle's Java JDK)
+2. Type safety: Strengths of Java/JVM style strict typing; [Problems](http://code.stephenmorley.org/articles/java-generics-type-erasure/) in Java's type safety offering
+3. Inheritance: A better understanding of covariance and contra-variance 
 3. Rethinking code verbosity by composing higher order functions, partial functions etc (lesser code after translates to fewer bugs)
 4. A better way to alleviate null-checks using Options
 5. Dependency Injection without annotations or XMLs
 6. It can be better than *static* classes, methods, variables
-7. Closures and mixing possible on JVM too (Until now, I had thought of these only from the JavaScript angle)
+7. Closures and Mixin's possible on JVM too (Until now, I had thought of these only from the JavaScript angle)
 8. Using Map when I needed Tuple was not exactly bright of me
 9. I can do so much more when I can write code that my build system understands... looking for Maven plugins need not be a way of life...
 
 ... and I can go on and on!! 
-
-<hr>
-
-#### Product Perspective
-Its a interesting question - which programming language would you choose to write your next product? 
-
-* If you are a startup web product company, you may choose NodeJS. If you have reliable Ruby expertise then Rails is still a great choice. By the way, no one ever got fired for picking Java. And if you have been slightly out of touch with things lately, then you may end up choosing the old war-horse PHP
-* But if the product is for enterprise customers, designers and managers alike tend to favour Java heavily. And not without reasons. The Java ecosystem is stable and rich in libraries and design patterns. Lot of engineering expertise is widely available. And so on...
-
-It is a wise choice of 'picking the right battles'.
-
-
