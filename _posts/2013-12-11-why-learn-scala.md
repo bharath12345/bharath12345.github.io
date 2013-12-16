@@ -92,23 +92,28 @@ Scala natively comes with an excellent collections framework supporting both imm
     b. [Play!](http://www.playframework.com/) 
     c. [Spray.IO](http://spray.io/)
 
+<hr>
 
-#### Akka - Concurrency and ESB
+### Unlearning and Relearning Programming
+For those coming from Java and no functional programming background Scala can be a steep learning curve. Apart from exposure to many concepts totally new to me, it has helped me a great deal in revisiting some of the most fundamentals I have made about programming. I now have clarity of things I need to *unlearn* to become a better programmer! I thought a passing reader might find this claim interesting. So here is a small list...
 
-Akka allows you to do message passing like you would in a traditional ESB but with speed
+1. Immutability
+    a. Tradeoffs in using the C/Java style innocuous looking *for* loop
+    b. Utility (and at times necessity) of Immutable collections (which do not exist in Oracle's Java JDK)
+2. Type safety
+	a. Strengths of Java/JVM style strict typing
+	b. [Problems](http://code.stephenmorley.org/articles/java-generics-type-erasure/) in Java's type safety offering
+3. Rethinking code verbosity by composing higher order functions, partial functions etc (lesser code after translates to fewer bugs)
+4. A better way to alleviate null-checks using Options
+5. Dependency Injection without annotations or XMLs
+6. It can be better than *static* classes, methods, variables
+7. Closures and mixing possible on JVM too (Until now, I had thought of these only from the JavaScript angle)
+8. Using Map when I needed Tuple was not exactly bright of me
+9. I can do so much more when I can write code that my build system understands... looking for Maven plugins need not be a way of life...
 
-#### Spray and Play!
+... and I can go on and on!! 
 
-#### Slick
-Exposure to new and revisit assumptions on -
-
-1. Type safety
-2. Immutable data structures
-3. More concise code
-4. 
-
-#### RxJava
-
+<hr>
 
 #### Product Perspective
 Its a interesting question - which programming language would you choose to write your next product? 
