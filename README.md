@@ -1,6 +1,8 @@
 Bharath's Blog
 ======================
 
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 This is the repository for my blog - http://bharathwrites.in
 
 ### It uses
