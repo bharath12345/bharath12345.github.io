@@ -46,8 +46,16 @@ Now moving on to the specific pain points with MySql from a application develope
 
 #### The 'Null' Problem
 The biggest accusation one can make against any database system is that it is not careful with data integrity. MySql is notorious for its inability to handle Null with many data types. Effort to accommodate query mistakes ruins MySql. For example - 
-* MySql will insert empty strings for text fields that have not-null constraint. PostgreSQL won't do such a thing
-* 
+
+* MySql will insert empty strings for text fields that have not-null constraint. This happens if you forgot to mention a field during the insert or if you somehow ended up inserting a blank value ('') for a field. It goes ahead with the insert in both these cases - irrespective of weather we use ORM or direct JDBC or some other kind of wrappers, there simply is no way to gracefully handle this kind of thing PostgreSQL won't do such a thing
+* Non-null timestamps end up getting all zero value dates. If you push a NULL as date, it defaults to current time!
+* With decimal numbers, if you are not careful with precision and scale, then, on inserts MySql will *change the data* to fit the column constraints. Of course its necessary to be careful when playing with data but the problem here is a change in precision (column constraint) should in no way change the data as MySql does. This kind of problem is just plain horror. Just refer to the MySql gotchas site to get a clear understanding of this problem. Postgres does not alter data no matter what
+* While writing functions, MySql does not throw graceful exceptions for divide by zero. It just returns a plain NULL all the time!
+* In MySql set a text field length to *X* and insert a string which is *2X* in length... MySql will just promptly truncate the extra *X*. Holy cow! The length X was a *constraint*. On trying to insert longer length strings, we expect MySql to throw errors... not play with our data...
+* MySql has no idea about dates. Try inserting 31st Feb and it will promptly comply inserting shit
+* MySql will allow inserting of strings to decimal columns, sometime storing it as 0 and sometimes as NULL
+
+This problem is not isolated. MySql takes liberties to not abide by user supplied constraints many time in many ways
 
 #### Object Relational Data Management System!
 Concepts unique to PostgreSQL which lends well with enterprise 
