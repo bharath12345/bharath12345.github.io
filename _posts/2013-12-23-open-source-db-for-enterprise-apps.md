@@ -40,11 +40,40 @@ I plan and hope not to repeat anything that is already said in these articles. A
 
 I also want to steer clear on the *[political](http://www.muktware.com/2013/05/there-is-no-reason-at-all-to-use-mysql-mariadb-mysql-founder-michael-widenius/4298)* aspects of this comparison. MySql has been acquired by Oracle. One can find all sorts of speculation about MySql future roadmap due to this (the birth of MariaDB et al). 
 
-#### The 'Null' Problem
+Having read many articles, blogs and forum discussions on this subject, I have a hypothesis. MySql is more popular in applications powered by Ruby, PHP, Perl or Python code. Just like Microsoft's SQL-Server is the default database if you are a C# application. This is so because of the community and peer group effect. And also because there are many tools and expertise within the ecosystem if you choose a popular stack. But the most popular language to develop enterprise applications is Java. And I personally get more fond of Scala by every passing day. So the hypothesis is, for JVM developers MySql does not lend well *just* because of the community/peer-group effect. So the choice needs to be based more on technological pro's and con's.
 
-#### Object Relational DB
+Now moving on to the specific pain points with MySql from a application developer's perspective.
+
+#### The 'Null' Problem
+The biggest accusation one can make against any database system is that it is not careful with data integrity. MySql is notorious for its inability to handle Null with many data types. Effort to accommodate query mistakes ruins MySql. For example - 
+* MySql will insert empty strings for text fields that have not-null constraint. PostgreSQL won't do such a thing
+* 
+
+#### Object Relational Data Management System!
+Concepts unique to PostgreSQL which lends well with enterprise 
+* Logical Partitioning
+* Windowing Functions
+* Table Inheritance
+
+Object oriented tables
+
 
 #### Choice Of Data Types
+* All strings are default UTF-8 encoded
+* A massive choice of data types to choose from for dates
+* IPv4, IPv6, MAC address data types
+* Arrays and JSON
+
+
+Why are data-types important? Why store less? When performance becomes key and probable bottleneck, to squeeze out the max performance requires optimised storage... because finally, things in your DB schema are going to end up in RAM caches and larger datatypes will mean more space being taken up on the RAM. Less conservatively used RAM cache will bring down the performance of your application more than anything else
+
+
+#### Free Features
+* Automatic Data Compress by Default
+* Logical Partitioning
+* Unlimited File Size
+* Index even functions (no other DB can do!)
+* 
 
 #### Performance
 
