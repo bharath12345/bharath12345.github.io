@@ -69,8 +69,15 @@ Object oriented tables
 #### Choice Of Data Types
 * All strings are default UTF-8 encoded
 * A massive choice of data types to choose from for dates
-* IPv4, IPv6, MAC address data types
-* Arrays and JSON
+* IPv4, IPv6, MAC, Inet address data types
+* Arrays, JSON, UUID, XML. Search within Arrays using indexes, where clauses
+* Serial and other sequences - leads to very fast ID key finding and incrementing
+* Rounding errors can be eliminated to a much larger extent with the huge bouquet of floating point data-types 
+* Infinity, -Infinity, NaN as values for numeric data types - in MySql you will have no way of doing these. You will have to insert a number or Null and thats all
+* Money type
+* ORM tools often convert 'String' datatype to nvarchar(max) which kills performance on MySql. Inserting multibyte characters (say japanese) into varchar fields complete corrupts the data (no database exception thrown!). Sometimes it is not sufficient to just change the column type to nvarchar when trying to store multibyte characters. Even the insert statements need a prefix (application level code change if you are using JDBC). PostgreSQL uses default UTF8 encoding. There is no varchar/nvarchar problems. Everything simply works!
+* Adding constraints to complex types likes dates is made extremely simple with embedded functions. No such thing possible in MySql. Special keywords like 'today', 'tomorrow', 'yesterday', 'allballs'
+*  
 
 
 Why are data-types important? Why store less? When performance becomes key and probable bottleneck, to squeeze out the max performance requires optimised storage... because finally, things in your DB schema are going to end up in RAM caches and larger datatypes will mean more space being taken up on the RAM. Less conservatively used RAM cache will bring down the performance of your application more than anything else
