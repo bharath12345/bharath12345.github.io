@@ -12,6 +12,11 @@ layout: layout
         <a href="{{ page.url }}">{{ page.title }}</a>
     </h2>
 
+    {% if page.subheading == true %}
+    <h4>{{ page.subhead }}</h4>
+    {% endif %}
+
+
     <section class="byline">
         {{ page.date | date: "%B %e, %Y" }}
     </section>
