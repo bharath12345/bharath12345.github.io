@@ -33,8 +33,14 @@ But before I begin to delve deeper into the comparison I need to set the applica
 On a topic like this its probably a good idea to get started by stating some of the good references that I have found in the wild-wild web (filled with SEO articles on the topic written by training institutes and outsourced IT operations companies)
 
 1. [MySql vs. PostgreSQL](http://www.wikivs.com/wiki/MySQL_vs_PostgreSQL) - recent and continuously updated. Readers would do well to read the articles in the links section (on last read, I did not find a single article talking glowingly about MySql in comparison to PostgreSQL) 
-2. [PostgreSQL vs MySQL: Which is better?](http://www.databasejournal.com/features/postgresql/article.php/3288951/PostgreSQL-vs-MySQL-Which-is-better.htm) - This article is 10 years old. Still a good read
-3. [MySql Gotchas](http://sql-info.de/mysql/gotchas.html) and [PostgreSQL Gotchas](http://sql-info.de/postgresql/postgres-gotchas.html). Just stare at these two lists for some time even if you don't read them. They tell a story 
+2. Couple of very good articles comparing these two by Robert Haas
+   * [Table Organization](http://rhaas.blogspot.in/2010/11/mysql-vs-postgresql-part-1-table.html)
+   * [Vacuum vs. Purge](http://rhaas.blogspot.in/2011/02/mysql-vs-postgresql-part-2-vacuum-vs.html)
+3. [PostgreSQL vs MySQL: Which is better?](http://www.databasejournal.com/features/postgresql/article.php/3288951/PostgreSQL-vs-MySQL-Which-is-better.htm) - This article is 10 years old. Still a good read
+4. [MySql Gotchas](http://sql-info.de/mysql/gotchas.html) and [PostgreSQL Gotchas](http://sql-info.de/postgresql/postgres-gotchas.html). Just stare at these two lists for some time even if you don't read them. They tell a story
+5. [Comparing Reliability and Speed](http://wiki.postgresql.org/wiki/Why_PostgreSQL_Instead_of_MySQL:_Comparing_Reliability_and_Speed_in_2007)
+6. [A Comparison of Enterprise Suitability - PostgreSQL is Suited Better](http://www.slideshare.net/techdude/postgres-vs-mysql-presentation) - though MyISAM focused, this comparison is with enterprise products in purview and is 5 years old (2008). Since then, the gap between PostgreSQL and MySql has only widened in favour of PostgreSQL
+
 
 I plan and hope not to repeat anything that is already said in these articles. Agreeing with the writers of these articles, let me also say that I am done with seeing performance benchmark articles on database systems.
 
@@ -57,13 +63,34 @@ The biggest accusation one can make against any database system is that it is no
 
 This problem is not isolated. MySql takes liberties to not abide by user supplied constraints many time in many ways
 
-#### Object Relational Data Management System!
+#### Object Relational Database System!
 Concepts unique to PostgreSQL which lends well with enterprise 
 * Logical Partitioning
 * Windowing Functions
 * Table Inheritance
 
-Object oriented tables
+**Object oriented tables**
+
+    CREATE TABLE shape ( name varchar(50) );
+
+    CREATE TABLE square    (edge int)     INHERITS (shape);
+    CREATE TABLE circle    (radius int)   INHERITS (shape);
+    CREATE TABLE rectangle (w int, h int) INHERITS (shape);
+
+    INSERT into shape     (name)         VALUES ('random')
+    INSERT into square    (name, edge)   VALUES ('square', 10);
+    INSERT into circle    (name, radius) VALUES ('circle', 10);
+    INSERT into rectangle (name, w, h)   VALUES ('rectangle', 5, 10);
+
+    Running the above SQL statements, will result in following status in different tables -
+    
+    * shape - 4 records
+    * square, circle, rectangle tables - 1 record each!
+    
+Like 'INHERITS' there is a 'NO INHERITS' also to mix different table just precisely. And Postgres uses partitioning under the covers to enable inheritance. So, not only does inheritance give the programmer flexibility in data modelling lending to lesser duplication, it also helps improve performance! Afterll without inheritance, the engineers will be forced to do multiple table joins and filters (many times going up to boolean value *marker* columns) - which sounds over-engineering for a OOP developer standpoint. Thinking about it, the non-object oriented SQL design adds to overhead to SQL optimiser, makes indexing overhead higher and so many more such misses.
+
+ 
+    
 
 
 #### Choice Of Data Types
@@ -91,6 +118,13 @@ Why are data-types important? Why store less? When performance becomes key and p
 * 
 
 #### Performance
+Comparing performance of PostgreSQL and MySql (InnoDB) is a loaded question. The references I have spelt out earlier have links to many scholarly articles that articulate the subtle differences in the MVCC implementation of both. Both provide row locking, Page locking, along with read/write lock separation. After digging into the details picking a one of these two on the basis of *performance* again comes back to the nature of the application that is being built. Designers should pay attention to three critical questions and answer them sufficiently before making a choice -
+
+* Read/Write characteristics of the application
+* Concurrent access characteristics of various tables
+* Cost of dirty reads, non-repeatable reads, phantom reads etc
+
+These are not easy questions to answer. But, personally, after much pondering, estimation and simple math, I don't see any reason to pick to MySql ahead of PostgreSQL ever on the basis of performance. Ever. The performance area is complex enough and if concurrent writes are on the extreme for a particular application then moving away totally from SQL to NoSQL is a better option than trying to split hairs over RDBMS engines. A move to NoSQL will bring massive freedom to design around these problems along with massive responsibility to handle things correctly. So to round it off, if you are choosing MySql over PostgreSQL due to some (misplaced) notions of higher performance without concrete answers to the above posers, then, in all probability you are thinking wrong.
 
 ##### Partitioning Problems
 ##### MVCC
