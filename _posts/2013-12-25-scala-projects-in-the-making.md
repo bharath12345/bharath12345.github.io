@@ -28,14 +28,28 @@ Inspired by these assignments, I have been working on few of my own ideas. Three
 
 ### GBridge
 
-* **Project Goal**: Data bridge between Ganglia (gmond) and ZeroMQ
-* **Why?**
+* **Project Goal**: Data bridge between [Ganglia](http://ganglia.info/) (gmond) and [ZeroMQ](http://zeromq.org/)
+* **The Why**
   * *Why Ganglia?* Because it is (probably) the worlds most popular open-source data collection tool for large data centres
   * *Why ZeroMQ?* Because it is (probably) the worlds most popular open-source data-bus for high volumes, with API in most programming languages
-* **How?**
-  *
+* **Specifics**
+  * Ganglia's *gmond* agent responds with cluster wide metric health on TCP in XML. GBridge polls this data
+  * GBridge can collect data from multiple clusters and *any* or *random* host within the cluster
+  * GBridge is optimised for minimum polling of *gmond*
+  * Each metric is published only once (and as a separate message) per polling cycle on ZeroMQ
+  * Each metric is published as JSON
+  * Use actor based concurrency and futures for polling multiple gmond nodes, parsing response and publishing on ZeroMQ
+  * Completely in Scala
+  * Graceful degradation on load. Support distribution, automatic recovery on errors and failover
+  * Going ahead support [Collectd](http://collectd.org/) on data ingress side. Support writing to [OpenTSDB](http://opentsdb.net/) on the data egress side
+* **Status**
+  * [Coded](https://github.com/bharath12345/gBridge) the data collection, parsing and publish to ZeroMQ
+  * Tested only for small loads
+  * Very little unit test code
+  * Yet to design for distribution, recovery and failover
   
 ### ScalaBlog
+
 
 ### WebFlow
 
