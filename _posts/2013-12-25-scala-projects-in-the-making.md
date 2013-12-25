@@ -59,7 +59,7 @@ Inspired by these assignments, I have been working on few of my own ideas. Three
   * Use [Spray](http://spray.io/) for HTTP Server side (for both RESTful interface and HTML pages)
   * Use [pegdown](https://github.com/sirthias/pegdown) for markdown processing 
   * Use [Slick](http://slick.typesafe.com/) to read and write to RDBMS from Scala (ORM like)
-  * 
+  * Completely Scala. Learn and understand the many Scala frameworks used
 * **Code Status**
   * The [code](https://github.com/bharath12345/myspray) for CRUD (post/get/put/delete) operations for the blog with RESTful URLs is complete up to proof-of-concept
   * The code for CRUD at the database layer also done
@@ -67,7 +67,12 @@ Inspired by these assignments, I have been working on few of my own ideas. Three
   * Work needed to easily extend the URLs, support UI templating and much more
 
 ### WebFlow
-* **Project Goal**: 
+* **Project Goal**: [NetFlow](http://en.wikipedia.org/wiki/NetFlow) like UDP-based export of ingress-egress at Web-Servers 
 * **The Why**
+  * Gone are the C10K problems. We are now in the world of C10M and beyond. With such high volume of connections, to account for all the request-responses hitting web-servers, it is not sufficient to use polling based, log based mechanism. Dictionary export mechanisms are valid contenders when the volumes are so large
+  * All the good reasons of why Netflow/Sflow etc are wonderful mechanisms for volume accounting (at high volumes) at switch/router level 
 * **Specifics**
+  * Plug-in for Jetty/Netty/Spray/Servlet containers
+  * Completely Scala. Actor based
 * **Code Status**
+  * Design done. Yet to start coding
