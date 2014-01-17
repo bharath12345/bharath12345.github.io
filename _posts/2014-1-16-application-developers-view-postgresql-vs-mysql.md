@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Application Developers View: PostgreSQL vs. MySQL"
+title: "Application Developer View: PostgreSQL vs. MySQL"
 category: posts
 tags: []
 categories: []
@@ -43,7 +43,7 @@ I plan and hope not to repeat anything that is already said in these articles. A
 
 Now moving on to the specifics...
 
-#### The 'Null' Problem
+### The 'Null' Problem
 The biggest accusation one can make against any RDBMS is that it is not careful with data integrity. MySQL is notorious for its inability to handle Null with many data types. Effort to accommodate query mistakes ruins MySQL. For example - 
 
 * MySQL will insert empty strings for text fields that have not-null constraint. This happens if you forgot to mention a field during the insert or if you somehow ended up inserting a blank value ('') for a field. It goes ahead with the insert in both these cases. Irrespective of weather we use ORM or direct JDBC or some other kind of wrappers, there simply is no way to gracefully handle this problem. PostgreSQL won't do such a thing
@@ -54,15 +54,23 @@ The biggest accusation one can make against any RDBMS is that it is not careful 
 * MySQL has no idea about dates. Try inserting 31st Feb and it will promptly comply inserting crap
 * MySQL will allow inserting of strings to decimal columns, sometimes storing it as 0 and sometimes as NULL
 
-These problems are by no means all that is there to be said about MySQL's SQL compliance. MySQL takes liberties to not abide by user supplied constraints in many more situations.
+These problems are by no means all that is there to be said about MySQL's SQL compliance. MySQL takes liberties to not abide by user supplied constraints in many more situations. And this aspects creates massive problems for developers on both *correctness* and *performance* fronts.
 
-#### Object Relational Database System!
-Concepts unique to PostgreSQL which lends well with enterprise data models
+### Object Relational Database System!
+PostgreSQL calls itself *Object Relational Database System*. This is so because it brings with itself many new ideas that lend very well with the OOPS modelled world (that developers are so used to). And this paradigm fits the enterprise data models and requirements quite well. Let me state three specific features - 
+
 * Logical Partitioning
 * Windowing Functions
 * Table Inheritance
 
-**Object oriented tables**
+Each of these features can be quite critical with the ever increasing data that needs to be handled in today's world. It takes some reading to understand each one but it is well worth the effort. On the other side I fail to find any feature that MySQL brings that may be absent from PostgreSQL (think about it - thats a very big assertion I make!). 
+
+To illustrate the point further let me describe one of my favourite features - *table inheritance* with an example. The below statements create tables where the column *name* belongs to the *base* table (shape) and columns like edge, radius belong to the *derived* tables. This model closely resembles how data is modelled in OOPS. Running the above SQL statements, will result in following status in different tables -
+    
+* shape - 4 records
+* square, circle, rectangle tables - 1 record each!  
+
+SQL Statements -
 
     CREATE TABLE shape ( name varchar(50) );
 
@@ -74,37 +82,27 @@ Concepts unique to PostgreSQL which lends well with enterprise data models
     INSERT into square    (name, edge)   VALUES ('square', 10);
     INSERT into circle    (name, radius) VALUES ('circle', 10);
     INSERT into rectangle (name, w, h)   VALUES ('rectangle', 5, 10);
-
-    Running the above SQL statements, will result in following status in different tables -
     
-    * shape - 4 records
-    * square, circle, rectangle tables - 1 record each!
     
-Like 'INHERITS' there is a 'NO INHERITS' also to mix different table just precisely. And Postgres uses partitioning under the covers to enable inheritance. So, not only does inheritance give the programmer flexibility in data modelling lending to lesser duplication, it also helps improve performance! Afterll without inheritance, the engineers will be forced to do multiple table joins and filters (many times going up to boolean value *marker* columns) - which sounds over-engineering for a OOP developer standpoint. Thinking about it, the non-object oriented SQL design adds to overhead to SQL optimiser, makes indexing overhead higher and so many more such misses.
+Like 'INHERITS' there also is a 'NO INHERITS' to mixin different tables with precision. And more importantly, Postgres uses partitioning under the covers to enable inheritance. So, not only does inheritance give the programmer flexibility in data modelling lending but it also leads to lesser duplication, and thus helps improve performance! Without inheritance, the engineers will be forced to do multiple table joins and filters (many times going up to boolean value *marker* columns) - which sounds over-engineering for a OOP developer standpoint. Thinking about it, the non-object oriented SQL design adds to overhead to SQL optimiser, makes indexing overhead higher and many more such misses.
 
-#### Choice Of Data Types
+### Choice Of Data Types and Storage
+MySQL has far fewer data types than PostgreSQL. Adding new data types to MySQL is a non-trivial error-prone work even for experience professionals. Compared to this, PostgreSQL offers a proverbial goldmine of data-types for designers to choose from. Here are some aspects about data-types that really makes PostgreSQL standout vis-a-vis MySQL -
+
+* Data types for Dates - A massive choice to choose from for specific usecases
+* Data types for IPv4, IPv6, MAC, Inet address
+* Data types for Arrays, JSON, UUID, XML with features like search within Arrays using indexes and where clauses
+* Data types for floating point numerics - rounding errors can be eliminated to a much larger extent with the massive choice available in this area 
+* Infinity, -Infinity, NaN as values for numeric data types - in MySQL one has no way of modelling these. Modelling these as nulls often leads to programming complexity and errors
+* ORM tools often convert 'String' datatype to nvarchar(max) which kills performance on MySQL. Inserting multibyte characters (say Japanese) into varchar fields completely corrupts data (no database exception thrown!). Sometimes it is not sufficient to just change the column type to nvarchar when trying to store multibyte characters. Even the insert statements need a prefix (application level code change if you are using JDBC). PostgreSQL uses default UTF8 encoding. There is no varchar/nvarchar problems. Everything simply works!
+* Adding constraints to complex types likes dates is made extremely simple with embedded functions. No such thing possible in MySQL. Special keywords like 'today', 'tomorrow', 'yesterday', 'allballs' etc lend readability to the code
 * All strings are default UTF-8 encoded
-* A massive choice of data types to choose from for dates
-* IPv4, IPv6, MAC, Inet address data types
-* Arrays, JSON, UUID, XML. Search within Arrays using indexes, where clauses
 * Serial and other sequences - leads to very fast ID key finding and incrementing
-* Rounding errors can be eliminated to a much larger extent with the huge bouquet of floating point data-types 
-* Infinity, -Infinity, NaN as values for numeric data types - in MySQL you will have no way of doing these. You will have to insert a number or Null and thats all
-* Money type
-* ORM tools often convert 'String' datatype to nvarchar(max) which kills performance on MySQL. Inserting multibyte characters (say japanese) into varchar fields complete corrupts the data (no database exception thrown!). Sometimes it is not sufficient to just change the column type to nvarchar when trying to store multibyte characters. Even the insert statements need a prefix (application level code change if you are using JDBC). PostgreSQL uses default UTF8 encoding. There is no varchar/nvarchar problems. Everything simply works!
-* Adding constraints to complex types likes dates is made extremely simple with embedded functions. No such thing possible in MySQL. Special keywords like 'today', 'tomorrow', 'yesterday', 'allballs'
-*  
-
-
-Why are data-types important? Why store less? When performance becomes key and probable bottleneck, to squeeze out the max performance requires optimised storage... because finally, things in your DB schema are going to end up in RAM caches and larger datatypes will mean more space being taken up on the RAM. Less conservatively used RAM cache will bring down the performance of your application more than anything else
-
-
-#### Free Features
+* Data type for Money!
+* Index even functions (no other DB does this)
 * Automatic Data Compress by Default
-* Logical Partitioning
-* Unlimited File Size
-* Index even functions (no other DB can do!)
-* 
+
+Why are data-types important? Modelling precisely leads to less data stored. When performance becomes important to squeeze out the max performance requires optimised storage... because finally, things in DB schema are going to end up in RAM caches and larger datatypes will mean more space being taken up on the RAM. Less conservatively used RAM cache will bring down the performance of the application more than anything else. 
 
 #### Performance
 Comparing performance of PostgreSQL and MySQL (InnoDB) is a loaded question. The references I have spelt out earlier have links to many scholarly articles that articulate the subtle differences in the MVCC implementation of both. Both provide row locking, Page locking, along with read/write lock separation. After digging into the details picking a one of these two on the basis of *performance* again comes back to the nature of the application that is being built. Designers should pay attention to three critical questions and answer them sufficiently before making a choice -
