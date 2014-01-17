@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Open Source DB For Enterprise Apps"
+title: "Application Developers View: PostgreSQL vs. MySQL"
 category: posts
 tags: []
 categories: []
@@ -9,11 +9,13 @@ tweetfb: true
 disqus: true
 toc: true
 subheading: true
-subhead: PostgreSQL vs MySql. PostgreSQL Wins Hands-Down!
+subhead:
 ---
-I started on this post some 6 months ago. Over that period, as I slowly worked on and studied multiple database systems the ideas and data on each has swelled. But this is a quick post focusing on just one topic - comparing the two giants of open-source SQL databases - Postgres and MySql. 
+I reluctantly started to write this post some 6 months ago. As a application developer my knowledge of the internals of DBMS design was (and still is) very limited. But its one thing to work with a DBMS at development time and quite another to keep it running at operations. So the motivation here is to share a few specific ideas with fellow application developers. My attempt here is to do a value judgement of the two systems from a development standpoint and steer as much clear as possible from a value judgement in the *deployed* scenario. After all DBMS systems are probably at the heart of more Aps vs. Ops debates than anything else. So to say it simply (at the cost of barbs from some of my good friends who I know to be excellent operations engineers for MySQL) - PostgreSQL leads MySQL. And by some distance.   
 
-One amazing line that keeps coming up reading these many articles - *"Unfortunately, MySQL had already been chosen by the time I got involved"*
+But apart from reading about the internals and playing with both systems I felt a need speak to whomever I could in the developer community to ask for the reasons behind the choice of DBMS in their projects. In the last 6 months I could speak to just about eight such people in different projects. Almost all from medium to small companies doing web applications (but some of these applications projects were themselves quite large). Speaking to these people there is one curious thing that I cannot but share - the answer from all who had chosen MySQL was - *"Unfortunately, MySQL had already been chosen by the time I got involved"*. Of the eight, six had been running projects for 2-3 years and of which three had chosen MySql. Rest had all opted for PostgreSQL.
+
+Over that period, as I slowly worked on and studied multiple database systems the ideas and data on each has swelled. But this is a quick post focusing on just one topic - comparing the two giants of open-source SQL databases - Postgres and MySql. 
 
 When I told a colleague of writing this article he smiled and asked a polite, *Why?* The web is filled with such articles. Many of whom written by professional database admins and academics. I have read many of these articles in the last 6 months. Yet, I have not come across an article from a *enterprise application programmer* point-of-view. I have wondered why this could be so. I think there are two reasons why there are not many programmers dissecting this -
 
