@@ -73,7 +73,8 @@ module.exports = function(grunt) {
                     '_includes/meta.html'           : '_includes/meta.max.html',
                     '_includes/postpagescripts.html': '_includes/postpagescripts.max.html',
                     '_includes/topmost-nav.html'    : '_includes/topmost-nav.max.html',
-                    '_includes/twitter.html'        : '_includes/twitter.max.html'
+                    '_includes/twitter.html'        : '_includes/twitter.max.html',
+                    '_includes/fork-on-github.html' : '_includes/fork-on-github.max.html'
                 }
             }
         },
