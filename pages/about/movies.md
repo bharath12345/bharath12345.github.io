@@ -18,46 +18,148 @@ disqus: false
 
 ### English
 
-<table class="table table-bordered table-striped table-condensed bs-docs-grid">
-    <tr class="tablerow"">
-        <td>The World's Fastest Indian</td>
-        <td>Inside Job</td>
-        <td>The Pursuit of Happyness</td>
-        <td>Thirteen Days</td>
-        <td>All the President's Men</td>
-        <td>The Shawshank Redemption</td>
-        <td>Hotel Rwanda</td>
-        <td>Defiance</td>
-        <td>Frost Nixon</td>
-        <td>Invictus</td>
-        <td>Margin Call</td>
-        <td>Searching for Sugar Man</td>
-    </tr>
-    <tr class="tablerow">
-        <td>The Terminal</td>
-        <td>Last King of Scotland</td>
-        <td>Argo</td>
-        <td>Blood Diamond</td>
-        <td>Charlie Wilson's War</td>
-        <td>Saving Private Ryan</td>
-        <td>Cast Away</td>
-        <td>Lincoln</td>
-        <td>Bruce Almighty</td>
-        <td>Schindlers list</td>
-        <td>Bridge on the River Kwai</td>
-        <td>The Thin Red Line</td>
-    </tr>
-    <tr class="tablerow">
-        <td>Letters from Iwo Jima</td>
-        <td>Munich</td>
-        <td>A Beautiful Mind</td>
-        <td>Gladiator</td>
-        <td>300</td>
-        <td>Apocalypto</td>
-        <td>The King's Speech</td>
-        <td>Valkyrie</td>
-    </tr>
-</table>
+<div class="container">
+    <div class="row movierow">
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/300.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/a beautiful mind.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/all the presidents men.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/apocalypto.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/argo.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/blood diamond.jpg"/>
+        </div>
+    </div>
+    <div class="row movierow">
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/bruce almighty.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/cast away.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/charlie wilsons war.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/defiance.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/frost nixon.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/gandhi.jpg"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/gladiator.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/hotel rwanda.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/inside job.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/invictus.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/letters from iwo jima.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/lincoln.jpg"/>
+        </div>
+    </div>
+    <div class="row movierow">
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/margin call.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/moneyball.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/munich.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/october sky.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/saving private ryan.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/schindlers list .jpg"/>
+        </div>
+    </div>
+    <div class="row movierow">
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/searching for the sugarman.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/the bridge on the river kwai.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/the kings speech.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/the last king of scotland.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/the pursuit of happiness.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/the shawshank redemption.jpg"/>
+        </div>
+    </div>
+    <div class="row movierow">
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/the terminal.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/the thin red line.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/the worlds fastest indian.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/thirteen days.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/trouble with the curve.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/valkyrie.jpg"/>
+        </div>
+    </div>
+    <div class="row movierow">
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/wall street.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/.jpg"/>
+        </div>
+        <div class="col-md-2">
+            <img class="movieimg" src="http://bharathwrites.in/images/films/.jpg"/>
+        </div>
+    </div>
+</div>
 
 
 ### Hindi
