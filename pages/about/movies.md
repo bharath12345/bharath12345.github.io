@@ -218,8 +218,8 @@ disqus: false
             </a>
         </div>
         <div class="col-md-2">
-            <a class="movieimg" href="">
-                <img class="movieimg" src="http://bharathwrites.in/images/films/.jpg"/>
+            <a class="movieimg" href="http://www.imdb.com/title/tt0393162/">
+                <img class="movieimg" src="http://bharathwrites.in/images/films/coach carter.jpg"/>
             </a>
         </div>
     </div>
