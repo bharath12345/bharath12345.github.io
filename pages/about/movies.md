@@ -222,6 +222,11 @@ disqus: false
                 <img class="movieimg" src="http://bharathwrites.in/images/films/coach carter.jpg"/>
             </a>
         </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0109830/">
+                <img class="movieimg" src="http://bharathwrites.in/images/films/forrest gump.jpg"/>
+            </a>
+        </div>
     </div>
 </div>
 
