@@ -232,6 +232,16 @@ disqus: false
                 <img class="movieimg" src="http://bharathwrites.in/images/films/goodwill hunting.jpg"/>
             </a>
         </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0112384/">
+                <img class="movieimg" src="http://bharathwrites.in/images/films/apollo_thirteen.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0349825/">
+                <img class="movieimg" src="http://bharathwrites.in/images/films/miracle.jpg"/>
+            </a>
+        </div>
     </div>
 </div>
 
