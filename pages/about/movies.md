@@ -243,6 +243,13 @@ disqus: false
             </a>
         </div>
     </div>
+    <div class="row movierow">
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0210945/">
+                <img class="movieimg" src="http://bharathwrites.in/images/films/remember the titans.jpg"/>
+            </a>
+        </div>
+    </div>
 </div>
 
 
