@@ -9,7 +9,7 @@ tweetfb: true
 disqus: true
 ---
 
-There are plenty of laws, theorems and aphorisms out there, apart from Moore's and Murphy's, that computer people could use. They may get handy in meetings and emails! Just using them could, at times, mean standing on the shoulders of giants. I plan to keep this as an ongoing post... shall keep adding till it gets too long!
+There are plenty of laws, theorems and aphorisms out there, apart from Moore's and Murphy's, that computer people could use. They sometimes come handy in meetings and emails! Just using them could, at times, mean standing on the shoulders of giants. I plan to keep this as an ongoing post... shall keep adding till it gets too long!
 
 ### Laws and Theorems
 
