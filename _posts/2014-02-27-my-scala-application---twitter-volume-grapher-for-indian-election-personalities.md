@@ -4,7 +4,7 @@ title: "My Scala Application: Real-time Twitter Volume Grapher For Indian Electi
 category: posts
 tags: []
 categories: []
-published: false
+published: true
 tweetfb: true
 disqus: true
 toc: true
@@ -43,14 +43,14 @@ The application has 5 different dashboards with a URL for each. Each of these 5 
 * ##### 30 Minutes Tweet Aggregate Grapher
   * URL: [http://bharathplays.herokuapp.com/twitter/elections/3](http://bharathplays.herokuapp.com/twitter/elections/3)
   * Dashboard Sample Image:
-       <a href="http://bharathwrites.in/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-27-42.png">![image](http://bharathwrites.in/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-27-42.png =430x238)</a>
+       <a href="http://bharathwrites.in/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2023-20-24.png">![image](http://bharathwrites.in/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2023-20-24.png =430x238)</a>
   * Details: 
     * In this graph a new data-point gets created on the chart every 30 minutes (1800 seconds)
     * Refer to the details of 3-seconds chart (first one above) for other info
   
 * ##### 3 Hours Tweet Aggregate Grapher
   * URL: [http://bharathplays.herokuapp.com/twitter/elections/4](http://bharathplays.herokuapp.com/twitter/elections/4)
-  * Dashboard Sample Image:
+  * Dashboard Sample Image: [TBD]
   * Details: 
     * In this graph a new data-point gets created on the chart every 3 hours (10800 seconds)
     * Refer to the details of 3-seconds chart (first one above) for other info
@@ -75,7 +75,7 @@ The application has 5 different dashboards with a URL for each. Each of these 5 
 
 
 ### WebSocket Addendum
-The graph may not appear if you are a behind a proxy which does not tunnel WebSockets (if you are working within in office network). Also if a firewall blocks WebSockets. But in case you run into any of the above issues, then you could use your **mobile device** to see the dashboard. Here is the screenshot from my Android Samsung S2 on my home Wifi. However I have checked to see that it works on my Airtel 2G network fairly well too. The dots in the image are some mess-up by the mobile screenshot tool...
+The graph may not appear if you are a behind a proxy which does not tunnel WebSockets (like behind some of the office networks). Also if a firewall blocks WebSockets. But in case you run into any of these issues, then you could use your **mobile device** to see the dashboard. Here is the screenshot from my Android Samsung S2 on my home Wifi. I also checked that the graphing works on my Airtel 2G network fairly well too (the dots in the image below are some mess-up by the mobile screenshot tool)
 
    <a href="http://bharathwrites.in/images/twitterdashboard/2014_02_27_19.51.35.png">![image](http://bharathwrites.in/images/twitterdashboard/2014_02_27_19.51.35.png =220x200)</a>
 
