@@ -43,6 +43,8 @@ The application has 5 dashboards and a URL for each. Each URL is a dashboard of 
   * Dashboard Sample Image:
   * Details: 
 
+#### Caveats of Twitter Stream Processing
+
 ### Design and Code
 The code is on github [here](https://github.com/bharath12345/playing). 
 
@@ -53,7 +55,7 @@ The code is on github [here](https://github.com/bharath12345/playing).
 * May not work if your firewall blocks WebSockets
 * If you run into any of the above issues, then you could use your mobile device to see the dashboard. Here is the screenshot from my Android Samsung S2 on my home Wifi. However I have checked to see that it works on my Airtel 2G network fairly well too. The dots in the image are some mess-up by the mobile screenshot tool...
 
-![image](http://bharathwrites.in/images/twitterdashboard/2014_02_27_19.51.35.png =240x400)
+![image](http://bharathwrites.in/images/twitterdashboard/2014_02_27_19.51.35.png =220x200)
 
 ### Final Note
-
+These graphs are just volumetric. I plan do some simple sentiment analysis next. However, by looking at the graphs and tweets behind them, it is heartening to see the order of popularity of each string. *India* is most popular among the four but next comes *Modi* and it is generally not very far behind. *Rahul* seems to appear more than *Kejri* but both these strings trail a long way behind *Modi*. With me being a diehard Sri Narendra Modi supporter, these graphs and numbers certainly make me happy and hopefully bode for good times to come for my country :-) 
