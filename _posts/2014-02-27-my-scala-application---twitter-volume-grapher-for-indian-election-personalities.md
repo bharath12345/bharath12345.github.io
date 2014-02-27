@@ -18,19 +18,19 @@ The application has 5 dashboards and a URL for each. Each URL is a dashboard of 
 * ##### 3 Seconds Tweet Aggregate Grapher  
   * URL: [http://bharathplays.herokuapp.com/twitter/elections/0](http://bharathplays.herokuapp.com/twitter/elections/0)
   * Dashboard Sample Image:   
-       ![image](http://bharathwrites.in/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-05-58.png =400x200)
+       ![image](http://bharathwrites.in/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-05-58.png =430x238)
   * Details: 
   
 * ##### 30 Seconds Tweet Aggregate Grapher
   * URL: [http://bharathplays.herokuapp.com/twitter/elections/1](http://bharathplays.herokuapp.com/twitter/elections/1)
   * Dashboard Sample Image:   
-       ![image](http://bharathwrites.in/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-06-30.png =400x200)
+       ![image](http://bharathwrites.in/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-06-30.png =430x238)
   * Details: 
   
 * ##### 5 Minutes Tweet Aggregate Grapher
   * URL: [http://bharathplays.herokuapp.com/twitter/elections/2](http://bharathplays.herokuapp.com/twitter/elections/2)
   * Dashboard Sample Image:   
-       ![image](http://bharathwrites.in/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-27-42.png =400x200)
+       ![image](http://bharathwrites.in/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-27-42.png =430x238)
   * Details: 
   
 * ##### 30 Minutes Tweet Aggregate Grapher
@@ -53,5 +53,7 @@ The code is on github [here](https://github.com/bharath12345/playing).
 * May not work if your firewall blocks WebSockets
 * If you run into any of the above issues, then you could use your mobile device to see the dashboard. Here is the screenshot from my Android Samsung S2 on my home Wifi. However I have checked to see that it works on my Airtel 2G network fairly well too. The dots in the image are some mess-up by the mobile screenshot tool...
 
-![image](http://bharathwrites.in/images/twitterdashboard/2014_02_27_19.51.35.png)
+![image](http://bharathwrites.in/images/twitterdashboard/2014_02_27_19.51.35.png =240x400)
+
+### Final Note
 
