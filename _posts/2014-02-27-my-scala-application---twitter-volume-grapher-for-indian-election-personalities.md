@@ -46,7 +46,13 @@ The application has 5 dashboards and a URL for each. Each URL is a dashboard of 
 #### Caveats of Twitter Stream Processing
 
 ### Design and Code
-The code is on github [here](https://github.com/bharath12345/playing). 
+Here is the gist - 
+
+* The code is on github [here](https://github.com/bharath12345/playing)
+* I use [Play! Framework's](http://www.playframework.com/) capabilities for all UI work which includes templates, URL-routing and WebSockets communication
+* To bind to Twitter's stream firehose I use [Spray.IO](http://spray.io/)
+* All the code is in Scala. It does *not* use threads and uses the actor-method of concurrency using [Akka](http://akka.io/)
+* The part of code which connects to twitter's streaming APIs and retrieves individual tweets is an extension of [this](http://www.cakesolutions.net/teamblogs/2013/12/08/streaming-twitter-api-in-akka-and-spray/) example by [Jan Machacek](https://twitter.com/honzam399).   
 
      
 ### WebSocket Addendum
