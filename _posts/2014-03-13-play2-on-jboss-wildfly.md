@@ -16,13 +16,10 @@ toc: true
 
 The JavaEE stack is broadly split into 3 tiers - web, business and persistence. JSF (broadly, including expression-lang, JSTL, JSP and Servlets) is the technology of choice (per the specs) in the web tier. And JSF, to me, seems most vulnerable of *not* being able to raise up to the above mentioned two challenges. JSF does feel like the *loose brick* in the JavaEE stack. And it feel ever more so after spending some time with the [Play Framework](http://www.playframework.com/)!
 
-### Web Tier In JavaEE - *the loose brick?*
+### Web Tier In JavaEE - *The Loose Brick?*
 This was a recent tweet by Peter Thomas -
 
-<a href="http://bharathwrites.in/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-05-58.png">![image](http://bharathwrites.in/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-05-58.png =430x238)</a>
-
-<blockquote class="twitter-tweet" lang="en"><p>ThoughtWorks on <a href="https://twitter.com/search?q=%23JSF&amp;src=hash">#JSF</a>: &quot;We continue to see teams run into trouble [..] and are recommending you avoid this technology&quot; <a href="http://t.co/hzW6PYSzVZ">pic.twitter.com/hzW6PYSzVZ</a></p>&mdash; Peter Thomas (@ptrthomas) <a href="https://twitter.com/ptrthomas/statuses/428460021265887232">January 29, 2014</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<a style="float: left; padding-right: 2em" href="https://twitter.com/ptrthomas/statuses/428460021265887232">![image](http://bharathwrites.in/images/peter%20thomas%20tweet.png)</a>
 
 I group the Web Tier of JavaEE applications as consisting of code and relying on libraries from 3 baskets. The bullet points are notes on each of these... 
 
