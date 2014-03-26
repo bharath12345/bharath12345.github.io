@@ -61,7 +61,6 @@ module.exports = function(grunt) {
                 files: {
                     '_layouts/layout.html'          : '_layouts/layout.max.html',
                     '_layouts/about.html'           : '_layouts/about.max.html',
-                    '_includes/analytics.html'      : '_includes/analytics.max.html',
                     '_includes/css.html'            : '_includes/css.max.html',
                     '_includes/disqus.html'         : '_includes/disqus.max.html',
                     '_includes/facebook.html'       : '_includes/facebook.max.html',
