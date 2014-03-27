@@ -9,4 +9,4 @@ tweetfb: false
 disqus: false
 ---
 
-1. [Mantutimmana Kagga Sung By Swami Brahmananda](/posts/kagga.html)
+1. [Mantutimmana Kagga Sung By Swami Brahmananda](http://bharathblogs.herokuapp.com/resources/kagga)
