@@ -220,24 +220,37 @@ One important consideration while choosing a XML library is the API. But that is
 </table>
 
 ### JVisualVM Graphs
-##### javax.xpath CPU and Memory
-<div id="javaxcpumem"></div>
-##### javax.xpath GC
-<div id="javaxgc"></div>
-##### Saxon CPU and Memory
-<div id="saxoncpumem"></div>
-##### Saxon GC
-<div id="saxongc"></div>
-##### VTD CPU and Memory
-<div id="vtdcpumem"></div>
-##### VTD GC
-<div id="vtdgc"></div>
-##### Scala XML Xpath CPU and Memory
-<div id="scalacpumem"></div>
-##### Scala XML Xpath GC
-<div id="scalagc"></div>
 
-### Code Used
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojox/image/resources/image.css" media="screen">
+
+<table class="table table-bordered">
+	<tr style="height:640px">
+		<td><h5>javax.xpath CPU and Memory</h5><div id="javaxcpumem"></div></td>
+	</tr>
+	<tr style="height:640px">
+		<td><h5>javax.xpath GC</h5><div id="javaxgc"></div></td>
+	</tr>
+	<tr style="height:640px">
+		<td><h5>Saxon CPU and Memory</h5><div id="saxoncpumem"></div></td>
+	</tr>
+	<tr style="height:640px">
+		<td><h5>Saxon GC</h5><div id="saxongc"></div></td>
+	</tr>
+	<tr style="height:640px">
+		<td><h5>VTD CPU and Memory</h5><div id="vtdcpumem"></div></td>
+	</tr>
+	<tr style="height:640px">
+		<td><h5>VTD GC</h5><div id="vtdgc"></div></td>
+	</tr>
+	<tr style="height:640px">
+		<td><h5>Scala XML Xpath CPU and Memory</h5><div id="scalacpumem"></div></td>
+	</tr>
+	<tr style="height:640px">
+		<td><h5>Scala XML GC</h5><div id="scalagc"></div></td>
+	</tr>
+</table>
+
+### Code
 #### javax.xpath
 <pre>
 import org.w3c.dom.Document;
