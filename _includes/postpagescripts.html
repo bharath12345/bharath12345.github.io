@@ -85,5 +85,13 @@
             case "Algorithms Course-1 With Prof Sidgewick on Coursera":
                 common.GenerateTOC(4, 1);
                 break;
+
+            case "Experiments with XML XPath libraries on JVM":
+                common.GenerateTOC(3, 1);
+                require([ "my/xmlxpath/initialize.min"], function(Initialize) {
+                   var initialize = new Initialize();
+                   initialize.createImageGallery();
+                });
+                break;
         }
     });</script>

@@ -219,8 +219,184 @@ One important consideration while choosing a XML library is the API. But that is
 	</tbody>
 </table>
 
-
+### JVisualVM Graphs
+##### javax.xpath CPU and Memory
 <div id="javaxcpumem"></div>
+##### javax.xpath GC
+<div id="javaxgc"></div>
+##### Saxon CPU and Memory
+<div id="saxoncpumem"></div>
+##### Saxon GC
+<div id="saxongc"></div>
+##### VTD CPU and Memory
+<div id="vtdcpumem"></div>
+##### VTD GC
+<div id="vtdgc"></div>
+##### Scala XML Xpath CPU and Memory
+<div id="scalacpumem"></div>
+##### Scala XML Xpath GC
+<div id="scalagc"></div>
 
+### Code Used
+#### javax.xpath
+<pre>
+import org.w3c.dom.Document;
+import java.io.IOException;
+import org.xml.sax.SAXException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.FileInputStream;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathFactory;
+import java.util._;
+import javax.xml.xpath._
+import org.w3c.dom.NodeList
 
+object Main extends App {
+	try {
+		val builderFactory: DocumentBuilderFactory = DocumentBuilderFactory.newInstance();
+		val builder: DocumentBuilder = builderFactory.newDocumentBuilder();	
+		val xPath: XPath =  XPathFactory.newInstance().newXPath();
+		println((new Date()).toString)
+		
+		val compexp = xPath.compile("/mycompany/MyResourceSet/MyResource/MyResourceList/MyResource[@displayName='Dummy']")
+		def evalXml() = {
+			val document: Document = builder.parse(new FileInputStream("sample.xml"));
+    	
+			val node = compexp.evaluate(document, XPathConstants.NODESET)
+	    	node match {
+	    		case n: NodeList => println(n + " at " + (new Date()).toString + " len = " + n.getLength())
+	    		case _ => println("typecast to NodeList failed")
+	    	}
+		}
+    		    		
+		val t1 = System.currentTimeMillis
+		val i = 30
+		
+		for(j <- 0 to i)
+			evalXml();
+	    println((new Date()).toString())
+		val t2 = System.currentTimeMillis
+		println("avg time = " + (t2 - t1)/i)
 
+	} catch {
+		case e: Exception=> e.printStackTrace();
+	}
+}
+</pre>
+#### Saxon
+<pre>
+import java.io._;
+import java.util._;
+import org.w3c.dom.NodeList;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPathFactory;
+import javax.xml.xpath.XPathExpression;
+import net.sf.saxon.xpath.XPathEvaluator;
+import net.sf.saxon.xpath.XPathFactoryImpl;
+import org.w3c.dom.Document;
+import javax.xml.xpath.XPathConstants;
+
+object SaxonEx extends App {
+
+	val builderFactory: DocumentBuilderFactory = DocumentBuilderFactory.newInstance();
+	val builder: DocumentBuilder = builderFactory.newDocumentBuilder();	
+    
+    val factory = new XPathFactoryImpl();
+	val xc = factory.newXPath();
+	val xpathCompiler: XPathEvaluator = xc.asInstanceOf[XPathEvaluator];
+
+	val xstring = "//mycompany/MyResourceSet/MyResource/MyResourceList/MyResource[@displayName='dummy']"
+	val expr: XPathExpression  = xpathCompiler.compile(xstring);
+    
+    println("running SaxonEx:" + (new Date()).toString)
+    
+    def evalXml() = {
+    	val document: Document = builder.parse(new FileInputStream("sample.xml"));
+
+		val node = expr.evaluate(document, XPathConstants.NODESET);
+		node match {
+	    		case n: NodeList => println(n + " at " + (new Date()).toString + " len = " + n.getLength())
+	    		case _ => println("typecast to NodeList failed")
+	    }    	
+	}
+	
+	val t1 = System.currentTimeMillis
+	val i = 30
+		
+	for(j <- 0 to i)
+		evalXml();
+	val t2 = System.currentTimeMillis
+	println("avg time = " + (t2 - t1)/i)
+	println((new Date()).toString())
+}
+</pre>
+##### VTD
+<pre>
+import com.ximpleware._;
+import com.ximpleware.xpath._;
+import java.util._;
+
+object vtd extends App {
+
+	val vg: VTDGen = new VTDGen();
+	
+	def loopvtd = {
+		vg.parseFile("sample.xml", false);
+		val vn:VTDNav = vg.getNav();
+		val ap:AutoPilot = new AutoPilot(vn);
+		ap.selectXPath("/mycompany/MyResourceSet/MyResource/MyResourceList/MyResource[@displayName='dummy']");
+		val x = ap.evalXPath()
+		if(x != -1) println("eval returned " + x)
+		else println("eval failed")
+		
+		val value: Int = vn.getText();
+		if (value != -1) {
+   			val title:String = vn.toNormalizedString(value);
+    		println(title);
+  		}
+	}
+	
+	val t1 = System.currentTimeMillis
+	val i = 30
+		
+	for(j <- 0 to i)
+		loopvtd
+
+	println((new Date()).toString())
+	val t2 = System.currentTimeMillis
+	println("avg time = " + (t2 - t1)/i)
+	
+}
+</pre>
+##### Scala
+<pre>
+#!/bin/sh
+exec scala "$0" "$@"
+!#
+
+import scala.xml
+import scala.xml._
+import java.util._
+
+def findout(filename: String) = {
+	val xf = xml.XML.loadFile(filename)
+	val cec = (xf \\ "MyResource" filter ( _ \"@displayName" contains Text("Dummy")))
+}
+
+println((new Date()).toString())
+val t1 = System.currentTimeMillis
+val i = 30
+for(j <- 0 to i) {
+	findout("sample.xml")
+	println(s"iteration $j")
+}
+println((new Date()).toString())
+val t2 = System.currentTimeMillis
+println("avg time = " + (t2 - t1)/i)
+</pre>
+
+### Epilogue
+VTD comes across as the fasted XPath of all. Saxon comes next. The standard library implementations of XPath by Java and Scala are much slower. The Scala implementation is not XPath at all and can just be called *XPath like*. The code is very simplistic to infer a lot from CPU/memory graphs. I have tweaked the code to get a little better inference and intuition. An interested programmer might do the same to get a better idea.
