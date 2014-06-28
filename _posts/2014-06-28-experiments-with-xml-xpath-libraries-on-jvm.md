@@ -30,7 +30,193 @@ Now, the environment details -
 * Tests tried with 4 big buckets of Xmx setting - 512M, 1024M, 2048M, 4096M
 * All numbers and screen captures are with jvisualvm. wanted to use jstat but got a little lazy
 
-One important consideration while choosing the right XML library is the API. But that is project specific and I leave it out of this comparison.
+One important consideration while choosing a XML library is the API. But that is project specific and I leave it out of this comparison.
+
+### Results Tabulated
+
+<table class="table table-striped table-bordered table-hover table-condensed">
+	<thead>
+		<tr>
+			<th colspan="11" class="text-center">Xmx512m</th>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><strong>Time Taken</strong></td>
+			<td><strong>App CPU Usage</strong></td>
+			<td><strong>GC CPU Usage</strong></td>
+			<td><strong>App Heap Size</strong></td>
+			<td><strong>Heap Used</strong></td>
+			<td><strong>Eden collection count/time spent</strong></td>
+			<td><strong>Old Gen collection count/time spent</strong></td>
+			<td><strong>Eden pattern</strong></td>
+			<td><strong>Survivor pattern</strong></td>
+			<td><strong>Old Gen pattern</strong></td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>scala.xml</strong></td>
+			<td>240s</td>
+			<td>70-80%</td>
+			<td>20%</td>
+			<td>512M</td>
+			<td>250-300M</td>
+			<td>359/15.2s</td>
+			<td>303/3m18s</td>
+			<td>either 0M or 170M</td>
+			<td>not much usage</td>
+			<td>between 170-340M</td>
+		</tr>
+		<tr>
+			<td><strong>javax.xml.xpath</strong></td>
+			<td colspan="10" class="text-center">does not complete</td>
+		</tr>
+		<tr>
+			<td><strong>net.sf.saxon.xpath</strong></td>
+			<td>67s</td>
+			<td>60-80%</td>
+			<td>20%</td>
+			<td>512M</td>
+			<td>250-300M</td>
+			<td>162/6.2s</td>
+			<td>123/39.3s</td>
+			<td>0-170M tall spikes</td>
+			<td>consistent use of 57M * 2</td>
+			<td>stepwise between 0-340M</td>
+		</tr>
+		<tr>
+			<td><strong>vtd.xml</strong></td>
+			<td>11s</td>
+			<td>26%</td>
+			<td>0.10%</td>
+			<td>500M</td>
+			<td>150-250M</td>
+			<td>13/138ms</td>
+			<td>9/262ms</td>
+			<td>between 100-170M</td>
+			<td>very less and infrequent</td>
+			<td>between 80-240M</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th colspan="11" class="text-center">Xmx1024m</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>scala.xml</strong></td>
+			<td>85s</td>
+			<td>70-80%</td>
+			<td>20%</td>
+			<td>1G</td>
+			<td>250-500M</td>
+			<td>299/36s</td>
+			<td>38/14s</td>
+			<td>0-340M tall spikes</td>
+			<td>100M consistent</td>
+			<td>80-600M neat triangles</td>
+		</tr>
+		<tr>
+			<td><strong>javax.xml.xpath</strong></td>
+			<td>57s</td>
+			<td>50-70%</td>
+			<td>10-20%</td>
+			<td>1G</td>
+			<td>250-500M</td>
+			<td>197/14s</td>
+			<td>34/15s</td>
+			<td>0-340M tall spikes</td>
+			<td>100M consistent</td>
+			<td>200-600M neat triangles</td>
+		</tr>
+		<tr>
+			<td><strong>net.sf.saxon.xpath</strong></td>
+			<td>49s</td>
+			<td>50-70%</td>
+			<td>10-20%</td>
+			<td>1G</td>
+			<td>250-500M</td>
+			<td>110/12s</td>
+			<td>34/15s</td>
+			<td>0-340M tall spikes</td>
+			<td>100M consistent</td>
+			<td>200-600M neat triangles</td>
+		</tr>
+		<tr>
+			<td><strong>vtd.xml</strong></td>
+			<td>11s</td>
+			<td>30%</td>
+			<td>1-2%</td>
+			<td>300-800M</td>
+			<td>200-700M</td>
+			<td>11/66ms</td>
+			<td>6/204ms</td>
+			<td>200-300M</td>
+			<td>10M</td>
+			<td>400-600M</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th colspan="11" class="text-center">Xmx2048m</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>scala.xml</strong></td>
+			<td>70s</td>
+			<td>70-80%</td>
+			<td>10-20%</td>
+			<td>2G</td>
+			<td>0.5-1G</td>
+			<td>154/27s</td>
+			<td>26/21s</td>
+			<td>0-680M tall spikes</td>
+			<td>100M consistent</td>
+			<td>200M-1G neat triangles</td>
+		</tr>
+		<tr>
+			<td><strong>javax.xml.xpath</strong></td>
+			<td>59s</td>
+			<td>40-70%</td>
+			<td>10-20%</td>
+			<td>2G</td>
+			<td>0.5-1G</td>
+			<td>105/14s</td>
+			<td>23/17s</td>
+			<td>0-680M tall spikes</td>
+			<td>100M consistent</td>
+			<td>0.3-1.1G</td>
+		</tr>
+		<tr>
+			<td><strong>net.sf.saxon.xpath</strong></td>
+			<td>39s</td>
+			<td>40-70%</td>
+			<td>10-20%</td>
+			<td>2G</td>
+			<td>0.5-1G</td>
+			<td>69/10s</td>
+			<td>18/8s</td>
+			<td>0-680M tall spikes</td>
+			<td>200M consistent</td>
+			<td>300-600M</td>
+		</tr>
+		<tr>
+			<td><strong>vtd.xml</strong></td>
+			<td>11s</td>
+			<td>26%</td>
+			<td>0%</td>
+			<td>0.5-1.25G</td>
+			<td>0.5-1.25G</td>
+			<td>14/190ms</td>
+			<td>6/272ms</td>
+			<td>600M consistent</td>
+			<td>200M</td>
+			<td>1.3G no pattern</td>
+		</tr>
+	</tbody>
+</table>
 
 
 
