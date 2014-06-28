@@ -4,7 +4,7 @@ title: "Experiments with XML XPath libraries on JVM"
 category: posts
 tags: []
 categories: []
-published: false
+published: true
 tweetfb: true
 disqus: true
 toc: true

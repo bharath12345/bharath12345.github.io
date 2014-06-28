@@ -18,6 +18,9 @@ module.exports = function(grunt) {
             },
             topograph: {
                 src: [ "lib/my/topograph/*.min.js", "lib/my/topograph/*.min.css"]
+            },
+            xmlxpath: {
+                src: [ "lib/my/xmlxpath/*.min.js"]
             }
         },
         uglify: {
@@ -31,6 +34,11 @@ module.exports = function(grunt) {
                     'lib/my/topograph/initialize.min.js': 'lib/my/topograph/initialize.js',
                     'lib/my/topograph/d3AppGraph.min.js': 'lib/my/topograph/d3AppGraph.js',
                     'lib/my/topograph/jsPlumbAppGraph.min.js': 'lib/my/topograph/jsPlumbAppGraph.js'
+                }
+            },
+            xmlxpath: {
+                files: {
+                    'lib/my/xmlxpath/initialize.min.js': 'lib/my/xmlxpath/initialize.js'
                 }
             }
         },
@@ -83,7 +91,8 @@ module.exports = function(grunt) {
                     'lib/my/common.js',
                     'lib/my/topograph/initialize.js',
                     'lib/my/topograph/d3AppGraph.js',
-                    'lib/my/topograph/jsPlumbAppGraph.js'
+                    'lib/my/topograph/jsPlumbAppGraph.js',
+                    'lib/my/xmlxpath/initialize.js'
                 ],
                 options: {
                     destination: 'docs'
