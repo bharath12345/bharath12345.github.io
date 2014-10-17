@@ -28,6 +28,11 @@ The Haskell session was a runaway hit with Venkat giving a quick intro of the ma
 * memoization: the massive performance gain that may comes one way due to functional purity
 * order of program evaluation: normative vs. applicative
 
-### Session 3: 
+### Session 3: Functional programming in large scale data processing, by Kishore Nallan
+
+My day job is programming in Scala to build a *large scale data processing* platform. So choosing this session from a fellow traveler was natural. Kishore described the journey at Indix to build a web-scale product catalog by crawling and indexing the internet. The story behind their adoption of the Lambda Architecture. The benefits of using a log-structured database as first port of store than a *continuously mutating* RDBMS or column store. Indix is a huge Hadoop shop with continuous jobs to persist data, aggregate it and run both ritual and ad-hoc queries. It was a fascinating talk giving a peek into what must be a very exciting product to develop.
+
+
+ 
 
  
