@@ -17,5 +17,17 @@ With two parallel tracks happening in the conferences listeners had to choose on
 
 Venkat is as fabulous a speaker/presenter as he is writer/thinker. The theme of his keynote was an elaboration on the idea of **mainstream**. Why did it take many centuries for heliocentricity to gain acceptance over the *mainstream* idea of geocentricity? Why did it take many centuries for well meaning doctors to accept the existence microbial *germs* as the cause of diseases over widely held *mainstream* theories? **Mainstream** in the world of programming is OOP with Java and C++. They are not necessarily as false idol's as the other examples. However that *non-mainstream* is generally not even introduced in colleges and software engineers have proceeded to long careers without even basic understanding of other approaches is sad indeed. Venkat drew the attention of the audience that things were nevertheless changing. Maybe it took a long incubation for the geocentric idea to gain... but once the right ideas even if *non-mainstream* gain a foothold, there is no turning back. Maybe functional programming has had a 80 year incubation. But things are changing (lambs in java!) and will never be the same again!
 
-### Session2: Haskell for everyday programmers, by Venkat Subramaniam
+### Session 2: Haskell for everyday programmers, by Venkat Subramaniam
+
+I will split between going for the Haskell session or the parallel Elm session. Since my work has been more and more away from UI I chose Haskell. However heard great feedback of the Elm session by many folks. Now waiting for the slides of that session to be up to check it out.
+
+The Haskell session was a runaway hit with Venkat giving a quick intro of the many aspects of the language using the ghci REPL. The key ideas learn/relearnt were of:  
+
+* polymorphic type
+* purity: functions cannot have side effect
+* memoization: the massive performance gain that may comes one way due to functional purity
+* order of program evaluation: normative vs. applicative
+
+### Session 3: 
+
  
