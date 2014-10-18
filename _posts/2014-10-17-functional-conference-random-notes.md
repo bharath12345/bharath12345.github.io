@@ -56,8 +56,19 @@ Eearlier in the day, the chief organiser of the conference, Naresh Jain, had des
 * The Haskell experience session was filled with anecdotes that the speaker, Aditya Godbole, recounted from his workplace (and elsewhere) of trying to bring in healthy-code practice.  
 
 #### Day 2, Session 1: The role of Fear in language adoption, by Bruce Tate
+Bruce Tate's book "Seven Languages in Seven Days" was probably the first book I bought on Kindle. I was looking forward to hear from this Guru of Java and Rails. The title added to the curiosity. Bruce kicked off the talk making some very thought provoking observations -
 
-
+* Fear and *Discovery* are intertwined
+* When fear lurks within the team, the commits go down!
+* Bruce went on to draw a parallel between Geoff Moore's celebrated 'Technology Adoption Curve' and called for the audience to think of language adoption on similar lines. Languages *die* in the chasm...
+* Just as frequency of technology waves frustrates businessmen, the frequency of language waves frustrates programmers (how many new languages did I come across so far in 2014 - Wolfram, Swift, Hack... and I can go on...)
+* Just like 'behaviour change' apps have a difficult time in adoption, significant syntax changed languages lose out in the mass programmer market. Java success due to its almost identical syntax to C is NOT incidental...
+* And then there are language adoption curves and *language paradigm* adoption curves. The curves for Procedural, OOPS and Functional are much deeper, wider and steeper
+* What are the *fears* for different consumers of languages:
+	* Paralysing Fear: Jobs, Cost
+	* Motivating Fear: Concurrency, Multi-core, Time-to-market
+* Now here is a question to all career programmers - how many more years do we want to program in the C/C++ style syntax??   
+* The next wave of language adoption will *NOT* be a big massive wave like Java. It will instead be a tsunami of many smaller waves composed of of the Scala's, Clojure's, Ruby's, Swift's and so many more...
 
 #### Day 2, Session 2: Functional programming using Dyalog, by Morten Kromberg
 
