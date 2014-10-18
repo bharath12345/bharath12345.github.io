@@ -71,6 +71,13 @@ Bruce Tate's book "Seven Languages in Seven Days" was probably the first book I 
 * The next wave of language adoption will *NOT* be a big massive wave like Java. It will instead be a tsunami of many smaller waves composed of of the Scala's, Clojure's, Ruby's, Swift's and so many more...
 
 #### Day 2, Session 2: Functional programming using Dyalog, by Morten Kromberg
+[APL](http://tryapl.org/). I had never heard about it. The name of Ken Iverson sounded familiar and in league with Alonzo Church, Alan Turing, Haskell Curry et al. But nothing more...
+
+And what an eye-opener it was! If there was a award for the most mind-blowing session, then this one won the 1st, 2nd and 3rd places!
+
+The language is beyond words that this humble writer can conjure up. It takes the idea of *functional* programming to an all new level is all I can say (and yet its not logic programming like Prolog or likes).
+
+However the story of Dyalog as a company and its business came across as not any less astonishing. To be in *software development* business for over 40 years, going through the many industry upheavals (mainframes -> unix/windows -> cloud) and solving some of the most difficult problems in all streams of engineering and yet remain totally unknown to most! Morten Kromberg, the CTO of Dyalog, had a interesting observation to share - "All engineers take to APL easily except the software engineers". That says it all about our education system. 
 
 #### Day 2, Session 3: Monads you already use, by Tejas Dinkar
 
