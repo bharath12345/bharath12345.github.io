@@ -71,7 +71,7 @@ Bruce Tate's book "Seven Languages in Seven Days" was probably the first book I 
 * The next wave of language adoption will *NOT* be a big massive wave like Java. It will instead be a tsunami of many smaller waves composed of of the Scala's, Clojure's, Ruby's, Swift's and so many more...
 
 #### Day 2, Session 2: Functional programming using Dyalog, by Morten Kromberg
-[APL](http://tryapl.org/). I had never heard about it. The name of Ken Iverson sounded familiar and in league with Alonzo Church, Alan Turing, Haskell Curry et al. But nothing more...
+[APL](http://tryapl.org/). I had never heard of it. The name of Ken Iverson sounded familiar and in league with Alonzo Church, Alan Turing, Haskell Curry et al. But nothing more...
 
 And what an eye-opener it was! If there was a award for the most mind-blowing session, then this one won the 1st, 2nd and 3rd places!
 
@@ -79,9 +79,11 @@ The language is beyond words that this humble writer can conjure up. It takes th
 
 However the story of Dyalog as a company and its business came across as not any less astonishing. To be in *software development* business for over 40 years, going through the many industry upheavals (mainframes -> unix/windows -> cloud) and solving some of the most difficult problems in all streams of engineering and yet remain totally unknown to most! Morten Kromberg, the CTO of Dyalog, had a interesting observation to share - "All engineers take to APL easily except the software engineers". That says it all about our education system. 
 
-#### Day 2, Session 3: Monads you already use, by Tejas Dinkar
+#### Day 2, Session 3: [Monads you already use](https://speakerdeck.com/gja/lightning-monads-you-already-use-without-knowing-it), by Tejas Dinkar
+Next was a lightening talk by Tejas on giving a (yet another!) perspective on Monads. In a delightfully constructed talk Tejas presented the idea through a box analogy and thereby trying to simplify the understanding of monads for list, IO etc. There would not be a functional programmer on the planet who has not heard/read at least one video/blog on Monads without scratching his head in disbelief. It takes a certain bravado to attempt presenting the topic to a roomful of programmers at the *functional* conference! And Tejas did a splendid job of it.  
 
 #### Day 2, Session 4: Purely functional data structures demystified, by Mohit Thatte
+
 
 #### Day 2, Session 5: Demystify functional jargons, by Mushtaq Ahmed
 
