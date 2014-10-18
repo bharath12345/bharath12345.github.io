@@ -14,7 +14,13 @@ The first 'Functional Conference' happened in Bangalore between Oct 9-11. I had 
 With two parallel tracks happening in the conferences listeners had to choose one. I came up with my own shortlist and this is a blog on the sessions I attended. 
 
 #### Day 1, Session 1: The Keynote, by Venkat Subramaniam
-Venkat is as fabulous a speaker/presenter as he is writer/thinker. The theme of his keynote was an elaboration on the idea of **mainstream**. Why did it take many centuries for heliocentricity to gain acceptance over the *mainstream* idea of geocentricity? Why did it take many centuries for well meaning doctors to accept the existence microbial *germs* as the cause of diseases over widely held *mainstream* theories? **Mainstream** in the world of programming is OOP with Java and C++. They are not necessarily as false idol's as the other examples. However that *non-mainstream* is generally not even introduced in colleges and software engineers have proceeded to long careers without even basic understanding of other approaches is sad indeed. Venkat drew the attention of the audience that things were nevertheless changing. Maybe it took a long incubation for the geocentric idea to gain... but once the right ideas even if *non-mainstream* gain a foothold, there is no turning back. Maybe functional programming has had a 80 year incubation. But things are changing (lambs in java!) and will never be the same again!
+Venkat is as fabulous a speaker/presenter as he is writer/thinker. The theme of his keynote was an elaboration on the idea of **mainstream**. Why did it take many centuries for heliocentricity to gain acceptance over the *mainstream* idea of geocentricity? Why did it take many centuries for well meaning doctors to accept the existence microbial *germs* as the cause of diseases over widely held *mainstream* theories? **Mainstream** in the world of programming is OOP with Java and C++. They are not necessarily as false idol's as the other examples. However that *non-mainstream* is generally not even introduced in colleges and software engineers have proceeded to long careers without even basic understanding of other approaches is sad indeed. Venkat drew the attention of the audience that things were nevertheless changing. Maybe it took a long incubation for the geocentric idea to gain... but once the right ideas even if *non-mainstream* gain a foothold, there is no turning back. Maybe functional programming has had a 80 year incubation. After all it took 22 years for even OOPS to become *mainstream*. But things are changing (lambs in java!) and will never be the same again! 
+
+Favorite language?
+none. language are like vehicles. we sometime use a car and sometimes a flight, don't we!?
+
+Does language shape thought or though shape language?
+Its both ways!
 
 #### Day 1, Session 2: Haskell for everyday programmers, by Venkat Subramaniam
 I will split between going for the Haskell session or the parallel Elm session. Since my work has been more and more away from UI I chose Haskell. However heard great feedback of the Elm session by many folks. Now waiting for the slides of that session to be up to check it out.
@@ -22,9 +28,10 @@ I will split between going for the Haskell session or the parallel Elm session. 
 The Haskell session was a runaway hit with Venkat giving a quick intro of the many aspects of the language using the ghci REPL. The key ideas learn/relearnt were of:  
 
 * polymorphic type
-* purity: functions cannot have side effect
+* purity: functions cannot have side effect. and purity always means thread-safety!
 * memoization: the massive performance gain that may comes one way due to functional purity
 * order of program evaluation: normative vs. applicative
+* expressions vs. statements. statements promote mutability that one cannot escape. expressions are the opposite
 
 #### Day 1, Session 3: [Functional programming in large scale data processing](https://speakerdeck.com/kishore/applying-functional-programming-principles-to-large-scale-data-processing), by Kishore Nallan
 My day job is programming in Scala to build a *large scale data processing* platform. So choosing this session from a fellow traveler was natural. Kishore described the journey at Indix to build a web-scale product catalog by crawling and indexing the internet. The story behind their adoption of the Lambda Architecture. The benefits of using a log-structured database as first port of store than a *continuously mutating* RDBMS or column store. Indix is a huge Hadoop shop with continuous jobs to persist data, aggregate it and run both ritual and ad-hoc queries. It was a fascinating talk giving a peek into what must be a very exciting product to develop.
@@ -40,11 +47,17 @@ I have been an avid reader of Debasish Ghosh's blog and books. They are rich bot
 
 The talk also included a intro to dependenty-types and parametric polymorphism. One key takeaway of listening to new people often is coming to know of new books - and after this session "Theorems for free!" by Phil Wadler got added to my ToRead list!  
 
-#### Day 1, Session 6: Straddling 2 sessions - Clojurescript & Om, and Code Jugalbandi
+#### Straddling sessions - Session 6: Clojurescript & Om, and Code Jugalbandi. Session 7: Functional Groovy, and Learning from Haskell
+Eearlier in the day, the chief organiser of the conference, Naresh Jain, had described what was called "law of two feet" - the law basically asks you to get the most out of the conference by walking to the sessions even in-between, if required. Unable to decide which session to stay in for the last two sessions I decided to use this law!
 
-#### Day 1, Session 7: Straddling 2 sessions - Functional Groovy, and Learning from Haskell
+* Om is a library for ClojureScript programmers. Vagmi provided a [breezy intro](http://www.slideshare.net/vagmi/pragmatic-functional-programming-in-the-js-land-with-clojurescript-and-om) to why ClojureScript makes React.js faster. And finally, why and how does Om make ClojureScript faster by giving an example of DOM diffing and the showComponentUpdate() call
+* [Code Jugalbandi](http://www.codejugalbandi.org) was a very interesting act between two programmers (Brahma and Krishna) to showcase interesting features like currying and pattern matching. It was a breath of fresh air to the otherwise usual way of sessions in a conference 
+* Groovy is a dynamic language on the JVM. Since I have never programmed in Groovy I was pleasantly surprised with its many capabilities in functional programming showcased by Naresha. 
+* The Haskell experience session was filled with anecdotes that the speaker, Aditya Godbole, recounted from his workplace (and elsewhere) of trying to bring in healthy-code practice.  
 
 #### Day 2, Session 1: The role of Fear in language adoption, by Bruce Tate
+
+
 
 #### Day 2, Session 2: Functional programming using Dyalog, by Morten Kromberg
 
