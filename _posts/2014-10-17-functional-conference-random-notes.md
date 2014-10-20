@@ -4,14 +4,12 @@ title: "Functional Conference: Random Notes..."
 category: posts
 tags: []
 categories: []
-published: false
+published: true
 tweetfb: true
 disqus: true
 ---
 
-The first 'Functional Conference' happened in Bangalore between Oct 9-11. I had been keenly looking forward to it. This is a quick post on the sessions I attended and the conference itself. 
-
-As the lineup of speakers and topics shaped up in the buildup to the conference, it heightened my expectations. As a younger engineer I have gone through the cycle of expecting too much from conferences and thus not being able to learn sufficiently what was on offer. Time has had a mellowing effect... I find it much better to keep an open mind and try to absorb all that is on offer. And then, a little later, retain only thats useful/pertinent. With that mindset and approach I found 'Functional Conference' a useful engineering experience - plenty of technical richness to absorb and sufficient ideas to retain for long.
+The first '[Functional Conference](http://functionalconf.com/)' happened in Bangalore between Oct 9-11. I had been keenly looking forward to it. This is a quick post on the sessions I attended and the conference itself. As the lineup of speakers and topics shaped up in the buildup to the conference on their website, it heightened my expectations. As a younger engineer I have gone through the cycle of expecting too much from conferences and thus not being able to learn sufficiently from that which was on offer. Time has had a mellowing effect... I find it much better to keep an open mind and try to absorb all that is on offer. And then, a little later, retain only that which is useful/pertinent. With that mindset and approach I found 'Functional Conference' a very fulfilling technology experience - plenty of technical richness to absorb and sufficient ideas to retain for long.
 
 #### Day 1, Session 1: The Keynote, by Venkat Subramaniam
 Venkat is as fabulous a speaker/presenter as he is writer/thinker. The theme of his keynote was an elaboration on the idea of **mainstream**. Why did it take many centuries for heliocentricity to gain acceptance over the *mainstream* idea of geocentricity? Why did it take many centuries for well meaning doctors to accept the existence microbial *germs* as the cause of diseases over other widely held *mainstream* theories? **Mainstream** in the world of programming is OOP in the style of Java and C++. They may not be false idol's after all. However that *non-mainstream* is generally not even introduced in colleges and software engineers have proceeded to long careers without even basic understanding of other programming approaches is sad indeed. Venkat drew the attention of the audience that things were nevertheless changing. Maybe it took a long incubation for the geocentric idea to gain... but once the right ideas, even if *non-mainstream*, gain a foothold, there is no turning back. Maybe functional programming has had a 80 year incubation! After all it took 22 years for even OOPS to become *mainstream*. But things are changing (lambdas in java!) and will never be the same again! 
@@ -106,3 +104,6 @@ Daniel is the author of multiple books in the iOS Apps world. In earlier life, h
 Daniel urged us to think how we *learn*. And thereby also think about how we *teach*. We don't learn by knowing the rules. We don't learn when someone tells us a definition of something. We learn by realising things bit-by-bit. We learn by building small things and making them bigger. We learn by looking at things built by others. We learn slowly. We learn more by observation than by anything else. And Daniel taught this to a roomful of adults. By showing us Donald Duck cartoons and explaining us pythagoras theorem. I became a dad just few weeks ago - And I can only thank Daniel for this talk. I learnt immensely.  
 
 #### Epilogue
+In between the sessions I had a chance to meet and discuss with Kishore Nallan, Debasis Ghosh, Venkat Subramaniam and many others. Except ThoughtWorks I don't think the conference had many representatives from the established big companies - which in itself was a boon as I got to hear and know so much happening in the startup/small-company world (that smaller companies are riding the wave of newer technologies must come as a no surprise). The value of a conference does not lie just in the sessions but also in realising a few things like these iin-between. I also ran into some of my old acquaintances and it was every second worth of my time to come to know of their new technical endeavours and the fate/trajectory of those that we shared long ago!
+
+**Functional Conference was a wonderful conference. Am glad that I was there.**
