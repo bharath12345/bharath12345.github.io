@@ -97,3 +97,12 @@ Scala has been called the "Grand unification of all programming languages". It h
 But it pays great dividends to dive-in a little deep to understand just *how* Scala provides this *grand-unification*. Thats where real illumination is. How can functions be first-class objects? How does pattern-matching happen under the hood? The idea behind algebraic data types? How can using the mere term *sealed* lead to exhaustiveness checking leading to much higher type-checking kick-in at compile-time? How do mixins works? Rahul had it all covered.
 
 #### Day 2, Session 7: Methodologies, Mathematics, and the Metalinguistic Implications of Swift, by Daniel Steinberg
+How do we learn? Did we really learn programming when we first read a programming book? In my case, the first programming book I came across was, probably, 'C Programming' K&R. And I did not learn a think even after months of reading and even typing the code in first few chapters!
+
+So, how do we learn? Lets leave programming for a moment. How did we learn math? How did we learn geometry? Were we able to *see* the problems and solutions? For example, did the area of a triangle just always mean, half multiplied by base multiplied by height, so much so that we proceeded to find the area of a triangle with sides {2,3,5}, OR we could *see* why/how the triangle's area was so?
+
+Daniel is the author of multiple books in the iOS Apps world. In earlier life, he had been a math teacher at high school. And he came across as a fabulous father to his young, learnful kids.
+
+Daniel urged us to think how we *learn*. And thereby also think about how we *teach*. We don't learn by knowing the rules. We don't learn when someone tells us a definition of something. We learn by realising things bit-by-bit. We learn by building small things and making them bigger. We learn by looking at things built by others. We learn slowly. We learn more by observation than by anything else. And Daniel taught this to a roomful of adults. By showing us Donald Duck cartoons and explaining us pythagoras theorem. I became a dad just few weeks ago - And I can only thank Daniel for this talk. I learnt immensely.  
+
+#### Epilogue
