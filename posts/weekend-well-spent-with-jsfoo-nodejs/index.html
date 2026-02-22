@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>Weekend well spent with JSFoo & NodeJS - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<section class="content">
+    <script type="text/javascript">
+        var pageTitle = "Weekend well spent with JSFoo & NodeJS";
+        var pageType = "post";
+    </script>
+
+    <h2>
+        <a href="https://bharath12345.github.io/posts/weekend-well-spent-with-jsfoo-nodejs/">Weekend well spent with JSFoo & NodeJS</a>
+    </h2>
+
+
+    <section class="byline">
+        Tue 24 September 2013
+    </section>
+    <hr>
+
+    <article>
+        <p>Had been to the wonderful JavaScript conference <a href="https://funnel.hasgeek.com/jsfoo2013/">JSFoo</a> last week. The tremendous enthusiasm in the web development community for server side JavaScript was all at display. Personally, I have spent a lot of time coding visualizations with JavaScript. However only recently did I write some tidbits of code with NodeJS. And I hadn't spent any time properly studying it. The conference has spurred me to do better. I started reading NodeJS and working on a small project to create my first non-trivial NodeJS application (which I shall share in this blog). But those details are for a little later… let me start with JSFoo…</p>
+<div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#jsfoo">JSFoo</a></li>
+<li><a href="#the-making-of-two-blogs">The making of two blogs…</a></li>
+<li><a href="#bharathwritesin">bharathwrites.in</a></li>
+<li><a href="#bharathblogsin">bharathblogs.in</a></li>
+</ul>
+</div>
+<h4 id="jsfoo">JSFoo</h4>
+<p>Me being a little bit of computer science fundamentalist have looked upon those doing web development with a little skepticism. Do they really get the data-structures? Complexity of algorithms? Well, those those questions were put to rest by the many speakers at the conference forever. NodeJS might not be in production in a big way as of now. But there is no doubting the quality of people behind it. The design and frameworks are still in the makes… but quality people from the developer community are lapping it up. And the industry is not to be left behind… Of all, Microsoft and Adobe were among those sponsoring the event - Microsoft (with its .Net dream fading slowly) was busy showing off IE10 while Adobe seems to be on its way to burying flash and flex with investments to build open-source JavaScript frameworks… </p>
+<p>For me the conference started on a beautiful note. It had to do with the Mozilla foundation. It was awesome of Mozilla to have brought in such a wonderful contingent for the meet. My first love has always been Firefox. I do all my development on Firefox. Coming to know that Chris Heilmann was among those in the hall made me smile within myself.</p>
+<p>Now coming to the few talks that will stay with me…</p>
+<ul>
+<li>
+<p><a href="http://robertnyman.com/">Robert Nyman</a> was among the first speakers. He spoke on the upcoming FirefoxOS for mobile devices. I had my first brush with FirefoxOS at the Wikipedia hackathon and have spent some time with it. Android definitely needs another open-source competitor. With a JavaScript API platform, one hopes, FirefoxOS will catch on with the larger community of web developers. The next step for smartphones is to be able to support 1000s of lightweight apps. I hope that race gets kickstarted with FirefoxOS (there is already a nice '<em>search app</em>' facility in FirefoxOS which tells me they have their marker in the right direction!)</p>
+</li>
+<li>
+<p>I was really looking forward to listening to <a href="http://christianheilmann.com/">Christian Heilmann</a>. And his choice of topic did not let me down. In his talk he urged the web developers to study HTML5. Developers continue to use shims and jQuery plugin's unnecessarily - the features they look for have made their way into the specs and should be available by default (full screen API as a case for point). Browsers are claiming HTML5 support without fully implementing the specs - and in this situation it becomes the job of the developers to pound on the doors of the browser developers (file bugs) if any part of the spec is unimplemented or glossed over. Personally, let me admit - I have never read a book on HTML5 (for that matter I don't remember if I have ever read any book on HTML at all). If someone had suggested reading a book on HTML5 before this talk I would have responded by saying that I find the W3C resources on the web quite sufficient. But now, after listening to Chris, I know why my thinking is wrong.</p>
+</li>
+<li>
+<p>One of the talks that blew my mind was that by <a href="http://www.nileshtrivedi.com/">Nilesh Trivedi</a> on Interactive Physics Simulations. I would have to watch the video of Nilesh's talk many times over to grasp all that he said. And to build the application that he has without using any pre-built frameworks is absolutely astounding! If you are a C/Java programmer with a liking for theory of computing like me, then, there you have it - there are people like Nilesh in the JavaScript world! </p>
+</li>
+<li>
+<p>The two workshops that I went to were both superbly conducted. <a href="http://bharani.herokuapp.com/">Bharani Muthukumarswamy</a> introduced me to MeteorJS (and made me promise to myself to try it soon). And in the other workshop <a href="https://github.com/panbhag">Pankaj Bhageria</a> made me construct the server side of a JavaScript app step-by-step. Both made me code. And I enjoyed it thoroughly.</p>
+</li>
+<li>
+<p>Other good talks included the one by Om Shankar on WebRTC, Offline Apps by Manan Bharara, Persona based authentication system (newly being brought by Mozilla) by Francois Marier and the preview of developer tools for the upcoming IE10 by <a href="http://blogorama.nerdworks.in/">Rajasekharan Vengalil</a>.</p>
+</li>
+</ul>
+<p>Before I end my note on JSFoo I must express my <em>Thanks</em> to HasGeek. I had been to the Fifth Elephant few months ago and now JSFoo. I must congratulate them for filling what was a definite need among the developer community. Yes we now have www.meetup.com and other hackathons happening ever more regularly. But the Indian software community and developers in particular need more interaction. I have come to learn about so many wonderful small companies and people through these two conferences that I have lost count. <em>Thank you HasGeek!</em></p>
+<hr>
+
+<h4 id="the-making-of-two-blogs">The making of two blogs…</h4>
+<p>A decade ago I had a blogspot blog. I used it for a couple of years. Then got tired of it and created a new one on WordPress. But never felt like writing anything of substance on it. With my hacker like attitude (even back then), I always detested the way these blogs looked, the URL itself and many such things. Buying web-server space for hosting a blog felt plain wrong. So a year ago when I came to know of GitHub Pages I decided to try it as soon as I could. GitHub is the ideal platform for engineers to blog. Jekyll is super easy to learn. And for those with version control in their bloodstream and daydreams, Git feels so nice. So I bought my domain name (for less than Rs. 200!) and got started a couple of months ago. And though the blog is not close to what I want it to look like, it still feels so much better than blogspot…</p>
+<p>But then that was till last week. One thing that I did not like with GitHub Pages was Ruby. I don't know Ruby. And I have no inclination to learn it. So when I had to understand Gems and Rake it did not feel good. When I got a couple of error emails from GitHub saying that the blog build had failed, it felt worse (though the problems itself were trivial to fix)…</p>
+<p>I knew I could use Heroku and host the blog as a NodeJS application while simultaneously putting it in on GitHub. That would give me <strong>server side control</strong>. And a SQL database! And a NoSql database!! So last weekend, while attending the conference, I let the urge to take me over. I started chipping away with my first NodeJS blog app… it is in fairly good shape now… and so… I am happy to present - <a href="http://bharathblogs.in">http://bharathblogs.in</a>!!</p>
+<p>So what sense does it make to have two blogs? None. So what I am going to do? Keep both! Well, the domain name costs nothing. (And I like to build backup plans with my applications!)… The thing is, I have built both and the code is almost identical. So why dismantle either anyway...? </p>
+<p>Now here is a quick primer to how and what of building both these...</p>
+<hr>
+
+<h4 id="bharathwritesin">bharathwrites.in</h4>
+<p>The components -</p>
+<ul>
+<li>GitHub pages for hosting</li>
+<li>Jekyll for static blog generation</li>
+<li>Grunt for JS minify (see the Gruntfile.js for complete list of tasks)</li>
+<li>Twitter Bootstrap, FontAwesome for the blog's look and feel</li>
+<li>Posts use various JavaScript frameworks like Dojo, jQuery, Angular, D3, Stack etc</li>
+</ul>
+<hr>
+
+<h4 id="bharathblogsin">bharathblogs.in</h4>
+<p>The components -</p>
+<ul>
+<li>Heroku for hosting</li>
+<li>GitHub for version control</li>
+<li>NodeJS as the server side platform</li>
+<li><a href="http://jsantell.github.io/poet">Poet</a> as the blogging framework</li>
+<li>Grunt for JS minify (see the Gruntfile.js for complete list of tasks)</li>
+<li>Twitter Bootstrap, FontAwesome for the blog's look and feel (etc)</li>
+<li>Posts use various JavaScript frameworks like Dojo, jQuery, Angular, D3, Stack etc</li>
+</ul>
+<p>Now I plan to slowly add more functionality to the server-side of my NodeJS blog app. Probably scrape a few RESTful data sources on the web that is of interest to me and hopefully that of my visitors. Start using the Heroku provided MongoDB. And so on… one sad thing is Heroku does not support WebSockets… Else I had couple of interesting ideas for that one. (And one of these days I will probably swap bharathwrites.in to be hosted from Heroku and bharathblogs.in from GitHub pages… want to hack on my NodeJS blog a lot and I like the bharathwrites.in url better) </p>
+    </article>
+
+    <hr>
+
+    <div class="category">
+        <strong>Category:</strong>
+        <a href="https://bharath12345.github.io/category/posts.html" class="badge bg-primary">posts</a>
+    </div>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>

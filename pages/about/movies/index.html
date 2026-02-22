@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>My Twitter Timeline - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<!-- About Section Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aboutNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="aboutNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/">Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://bharath12345.github.io/pages/about/travel/">Travel</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://bharath12345.github.io/pages/about/slideshare/">Slideshare</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://bharath12345.github.io/pages/about/resources/">ಕಗ್ಗ</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="content">
+    <h2>My Twitter Timeline</h2>
+
+
+    <article>
+        <h1 id="movies">Movies</h1>
+<ul>
+<li>I love non-fiction. And even if they are fictional, I love movies that leave me feeling better about the world and myself - uplifting sort…</li>
+<li>The order below is completely random. By no means can I rank them.</li>
+<li>These are the movies that I dont mind watching again after every few years... (there are other movies like Batman that I have liked but I dont carry a strong urge to see them again)</li>
+<li>I do not have a liking for slapstick comedy or horror</li>
+</ul>
+<h3 id="english">English</h3>
+<div class="container">
+    <div class="row movierow">
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0416449/">
+                <img class="movieimg" src="/images/films/300.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0268978/">
+                <img class="movieimg" src="/images/films/a beautiful mind.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0074119/">
+                <img class="movieimg" src="/images/films/all the presidents men.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0472043/">
+                <img class="movieimg" src="/images/films/apocalypto.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt1024648/">
+                <img class="movieimg" src="/images/films/argo.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0450259/">
+                <img class="movieimg" src="/images/films/blood diamond.jpg"/>
+            </a>
+        </div>
+    </div>
+    <div class="row movierow">
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0315327/">
+                <img class="movieimg" src="/images/films/bruce almighty.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0162222/">
+                <img class="movieimg" src="/images/films/cast away.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0472062/">
+                <img class="movieimg" src="/images/films/charlie wilsons war.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt1034303/">
+                <img class="movieimg" src="/images/films/defiance.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0870111/">
+                <img class="movieimg" src="/images/films/frost nixon.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0083987/">
+                <img class="movieimg" src="/images/films/gandhi.jpg"/>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0172495/">
+                <img class="movieimg" src="/images/films/gladiator.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0395169/">
+                <img class="movieimg" src="/images/films/hotel rwanda.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt1645089/">
+                <img class="movieimg" src="/images/films/inside job.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt1057500/">
+                <img class="movieimg" src="/images/films/invictus.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0498380/">
+                <img class="movieimg" src="/images/films/letters from iwo jima.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0443272/">
+                <img class="movieimg" src="/images/films/lincoln.jpg"/>
+            </a>
+        </div>
+    </div>
+    <div class="row movierow">
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt1615147/">
+                <img class="movieimg" src="/images/films/margin call.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt1210166/">
+                <img class="movieimg" src="/images/films/moneyball.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0408306/">
+                <img class="movieimg" src="/images/films/munich.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0132477/">
+                <img class="movieimg" src="/images/films/october sky.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0120815/">
+                <img class="movieimg" src="/images/films/saving private ryan.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0108052/">
+                <img class="movieimg" src="/images/films/schindlers list.jpg"/>
+            </a>
+        </div>
+    </div>
+    <div class="row movierow">
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt2125608/">
+                <img class="movieimg" src="/images/films/searching for the sugarman.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0050212/">
+                <img class="movieimg" src="/images/films/the bridge on the river kwai.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt1504320/">
+                <img class="movieimg" src="/images/films/the kings speech.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0455590/">
+                <img class="movieimg" src="/images/films/the last king of scotland.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0454921/">
+                <img class="movieimg" src="/images/films/the pursuit of happiness.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0111161/">
+                <img class="movieimg" src="/images/films/the shawshank redemption.jpg"/>
+            </a>
+        </div>
+    </div>
+    <div class="row movierow">
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0362227/">
+                <img class="movieimg" src="/images/films/the terminal.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0120863/">
+                <img class="movieimg" src="/images/films/the thin red line.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0412080/">
+                <img class="movieimg" src="/images/films/the worlds fastest indian.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0146309/">
+                <img class="movieimg" src="/images/films/thirteen days.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt2083383/">
+                <img class="movieimg" src="/images/films/trouble with the curve.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0985699/">
+                <img class="movieimg" src="/images/films/valkyrie.jpg"/>
+            </a>
+        </div>
+    </div>
+    <div class="row movierow">
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0094291/">
+                <img class="movieimg" src="/images/films/wall street.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0393162/">
+                <img class="movieimg" src="/images/films/coach carter.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0109830/">
+                <img class="movieimg" src="/images/films/forrest gump.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0119217/">
+                <img class="movieimg" src="/images/films/goodwill hunting.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0112384/">
+                <img class="movieimg" src="/images/films/apollo_thirteen.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0349825/">
+                <img class="movieimg" src="/images/films/miracle.jpg"/>
+            </a>
+        </div>
+    </div>
+    <div class="row movierow">
+        <div class="col-md-2">
+            <a class="movieimg" href="http://www.imdb.com/title/tt0210945/">
+                <img class="movieimg" src="/images/films/remember the titans.jpg"/>
+            </a>
+        </div>
+    </div>
+</div>
+
+<h3 id="hindi">Hindi</h3>
+<h3 id="kannada">Kannada</h3>
+    </article>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+<script type="text/javascript">
+    var pageType = "about";
+    var pageTitle = pageType;
+</script>
+</body>
+</html>

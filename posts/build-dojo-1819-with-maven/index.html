@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>Build Dojo 1.7/1.8/1.9 with Maven - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<section class="content">
+    <script type="text/javascript">
+        var pageTitle = "Build Dojo 1.7/1.8/1.9 with Maven";
+        var pageType = "post";
+    </script>
+
+    <h2>
+        <a href="https://bharath12345.github.io/posts/build-dojo-1819-with-maven/">Build Dojo 1.7/1.8/1.9 with Maven</a>
+    </h2>
+
+
+    <section class="byline">
+        Thu 18 July 2013
+    </section>
+    <hr>
+
+    <article>
+        <p>I have been a Dojo user for many years now. Also use many JavaScript libraries (jQuery, backbone, bootstrap, D3, highsoft) all the while but Dojo is what I really love. I would not embark on any "professional" development work without being armed with Dojo. But I rest my opinions and comparisons of different JS libraries for a different blog. Here the context is to "build" Dojo. After all every professional project should do a build of their JS - compilers like Google Closure can find bugs, obfuscate and eventually make execution faster.</p>
+<div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#task-1-installing-dojo-in-maven-repository-and-unpack-task">Task 1: Installing Dojo in Maven Repository and Unpack Task</a></li>
+<li><a href="#task-2-move-dojo-sources">Task 2: Move Dojo sources</a></li>
+<li><a href="#task-3-build-dojo">Task 3: Build Dojo</a></li>
+<li><a href="#task-4-the-dojo-profile">Task 4: The Dojo Profile</a></li>
+<li><a href="#task-5-clean-the-uncompressed-javascript">Task 5: Clean the Uncompressed JavaScript</a></li>
+<li><a href="#task-6-copy-other-javascript-libraries">Task 6: Copy Other JavaScript libraries</a></li>
+<li><a href="#task-7-a-fast-build-profile">Task 7: A fast build profile</a></li>
+</ul>
+</div>
+<p>I still am mainly a Java programmer (the enterprise products I have built are predominantly in Java… time split between Java/JavaScript may be 70/30). So am used to Maven as my primary build tool. And Maven I shall use to build Dojo.</p>
+<p>Folks who have not tried to build Dojo should probably start-off by reading these two articles -</p>
+<ul>
+<li><a href="http://dojotoolkit.org/documentation/tutorials/1.9/build/">Creating Builds</a> from Dojo documentation</li>
+<li><a href="http://www.mahieu.org/?p=3">Creating custom Dojo builds in Maven</a> </li>
+</ul>
+<p>The last article is very good but slightly dated. And here is what I propose to add to it -</p>
+<ol>
+<li>Use dojo v1.9 (v1.8 and v1.7 with AMD should also work perfectly)</li>
+<li>I use WebStorm as my JavaScript IDE. It has excellent contextual support including that for Dojo. However, it requires Dojo to be at a constant referencable path from where it could index. Once the indexes are built, typing a "." after an object should show up the list of methods and variables belonging to that object. This is extremely useful for fast development</li>
+<li>Dojo builds are slow. A typical build from source download to unzip to compile to build WAR can take anywhere between 5 to 15 minutes. This can be painful and needs to be made faster</li>
+</ol>
+<p>Now, here is the how…</p>
+<h4 id="task-1-installing-dojo-in-maven-repository-and-unpack-task">Task 1: Installing Dojo in Maven Repository and Unpack Task</h4>
+<p>This is no different from the Step 1 &amp; 2 in Mahieu blog. The unzipped sources are placed in src/main/js of my maven hierarchy. I dont do any renaming of this directory.</p>
+<h4 id="task-2-move-dojo-sources">Task 2: Move Dojo sources</h4>
+<p>The unpack task unzips the dojo sources in "src/main/js/dojo-release-${dojo.version}-src" directory. This is okay but not good for repeated builds. I would like a structure like shown in the picture below - all my JS libraries under src/main/js. </p>
+<p><img alt="image" src="https://raw.github.com/bharath12345/bharath12345.github.io/master/images/dojo%20blog/dojo%20blog%20structure.png"> </p>
+<p>This structure helps in one major way - it helps my WebStorm IDE to index the JS. The Dojo JS are always in "src/main/js" alongwith other libraries and WebStorm understands this very well!</p>
+<p>I use antrun for its ability to run <strong>parallel copy tasks</strong> - parallelism helps in making the build much faster. And I <strong>delete</strong> the original unzipped directory at the end.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>maven-antrun-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;executions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;execution&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>Copy<span class="w"> </span>Dojo<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;configuration&gt;</span>
+<span class="w">                </span><span class="nt">&lt;tasks&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;parallel&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;copy</span> <span class="na">todir=</span><span class="s">&quot;</span><span class="cp">${</span><span class="n">js</span><span class="o">-</span><span class="nb">dir</span><span class="cp">}</span><span class="s">/&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;fileset</span> <span class="na">dir=</span><span class="s">&quot;</span><span class="cp">${</span><span class="n">dojoSrc</span><span class="cp">}</span><span class="s">&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;include</span> <span class="na">name=</span><span class="s">&quot;dijit/&quot;/</span><span class="nt">&gt;</span>
+<span class="w">                           </span><span class="nt">&lt;/fileset&gt;</span>
+<span class="w">                       </span><span class="nt">&lt;/copy&gt;</span>
+<span class="w">                       </span><span class="nt">&lt;copy</span> <span class="na">todir=</span><span class="s">&quot;</span><span class="cp">${</span><span class="n">js</span><span class="o">-</span><span class="nb">dir</span><span class="cp">}</span><span class="s">/&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;fileset</span> <span class="na">dir=</span><span class="s">&quot;</span><span class="cp">${</span><span class="n">dojoSrc</span><span class="cp">}</span><span class="s">&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;include</span> <span class="na">name=</span><span class="s">&quot;dojox/&quot;/</span><span class="nt">&gt;</span>
+<span class="w">                           </span><span class="nt">&lt;/fileset&gt;</span>
+<span class="w">                       </span><span class="nt">&lt;/copy&gt;</span>
+<span class="w">                       </span><span class="nt">&lt;copy</span> <span class="na">todir=</span><span class="s">&quot;</span><span class="cp">${</span><span class="n">js</span><span class="o">-</span><span class="nb">dir</span><span class="cp">}</span><span class="s">/&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;fileset</span> <span class="na">dir=</span><span class="s">&quot;</span><span class="cp">${</span><span class="n">dojoSrc</span><span class="cp">}</span><span class="s">&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;include</span> <span class="na">name=</span><span class="s">&quot;dojo/&quot;/</span><span class="nt">&gt;</span>
+<span class="w">                           </span><span class="nt">&lt;/fileset&gt;</span>
+<span class="w">                       </span><span class="nt">&lt;/copy&gt;</span>
+<span class="w">                       </span><span class="nt">&lt;copy</span> <span class="na">todir=</span><span class="s">&quot;</span><span class="cp">${</span><span class="n">js</span><span class="o">-</span><span class="nb">dir</span><span class="cp">}</span><span class="s">/&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;fileset</span> <span class="na">dir=</span><span class="s">&quot;</span><span class="cp">${</span><span class="n">dojoSrc</span><span class="cp">}</span><span class="s">&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;include</span> <span class="na">name=</span><span class="s">&quot;util/&quot;/</span><span class="nt">&gt;</span>
+<span class="w">                           </span><span class="nt">&lt;/fileset&gt;</span>
+<span class="w">                       </span><span class="nt">&lt;/copy&gt;</span>
+<span class="w">                   </span><span class="nt">&lt;/parallel&gt;</span>
+<span class="w">                   </span><span class="nt">&lt;delete</span> <span class="na">dir=</span><span class="s">&quot;</span><span class="cp">${</span><span class="n">dojoSrc</span><span class="cp">}</span><span class="s">&quot;</span> <span class="na">quiet=</span><span class="s">&quot;true&quot;/</span><span class="nt">&gt;</span>
+<span class="w">               </span><span class="nt">&lt;/tasks&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="w">            </span><span class="nt">&lt;phase&gt;</span>process-sources<span class="nt">&lt;/phase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;goals&gt;</span>
+<span class="w">                </span><span class="nt">&lt;goal&gt;</span>run<span class="nt">&lt;/goal&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/goals&gt;</span>
+<span class="w">       </span><span class="nt">&lt;/execution&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/executions&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div>
+
+<h4 id="task-3-build-dojo">Task 3: Build Dojo</h4>
+<p>For this again, I use the antrun plugin. This build leads to creation of dojo/dijit/dojox directories under src/main/js.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>maven-antrun-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;executions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;execution&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>AppsOne<span class="w"> </span>dojo<span class="w"> </span><span class="cp">${</span><span class="n">dojo</span><span class="o">.</span><span class="n">version</span><span class="cp">}</span><span class="w"> </span>Custom<span class="w"> </span>Build<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;phase&gt;</span>compile<span class="nt">&lt;/phase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;configuration&gt;</span>
+<span class="w">                </span><span class="nt">&lt;tasks&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;parallel&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;java</span> <span class="na">classname=</span><span class="s">&quot;org.mozilla.javascript.tools.shell.Main&quot;</span>
+                    <span class="na">fork=</span><span class="s">&quot;true&quot;</span> <span class="na">maxmemory=</span><span class="s">&quot;512m&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;false&quot;</span>
+                    <span class="na">classpath=</span><span class="s">&quot;</span><span class="cp">${</span><span class="n">shrinksafe</span><span class="o">-</span><span class="nb">dir</span><span class="cp">}</span><span class="s">/js.jar</span><span class="cp">${</span><span class="n">path</span><span class="o">.</span><span class="n">separator</span><span class="cp">}${</span><span class="n">closure</span><span class="o">-</span><span class="nb">dir</span><span class="cp">}</span><span class="s">/compiler.jar</span><span class="cp">${</span><span class="n">path</span><span class="o">.</span><span class="n">separator</span><span class="cp">}${</span><span class="n">shrinksafe</span><span class="o">-</span><span class="nb">dir</span><span class="cp">}</span><span class="s">/shrinksafe.jar&quot;</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;</span><span class="cp">${</span><span class="n">js</span><span class="o">-</span><span class="nb">dir</span><span class="cp">}</span><span class="s">/dojo/dojo.js&quot;/</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;baseUrl=</span><span class="cp">${</span><span class="n">js</span><span class="o">-</span><span class="nb">dir</span><span class="cp">}</span><span class="s">/dojo&quot;/</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;load=build&quot;/</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;arg</span> <span class="na">line=</span><span class="s">&quot;--profile </span><span class="cp">${</span><span class="n">basedir</span><span class="cp">}</span><span class="s">/dashboard.profile.js&quot;/</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;--release&quot;/</span><span class="nt">&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/java&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/parallel&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/tasks&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="w">            </span><span class="nt">&lt;goals&gt;</span>
+<span class="w">                </span><span class="nt">&lt;goal&gt;</span>run<span class="nt">&lt;/goal&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/goals&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/execution&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/executions&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div>
+
+<h4 id="task-4-the-dojo-profile">Task 4: The Dojo Profile</h4>
+<p><a href="https://github.com/bharath12345/uiDashboard/blob/master/uiJS/dashboard.profile.js">This is the link</a> to the profile script I use. It has a lot of comments for the reader to understand. One can find a lot of options to tune the Dojo build by specifying options in the profile. The profile specifies thus -</p>
+<ul>
+<li>I name my JS project as "Dashboard" - so I want the built artifacts to be in the target/dashboard directory</li>
+<li>Use the closure compiler</li>
+<li>I use both dgrid and gridx in my project along with its dependencies (xstyle, dbind, put-selector) - so those have to be included</li>
+<li>Including my project's JS - which are present in the "dashboard" directory and are AMD complying JS</li>
+<li>Finally I want to see less verbose prints on my console - so I set the logging level to SEVERE</li>
+</ul>
+<h4 id="task-5-clean-the-uncompressed-javascript">Task 5: Clean the Uncompressed JavaScript</h4>
+<p>Dojo build generates minimized JS. And in the process of doing so it retains the originial JS but renames them to have "uncompressed" in their filenames. This is useful for debugging purposes. But surely, we dont want these uncompressed JS to be part of the built WAR. It increases the size of the WAR (at least doubles it - taking it well above 50MB!). So, a task to remove these uncompressed JS from target directory is required. This maven stub does just that -</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="nt">&lt;plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>maven-clean-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>2.5<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;executions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;execution&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>clean-js<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;phase&gt;</span>prepare-package<span class="nt">&lt;/phase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;goals&gt;</span>
+<span class="w">                </span><span class="nt">&lt;goal&gt;</span>clean<span class="nt">&lt;/goal&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/goals&gt;</span>
+<span class="w">            </span><span class="nt">&lt;configuration&gt;</span>
+<span class="w">            </span><span class="nt">&lt;filesets&gt;</span>
+<span class="w">                </span><span class="nt">&lt;fileset&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;directory&gt;</span><span class="cp">${</span><span class="n">release</span><span class="o">-</span><span class="nb">dir</span><span class="cp">}</span>/dojo<span class="nt">&lt;/directory&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;includes&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;include&gt;</span>**/*uncompressed.js<span class="nt">&lt;/include&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/includes&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;followSymlinks&gt;</span>true<span class="nt">&lt;/followSymlinks&gt;</span>
+<span class="w">               </span><span class="nt">&lt;/fileset&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="w">         </span><span class="nt">&lt;/execution&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/executions&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div>
+
+<h4 id="task-6-copy-other-javascript-libraries">Task 6: Copy Other JavaScript libraries</h4>
+<p>By now, the "target/dashboard/js" has all the dojo sources along with project specific built in it. The next task is to copy other JS library dependencies. In my project, I typically use D3, jQuery and jsPlumb. So here is I copy them into this directory into maven's target by stub's like these -</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>maven-resources-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>2.6<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;executions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;execution&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>copy-d3<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;goals&gt;</span>
+<span class="w">                </span><span class="nt">&lt;goal&gt;</span>copy-resources<span class="nt">&lt;/goal&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/goals&gt;</span>
+<span class="w">            </span><span class="nt">&lt;configuration&gt;</span>
+<span class="w">                </span><span class="nt">&lt;outputDirectory&gt;</span><span class="cp">${</span><span class="n">gui</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">location</span><span class="cp">}</span>/js/d3<span class="nt">&lt;/outputDirectory&gt;</span>
+<span class="w">               </span><span class="nt">&lt;resources&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;resource&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;directory&gt;</span><span class="cp">${</span><span class="n">js</span><span class="o">-</span><span class="nb">dir</span><span class="cp">}</span>/d3<span class="nt">&lt;/directory&gt;</span>
+<span class="w">                   </span><span class="nt">&lt;/resource&gt;</span>
+<span class="w">               </span><span class="nt">&lt;/resources&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/execution&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/executions&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div>
+
+<h4 id="task-7-a-fast-build-profile">Task 7: A fast build profile</h4>
+<p>Dojo ZIP is upwards of 35MB in size with thousands of files. Downloading, unarchiving and moving it around makes it a heavy duty operation which is painfully slow. This makes a maven profile for faster build absolutely necessary. This profile does the following -</p>
+<ul>
+<li>Assumes the presence of unarchived dojo bundle in the source tree under "src/main/js"</li>
+<li>It thus does none of the unarchiving or file movements and starts off directly with a closure build</li>
+<li>Does not delete the dojo/dijit/dojox directories from under src/main/js after the build is complete</li>
+</ul>
+<p>Readers can refer to this <a href="https://github.com/bharath12345/uiDashboard/blob/master/uiJS/pom.xml">pom.xml</a> from one of my projects on GitHub. It has all that I have described above. Ping me if you run into any issues using my code, understanding my blog or anything else. Thanks for reading!</p>
+    </article>
+
+    <hr>
+
+    <div class="category">
+        <strong>Category:</strong>
+        <a href="https://bharath12345.github.io/category/posts.html" class="badge bg-primary">posts</a>
+    </div>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>Concurrency on the JVM - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<section class="content">
+    <script type="text/javascript">
+        var pageTitle = "Concurrency on the JVM";
+        var pageType = "post";
+    </script>
+
+    <h2>
+        <a href="https://bharath12345.github.io/posts/concurrency-on-the-jvm/">Concurrency on the JVM</a>
+    </h2>
+
+
+    <section class="byline">
+        Thu 14 November 2013
+    </section>
+    <hr>
+
+    <article>
+        <p>Over the last few months I amused myself with an interesting pursuit. I spoke to a large number of people on the aspect of concurrency. I spoke to ex-colleagues. I spoke to engineers, architects at hackathons/meetups. And I interviewed a large number of senior engineers for a job at my company. I spoke to them about building a highly-concurrent, high-volume, real-time data-aggregation engine. Gave examples of easy, textbookish projects to drive home the requirements. Like a stock trading platform with 1000s of users, 1000s of stocks and 100s of stock-exchanges. Or a IPL ticket <em>bidding</em> site with 1000s of users, many seating categories, many venues etc. And this small article is about my perspectives at the end of it. </p>
+<hr>
+
+<h4 id="programming-concurrency-building-frustrations-globally">Programming Concurrency... Building Frustrations Globally</h4>
+<p>The engineering challenge involved in building high volume concurrent applications should not be underestimated. Some <em>veterans</em> I spoke to suggested that such problems and multiple solution approaches have existed for ages. I shamelessly, often at the cost of personal repute (of embarrassing someone) counter-questioned to tell me the <em>various</em> approaches. Essentially, all, boiled down to just two - </p>
+<ol>
+<li><strong>Handling all data in a single thread due to the fear of complexity</strong>: On hearing this, I would often say do u really intend to exercise just one <em>core</em> of your upcoming quad-core, 64-processor server? Hearing this, they would move on to the 2nd option, which is...</li>
+<li><strong>Build the beast with thread-pools, locks and synchronisation blocks</strong>: Lets use java.util.concurrent and laugh our way to the ATM, some suggested... and I would say watch out... you could end up in a jail, a mental asylum or a bankruptcy proceeding before reaching that ATM!</li>
+</ol>
+<p>While interviewing candidates for the job I have been on the lookout for engineers who have few perspectives <em>other than</em> just these two. A small fraction, when pushed, uttered something to the extent of <em>event-based, SEDA</em> approaches. But when questioned further, these event based approaches often endup folding in the realm of one of the above two. I find this rather sad. </p>
+<p>Let me clarify, I do <strong>not</strong> think that the above two approaches are fundamentally wrong. But knowing just two is clearly insufficient. </p>
+<p>I also ran into an interesting few who had dabbled with NodeJS and were clearly smitten. Smitten with the action and enthusiasm of engineers in that world rather than with any hard technological breakthroughs. In this article I will not talk about NodeJS. I have briefly written about it earlier on this blog <a href="http://bharathwrites.in/posts/the-bleeding-edge-of-an-application/">here</a>. I dearly hope that those who suggested NodeJS did so out of their own naiveté and my hard nudges... and do not truly believe in the NodeJS performance hyperbole!</p>
+<hr>
+
+<h4 id="not-java-but-the-jvm">Not Java... But the JVM!</h4>
+<p>Java engineers need to graduate to becoming JVM engineers. They need to internalise forever the fact that JVM has been a far bigger innovation than Java as a language. And when Java engineers will do that they will realise that the so-called competitors like NodeJS are non-starters. One book that I highly advise to those who wish to make this graduation is the super revealing 'Programming Concurrency on the JVM' by <a href="https://twitter.com/venkat_s">Dr. Venkat Subramaniam</a>. I read this book sometime ago. Back then, I was just beginning to find my reasons to learn Scala/Clojure. Reading it filled me with the energy to know more about the JVM internals and the new world of concurrency programming. </p>
+<p>Nietzche once said "He who has a why to live can bear almost any how". As a programmer, my why has been concurrency, multi-core, big-data and high-performance. And Dr. Venkat gives a few how's!</p>
+<p>Broadly, the book is divided into three architectural approaches that one could take to build a concurrent application on the JVM, which are -</p>
+<ol>
+<li><strong>java.util.concurrent</strong> with thread-pools, synchronization blocks, locks, fork-join etc </li>
+<li><strong>Software Transactional Memory</strong> - being made popular by Clojure. <a href="http://stackoverflow.com/questions/209751/any-real-world-experience-using-software-transactional-memory">This</a> StackOverflow thread on real world adoption is instructive. And <a href="http://www.cs.rochester.edu/~sandhya/papers/usenix_login_09.pdf">this</a> paper gives the reader an excellent understanding from both Hardware and Software Transactional Memory perspectives</li>
+<li><strong>Actor Based Concurrency</strong> - being made popular by Scala and Akka. One just needs to visit the Typesafe website to know about the rapid adoption of this model</li>
+</ol>
+<hr>
+
+<h4 id="programming-concurrency-on-the-jvm-dr-venkat-subramaniam">Programming Concurrency on the JVM - Dr. Venkat Subramaniam</h4>
+<p>Dr. Venkat drives home the following points to those who wish to develop concurrent applications -</p>
+<ol>
+<li>The three options available to the designers<ul>
+<li>Shared mutability... the <em>pure evil</em> option</li>
+<li>Isolated mutability</li>
+<li>Pure immutability <br>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>Introduction to the world of <em>persistent</em> data structures. <a href="http://cstheory.stackexchange.com/questions/1539/whats-new-in-purely-functional-data-structures-since-okasaki">Here</a> is a mind blowing thread on recent innovations in functional data structures. Many are persistent.</p>
+</li>
+<li>
+<p>A quick intro to the world of modern JDK concurrency mechanisms. It is in this part of the book that I found a certain treatment of the subject of concurrency that I was sorely missing. Applications has multiple 'needs' that drive the concurrency requirement. Broadly these needs can be divided into three parts -</p>
+<ul>
+<li>High Network I/O Intensity (large network I/O requirements lead to concurrency designs)</li>
+<li>High Disk I/O Intensity</li>
+<li>Large compute problems which can be broken down to smaller pieces... divide and conquer... which leads to concurrent designs <br>
+<br />  </li>
+</ul>
+</li>
+<li>
+<p>The numerous code examples in the book showcase two things -</p>
+<ul>
+<li>Increasing complexity of code in certain approaches</li>
+<li>The time-to-compute or efficiency differential by comparing the different approaches
+<br />
+<br /></li>
+</ul>
+</li>
+<li>
+<p>I would love to quote a few sentences from the STM chapter of the book...</p>
+<blockquote>
+<p>(1) We’ve been led down the path of the imperative style of programming with mutable state for so long that it’s very hard to see alternatives to synchronization, but there are.</p>
+<p>(2) OOP didn’t quite turn out to be what Alan Kay had in mind when he coined the term. His vision was primarily message passing, and he wanted to get rid of data. Somewhere along the way, OO languages started down the path of data hiding through Abstract Data Types (ADTs), binding data with procedure or combining state and behavior.    </p>
+<p>(3) In the real world, the state does not change; the identity does</p>
+</blockquote>
+</li>
+<li>
+<p>But STM is not a silver bullet to all concurrency applications. The author clearly says - STM is suitable for concurrent reads and infrequent to reasonably frequent write collisions to the same data.</p>
+</li>
+<li>
+<p>Actors are a pure message passing model. Each actor has a built-in message queue. Actor library allows multiple actors to send messages concurrently. The senders are nonblocking by default. Although multiple actors may be active at any time, only one thread is active in an actor at any instance. The main drawback of this model, in my opinion, is that message passing systems with proper interleaving is not an easy art - it requires deep design thinking. </p>
+</li>
+</ol>
+<h4 id="epilogue">Epilogue</h4>
+<p>Programming concurrency is hard. Any which way. When confronted with such requirements and problems, the vocabulary used by the engineers and architects to make good design choice and find right hires is extremely critical. I was recently following some discussions on Y! Combinator on the suitability of Scala/Clojure to develop enterprise applications using such new ideas for concurrency and many other things. And I found this comment, though a little harshly worded, as food for thought...</p>
+<blockquote>
+<p>The only thing enterprise business managers want is a language that can dumb down the art of programming to a level a programmers can be managed like assembly line workers. And that is what Java does exactly, an IDE that can make a novice and expert work at the same levels of productivity, extremely verbose code that gives an illusion of people building something big(even if its down right trivial). And most importantly programming effort can be accounted like a couple of least important replaceable folks down the hierarchy doing some assembling reusable units of material. Change this scenario, a good technology with merit makes programmers very important and makes managers look like desk clerks. Enterprise Managers don't care a least about type systems, lambdas, or traits or whatever. Most managers don't have a remote clue what those things are. Can the technology enable them to manage herds of programmers dumbed down enough to be managed like sheep? That is all they care.</p>
+</blockquote>
+    </article>
+
+    <hr>
+
+    <div class="category">
+        <strong>Category:</strong>
+        <a href="https://bharath12345.github.io/category/posts.html" class="badge bg-primary">posts</a>
+    </div>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>The Bleeding Edge Of A Web Application... - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<section class="content">
+    <script type="text/javascript">
+        var pageTitle = "The Bleeding Edge Of A Web Application...";
+        var pageType = "post";
+    </script>
+
+    <h2>
+        <a href="https://bharath12345.github.io/posts/the-bleeding-edge-of-an-application/">The Bleeding Edge Of A Web Application...</a>
+    </h2>
+
+
+    <section class="byline">
+        Wed 11 September 2013
+    </section>
+    <hr>
+
+    <article>
+        <p>Most web applications have the well-known 3-tiered structure - WebTier &gt; ApplicationTier &gt; DataTier. Both WebTier and ApplicationTier have the web-layer to parse the incoming HTTP requests. Its in the WebTier that one deploy's load-balancing L4-routers like Apache/Nginx or Netscaler like appliances. HTTP requests are forwarded by the WebTier to the ApplicationTier which is generally served by a much bigger farm of servers. Web-layer in the ApplicationTier is the focus of this blog. Its a challenging area of software development for the following reasons and more - </p>
+<div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#1-quantifying-the-bleeding-edge">1. Quantifying the 'Bleeding Edge'</a></li>
+<li><a href="#2-why-is-it-hard">2. Why Is It Hard?</a></li>
+<li><a href="#3-software-development-of-web-applications">3. Software Development Of Web Applications</a></li>
+<li><a href="#4-jvm-based-web-apps">4. JVM Based Web Apps</a><ul>
+<li><a href="#i-servlet-specification-frameworks">(i) Servlet Specification Frameworks</a></li>
+<li><a href="#ii-mvc-frameworks">(ii) MVC Frameworks</a></li>
+<li><a href="#iii-asynchronous-event-driven-frameworks">(iii) Asynchronous Event-Driven Frameworks</a></li>
+</ul>
+</li>
+<li><a href="#5-nodejs-javascript-on-the-server-side">5. NodeJS - JavaScript on the server side</a></li>
+<li><a href="#6-ruby-and-php">6. Ruby and PHP</a></li>
+<li><a href="#7-what-to-use-for-my-project">7. What to use for my project?</a></li>
+</ul>
+</div>
+<ul>
+<li>Huge volume of requests, with <em>read</em> requests generally surpassing <em>write</em> by an order of magnitude or so</li>
+<li>Change. Website content and web-service APIs both change very often</li>
+<li>Variety of consumers. People read/write to the web. And so do other software applications</li>
+</ul>
+<p>Being a Java and JavaScript developer, my interest has been in the emergent software stacks in these two languages. To understand their <em>raison d'être</em>. For that, I start by taking a look at the numbers (HTTP requests) at some of the popular websites. Then move on to some of the core technical problems. And compare some of the competing software stacks.</p>
+<p>But before discussing on the web-layer in the ApplicationTier it is instructive to look at the pure WebTier itself. Its instructive to read <a href="http://news.netcraft.com/archives/2013/09/05/september-2013-web-server-survey.html">Netcraft's September 2013 Web Server Survey</a>. All the top web-servers are C/C++ based. For those unfamiliar with actual web application deployments, these web-servers are not used to host the applications themselves. They serve static pages, act as L4-routers, firewalls and load-balancers. They are placed at the very gate of modern web-shops and all requests go through them. These tasks are well defined, so, it makes sense to develop them in native languages for brute speed.</p>
+<hr>
+
+<h4 id="1-quantifying-the-bleeding-edge">1. Quantifying the 'Bleeding Edge'</h4>
+<p>Here are the numbers from recently published articles on Twitter, WhatsApp and Facebook. There are others who cannot not be far behind like Google, Wikipedia, Amazon, Skype etc. </p>
+<ol>
+<li>Twitter: 300K requests per second (RPS) for reading and 6000 RPS for writing - <a href="http://highscalability.com/blog/2013/7/8/the-architecture-twitter-uses-to-deal-with-150m-active-users.html">source1</a>, <a href="https://blog.twitter.com/2013/new-tweets-per-second-record-and-how">source2</a></li>
+<li>WhatsApp: 10 billion requests sent and received in one day - <a href="http://thenextweb.com/mobile/2013/06/13/whatsapp-is-now-processing-a-record-27-billion-messages-per-day/">source</a> </li>
+<li>Facebook: 12 million HTTP requests per second - <a href="http://www.datadoghq.com/2013/07/the-best-of-velocity-and-devopsdays-2013-part-ii/">source</a> </li>
+</ol>
+<p>(<em>All these articles are quite recent</em>)</p>
+<hr>
+
+<h4 id="2-why-is-it-hard">2. Why Is It Hard?</h4>
+<p>Two good resources to start understanding why these scales are hard on software development in ApplicationTier are -</p>
+<ol>
+<li>C10K problem by <a href="http://www.kegel.com/c10k.html">Kegel</a> and <a href="http://bulk.fefe.de/scalable-networking.pdf">Felix von Leitner</a></li>
+<li>C10M problem by <a href="http://c10m.robertgraham.com/p/manifesto.html">Robert Graham</a>. And <a href="http://www.youtube.com/watch?v=D09jdbS6oSI">this video</a> by him is very instructive </li>
+</ol>
+<p>But let me state the problem(s) simply. The reasons why it is hard to handle HTTP requests are -</p>
+<ol>
+<li><strong>Forking a process</strong>: is too expensive a compute operation to perform everytime a request arrives</li>
+<li><strong>Forking a thread</strong>: is less expensive on compute. But writing multi-threaded applications for multi-core systems is very tough (and <em>actually</em> forking a new thread is not inexpensive at all)</li>
+<li><strong>Use thread pools</strong>: It just shifts the bottleneck. Once you have a thread-pool, each thread has to do a select() or poll() to find the next nonblocking socket ready for IO. But doing a select() or poll() on a huge array of open socket descriptors is extremely inefficient at the kernel level (checkout the deep analysis to C10K problem in the above mentioned links)</li>
+<li><strong>The Event driven model</strong>: requires a paradigm shift in thinking and designing applications from bottoms-up. The best way to start grasping the idea is to read <a href="http://www.reactivemanifesto.org">The Reactive Manifesto</a>. This model is not very different from the SEDA architecture. Reactive applications is a very fine idea and one of the reasons why I dwelled into this subject in the first place…</li>
+</ol>
+<hr>
+
+<h4 id="3-software-development-of-web-applications">3. Software Development Of Web Applications</h4>
+<p>My current views are that, broadly, there are 3 different language families to develop web applications on server and client sides -</p>
+<ul>
+<li><strong>Server</strong>: JVM based, compiled and statically typed; <strong>Client</strong>: JavaScript</li>
+<li><strong>Server</strong>: Ruby/PHP, interpreted and dynamically typed; <strong>Client</strong>: JavaScript</li>
+<li><strong>Server</strong>: NodeJS, interpreted and dynamically typed; <strong>Client</strong>: JavaScript</li>
+</ul>
+<p>Thus, on the server side, the choice is between JVM (polyglot), Ruby/PHP and NodeJS. </p>
+<h4 id="4-jvm-based-web-apps">4. JVM Based Web Apps</h4>
+<p>The web-layer in JVM world is filled with 3 types of frameworks - </p>
+<ol>
+<li>Frameworks that support the <em>servlet specification</em> (latest one is 3.0) </li>
+<li>MVC frameworks </li>
+<li>Asynchronous event-driven frameworks based on Netty</li>
+</ol>
+<h5 id="i-servlet-specification-frameworks">(i) Servlet Specification Frameworks</h5>
+<p>These include Tomcat and Jetty. What is the main motivator for the servlet spec? It is to manage state information that does not exist in the stateless HTTP protocol. <a href="http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a> provides an API getSession() where the HttpSession object is a container to hold attributes for a single transaction spread across multiple HTTP request/responses. Apart from this central feature of sessions, the servlet API also defines the interfaces that the servlet container has to adhere-to to provide concurrent request processing in a sandbox environment. So is there a drawback in this idea? Yes, there is. The very idea of <em>state</em> brings down the performance of these containers. That is the reason why developing highly performant RESTful APIs using servlet containers is a bad idea. In <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">RESTful</a>, the client is expected to maintain the <em>state</em>, if required. Servlet containers can be tuned for statelessness, but then, that goes against one of the fundamental ideas of the spec. And my readings tell me that these frameworks don't become highly performant on turning off the statefullness.</p>
+<h5 id="ii-mvc-frameworks">(ii) MVC Frameworks</h5>
+<p>These include Spring MVC, Struts, Tapestry, Wicket etc. I have used two of these - <a href="http://struts.apache.org/">Struts2</a> and <a href="http://wicket.apache.org/">Wicket</a> in building applications that have seen deployment. The fundamental motivation for these frameworks is ease-of-development (annotations etc), clean separation of concerns (MVC design pattern), lot of goodies (like templating etc) and integration with other JavaEE stacks (Struts2-Spring integration etc). </p>
+<h5 id="iii-asynchronous-event-driven-frameworks">(iii) Asynchronous Event-Driven Frameworks</h5>
+<p>And now I come to the most interesting area of Java web application development. <a href="http://netty.io/">Netty</a> based frameworks like <a href="http://www.playframework.com/">Play!</a> and <a href="http://vertx.io/">Vert.x</a>. These frameworks do not comply to the servlet specification. They use Netty underneath for asynchronous event based handling of HTTP requests (I cover <em>what-the-hell-is-asynchronous-event-driven</em> in the NodeJS section below). Netty is stateless making the server side fast and efficient. The frameworks on top are built to match the ease-of-dev and richness offered by the likes of Struts and Tapestry. They also offer APIs for client-side statefulness. <strong>So these frameworks are an effort to mix high performance with ease-of-dev.</strong> But moving to event-based and asynchronous thinking is not straightforward. It needs a mind shift akin to the transition to Object-oriented-programming. However the promise they hold is to be able to build web applications that defy <a href="http://en.wikipedia.org/wiki/Amdahl's_law">Amdahl's law</a>. If you are a new shop with bright Java engineers wanting to build a highly scalable web-application, then, these are the frameworks you should start exploring first...</p>
+<hr>
+
+<h4 id="5-nodejs-javascript-on-the-server-side">5. NodeJS - JavaScript on the server side</h4>
+<p>The <a href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">list</a> of companies and websites powered by NodeJS is growing long by the day. However NodeJS is still a newbie. Why would somebody want to use NodeJS? NodeJS makes two very interesting promises -
+* End-to-end JavaScript shop for you web application
+* High performance through event-based asynchronous model</p>
+<p>The first promise is easy to understand. Any good web application requires a team of good designers and client-side programmers. If the programming language on both client-side and server-side are the same, then it reduces the risk of investment in diverse technologies and brings down the barriers between teams and moving people.</p>
+<p>The second promise of performance is more interesting. Is NodeJS as fast as the Java based async frameworks? <a href="http://www.cubrid.org/blog/dev-platform/inside-vertx-comparison-with-nodejs/">This</a> blog presents an excellent comparison. It goes to show that NodeJS is no match to the JVM based frameworks. Its difficult to beat the JVM!</p>
+<p>But moving ahead of comparisons, let me dwell a little more on the aspect of performance promised by the event-driven asynchronous frameworks in general. The hype around such frameworks is increasing day-by-day and is grounded on firm theoretical foundations. So how exactly does async and event-driven help? NodeJS provides a good base to explore since one cannot do anything but asynchronous event-based HTTP processing with NodeJS! Let us study this code fragment for a while - (this comes from <a href="http://shop.oreilly.com/product/0636920024606.do">this</a> excellent book on NodeJS by O'reilly)</p>
+<pre>
+        // load http module
+        var http = require('http');
+        var fs = require('fs');
+
+        // create http server
+        http.createServer(function (req, res) {
+
+            // open and read in a file
+            fs.readFile('textfile.txt', 'utf8', function(err, data) {
+                res.writeHead(200, {'Content-Type': 'text/plain'});
+                if (err) {
+                    res.write('Could not find or open file for reading\n');
+                } else {
+                    // if no error, write file to client
+                    res.write(data);
+                }
+                res.end();
+            });
+
+        }).listen(8124, function() {
+            console.log('bound to port 8124');
+        });
+
+        console.log('Server running on 8124/');
+</pre>
+
+<p>Following aspects need to be understood -</p>
+<ul>
+<li>The two instances of asynchronous behaviour - one for http I/O and the other for file I/O</li>
+<li>This program never blocks. NEVER.</li>
+<li>Multiple types of events are emitted - when a request arrives, when file I/O request completes - and these events are consumed in a single giant event loop with the NodeJS framework</li>
+<li>Large (N-squared) like compute algorithms should not be synchronously attempted - they take away all the processing core's bandwidth bringing the whole system to a halt. So, such event-based asynchronous processing is most suited for applications that can be broken down into multiple stages like a SEDA architecture</li>
+<li>The application itself acts as one giant event-producing and event-consuming engine which should be seen as single-threaded and binding to a single-core. To make use of <a href="http://stackoverflow.com/questions/2387724/node-js-on-multi-core-machines">multiple-cores</a> multiple-instances of NodeJS can be run on the same system</li>
+</ul>
+<p>NodeJS has found tremendous traction with developer community. Am heading to <a href="https://jsfoo.in/2013/">JSFoo in Bangalore</a> next week, and one look at the funnel would tell you that every second session has something to do with NodeJS. And NodeJS has a plethora of MVC frameworks which are maturing fast. Sample - <a href="http://expressjs.com/">Express</a>, <a href="http://geddyjs.org/">Geddy</a>, <a href="http://flatironjs.org/">FlatironJS</a>, <a href="http://emberjs.com/">EmberJS</a> - these are definitely poised to give MVC frameworks in Ruby and PHP a run for their money in simplicity, performance and features. </p>
+<hr>
+
+<h4 id="6-ruby-and-php">6. Ruby and PHP</h4>
+<p>With JVM based frameworks occupying one end of the spectrum offering high-performance + Maintainability and NodeJS based frameworks at the other end with simplicity + low-cost + ease-of-dev, how much of middle-ground is left for PHP and Ruby? I am not an expert in either of these two, so I will stay away from making predictions. One thing that is in favour of PHP/Ruby is that both are <em>proven</em> in large production applications while reactive Java frameworks and NodeJS are still not. How long will this status last? Will NodeJS and Java reactive frameworks take away a chunk of web applications that would otherwise have been Ruby/PHP's? Or will the web applications playing field get expanded with the entry of these new players creating room for all?</p>
+<hr>
+
+<h4 id="7-what-to-use-for-my-project">7. What to use for my project?</h4>
+<p>I roundoff my blog with a guidance, albeit reluctantly. Apart from the usual suspects of time-to-market, capex-opex investment, engineering-skill and requirements-complexity that make project delivery complex, I propose that few more criterions come into play when it comes to web applications -</p>
+<ul>
+<li>Is the web application part of a packaged-product (bundled in a CDROM) or delivered as part of the general web or Saas?</li>
+<li>Is the web application intra-enterprise or for open-internet usage?</li>
+<li>Is the web application majorly for human consumption or accessed by other software services?</li>
+</ul>
+<p>I leave those aspects to the good judgement of the readers. I would definitely like to get feedback on those who disagree from my guidance below. The idea of writing this guidance is to paint broad strokes… Exceptions among project/people always exist!</p>
+<div class="bs-docs-grid" id="dev">
+    <div class="row show-grid">
+        <div class="col-md-2 right alignCenter"><h5>JVM Based</h5></div>
+        <div class="col-md-10 left">
+            <ol>
+                <li>Performance: JVM is worlds best VM in performance. Ruby/PHP/NodeJS are interpreted and don't come close in performance (doing anything in JRuby per me is simply a bad idea). Facebook created HipHop for PHP to make it scale - this counts as an exception. Twitter, LinkedIn shifted from Ruby to Scala (which is JVM based) and achieved higher performance numbers. One can find umpteen examples like this…</li>
+                <li>Development Time: Java and other JVM languages are slower to develop compared to Ruby/PHP/NodeJS. And thats the reason why frameworks like Play! are trying hard to sell themselves as suited for fast development</li>
+                <li>Cost: Java developers are more expensive</li>
+                <li>Suited for: Large web applications. Enterprise products. Mission critical applications</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right alignCenter"><h5>Ruby, PHP</h5></div>
+        <div class="col-md-10 left">
+            <ol>
+                <li>Performance: Definitely not bad</li>
+                <li>Development Time: Fast</li>
+                <li>Cost: Medium</li>
+                <li>Suited for: Medium sized projects</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 right alignCenter"><h5>NodeJS</h5></div>
+        <div class="col-md-10 left">
+            <ol>
+                <li>Performance: The jury is still out. Does the Google V8 engine challenge and beat PHP/Ruby? It will never be able to match the JVM though.</li>
+                <li>Development Time: Fast</li>
+                <li>Cost: Low, since the whole application is built on a single language stack the server-side developers and client-side developers can co-work</li>
+                <li>Suited for: Smaller chatty applications</li>
+            </ol>
+        </div>
+    </div>
+</div>
+    </article>
+
+    <hr>
+
+    <div class="category">
+        <strong>Category:</strong>
+        <a href="https://bharath12345.github.io/category/posts.html" class="badge bg-primary">posts</a>
+    </div>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>

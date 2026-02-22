@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>Functional Conference: Random Notes... - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<section class="content">
+    <script type="text/javascript">
+        var pageTitle = "Functional Conference: Random Notes...";
+        var pageType = "post";
+    </script>
+
+    <h2>
+        <a href="https://bharath12345.github.io/posts/functional-conference-random-notes/">Functional Conference: Random Notes...</a>
+    </h2>
+
+
+    <section class="byline">
+        Fri 17 October 2014
+    </section>
+    <hr>
+
+    <article>
+        <p>The first '<a href="http://functionalconf.com/">Functional Conference</a>' happened in Bangalore between Oct 9-11. I had been keenly looking forward to it. This is a quick post on the sessions I attended and the conference itself. As the lineup of speakers and topics shaped up in the buildup to the conference on their website, it heightened my expectations. As a younger engineer I have gone through the cycle of expecting too much from conferences and thus not being able to learn sufficiently from that which was on offer. Time has had a mellowing effect... I find it much better to keep an open mind and try to absorb all that is on offer. And then, a little later, retain only that which is useful/pertinent. With that mindset and approach I found 'Functional Conference' a very fulfilling technology experience - plenty of technical richness to absorb and sufficient ideas to retain for long.</p>
+<h4 id="day-1-session-1-the-keynote-by-venkat-subramaniam">Day 1, Session 1: The Keynote, by Venkat Subramaniam</h4>
+<p>Venkat is as fabulous a speaker/presenter as he is writer/thinker. The theme of his keynote was an elaboration on the idea of <strong>mainstream</strong>. Why did it take many centuries for heliocentricity to gain acceptance over the <em>mainstream</em> idea of geocentricity? Why did it take many centuries for well meaning doctors to accept the existence microbial <em>germs</em> as the cause of diseases over other widely held <em>mainstream</em> theories? <strong>Mainstream</strong> in the world of programming is OOP in the style of Java and C++. They may not be false idol's after all. However that <em>non-mainstream</em> is generally not even introduced in colleges and software engineers have proceeded to long careers without even basic understanding of other programming approaches is sad indeed. Venkat drew the attention of the audience that things were nevertheless changing. Maybe it took a long incubation for the geocentric idea to gain... but once the right ideas, even if <em>non-mainstream</em>, gain a foothold, there is no turning back. Maybe functional programming has had a 80 year incubation! After all it took 22 years for even OOPS to become <em>mainstream</em>. But things are changing (lambdas in java!) and will never be the same again! </p>
+<p>Two answers by Venkat in the post-session stuck a chord with me. </p>
+<ul>
+<li>The first was a question on his favourite language... after all he had written books and applications in so many! Venkat responded by saying he treated languages as tools, say like vehicles. we sometime use a car and sometimes a flight, don't we!? So no <em>favorites</em>. </li>
+<li>The second was actually a counter-question by Venkat - Do languages shape new thought or new thoughts shape languages? There is enough material in terms of academic research to tell us that this stream runs both ways! </li>
+</ul>
+<h4 id="day-1-session-2-haskell-for-everyday-programmers-by-venkat-subramaniam">Day 1, Session 2: Haskell for everyday programmers, by Venkat Subramaniam</h4>
+<p>I was split between going for the Haskell session or the parallel Elm session. Since my work has been more and more away from UI, I chose Haskell. However, later on, heard great feedback on the Elm session by other folks at the conf. Now waiting for the slides of that session to be up to check it out.</p>
+<p>The Haskell session was a runaway hit with Venkat giving a quick intro of the many aspects of the language using the ghci REPL. The key ideas learn/relearnt were:  </p>
+<ul>
+<li>Polymorphic Types</li>
+<li>Functional Purity (no haskell speaker can never not mention this!): functions cannot have side effect. and purity always means thread-safety!</li>
+<li>Memoization: the massive performance gain that could comes ones way due to functional purity</li>
+<li>Order of program evaluation: Normative vs. Applicative</li>
+<li>Expressions vs. Statements: statements promote mutability that one cannot escape. expressions do the opposite</li>
+</ul>
+<h4 id="day-1-session-3-functional-programming-in-large-scale-data-processing-by-kishore-nallan">Day 1, Session 3: <a href="https://speakerdeck.com/kishore/applying-functional-programming-principles-to-large-scale-data-processing">Functional programming in large scale data processing</a>, by Kishore Nallan</h4>
+<p>My day job is programming in Scala to build a <em>large scale data processing</em> platform. So choosing this session from a fellow traveler was natural. Kishore described the journey at Indix to build a web-scale product catalog by crawling and indexing the internet. The story behind their adoption of the Lambda Architecture as propounded by Nathan Marz. Kishore spoke of the benefits of using a log-structured database as first port of store than a <em>continuously mutating</em> RDBMS or column store. Indix is a big Hadoop shop with continuous jobs to persist data, aggregate it and run both ritual/ad-hoc queries. It was a fascinating talk giving a peek into what must be a very exciting product to develop.</p>
+<h4 id="day-1-session-4-compile-your-own-cloud-with-mirageos-by-thomas-gazagnaire">Day 1, Session 4: <a href="http://decks.openmirage.org/functionalconf14#/">Compile your own cloud with MirageOS</a>, by Thomas Gazagnaire</h4>
+<p>Unikernels are specialized OS kernels that are written in a high-level language and act as individual software components. A full application (or appliance) consists of a set of running unikernels working together as a distributed system. MirageOS is written in the OCaml (http://ocaml.org) language and emits unikernels that run on the Xen hypervisor. One may ask - whats the main advantage of unikernels? Unikernels win by allowing applications to access hardware resources directly without having to make repeated privilege transitions to move data between user space and kernel space. Unikernel OS are being attempted in more languages than just OCaml. There is HaLVM in Haskell, Ling in Erlang, OSv in Java and maybe more. This introduction to unikernels and perspective on Virtualization was superlative and I wish I could have absorbed more.</p>
+<h4 id="day-1-session-5-property-based-testing-for-functional-domain-models-by-debasish-ghosh">Day 1, Session 5: <a href="http://www.slideshare.net/debasishg/property-based-testing">Property based testing for functional domain models</a>, by Debasish Ghosh</h4>
+<p>I have been an avid reader of Debasish Ghosh's blog and books. They are rich both in theoretical arguments and practical advise. Was thus looking forward for this session. Debasis introduced ScalaCheck/QuickCheck to the audience. Since I have used ScalaCheck before the tool itself was not new. However, the theoretical underpinnings for property based testing were a big takeaway. To quote a few statements from the session that will stay with me - </p>
+<ul>
+<li>"To test any sufficiently complex domain model with xUnit based testing will mean some corner cases will be missed". And unit-testing, automated-testing is all about catching those corner cases</li>
+<li>"Paramatricity tests more conditions than unit test suites ever will - Edward Knett"</li>
+</ul>
+<p>The talk also included a intro to dependenty-types and parametric polymorphism. One key takeaway of attending conferences is coming to know of new books - and after this session "Theorems for free!" by Phil Wadler got added to my ToRead list.</p>
+<h4 id="straddling-sessions-session-6-clojurescript-om-and-code-jugalbandi-session-7-functional-groovy-and-learning-from-haskell">Straddling sessions - Session 6: Clojurescript &amp; Om, and Code Jugalbandi. Session 7: Functional Groovy, and Learning from Haskell</h4>
+<p>Eearlier in the day, Naresh Jain, the chief organiser of the conference, had advised the attendees to use what he called "the law of two feet" - the law asks the attendee you to get the most out of the conference by walking to the sessions even in-between, if required. Unable to decide which session to stay in for the last two sessions I decided to use this law!</p>
+<ul>
+<li>Om is a library for ClojureScript programmers. Vagmi provided a <a href="http://www.slideshare.net/vagmi/pragmatic-functional-programming-in-the-js-land-with-clojurescript-and-om">breezy intro</a> to why ClojureScript makes React.js faster. And finally, why/how Om make ClojureScript faster by giving an example of DOM diffing and the showComponentUpdate() call</li>
+<li><a href="http://www.codejugalbandi.org">Code Jugalbandi</a> was a very interesting act between two programmers (playing the roles of <em>Brahma</em> and <em>Krishna</em>) to showcase interesting features like currying and pattern matching across languages. It was like a breath of fresh air to the otherwise usual way of sessions at a conference </li>
+<li>Groovy is a dynamic language on the JVM. Since I have never programmed in Groovy I was pleasantly surprised with its many capabilities in functional programming showcased by Naresha</li>
+<li>The Haskell experience session was filled with anecdotes that the speaker, Aditya Godbole, recounted from his workplace (and elsewhere) in trying to bring in healthy-code practice</li>
+</ul>
+<h4 id="day-2-session-1-the-role-of-fear-in-language-adoption-by-bruce-tate">Day 2, Session 1: The role of Fear in language adoption, by Bruce Tate</h4>
+<p>Bruce Tate's book "Seven Languages in Seven Days" was probably the first book I bought on my new Kindle. I was looking forward to hear from this Guru of Java and Ruby. The title added to the curiosity. Bruce kicked off the talk making some very thought provoking observations -</p>
+<ul>
+<li>Fear and <em>Discovery</em> are intertwined</li>
+<li>When fear lurks within the team, <em>code commits</em> go down!</li>
+<li>Bruce went on to draw a parallel between Geoff Moore's celebrated 'Technology Adoption Curve' and called for the audience to think of language adoption on similar lines. Languages <em>die</em> in the chasm...</li>
+<li>Just as frequency of technology waves frustrates businessmen, the frequency of language waves frustrates programmers (how many new languages did I come across just in 2014 so far - Wolfram, Swift, Hack... and I can go on...)</li>
+<li>Just like 'behaviour change' apps have a difficult time in adoption, significant syntax changed languages lose out in the mass programmer market. Java success due to its almost identical syntax to C is NOT incidental...</li>
+<li>And then there are language adoption curves and <em>language paradigm</em> adoption curves. The curves for Procedural, OOPS and Functional are much deeper, wider and steeper</li>
+<li>What are the <em>fears</em> for different consumers of languages:<ul>
+<li>Paralysing Fear: Jobs, Cost</li>
+<li>Motivating Fear: Concurrency, Multi-core, Time-to-market</li>
+</ul>
+</li>
+<li>Now here is a question to all career programmers - how many more years do we want to program in the C/C++ style syntax??   </li>
+<li>The next wave of language adoption will <em>NOT</em> be a big massive wave like Java. It will instead be a tsunami of many smaller waves composed of of the Scala's, Clojure's, Ruby's, Swift's, Ocaml's and many many more...</li>
+</ul>
+<h4 id="day-2-session-2-functional-programming-using-dyalog-by-morten-kromberg">Day 2, Session 2: Functional programming using Dyalog, by Morten Kromberg</h4>
+<p><a href="http://tryapl.org/">APL</a>. I had never heard of it. The name of Ken Iverson sounded familiar and in league with Alonzo Church, Alan Turing, Haskell Curry et al. But nothing more...</p>
+<p>And what an eye-opener it was! If there was an award for the most mind-blowing session, then this one won the 1st, 2nd and 3rd places!</p>
+<p>The APL language is beyond words that this humble writer can conjure up. It takes the idea of <em>functional</em> programming to an all new level is all I can say (and yet its not logic programming like Prolog or likes).</p>
+<p>However the story of Dyalog as a company and its business came across as not any less astonishing. To be in <em>software development</em> business for over 40 years, going through the many industry upheavals (mainframes -&gt; unix/windows -&gt; cloud) and solving some of the most difficult problems in all streams of engineering and yet remaining totally unknown to most! Morten Kromberg, the CTO of Dyalog, had a interesting observation to share - "All engineers take to APL easily except the software engineers". Now that says it all about our computer science education system. </p>
+<h4 id="day-2-session-3-monads-you-already-use-by-tejas-dinkar">Day 2, Session 3: <a href="https://speakerdeck.com/gja/lightning-monads-you-already-use-without-knowing-it">Monads you already use</a>, by Tejas Dinkar</h4>
+<p>Next was a lightening talk by Tejas on giving a (yet another!) perspective on Monads. In a delightfully constructed talk Tejas presented the idea through a box analogy and thereby trying to simplify the understanding of monads for list, IO etc. There would not be a functional programmer on the planet who has not heard/read at least one video/blog on Monads without scratching his head in disbelief. It takes a certain bravado to attempt presenting the topic to a roomful of programmers at the <em>functional</em> conference! And Tejas did a splendid job of it.  </p>
+<h4 id="day-2-session-4-purely-functional-data-structures-demystified-by-mohit-thatte">Day 2, Session 4: <a href="http://www.slideshare.net/mohitthatte/purely-functional-data-structures-demystified">Purely functional data structures demystified</a>, by Mohit Thatte</h4>
+<p>Mohit's talk was based on Chris Okasaki's famed work on the topic "<a href="http://www.cs.cmu.edu/~rwh/theses/okasaki.pdf">Purely Functional Data Structures</a>". This is a deep topic. I have tried to read Okasaki's work and have found it hard to get past the first few chapters. It is in the same league as SICP. I was curious about how justice for such a voluminous work can be done in one session! And the first challenge was to try and formulate the problem definition - Mohit kept the audience glued as he demystified why it is tough to implement a <em>correct</em>, <em>fully functional</em> and <em>performant</em> implementation of common ADT's like Queue, List, Map etc. The next challenge was to explain the complex idea of <strong>structural sharing</strong>. The whole idea of <em>persistence</em> in data structures and <em>performance</em> is after all derived from <em>structural sharing</em>. One has to really try and attempt implementing common data-structures with <em>structural-sharing</em> to start comprehending the complexity that it introduces and the power behind the idea. That it becomes extremely complex to come up with even simple sounding list implementations when <em>no side effects</em> barrier is introduced is also an idea that needs real hands on work to grasp. Mohit's session was a fine effort to jog my memories of my few late night battle-losses with Okasaki and the illuminating world of <em>persistent</em> data-structures!</p>
+<h4 id="day-2-session-5-demystify-functional-jargons-by-mushtaq-ahmed">Day 2, Session 5: Demystify functional jargons, by Mushtaq Ahmed</h4>
+<p>Scala has multiple library APIs that are very well suited for certain design usecases. In this talk Mushtaq covered, with examples, the when-to, why-to and how-to use the <a href="https://github.com/scala/async">Async</a>, <a href="http://www.scala-lang.org/files/archive/nightly/docs/library/index.html#scala.concurrent.Await$">Await</a>, <a href="http://docs.scala-lang.org/overviews/core/futures.html">Blocking/Future/Promise</a>. In addition to these <em>in-house</em> Scala utilities he also demonstrated the usecase for <a href="https://github.com/ReactiveX/RxJava/wiki/Observable">Observables</a> in the context of streams. He demonstrated an example of a simple application built using these to capture, filter and search on tweets.   </p>
+<h4 id="day-2-session-6-object-functional-programming-beautiful-unification-or-kitchen-sink-by-rahul-goma-phulore">Day 2, Session 6: Object-functional programming: Beautiful unification or kitchen sink, by Rahul Goma Phulore</h4>
+<p>This was a talk I was eagerly looking forward to. The reason was very specific - just days before this conference a couple of close friends (who were former colleagues) engaged me in long winding discussion on building <em>large</em> applications in Scala. Like all languages Scala has its pro's and con's. However opinions stand divided by a wide(ening?) chasm...</p>
+<p>I was looking forward to Rahul to give me some new perspectives. In a technically-engaging talk Rahul deconstructed the myth of Scala being a kitchen-sink. The very start of the talk was made intriguing when he proceeded to ask the audience 3 questions - (a) how many see the future in a purely OOPS world? (b) how many see the future in a purely functional world? (c) how many see the future in a hybrid of both? Almost no hands went up for question (a). A few enthusiastic hands went up for question (b). But almost <strong>ALL</strong> hands went up for question (c). That was significant food for thought in itself. </p>
+<p>Scala has been called the "Grand unification of all programming languages". It has also been called "Vegetarian ham in chicken flavor"... arguments like these have split the programming world into tribes of believers/unbelievers without significantly adding to the knowledge/understanding of either groups. Coming from a workplace where we use Scala predominantly I can testify this to be true by experience.</p>
+<p>But it pays great dividends to dive-in a little deep to understand just <em>how</em> Scala provides this <em>grand-unification</em>. Thats where real illumination is. How can functions be first-class objects? How does pattern-matching happen under the hood? The idea behind algebraic data types? How can using the mere term <em>sealed</em> lead to exhaustiveness checking leading to much higher type-checking kick-in at compile-time? How do mixins works? Rahul had it all covered.</p>
+<h4 id="day-2-session-7-methodologies-mathematics-and-the-metalinguistic-implications-of-swift-by-daniel-steinberg">Day 2, Session 7: Methodologies, Mathematics, and the Metalinguistic Implications of Swift, by Daniel Steinberg</h4>
+<p>How do we learn? Did we really learn programming when we first read a programming book? In my case, the first programming book I came across was, probably, 'C Programming' K&amp;R. And I did not learn a think even after months of reading and even typing the code in first few chapters!</p>
+<p>So, how do we learn? Lets leave programming for a moment. How did we learn math? How did we learn geometry? Were we able to <em>see</em> the problems and solutions? For example, did the area of a triangle just always mean, half multiplied by base multiplied by height, so much so that we proceeded to find the area of a triangle with sides {2,3,5}, OR we could <em>see</em> why/how the triangle's area was so?</p>
+<p>Daniel is the author of multiple books in the iOS Apps world. In earlier life, he had been a math teacher at high school. And he came across as a fabulous father to his young, learnful kids.</p>
+<p>Daniel urged us to think how we <em>learn</em>. And thereby also think about how we <em>teach</em>. We don't learn by knowing the rules. We don't learn when someone tells us a definition of something. We learn by realising things bit-by-bit. We learn by building small things and making them bigger. We learn by looking at things built by others. We learn slowly. We learn more by observation than by anything else. And Daniel taught this to a roomful of adults. By showing us Donald Duck cartoons and explaining us pythagoras theorem. I became a dad just few weeks ago - And I can only thank Daniel for this talk. I learnt immensely.  </p>
+<h4 id="epilogue">Epilogue</h4>
+<p>In between the sessions I had a chance to meet and discuss with Kishore Nallan, Debasis Ghosh, Venkat Subramaniam and many others. Except ThoughtWorks I don't think the conference had many representatives from the established big companies - which in itself was a boon as I got to hear and know so much happening in the startup/small-company world (that smaller companies are riding the wave of newer technologies must come as a no surprise). The value of a conference does not lie just in the sessions but also in realising a few things like these iin-between. I also ran into some of my old acquaintances and it was every second worth of my time to come to know of their new technical endeavours and the fate/trajectory of those that we shared long ago!</p>
+<p><strong>Functional Conference was a wonderful conference. Am glad that I was there.</strong></p>
+    </article>
+
+    <hr>
+
+    <div class="category">
+        <strong>Category:</strong>
+        <a href="https://bharath12345.github.io/category/posts.html" class="badge bg-primary">posts</a>
+    </div>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>

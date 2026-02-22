@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>Java7 - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<section class="content">
+    <h2>Java7</h2>
+
+
+    <article>
+        <!DOCTYPE html>
+<p><meta charset="utf-8"></p>
+<style>
+
+@import url(../../lib/stack/stack.css);
+
+.big {
+  font-size: 128px;
+}
+
+.caption {
+  font-size: 96px;
+  text-align: center;
+  text-shadow: 0px 2px 6px rgba(0,0,0,.5);
+}
+
+</style>
+<body class="overview">
+
+<section>
+    <p class="grey">The VM specification
+    <br><b style="color:orangered;">NO LONGER</b>
+    <br>makes any reference to JLS (Java Lang Spec)
+</section>
+
+<section style="padding-top: 40px">
+    <p><b class="white">Project Coin</b>
+    <ul class="grey">
+        <li class="first">Strings in Switch</li>
+        <li class="first">Binary Literals</li>
+            <ul>
+                <li class="second">int x = Integer.parseInt("1100110", 2); ==> int x = 0b1100110;</li>
+                <li class="second">long anotherLong = 2_147_483_648L;</li>
+                <li class="second">int bitPattern = 0b0001_1100__0011_0111__0010_1011__1010_0011;</li>
+            </ul>
+        <li class="first">Multi-Catch</li>
+            <ul>
+                <li class="second">catch (FileNotFoundException|ParseException|ConfigurationException e)</li>
+            </ul>
+        <li class="first">Try With Resources</li>
+            <ul>
+                <li class="second">try (
+                    OutputStream out = new FileOutputStream(file);
+                    InputStream is = url.openStream()
+                    ) {
+                </li>
+            </ul>
+        <li class="first">Diamond Syntax</li>
+            <ul>
+                <li class="second">Earlier: Map&#60;Integer&#44; Map&#60;String&#44; String>> usersLists =
+                    new HashMap&#60;Integer&#44; Map&#60;String&#44; String>>();</li>
+                <li class="second">Now: Map&#60;Integer&#44; Map&#60;String&#44; String>> usersLists = new HashMap<>();</li>
+            </ul>
+
+    </ul>
+</section>
+
+<section>
+    <p class="white">What are the few <b style="color:orangered;">limitations of Java 6 I/O?</b></p>
+</section>
+
+<section>
+    <p class="white">What are the few <b style="color:orangered;">limitations of Java 6 I/O?</b></p>
+        <ul class="grey">
+            <li class="first">Performance</li>
+            <li class="first">There is no direct class or method support for navigating directory trees</li>
+            <li class="first">There is no way of detecting and dealing with symbolic links</li>
+            <li class="first">It’s not possible to read the attributes (such as readable, writable, or execut-
+                able) of a file in one easy operation</li>
+        </ul>
+    </p>
+</section>
+
+<section style="background: #ffffff">
+    <img style="padding-left: 250px" src="../../images/java7/file.png">
+    <img style="padding-left: 250px" src="../../images/java7/file2.png">
+    <p>
+        <ul class="black">
+            <li class="second">DirectoryStream Interface: try (DirectoryStream&#60;Path&#62; stream = Files.newDirectoryStream(dir))</li>
+            <li class="second">FileVisitor Interface: SimpleFileVisitor</li>
+        </ul>
+    </p>
+</section>
+
+<section style="background: #ffffff">
+    <img style="padding-left: 300px" src="../../images/java7/futures-file.png">
+    <p class="black second">Use the Future objects isDone() method
+</section>
+
+<section style="background: #ffffff">
+    <img style="padding-left: 350px" src="../../images/java7/callback-file.png">
+    <p class="black second">Event style programming
+</section>
+
+<section style="background: #ffffff">
+    <img style="padding-left: 250px" src="../../images/java7/callback-example.png">
+    <p>
+        <ul>
+            <li class="black second">Main usecase: large files</li>
+            <li class="black second">Sockets: AsynchronousSocketChannel, AsynchronousServerSocketChannel</li>
+        </ul>
+</section>
+
+<section>
+    <p class="white first">Why do we use Spring framework?
+    <br>What is the <b style="color:orangered;">main feature that frameworks like Spring/EJB provide?</b>
+</section>
+
+<section>
+    <p class="white first">Why do we use Spring framework?
+    <br>What is the <b style="color:orangered;">main feature that frameworks like Spring/EJB provide?</b>
+    <ul>
+        <li class="second">Inversion of Control</li>
+        <li class="second">Dependency Injection</li>
+    </ul>
+</section>
+
+<section>
+    <p class="white">JSR-330
+    <ul>
+        <li class="second">javax.inject</li>
+        <li class="second">@Inject, @Qualifier, @Named, @Scope, and @Singleton</li>
+        <li class="second">Guice 3 is the full RI for JSR-330</li>
+    </ul>
+</section>
+
+<section>
+    <p>A static block takes a <b style="color:orangered;">lock on what?</b>
+</section>
+
+<section>
+    <p>A static block takes a <b style="color:orangered;">lock on what?</b>
+        <br>
+        <br>
+        <br><b style="color:white;">'Class' object</b>
+</section>
+
+<section>
+    <p>A method takes a <b style="color:orangered;">lock on what?</b>
+</section>
+
+<section>
+    <p>A method takes a <b style="color:orangered;">lock on what?</b>
+        <br>
+        <br>
+        <br>
+        <b style="color:white;">this</b>
+</section>
+
+<section>
+    <p>A <b style="color:orangered;">static</b> method takes a lock on what?
+</section>
+
+<section>
+    <p>A <b style="color:orangered;">static</b> method takes a lock on what?
+        <br>
+        <br>
+        <br><b style="color:white;">'Class' object</b>
+</section>
+
+<section>
+    <p>Are locks in Java <b style="color:orangered;">re-entrant?</b>
+</section>
+
+<section>
+    <p>Are locks in Java <b style="color:orangered;">re-entrant?</b>
+        <br>
+        <br>
+        <br>Yes. thread holding a lock that encounters a synchronization point for the same lock will be allowed to continue
+</section>
+
+<section style="background: #ffffff">
+    <p class="black first">JMM: Synchronizes-with: “releases happen before acquires”
+    <img src="../../images/java7/synchronizes-with.png" style="padding-top: 100px; padding-left: 200px;">
+</section>
+
+<section style="background: #ffffff">
+    <p class="black first">JMM: Happens-before: usecases: program order and synchronizes-with
+    <img src="../../images/java7/happens-before.png" style="padding-top: 100px; padding-left: 200px;">
+</section>
+
+<section>
+    <p>Features of Java JMM
+    <ul>
+        <li class="first">Objects can be easily shared between all threads</li>
+        <li class="first">Objects can be changed by any threads that have a reference</li>
+        <li class="first">thread scheduler can swap threads on and off cores at any time</li>
+        <li class="first">Methods must be able to be swapped out while they’re running</li>
+        <li class="first">Objects can be locked</li>
+    </ul>
+</section>
+
+<section>
+    <p>Concurrency Design Concepts
+    <ul>
+        <li class="first">Safety: self consistent regardless of operations</li>
+        <li class="first">Liveness: eventually progresses or fails</li>
+        <li class="first">Performance</li>
+        <li class="first">Reusability</li>
+    </ul>
+</section>
+
+<section>
+    <p>Please explore <b style="color:orangered;">java.util.concurrent</b> package</p>
+</section>
+
+<section style="background: #ffffff">
+    <p class="black first">Classloading
+    <br>
+    <br><img src="../../images/java7/classloading1.png" style="padding-top: 100px; padding-left: 200px;">
+</section>
+
+<section style="background: #ffffff">
+    <p class="black first">Classloaders
+        <br>
+        <br><img src="../../images/java7/classloading2.png" style="padding-top: 100px; padding-left: 300px;">
+</section>
+
+<section>
+    <p>Method Handles and Method Types
+    <ul>
+        <li class="second">java.lang.invoke</li>
+        <li class="second">Logger lgr = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());</li>
+        <li class="second">Better than reflection and proxies</li>
+    </ul>
+</section>
+
+<section>
+    <p>Within Class Files...
+    <ul>
+        <li class="first">Java has 200 opcodes - each is a SINGLE byte</li>
+        <li class="first">Bytecode goes through JIT => conversion to machine level code</li>
+        <li class="first">Types of opcodes:
+            <ul>
+                <li class="second">Load and Store</li>
+                <li class="second">Arithmetic</li>
+                <li class="second">Execution control</li>
+                <li class="second">Invocation - method calling - <b style="color:orangered;">invokedynamic</b></li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <p>A Digression into Performance
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">LATENCY?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">LATENCY?</b>
+    <br>
+    <br>Latency is the end-to-end time taken to process a single work-unit at a given workload
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">THROUGHPUT?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">THROUGHPUT?</b>
+    <br>
+    <br>Throughput is the number of units of work that a system can perform in some time period with given resources
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">UTILIZATION?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">UTILIZATION?</b>
+    <br>
+    <br>Utilization represents the percentage of available resources that are being used to han- dle work units, instead of housekeeping tasks
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">EFFICIENCY?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">EFFICIENCY?</b>
+        <br>
+        <br>The efficiency of a system is equal to the throughput divided by the resources used
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">CAPACITY?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">CAPACITY?</b>
+        <br>
+        <br>Capacity is the number of work units (such as transactions) that can be in flight through the system at any time
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">SCALABILITY?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">SCALABILITY?</b>
+        <br>
+        <br>Change in throughput or latency as resources are added is the scalability of a system
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">DEGRADATION?</b>
+</section>
+
+<section>
+    <p>What is <b style="color:orangered;">DEGRADATION?</b>
+    <br>
+    <br>At what point and by how much the scale begins to tip
+</section>
+
+<section>
+    <p class="second">Memory speed has improved more slowly than CPUs have added transistors, which means there’s a risk that the processing cores will fall <b style="color:orangered;">idle</b> due to not having the relevant data on hand to process
+    <br>
+    <br>Memory Latency Hierarchy
+    <ul style="margin-top: 1px; margin-bottom: 1px;">
+        <li class="second">Registers</li>
+        <li class="second">L1, L2, L3 Caches</li>
+        <li class="second">RAM</li>
+        <li class="second">SSD</li>
+        <li class="second">HDD</li>
+    </ul>
+    <p class="second"><br>Hardware techniques like instruction-level parallelism (ILP) and chip multithreading (CMT), were used to try to keep the CPU operating on data, even in the face of the widening gap between CPU capability and memory latency
+    <br>So, a large portion of CPU power is consumed in caching and data-locality and <b style="color:orangered;">NOT</b> in application processing
+    <br>This means the future of application performance is intimately tied to <b style="color:orangered;">good concurrency programming</b> - get your skills right
+</section>
+
+<section>
+    <p>Clocks
+    <br>
+    <br>
+    <br>How many exist? And how do you get them?
+</section>
+
+<section>
+    <p>Clocks
+    <ul>
+        <li class="second">RTC (Real Time Clock) - Keeps running when PC is switched off</li>
+        <li class="second">8254 - System.currentTimeMillis()</li>
+        <li class="second">TSC (Time Stamp Counter) - System.nanoTime() - good only for delta's</li>
+        <li class="second">HPET (High Precision Event Timers)</li>
+    </ul>
+    <br>
+    <p class="second"><br>And these clocks <b style="color:orangered;">DRIFT AWAY</b>
+</section>
+
+<section>
+    <p>Areas of Memory
+        <br>
+        <br>
+        <br>How many exist?
+</section>
+
+<section>
+    <p>Areas of Memory
+    <ul>
+        <li class="second">Eden - Young Gen</li>
+        <li class="second">Survivor - Young Gen</li>
+        <li class="second">Tenured - Old Gen</li>
+        <li class="second">PermGen - Not actually Heap</li>
+    </ul>
+</section>
+
+<section>
+    <p>Garbage Collection (GC)
+        <br>
+        <br>
+        <br>How many exist?
+</section>
+
+<section>
+    <p>Garbage Collection (GC)
+    <ul>
+        <li class="second pad">Serial Collector</li>
+        <li class="second pad">Parallel Collector: Use the cores! But... still... STW</li>
+        <li class="second pad">Parallel Compacting Collector: Mark, Summary, Compaction - <b style="color:#87ceeb;">Old Gen Special, Regions within generations, Density calculation</b></li>
+        <li class="second pad">Concurrent Mark and Sweep Collector: Initial Mark, Concurrent Mark, ReMark, Sweep
+            <ul>
+                <li class="second"><b style="color:#87ceeb;">False Negatives Okay - due to concurrent marking</b></li>
+                <li class="second"><b style="color:#87ceeb;">Eventual Full Collections are inevitable</b></li>
+            </ul>
+        </li>
+        <li class="second pad"><b style="color:orangered;">G1 - The new one!</b></li>
+    </ul>
+</section>
+
+<section>
+    <p><b style="color:orangered;">G1</b>
+    <ul>
+        <li class="second">Pause Goals</li>
+        <li class="second">Regions in Heap itself - non-contiguous heap for each generation</li>
+        <li class="second">G1 will only collect as many regions as it has time</li>
+        <li class="second">Any generation can be collected to reach pause goal</li>
+        <li class="second">Good read - <a href="http://www.infoq.com/articles/G1-One-Garbage-Collector-To-Rule-Them-All">G1: One Garbage Collector To Rule Them All</a></li>
+        <li class="second">Least fragmentation with region size config</li>
+    </ul>
+</section>
+
+<section>
+    <p><b style="color:orangered;">JVM</b>
+        <br>
+        <br>
+        <br>How many do you know?
+</section>
+
+<section>
+    <p><b style="color:orangered;">JVM</b>
+    <ul>
+        <li class="second">HotSpot</li>
+        <li class="second">JRockit</li>
+        <li class="second">Dalvik</li>
+        <li class="second">Azul Zing - Dr. Cliff Clicks JVM</li>
+        <li class="second">Wiki - http://en.wikipedia.org/wiki/List_of_Java_virtual_machines</li>
+    </ul>
+</section>
+
+<section>
+    <p><b style="color:orangered;">Polyglot</b> Programming
+    <ul>
+        <li class="first">Groovy</li>
+        <li class="first">Scala</li>
+        <li class="first">Clojure</li>
+        <li class="first">And the CRAP - JRuby, Jython, Rhino</li>
+    </ul>
+</section>
+
+<section style="background: #ffffff">
+    <p><b style="color:orangered;">Polyglot</b>
+        <br>
+        <br><img src="../../images/java7/polyglot.png" style="padding-top: 100px; padding-left: 300px;">
+</section>
+
+<section>
+    <p>My Hypothesis
+    <ul>
+        <li class="first">Learn <b style="color:orangered;">Concurrency</b>, else you will perish</li>
+        <li class="first">Java will <b style="color:orangered;">Shrink</b> in JVM. Are you ready?</li>
+        <li class="first">Talk <b style="color:orangered;">Numbers</b>. Else, someone who can, will get the better job</li>
+    </ul>
+</section>
+
+<section>
+    <p>Thank you!!</p>
+</section>
+
+<script src="../../lib/stack/d3.v3.min.js"></script>
+<script src="../../lib/stack/stack.v0.min.js"></script>
+    </article>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

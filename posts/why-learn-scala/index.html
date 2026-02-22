@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>Why Learn Scala? - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<section class="content">
+    <script type="text/javascript">
+        var pageTitle = "Why Learn Scala?";
+        var pageType = "post";
+    </script>
+
+    <h2>
+        <a href="https://bharath12345.github.io/posts/why-learn-scala/">Why Learn Scala?</a>
+    </h2>
+
+
+    <section class="byline">
+        Wed 11 December 2013
+    </section>
+    <hr>
+
+    <article>
+        <p>It was a long time ago that I read this masterpiece by the software engineering guru, Peter Norvig - <a href="http://norvig.com/21-days.html#answers">Teach Yourself Programming In Ten Years</a>. Peter advises wannabe programmers to learn at least half a dozen programming languages. Taking stock of myself earlier this year I realised having terribly missed out. In my decade long career, I have worked deeply in only 4 languages - C++, Java, JavaScript and Perl. And <em>none</em> of them strongly functional per Peter's advise (functional JavaScript hasn't come to me yet). This led me to pose two questions to myself - </p>
+<div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#scala-is-a-great-mix">Scala Is A Great Mix</a><ul>
+<li><a href="#haskell-and-scala">Haskell and Scala</a></li>
+<li><a href="#erlang-and-scala">Erlang and Scala</a></li>
+<li><a href="#c-java-and-scala">C#, Java and Scala</a></li>
+</ul>
+</li>
+<li><a href="#scala-ecosystem">Scala Ecosystem</a></li>
+<li><a href="#unlearning-and-relearning-programming">Unlearning and Relearning Programming</a></li>
+</ul>
+</div>
+<ul>
+<li>Why do I need another language? </li>
+<li>If I have to pick one, then, which one?</li>
+</ul>
+<p>The answer to the first question came to me rather quickly. At that time I was exploring what was new with JVM-7. And what was expected of Java and JVM-8. JVM-7 with its <em>invoke dynamic</em> and Java-8 with <em>lambdas</em> were clearly pointing the finger in a certain direction. I realised the designers of the JVM had started to embrace polyglot and functional programming. Digging deeper, the reasons for this move were easy to realise. Java's issues with type-safety, lack of immutable collections (in the JDK), rampant usage of shared mutability etc., were beginning to weigh heavy. The distributed, multicore, big-data computing, realtime world were making Java a little too verbose, justifying the need to look for alternatives.</p>
+<p>Surprisingly, the second question turned out to be the tougher of the two. The choice essentially was between Groovy, Scala and Clojure. I chose Scala. My pre-learning decision has got richly rewarded by what I have learnt after taking the plunge to Scala. Even as I continue to make the (sometimes) steep climb, this is a small, humble attempt to articulate the amazing things I have learnt. This write-up is a little too theoretical. For <em>show-me-the-code</em> types, I will soon write about a <em>not-so-small</em> 3-tier (DB &lt;=&gt; Biz &lt;=&gt; UI) application I have built entirely with Scala. </p>
+<p>In this post I allude to three broad reasons to <em>Why Learn Scala</em> -</p>
+<ol>
+<li>Scala is a great mix. It imbibes some of the best features of other popular, successful languages</li>
+<li>Scala ecosystem of frameworks/libraries is big, mature, created by some great people from academia/industry and very well documented and supported</li>
+<li>Some features of Scala that have made me a more thoughtful, better programmer</li>
+</ol>
+<hr>
+
+<h3 id="scala-is-a-great-mix">Scala Is A Great Mix</h3>
+<p>Scala brings many new original ideas with it for a Java programmer. New ideas like the implementation of persistent data-structures on the JVM, mixing object-oriented with functional, deconstructing objects with pattern matching and many refreshing ideas to lessen code verbosity. But given its academic roots, these were expected. Whats nice is that Scala also brings with itself some of the best features from at least 4 other popular, well designed programming languages -</p>
+<ol>
+<li>Haskell</li>
+<li>Erlang</li>
+<li>C#</li>
+<li>Java</li>
+</ol>
+<p>Now to quickly dig into what it brings from each of these.</p>
+<h4 id="haskell-and-scala">Haskell and Scala</h4>
+<p>These are two interesting Hammer Principle surveys -</p>
+<ul>
+<li><a href="http://hammerprinciple.com/therighttool/statements/learning-this-language-improved-my-ability-as-a-pr">Learning This Language Improved My Ability As A Programmer</a></li>
+<li><a href="http://hammerprinciple.com/therighttool/statements/learning-this-language-significantly-changed-how-i">Learning This Language Significantly Changed How I Use Other Languages</a></li>
+</ul>
+<p>Haskell tops both these lists. Scala, at its very core, incorporates a lot of Haskell's good features into itself. Here is a short quick list -</p>
+<ol>
+<li>Type Inference</li>
+<li>First Class Functions</li>
+<li>Currying</li>
+<li>Lazy Evaluation</li>
+<li>List Comprehensions</li>
+<li>Immutability</li>
+<li>Algebraic Data Types</li>
+<li>Higher Order Types</li>
+<li>Monads</li>
+</ol>
+<p>One question that begs an answer - If Haskell is so good, then why not use Haskell itself? Why go for Scala? If thats an option then I would definitely encourage the reader to go ahead. But to those like me who love and trust the JVM, want interoperability with Java for its ecosystem of libraries and have a overarching/indefinite need for platform independency, Scala is a welcome choice.</p>
+<h4 id="erlang-and-scala">Erlang and Scala</h4>
+<p><a href="http://highscalability.com/blog/2013/11/8/stuff-the-internet-says-on-scalability-for-november-8th-2013.html?SSLoginOk=true">WhatsApp</a> gets more messages than Twitter. WhatsApp is built on Erlang. And thats for a reason. To handle as many messages as WhatsApp does, you need a massively concurrent application. To run a massively concurrent application, you need a lot of parallel execution. And Actor based method for concurrency brought by Erlang is built for such a usecase. It is backed by solid theory and research. However Erlang takes a thread backed method for its Actor model's concurrency. And the Erlang process is very lightweight. Erlang applications commonly have tens-of thousands of threads or more. Now thread's are a scarce resource on commodity hardware (Erlang does not always run on commodity hardware). And in a distributed, horizontally scaling setup the constraint on number of threads can be quite strict. The developers of Scala have thus provided two types of Actors: thread-based and event based. Thread based actors execute in heavyweight OS threads. They never block each other, but they don’t scale to more than a few thousand actors per VM. Event-based actors are simple objects. They are very lightweight, and, like Erlang processes, you can spawn millions of them on a modern commodity machine. The difference with Erlang processes is that within each OS thread, event based actors execute sequentially without preemptive scheduling. This makes it possible for an event-based actor to block its OS thread for a long period of time (perhaps indefinitely).</p>
+<p>If one is looking to engineer a highly concurrent application on the JVM, then Scala's Actor model provides a compelling option for designing such a system. I encourage the readers to listen to the many videos/talks by the architects of Scala Actor model (like Jonas Boner and Roland Kuhn) to get a more thorough understanding of the Actor model. Scala's Akka library with its Actor model is a great effort to bring the best of Erlang's proven concurrency model to the JVM engineers.</p>
+<h4 id="c-java-and-scala">C#, Java and Scala</h4>
+<p>Scala has taken a lot of good things from C# and Java, especially in the syntax area. The syntax seems to have been designed especially keeping the Java programmers in mind, all the while trying to reduce the verbosity. One of the very interesting features that seems to have been inspired by C# is <a href="http://www.artima.com/pins1ed/implicit-conversions-and-parameters.html">Implicits</a>. They provide a means to extend libraries, help in type conversion etc. </p>
+<hr>
+
+<h3 id="scala-ecosystem">Scala Ecosystem</h3>
+<p>Scala has had its set of woes in this area. There has been quite some furore over backward compatibility of Scala's native libraries and other frameworks over the last few releases 2.7 &gt; 2.8 &gt; 2.9 &gt; 2.10 (present). The Actors model has been written multiple times over - once as native scala.actors, once as part of the Lift library, and finally as part of Akka. However, having started coding with Scala many months ago and having worked on the latest releases of many of these libraries I have felt them being no different than those that exist in the world of Java in documentation, community backup etc. One great joy is actually the existence of many options in every area of the language, which I illustrate in the list below. </p>
+<ol>
+<li><strong>Concurrency, Event Management, ESB</strong>
+    a. <a href="https://github.com/akka/akka">Akka</a> - actor based concurrency model
+    b. <a href="https://github.com/eligosource/eventsourced">Eventsourced</a> - persistence, recovery, redelivery of messages</li>
+<li><strong>Data structures</strong>
+    a. <a href="https://github.com/scalaz/scalaz">Scalaz</a> -  data Structures for functional programming
+    b. <a href="https://github.com/Netflix/RxJava">RxJava</a> - composing asynchronous and event-based programs using observable sequences (not written in Scala but, probably, better used with Scala than Java from code hygiene POV!)</li>
+<li><strong>Build and Testing</strong>
+    a. <a href="https://github.com/rickynils/scalacheck">ScalaCheck</a> - testing framework with probably no Java equivalent (at least that I know of)
+    b. <a href="https://github.com/sbt/sbt">SBT</a> - more concise than Maven. No XML crap - build instructions as Scala DSL</li>
+<li><strong>Object Relational Mapping</strong> -
+    a. <a href="https://github.com/slick/slick">Slick</a> - Database access</li>
+<li><strong>Distributed Big Data Tasks</strong>
+    a. <a href="https://github.com/twitter/finagle">Finagle</a> - Fault tolerant, protocol agnostic RPC system
+    b. <a href="https://github.com/twitter/scalding">Scalding</a> - MapReduce for Scala
+    c. <a href="https://github.com/twitter/summingbird">SummingBird</a> - Streaming, continuous, real-time MapReduce on top of Scalding or Storm</li>
+<li><strong>Web Development</strong>
+    a. <a href="http://liftweb.net/">Lift</a>
+    b. <a href="http://www.playframework.com/">Play!</a> 
+    c. <a href="http://spray.io/">Spray.IO</a></li>
+</ol>
+<p>These are but just a few of the popular libraries in some of the more frequently programmed areas. There are many more options for a interested programmer in each area. For example, the number of web development frameworks in native Scala number more than 10. And then there are libraries in other areas like machine-learning etc.</p>
+<hr>
+
+<h3 id="unlearning-and-relearning-programming">Unlearning and Relearning Programming</h3>
+<p>For those coming from Java, with no functional programming background, Scala can be a steep learning curve. But it is well worth the effort. To me, apart from exposure to many concepts totally new, Scala has helped in getting more firmly grounded in the fundamentals of structure and interpretation of computer programs. It has helped me realise the many things I need to <em>unlearn</em> to become a better programmer! If a passing reader finds this claim interesting, here is a quick list of things I feel better programming at now...</p>
+<ol>
+<li>Immutability: tradeoffs in using the C/Java style innocuous looking <em>for</em> loop; Utility (and at times necessity) of immutable collections (which do not exist in Oracle's Java JDK)</li>
+<li>Type safety: strengths of Java/JVM style strict typing; <a href="http://code.stephenmorley.org/articles/java-generics-type-erasure/">Problems</a> in Java's type safety offering</li>
+<li>Inheritance: a better understanding of covariance and contra-variance </li>
+<li>Rethinking code verbosity by composing higher order functions, partial functions etc (lesser code often translates to fewer bugs)</li>
+<li>A better way to alleviate null-checks using Options</li>
+<li>Dependency Injection without annotations or XMLs</li>
+<li>Things can be better than using <em>static</em> classes, methods, variables</li>
+<li>Closures and Mixin's possible on JVM too (until now, I had thought of these only from the JavaScript perspective)</li>
+<li>Using <em>Map</em> when I needed <em>Tuple</em> was not exactly a bright idea</li>
+<li>I can do so much more when I can write code that my build system understands... looking for Maven plugins need not be a way of life...</li>
+</ol>
+<p>... and I can go on and on!! </p>
+    </article>
+
+    <hr>
+
+    <div class="category">
+        <strong>Category:</strong>
+        <a href="https://bharath12345.github.io/category/posts.html" class="badge bg-primary">posts</a>
+    </div>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>

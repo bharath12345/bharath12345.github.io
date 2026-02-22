@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>Algorithms Course-1 With Prof Sidgewick on Coursera - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<section class="content">
+    <script type="text/javascript">
+        var pageTitle = "Algorithms Course-1 With Prof Sidgewick on Coursera";
+        var pageType = "post";
+    </script>
+
+    <h2>
+        <a href="https://bharath12345.github.io/posts/algorithms-course-i-with-prof-sidgewick-on-coursera/">Algorithms Course-1 With Prof Sidgewick on Coursera</a>
+    </h2>
+
+
+    <section class="byline">
+        Tue 08 October 2013
+    </section>
+    <hr>
+
+    <article>
+        <p>I did my engineering in electronics and communication systems. But my very first job was in software development. Having not studied theory of computing, databases, compilers and even algorithms/data-strutures as part of my graduation I went on to self-study these. However, deep down, have felt the need for more structured education. I don't remember when I first heard of <a href="https://www.coursera.org">Coursera</a>. But my early tryst with online education had been dismal (at my previous employer they would make me go through online training's mandatorily… and those used to absolutely suck). So even as I kept track of the courses offered on Coursera since early this year, I did not enroll. A couple of months ago I decided to give it a serious try… and I enrolled myself for the first course on Algorithms by Professor Robert Sidgewick. I finished my final exam on the course yesterday. And it feels great to be done with all tests and programming assignments. The course was structured in the undergraduate training way… which is exactly what I wanted. The learning has been enormous. Anyone who has spent a decade in software development like me would know MergeSort and QuickSort anyway… but the scientific treatment of the subject both in the videos and the textbook gives me a sense of closure. And by the way, I think algorithms and data-structures is a field which a practicing engineer has to seriously brush-up, once in every few years, just to keep up…</p>
+<div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#general-questions-on-the-study-of-algorithms">General questions on the study of Algorithms</a></li>
+<li><a href="#sorting">Sorting</a></li>
+<li><a href="#searching">Searching</a></li>
+</ul>
+</div>
+<p>Like the few book reviews that I have done before on my blog, this is a quick refresher for myself on all that I have studied. Its not complete or thorough. And I hope there are no factual errors. So if a passing reader finds anything here useful, it makes me glad… </p>
+<hr>
+
+<h4 id="general-questions-on-the-study-of-algorithms">General questions on the study of Algorithms</h4>
+<ol>
+<li>
+<p><strong>Why study Algorithms and Data Structures? Why are they important?</strong></p>
+<p>Computers, no matter how powerful, have space and time constraints. Poorly thought through implementations for computing problems can take years to compute even when computing resources are massive. For example -
+<p align="center">
+<img alt="image" src="/images/algorithms/timecompare.png">
+</p></p>
+</li>
+<li>
+<p><strong>Why learn, re-learn algorithms?</strong></p>
+<ul>
+<li>The primary reason to do so is that we are faced, all too often, with completely new computing environments (hardware and software) with new features that old implementations may not use to best advantage</li>
+<li>As a professional, it is a crime to use tools without their thorough understanding. So as Java programmers, to use HashMap and TreeSet without the knowledge of the underlying resource utilisation and performance impact is…</li>
+<li>Intellectually satisfying</li>
+</ul>
+</li>
+<li>
+<p><strong>How do you measure how long will your program take to run?</strong></p>
+<ul>
+<li>Repeated runs in thousands to find the mean and standard-deviation</li>
+<li>Run it for different quantum's of input data 'N' - find mean and std-dev for different N after thousands of runs</li>
+<li>Find a relationship between N and time-taken by plotting on a graph - is the graph linear? hyperbolic? logarithmic? </li>
+</ul>
+</li>
+<li>
+<p><strong>Why measure how long programs take to run?</strong></p>
+<p>Knowing the order of growth of the running time of an algorithm provides precisely the information that you need to understand limitations on the size of the problems that you can solve. Developing such understanding is the most important reason to study performance.</p>
+</li>
+<li>
+<p><strong>What are big-O and big-Omega notations? Why are they needed?</strong></p>
+<p>big-O is for the upper bound. big-Omega is for the lower bound. (there is also a big-Theta that is a little more involved idea). The running times of a great many programs depend only on a small subset of their instructions - so when running time of algorithms are proportional to squares(N<sup>2</sup>) or cubes(N<sup>3</sup>) or exponentials(2<sup>N</sup>) of input data counts (N), we know that these algorithms will not scale for large inputs (N). Only when running times of algorithms are proportional to linear(N), linearithmic(NlogN) or logarithmic(logN) or constant can they be expected to scale for large inputs.</p>
+</li>
+<li>
+<p><strong>Then why is big-O not useful for predicting performance or for comparing algorithms?</strong></p>
+<p>The primary reason is that it describes only an upper bound on the running time. Actual performance might be much better. The running time of an algorithm might be both O(N2) and ~ a N log N. As a result, it cannot be used to justify tests like our doubling ratio test (see Proposition C on page 193). </p>
+</li>
+<li>
+<p><strong>What is the base of log when we are talking about complexities of algorithms? Why?</strong></p>
+<p>Base-2. In terms of Big-O, the base doesn't matter because the change of base formula implies that it's only a constant factor difference. That is logarithms from base 10 or base 2 or base e can be exchanged (transformed) to any other base with the addition of a constant. The critical thing to understand is that logarithms (of any base) increase slowly with the increase of N. However, observe this table of log values… (with respect to complexity of algorithms, the value of N can never be fractional or negative anyway...)
+<p align="center">
+<img alt="image" src="/images/algorithms/log.png">
+</p></p>
+</li>
+<li>
+<p><strong>What does Java Arrays.sort() implement?</strong></p>
+<p>Mergesort till Java6. TimSort from Java7 onwards...</p>
+</li>
+<li>
+<p><strong>Order of growth graph?</strong></p>
+<p>Here is the log-log plot (both size(N) x-axis and time(T) y-axis are in logarithms)
+<p align="center">
+<img alt="image" src="/images/algorithms/orderofgrowth.png">
+</p></p>
+</li>
+<li>
+<p><strong>Example of each -</strong></p>
+<ul>
+<li>constant time - assignment statement</li>
+<li>logarithmic - binary search</li>
+<li>linear - find the maximum value</li>
+<li>linearithmic - merge sort</li>
+<li>quadratic - double for/while loop</li>
+<li>cubic - triple for/while loop</li>
+<li>exponential - brute force search</li>
+</ul>
+</li>
+<li>
+<p><strong>Why develop faster algorithms?</strong></p>
+<p>Faster algorithms help us to address larger problems</p>
+</li>
+<li>
+<p><strong>Why study memory utilisation of Java programs?</strong></p>
+<p>If you have 1GB of memory on your computer (1 billion bytes), you cannot fit more than about 32 mil- lion int values or 16 million double values in memory at any one time.</p>
+</li>
+<li>
+<p><strong>How many bytes in memory are required to store a reference to a Java Object?</strong></p>
+<p>4 bytes on a 32 bit system. 8 bytes on a 64 bit system</p>
+</li>
+</ol>
+<hr>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<h4 id="sorting">Sorting</h4>
+<ol>
+<li>
+<p><strong>In Java what do you have to do to be able to sort an array of a custom object type?</strong></p>
+<p>The class of the object should implement Comparable</p>
+</li>
+<li>
+<p><strong>Performance of selection sort</strong></p>
+<p>N<sup>2</sup>/2 compares and N exchanges</p>
+</li>
+<li>
+<p><strong>About selection sort</strong></p>
+<ul>
+<li>it takes about as long to run selection sort for an array that is already in order or for an array with all keys equal as it does for a randomly-ordered array! </li>
+<li>Data movement is minimal</li>
+</ul>
+</li>
+<li>
+<p><strong>Performance of insertion sort</strong></p>
+<p>Insertion sort uses N<sup>2</sup>/4 compares and N<sup>2</sup>/4 exchanges to sort a randomly ordered array of length N with distinct keys, on the average. The worst case is N<sup>2</sup>/2 compares and N<sup>2</sup>/2 exchanges and the best case is N-1 compares and 0 exchanges.</p>
+</li>
+<li>
+<p><strong>Performance of merge sort</strong></p>
+<p>Top-down and bottom-up mergesort uses between 1⁄2NlogN and NlogN compares to sort any array of length N. Top-down mergesort uses at most 6NlogN array accesses to sort an array of length N. The primary drawback of mergesort is that it requires extra space proportional to N</p>
+</li>
+<li>
+<p><strong>Upper limits to compare based sorting algorithms</strong></p>
+<p>Compare-based algorithms that make their decisions about items only on the basis of comparing keys. A compare-based algorithm can do an arbitrary amount of computation between compares, but cannot get any information about a key except by comparing it with another one. No compare-based sorting algorithm can guarantee to sort N items with fewer than log(N!) ~ NlogN compares.</p>
+</li>
+<li>
+<p><strong>Performance of quick sort</strong></p>
+<p>The quicksort algorithm’s desirable features are that it is in-place (uses only a small auxiliary stack) and uses ~ 2NlogN compares and one-sixth that many ex- changes on the average to sort an array of length N with distinct keys.</p>
+</li>
+<li>
+<p><strong>Whats the problem statement for priority queues?</strong></p>
+<p><em>insert</em> and <em>remove the maximum</em> have to be fast. Provide fast insert and access to a subset of data points among potentially infinite number of data points. Binary heaps provide the data structure to implement logarithmic time insert and remove-max. (Java natively provides a <a href="http://stackoverflow.com/questions/683041/java-how-do-i-use-a-priorityqueue">PriorityQueue</a> implementation as part of collections)</p>
+</li>
+<li>
+<p><strong>What is a binary heap?</strong></p>
+<p>In a binary heap, the keys are stored in an <em>array</em> such that each key is guaranteed to be larger than (or equal to) the keys at two other specific positions. In turn, each of those keys must be larger than (or equal to) two additional keys, and so forth. The largest key in a heap-ordered binary tree is found at the root. Generally binary heaps are stored sequentially within an array by putting the nodes in level order, with the root at position 1, its children at positions 2 and 3, their children in positions 4, 5, 6, and 7, and so on.</p>
+</li>
+<li>
+<p><strong>Performance of Priorty queues with binary heaps?</strong></p>
+<p>In an N-key priority queue, the heap algorithms require no more than 1 + log N compares for insert and no more than 2logN compares for remove the maximum.</p>
+</li>
+<li>
+<p><strong>Performance of heap sort</strong></p>
+<p>Heapsort is significant because it is the only method that is optimal (within a constant factor) in its use of both time and space—it is guaranteed to use ~2NlogN compares and constant extra space in the worst case. When space is very tight (for example, in an embedded system or on a low-cost mobile device) it is popular because it can be implemented with just a few dozen lines (even in machine code) while still providing optimal performance. However, it is rarely used in typical applications on modern systems because it has poor <em>cache</em> (processor cache) performance: array entries are rarely compared with nearby array entries, so the number of cache misses is far higher than for quicksort, mergesort, and even shellsort, where most compares are with nearby entries.</p>
+</li>
+<li>
+<p><strong>Application of PriorityQueue</strong></p>
+<p><strong>TopN</strong> by some particular order of prioritization. If you are looking for the top ten entries among a billion items, do you really want to sort a billion-entry array? With a priority queue, you can do it with a ten-entry priority queue.</p>
+</li>
+<li>
+<p><strong>When to use Java Comparable and when the Comparator?</strong></p>
+<p>Implementing Comparable means implementing the compareTo method which is supposed to show the <em>natural ordering</em> in a set of objects of a certain type.
+There are many applications where we want to use differ- ent orders for the objects that we are sorting, depending on the situation. The Java Comparator interface allows us to build multiple orders within a single class. It has a single public method compare() that compares two objects. If we have a data type that implements this interface, we can pass a Comparator to sort(). In typical applications,items have multiple instance variables that might need to serve as sort keys. The Comparator mechanism is precisely what we need to allow this flexibility.</p>
+</li>
+<li>
+<p><strong>Can comparators be used with PriorityQueues as well?</strong></p>
+<p>Yes. See <a href="http://stackoverflow.com/questions/683041/java-how-do-i-use-a-priorityqueue">http://stackoverflow.com/questions/683041/java-how-do-i-use-a-priorityqueue</a></p>
+</li>
+<li>
+<p><strong>When is a sorting method stable?</strong></p>
+<p>If it preserves the relative order of equal keys in the array. Read the beautiful example on page 341</p>
+</li>
+<li>
+<p><strong>Which sorting algorithms are stable?</strong></p>
+<p>Only insertion sort and merge sort are stable</p>
+</li>
+</ol>
+<hr>
+<h4 id="searching">Searching</h4>
+<ol>
+<li>
+<p><strong>Popular data-structures to hold symbol tables?</strong></p>
+<p>Binary search trees, Red black trees and hash tables</p>
+</li>
+<li>
+<p><strong>Performance of brute force sequential search (unordered arrays or linked lists)</strong></p>
+<p>Search misses and insertions in an (unordered) linked-list symbol table having N key-value pairs both require N compares, and search hits N compares in the worst case. In particular, inserting N distinct keys into an initially empty linked-list symbol table uses ~N<sup>2</sup>/2 compares. One useful measure is to compute the total cost of searching for all of the keys in the table, divided by N - for sequential search this is N/2</p>
+</li>
+<li>
+<p><strong>Performance of binary search for symbol tables</strong></p>
+<p>Binary search in an ordered array with N keys uses no more than logN + 1 compares for a search (successful or unsuccessful). But inserting a new key into an or- dered array of size N uses ~ 2N array accesses in the worst case, so inserting N keys into an initially empty table uses ~ N<sup>2</sup> array accesses in the worst case.</p>
+</li>
+<li>
+<p><strong>Performance of BST (binary search trees) for symbol tables</strong></p>
+<p>Search hits in a BST built from N random keys require ~ 1.39logN compares, on the average. Insertions and search misses in a BST built from N random keys require ~ 1.39logN compares, on the average.</p>
+</li>
+<li>
+<p><strong>Shortcoming of BST</strong></p>
+<p>The running times of algorithms on binary search trees depend on the shapes of the trees, which, in turn, CS depend on the order in which keys are inserted. In the best case, a tree with N nodes could be perfectly balanced, with ~ logN nodes between the root and each null link. In the worst case there could be N nodes on the search path. So to optimise, keys are inserted in random by purpose to tilt towards the average case search performance</p>
+</li>
+<li>
+<p><strong>Performance of 2-3 Search trees</strong></p>
+<p>Search and insert operations in a 2-3 tree with N keys are guaran- teed to visit at most logN nodes.</p>
+</li>
+<li>
+<p><strong>Performance of Red-Black BST</strong>
+    <p align="center">
+    <img alt="image" src="/images/algorithms/symbolperf.png">
+    </p></p>
+</li>
+<li>
+<p><strong>Why use hashing?</strong></p>
+<p>To be able to handle more complicated keys (custom objects, strings)</p>
+</li>
+<li>
+<p><strong>What are the two popular ways to hash collision resolution?</strong></p>
+<ul>
+<li>Separate chaining - bag of items for each hash key</li>
+<li>Linear probing - also known as <a href="http://en.wikipedia.org/wiki/Hash_table#Open_addressing">Open addressing</a></li>
+</ul>
+</li>
+<li>
+<p><strong>In Java, which is faster - HashSet or TreeSet? What is the usecase for each?</strong></p>
+<ul>
+<li>
+<p><strong>HashSet</strong></p>
+<ul>
+<li>Almost constant time performance due to the usage hash functions for the basic operations (add, remove, contains and size)</li>
+<li>does not guarantee that the order of elements will remain constant over time</li>
+</ul>
+</li>
+<li>
+<p><strong>TreeSet</strong></p>
+<ul>
+<li>guarantees log(n) time cost for the basic operations (add, remove and contains)</li>
+<li>guarantees that elements of set will be sorted (ascending, natural, or the one specified by you via it's constructor)</li>
+<li>offers a few handy methods to deal with the ordered set like first(), last(), headSet(), and tailSet() etc</li>
+<li>Internally uses a implementation close to Red-Black Trees</li>
+</ul>
+</li>
+<li>
+<p><strong>Common features</strong></p>
+<ul>
+<li>Being sets, both offer duplicate-free collection of elements</li>
+<li>It is generally faster to add elements to the HashSet and then convert the collection to a TreeSet for a duplicate-free sorted traversal</li>
+<li>None of these implementation are synchronized</li>
+<li>Java also has a LinkedHashSet - look it up to know about it more</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>In Java, which is faster - HashMap or TreeMap? What is the usecase for each?</strong></p>
+<p>On similar lines as HashSet vs. TreeSet. HashMap implements a hash function (uses hashCode and equals) on the keys. TreeMap uses Red-Black trees internally. HashMap is more time efficient. TreeMap is more space efficient. TreeMap has an internal ordering of keys which can also be specified using a construction time comparator. HashMap's have no internal ordering. One should use HashMap for fast lookup and TreeMap for sorted iteration. HashMap allows null keys and values. HashMap doesn't allow duplicate entries. HashMap iteration performance depends on <em>initial capacity</em> and <em>load factor</em> that can be passed during construction - TreeMap offers no such iteration performance tunables. </p>
+</li>
+<li>
+<p><strong>Why is order not maintained in Hash* collection implementations?</strong></p>
+<p>The whole point of hashing is to uniformly disperse the keys, so any order in the keys is lost when hashing.</p>
+</li>
+<li>
+<p><strong>In Java, what is the rule with implementing hashCode?</strong></p>
+<ul>
+<li>If hashCode's are equal then objects may or may not be equal</li>
+<li>If hashCode's are not-equal the objects are not equal</li>
+</ul>
+</li>
+<li>
+<p><strong>In Java, what kind of collision resolution scheme is implemented for HashMap and Hashtable?</strong></p>
+<p>Both use separate chaining. Google guava libraries have some implementations for linear probing</p>
+</li>
+<li>
+<p><strong>Space usage of BST vs. separate chaining vs. linear probing?</strong>
+    <p align="center">
+    <img alt="image" src="/images/algorithms/space.png">
+    </p></p>
+</li>
+<li>
+<p><strong>Performance of hashing vis-a-vis trees?</strong>
+    <p align="center">
+    <img alt="image" src="/images/algorithms/hashperf.png">
+    </p></p>
+</li>
+<li>
+<p><strong>What would be a good data-structure to use for counting all people within a income range (say 10k to 20k) in an age group (say 25 to 35 years) among a million people?</strong></p>
+<p>Kd-trees because of the easy 2-dimensional split (at least one should say some kind of tree). Though Kd-trees can be used for n-dimensional searches very well too</p>
+</li>
+</ol>
+    </article>
+
+    <hr>
+
+    <div class="category">
+        <strong>Category:</strong>
+        <a href="https://bharath12345.github.io/category/posts.html" class="badge bg-primary">posts</a>
+    </div>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>

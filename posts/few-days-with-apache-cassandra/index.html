@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>Few days with Apache Cassandra - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<section class="content">
+    <script type="text/javascript">
+        var pageTitle = "Few days with Apache Cassandra";
+        var pageType = "post";
+    </script>
+
+    <h2>
+        <a href="https://bharath12345.github.io/posts/few-days-with-apache-cassandra/">Few days with Apache Cassandra</a>
+    </h2>
+
+
+    <section class="byline">
+        Thu 11 July 2013
+    </section>
+    <hr>
+
+    <article>
+        <p>Few years ago I was a product developer at a big software (but non-database) company. We were writing the v2 of a new product after a fairly successful development round of v1. For everything OLTP, we used the wonderful open-source database - Postgres. But by v2, we had new, hight-volume data like NetFlow coming in. This would have intensely tested Postgres's scalability and read/write performance. And we had some datawarehousing and OLAP requirements too. A hard look at our queries told us that column-stores would be a great-fit. Looking back, the options for a new product to store and query on massive data volumes boiled down to these few options -</p>
+<div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#a-simple-usecase">A Simple Usecase</a></li>
+<li><a href="#data-volumes">Data Volumes</a><ul>
+<li><a href="#fine-grained-data">Fine-grained Data</a></li>
+<li><a href="#coarse-grained-data">Coarse-grained Data</a></li>
+<li><a href="#adding-it-all-up">Adding it all up!</a></li>
+</ul>
+</li>
+<li><a href="#before-we-start-data-modeling">Before we start data modeling...</a><ul>
+<li><a href="#data-access-methods-in-cassandra">Data Access methods in Cassandra</a></li>
+<li><a href="#supercolumns">SuperColumns</a></li>
+<li><a href="#denormalization-and-data-modeling-by-queries">Denormalization and Data Modeling by Queries</a></li>
+<li><a href="#code-itself">Code Itself</a></li>
+</ul>
+</li>
+<li><a href="#data-modeling">Data Modeling</a><ul>
+<li><a href="#keyspace-configuration">Keyspace Configuration</a><ul>
+<li><a href="#for-jvm-method-metrics">For JVM Method metrics</a></li>
+<li><a href="#for-jvm-wide-statistics">For JVM wide statistics</a></li>
+</ul>
+</li>
+<li><a href="#column-families-in-jvmmethodmetrics-keyspace">Column Families in JvmMethodMetrics KEYSPACE</a><ul>
+<li><a href="#raw-trend-query-tables">Raw Trend Query Tables</a></li>
+<li><a href="#trend-query-roll-up-tables">Trend Query Roll-up Tables</a></li>
+<li><a href="#topn-query-tables">TopN Query Tables</a></li>
+</ul>
+</li>
+<li><a href="#column-families-in-jvmmetricsraw-keyspace">Column Families in JvmMetricsRaw KEYSPACE</a></li>
+</ul>
+</li>
+<li><a href="#query-code">Query Code</a></li>
+<li><a href="#readwrite-performance">Read/Write Performance</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#reading-recommendations">Reading Recommendations</a></li>
+</ul>
+</div>
+<ul>
+<li>Throw more hardware: Tell the needy customer to invest more in hardware. But no one really knew how much more hardware was really going to nail it</li>
+<li>Tune, Shard, Rebuild, Redeploy: Invest in tuning our software and database for specific queries. Shard, re-model and/or do whatever that could be done by the development and implementation teams around what we had</li>
+<li>Use Oracle<ul>
+<li>This did not make good business sense for a big product company - tying itself deep into Oracle</li>
+<li>CTO and architects did not think Oracle could nail the data volumes anyway (actually none of the engineers who understood the problem thought Oracle would nail it anyway!)</li>
+</ul>
+</li>
+<li>Use column-stores like Sybase, Vertica</li>
+</ul>
+<p>The fact was, there were no open-source, reliable, horizontally scalable column-stores or parallel DBMS to consider.</p>
+<p>Times have improved. We now have Cassandra, HBase, Hypertable etc (MongoDB, CouchDB etc are document stores with less of modeling - here the context is of schema-full data with rich data-type support).</p>
+<p>So, I decided to try and understand Cassandra. Wanted to answer the simple question - if I were to re-live the product development scenario described above, would I choose Cassandra? So in this article I talk about my experiment with Cassandra. Here, I choose a very specific use-case to illustrate what I found - Monitoring JVM metrics in a small data center.</p>
+<h4 id="a-simple-usecase">A Simple Usecase</h4>
+<ul>
+<li>A web company running 50 JVMs. The JVMs could be Apache-Tomcat servlet containers hosting the application</li>
+<li>Each Tomcat instance hosts 50 URLs and thereby, say, 50 front-ending servlet classes each extending HttpServlet</li>
+<li>Method metrics are collected on these servlets (through logs or bytecode instrumentation or aspect-driven). Specifically, the metrics collected - number of invocations and time-spent - just 2 method level metrics!</li>
+<li>Idea is to analyze the metrics to get insights into - how to deploy the servets servers? Are there any hotspots and, if so, where - which URL (object) is being accessed most/least? at what times? trends? and so on…</li>
+<li>Along with monitoring these specific servlet method's also keep a tab on overall application health. The number of active-threads in all JVM's. Various JVM memory parameters. A few MBean stat's. Etc…</li>
+<li>Minimum data view granularity requirements -<ul>
+<li>Last 30 days  - per-minute, per-hour, per-day, per-week, per-month</li>
+<li>Last 60 days  - per-hour, per-day, per-week, per-month</li>
+<li>Last 180 days - per-day, per-week, per-month</li>
+<li>Last 360 days - per-week (52 weeks), per-month</li>
+<li>Last 720 days - per-month (24 months)</li>
+</ul>
+</li>
+<li>User primarily requires 'trend' and 'topN' charts. Examples -<ul>
+<li>Chart of Top-10 most invoked servlets in last 2 months at per-hour granularity</li>
+<li>Trend of three specific servlet's response-times {max, min, avg, 1st and 3rd quartile} over last 6 months plotted per day</li>
+</ul>
+</li>
+<li>User also wants JVM wide statistics like - active threads, memory stats and datasource stats - all following the same granularities as above. Lets suppose that these combine to 6 separate metrics in all. </li>
+<li>From the querying perspective, lets say we have only 2 users in our IT Operations team who will be actively querying this data.</li>
+</ul>
+<h4 id="data-volumes">Data Volumes</h4>
+<h6 id="fine-grained-data">Fine-grained Data</h6>
+<ul>
+<li>JVM Method data: <ul>
+<li>50 JVMs * 50 Methods * 24 Hours in a day * 60 minutes per hour * 2 metric-types = 7.2 Million data-points per day. </li>
+<li>7.2 Million * 30 = 216 Million data points per month</li>
+</ul>
+</li>
+<li>JVM-wide stats: <ul>
+<li>50 JVMs * 24 Hours * 60 minutes * 6 metric-types = 432K data points per day </li>
+<li>432K * 30 = 12.96 Million per month</li>
+</ul>
+</li>
+</ul>
+<h6 id="coarse-grained-data">Coarse-grained Data</h6>
+<ul>
+<li>This corresponds to roll-ups. Hourly, Daily, Weekly and Monthly.</li>
+<li>Hourly rollup for last 60 days<ul>
+<li>JVM method data: 50 JVMs * 50 Methods * 24 Hours * 60 days * 2 metric-types = 7.2 Million data points over last 60 days. Or, 120K data points per day</li>
+<li>JVM-wide stats: 50 JVMs * 24 Hours * 60 days * 6 metric-types = 432K data points over last 60 days. Or, 7.2K data points per day</li>
+</ul>
+</li>
+<li>Daily rollup for last 180 days<ul>
+<li>JVM Method data: 50 JVMs * 50 Methods * 180 days * 2 metric-types = 900K data points in 180 days. Or, 5K data points per day</li>
+<li>JVM-wide stats: 50 JVMs * 180 days * 6 metric-types = 54K data points in 180 days. Or, 300 data points per day</li>
+</ul>
+</li>
+<li>Weekly rollup for last 52 weeks<ul>
+<li>JVM Method data: 50 JVMs * 50 Methods * 52 weeks * 2 metric-types = 260K data points over last 52 weeks. Or, 5K data points per week. Or, 700 data points per day</li>
+<li>JVM-wide stats: 50 JVMs * 52 weeks * 6 metric-types = 15.6K data points over last 52 weeks. Or, 300 data points per week. Or, 40 data points per day</li>
+</ul>
+</li>
+<li>Monthly rollup for last 24 months<ul>
+<li>JVM Method data: 50 JVMs * 50 Methods * 24 months * 2 metric-types = 120K data points for last 24 months. Or, 5K data points per month. Or, 170 data points per day</li>
+<li>JVM-wide stats: 50 JVMs * 30 days * 6 metric-types = 9000 data points per month. Or, 300 data points per month. Or 10 data points per day</li>
+</ul>
+</li>
+</ul>
+<h6 id="adding-it-all-up">Adding it all up!</h6>
+<p>Number of data points collected PER DAY -</p>
+<ul>
+<li>JVM Method data:<ul>
+<li>Fine grained minute data points = 7.2 Million</li>
+<li>Hourly rollup = 120K</li>
+<li>Daily rollup = 5K</li>
+<li>Weekly rollup = 700</li>
+<li>Monthly rollup = 170</li>
+<li>Total (approx) = 7.32 Million</li>
+</ul>
+</li>
+<li>JVM-wide stats:<ul>
+<li>Fine grained minute data points = 432K</li>
+<li>Hourly rollup = 7.2K</li>
+<li>Daily rollup = 300</li>
+<li>Weekly rollup = 40</li>
+<li>Monthly rollup = 10</li>
+<li>Total (approx) = 440K</li>
+</ul>
+</li>
+<li>Total of totals = 7.76 Million data points per day. Or, 320K data points per hour. Or, 5500 data points per minute. Or 90 data-points per second</li>
+</ul>
+<p>There are couple of VERY IMPORTANT things to realize before going further -</p>
+<ul>
+<li>In the DBMS world, multiple data points can fit into a single row. So, 90 data-points per second translates to fewer than 90 row inserts per second. But how fewer depends on the data modeling</li>
+<li>The temporal distribution of inserts is not even. The hourly roll-up kicks in at the end of each hour. Daily roll-up at the end-of-day and so on (not considering the timezone adjustments required for roll-ups)</li>
+</ul>
+<p>Small-data problem? Its just a prototype!!</p>
+<h4 id="before-we-start-data-modeling">Before we start data modeling...</h4>
+<h6 id="data-access-methods-in-cassandra">Data Access methods in Cassandra</h6>
+<p>Predominantly, there are three ways to interact with Cassandra - Hector, Astyanax and CQL. Cassandra supports Thrift by providing an API. Hector and Astyanax use the Thrift API to talk to the DBMS. CQL3 proposes a new SQL like API. This <a href="http://www.slideshare.net/jericevans/cql-sql-in-cassandra">slidedeck</a> has CQL3 performance vis-a-vis Thrift-API by the main committer of this piece - Eric Evans. Take your pick! In this prototype, I use CQL3. </p>
+<h6 id="supercolumns">SuperColumns</h6>
+<p>Recent articles and blogs suggest that supercolumns are a bad design and will go away in future releases of Cassandra. So I use composite keys and not supercolumns to model the data</p>
+<h6 id="denormalization-and-data-modeling-by-queries">Denormalization and Data Modeling by Queries</h6>
+<p>One of the central ideas in column-stores is to model data per the queries expected. Also denormalize, that is, store multiple replicas of data if required. Both these ideas have strong theoratical backing. Let me state just two -</p>
+<ul>
+<li>DB schema per query requirements - One of the gurus of database design, Professor Stonebraker has suggested that in enterprise applications OLTP queries are well known in advance, few in number, and do not change often. Refer to <a href="http://cs-www.cs.yale.edu/homes/dna/papers/vldb07hstore.pdf">this paper</a>.</li>
+<li>Denormalization - RDBMS belongs to the era when storage was expensive. Its not so anymore. CPUs are far more expensive (in both ways - CapEx and OpEx ). And DB queries take CPU cycles. And a waiting user could have tangible/intangile revenue implications of web companies. All put together, model database sparsely and denormalized. Store multiple versions and replicas of data. Do anything to make queries faster!</li>
+</ul>
+<h6 id="code-itself">Code Itself</h6>
+<p>The JBoss7 based implementation of this prototype can be found in my github <a href="https://github.com/bharath12345/JvmDataStorage">repository</a>. You will find a couple of MBean's - JvmMethodMetricsDAO and JvmMethodIdNameDAO which have the persist() and find() methods. The procedure to use this is -</p>
+<ol>
+<li>Build the artifact using maven - 'mvn clean install' at the top level directory</li>
+<li>Deploy the jim-ear.ear in JBoss's standalone/deployments</li>
+<li>Start JBoss's jconsole and you should be able to see these MBean's in the jconsole's UI</li>
+</ol>
+<h4 id="data-modeling">Data Modeling</h4>
+<p>Here are few of the broad guidelines I set and followed -</p>
+<ul>
+<li>One Keyspace each for both types of data (JVM methods and JVM-wide stats). Each keyspace holds raw (fine grained) and roll-up data</li>
+<li>As few strings as possible in the stores</li>
+<li>Keep row-key and columm-key string names small</li>
+<li>Many data items like JVM_ID will need a mapping table to map JVM-Name to a UUID</li>
+<li>Row Key -<ul>
+<li>For fine grained, minutely data, row key is a combination of JVM_ID and date (20130628 for 28th June 2013)</li>
+<li>All roll-up tables have JVM_ID as the row key</li>
+</ul>
+</li>
+<li>Columns for roll-up data<ul>
+<li>Hourly  Roll-up: 60 days,  2 months  =&gt; 24 * 60 = 1440 columns</li>
+<li>Daily   Roll-up: 180 days, 6 months  =&gt; 180 columns</li>
+<li>Weekly  Roll-up: 350 days, 50 weeks  =&gt; 50  columns</li>
+<li>Monthly Roll-up: 720 days, 24 months =&gt; 24  columns</li>
+</ul>
+</li>
+<li>Cassandra has this superb concept of tombstones and data cleanup. This can be triggered by setting a TTL field during inserts. TTL is set in seconds and I used the following setting in this prototype -<ul>
+<li>Raw:             30  days =&gt; 30 * 24 * 60 * 60  =&gt; 2,592,000</li>
+<li>Hourly  Roll-up: 60  days =&gt; 2 * 2,592,000      =&gt; 5,184,000</li>
+<li>Daily   Roll-up: 180 days =&gt; 3 * 5,184,000      =&gt; 15,552,000</li>
+<li>Weekly  Roll-up: 350 days =&gt; 350 * 24 * 60 * 60 =&gt; 30,240,000</li>
+<li>Monthly Roll-up: 720 days =&gt; 4 * 15,552,000     =&gt; 62,208,000</li>
+</ul>
+</li>
+</ul>
+<h5 id="keyspace-configuration">Keyspace Configuration</h5>
+<h6 id="for-jvm-method-metrics">For JVM Method metrics</h6>
+<div class="highlight"><pre><span></span><code><span class="nx">CREATE</span><span class="w"> </span><span class="nx">KEYSPACE</span><span class="w"> </span><span class="nx">JvmMethodMetrics</span><span class="w">    </span><span class="nx">WITH</span><span class="w"> </span><span class="nx">replication</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;</span><span class="kd">class</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">SimpleStrategy</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">replication_factor</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span>
+</code></pre></div>
+
+<h6 id="for-jvm-wide-statistics">For JVM wide statistics</h6>
+<div class="highlight"><pre><span></span><code><span class="nx">CREATE</span><span class="w"> </span><span class="nx">KEYSPACE</span><span class="w"> </span><span class="nx">JvmMetrics</span><span class="w">          </span><span class="nx">WITH</span><span class="w"> </span><span class="nx">replication</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;</span><span class="kd">class</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">SimpleStrategy</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">replication_factor</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span>
+</code></pre></div>
+
+<h5 id="column-families-in-jvmmethodmetrics-keyspace">Column Families in JvmMethodMetrics KEYSPACE</h5>
+<h6 id="raw-trend-query-tables">Raw Trend Query Tables</h6>
+<div class="highlight"><pre><span></span><code><span class="n">CREATE</span><span class="w"> </span><span class="n">TABLE</span><span class="w"> </span><span class="n">JvmMethodIdNameMap</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">jvm_id</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">method_id</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">method_name</span><span class="w"> </span><span class="n">varchar</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PRIMARY</span><span class="w"> </span><span class="n">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">jvm_id</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="n">CREATE</span><span class="w"> </span><span class="n">INDEX</span><span class="w"> </span><span class="n">jvm_method_name</span><span class="w"> </span><span class="n">ON</span><span class="w"> </span><span class="n">JvmMethodIdNameMap</span><span class="w"> </span><span class="p">(</span><span class="n">method_name</span><span class="p">);</span>
+
+<span class="n">CREATE</span><span class="w"> </span><span class="n">TABLE</span><span class="w"> </span><span class="n">JvmMethodMetricsRaw</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">jvm_id</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">date</span><span class="w"> </span><span class="n">varchar</span><span class="p">,</span>
+<span class="w">    </span><span class="n">day_time</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">method_id</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">invocations</span><span class="w"> </span><span class="n">bigint</span><span class="p">,</span>
+<span class="w">    </span><span class="n">response_time</span><span class="w"> </span><span class="nb nb-Type">float</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PRIMARY</span><span class="w"> </span><span class="n">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">jvm_id</span><span class="p">,</span><span class="w"> </span><span class="n">date</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="n">CREATE</span><span class="w"> </span><span class="n">INDEX</span><span class="w"> </span><span class="n">jvm_method_id</span><span class="w"> </span><span class="n">ON</span><span class="w"> </span><span class="n">JvmMethodMetricsRaw</span><span class="w"> </span><span class="p">(</span><span class="n">method_id</span><span class="p">);</span>
+</code></pre></div>
+
+<h6 id="trend-query-roll-up-tables">Trend Query Roll-up Tables</h6>
+<div class="highlight"><pre><span></span><code>CREATE TABLE JvmMethodMetricsHourly (
+    jvm_id int,
+    hour int,
+    method_id bigint,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id)
+);
+
+CREATE TABLE JvmMethodMetricsDaily (
+    jvm_id int,
+    day int,
+    method_id bigint,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id)
+);
+
+CREATE TABLE JvmMethodMetricsWeekly (
+    jvm_id int,
+    week int,
+    method_id bigint,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id)
+);
+
+CREATE TABLE JvmMethodMetricsMonthly (
+    jvm_id int,
+    month int,
+    method_id bigint,
+    invocations bigint,
+    response_time float,
+    PRIMARY KEY (jvm_id)
+);
+</code></pre></div>
+
+<h6 id="topn-query-tables">TopN Query Tables</h6>
+<p>Data in these tables is kept sorted by maximum (response-time/invocations) to minimum</p>
+<div class="highlight"><pre><span></span><code><span class="n">CREATE</span><span class="w"> </span><span class="n">TABLE</span><span class="w"> </span><span class="n">JvmMethodTopNHourly</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">jvm_id</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">hour</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">method_id_type</span><span class="w"> </span><span class="n">varchar</span><span class="p">,</span><span class="w">      </span><span class="o">//</span><span class="w"> </span><span class="n">Example</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="n">_RT</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="n">response</span><span class="o">-</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="mi">103</span><span class="n">_INV</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="mi">103</span><span class="w"> </span><span class="n">invocation</span><span class="w"> </span><span class="n">count</span>
+<span class="w">    </span><span class="n">response_time_map</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="nb nb-Type">float</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">invocation_count_map</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="n">long</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PRIMARY</span><span class="w"> </span><span class="n">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">jvm_id</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="n">CREATE</span><span class="w"> </span><span class="n">TABLE</span><span class="w"> </span><span class="n">JvmMethodTopNDaily</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">jvm_id</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">day</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">method_id_type</span><span class="w"> </span><span class="n">varchar</span><span class="p">,</span>
+<span class="w">    </span><span class="n">response_time_map</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="nb nb-Type">float</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">invocation_count_map</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="n">long</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PRIMARY</span><span class="w"> </span><span class="n">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">jvm_id</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="n">CREATE</span><span class="w"> </span><span class="n">TABLE</span><span class="w"> </span><span class="n">JvmMethodTopNWeekly</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">jvm_id</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">week</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">method_id_type</span><span class="w"> </span><span class="n">varchar</span><span class="p">,</span>
+<span class="w">    </span><span class="n">response_time_map</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="nb nb-Type">float</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">invocation_count_map</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="n">long</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PRIMARY</span><span class="w"> </span><span class="n">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">jvm_id</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="n">CREATE</span><span class="w"> </span><span class="n">TABLE</span><span class="w"> </span><span class="n">JvmMethodTopNMonthly</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">jvm_id</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">month</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">method_id_type</span><span class="w"> </span><span class="n">varchar</span><span class="p">,</span>
+<span class="w">    </span><span class="n">response_time_map</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="nb nb-Type">float</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">invocation_count_map</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="n">long</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PRIMARY</span><span class="w"> </span><span class="n">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">jvm_id</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h5 id="column-families-in-jvmmetricsraw-keyspace">Column Families in JvmMetricsRaw KEYSPACE</h5>
+<div class="highlight"><pre><span></span><code><span class="n">CREATE</span><span class="w"> </span><span class="n">TABLE</span><span class="w"> </span><span class="n">JvmMetricsRaw</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">jvm_id</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">date</span><span class="w"> </span><span class="n">varchar</span><span class="p">,</span>
+<span class="w">  </span><span class="n">day_time</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span><span class="w">          </span>
+<span class="w">  </span><span class="n">total_live_threads</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">,</span>
+
+<span class="w">  </span><span class="n">mem_heap</span><span class="w"> </span><span class="n">set</span><span class="o">&lt;</span><span class="n">bigint</span><span class="o">&gt;</span><span class="p">,</span><span class="w">             </span><span class="o">//</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">commited</span><span class="p">,</span><span class="w"> </span><span class="nb">max</span><span class="p">,</span><span class="w"> </span><span class="n">used</span>
+<span class="w">  </span><span class="n">mem_nonheap</span><span class="w"> </span><span class="n">set</span><span class="o">&lt;</span><span class="n">bigint</span><span class="o">&gt;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="n">ds_freepool</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="nb nb-Type">int</span><span class="p">,</span><span class="w"> </span><span class="n">bigint</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">datasource_id</span><span class="p">,</span><span class="w"> </span><span class="n">free</span><span class="w"> </span><span class="n">pool</span><span class="w"> </span><span class="n">of</span>
+<span class="w">  </span><span class="n">ds_usetime</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="nb nb-Type">int</span><span class="p">,</span><span class="w"> </span><span class="n">bigint</span><span class="o">&gt;</span><span class="w">       </span><span class="o">//</span><span class="w"> </span><span class="n">threads</span><span class="p">,</span><span class="w"> </span><span class="n">avg</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nb">min</span>
+
+<span class="w">  </span><span class="n">PRIMARY</span><span class="w"> </span><span class="n">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">jvm_id</span><span class="p">,</span><span class="w"> </span><span class="n">date</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h4 id="query-code">Query Code</h4>
+<p>CQL3 packs a <a href="http://www.datastax.com/documentation/developer/java-driver/1.0/index.html#java-driver/reference/queryBuilder_r.html">QueryBuilder</a> utility that offers some basic features. Refer to the QueryBuild JavaDocs for more info. I was able to build simple queries for 'select' using different 'where' clauses for time and ID's without much effort. I would recommend users to extend Cassandra's QueryBuilder in their DAO layer to provide model specific functionality and catch errors. The prototype offers a Entity/DAO model which can be easily understood by those familiar with JPA/Hibernate. (However I am not a fan of the many ORM frameworks that are coming up for Cassandra - the knowledge of 'entity' modeling is critical for performance problems which Cassandra proposes to handle. Using a Cassandra ORM framework would mean lesser knowlege of data model and consequently less performant queries. Stay away from them!)</p>
+<h4 id="readwrite-performance">Read/Write Performance</h4>
+<p>Post modeling and unit testing I ran the application on my laptop (MacBookPro 2.9GHz/8GB RAM). Since my laptop is not an ideal performance test environment (I have multiple applications running, no tuning of cassandra or JBoss) I see no point in publishing the numbers or charts. However, I was able to 'write' literally millions of records per minute and read them back. Since I run MySql as well on my laptop, one thing I can vouch for is that Cassandra's write performance is definitely far ahead of what I would have expected from my OOTB MySql. </p>
+<h4 id="conclusion">Conclusion</h4>
+<p>Cassandra has come a long way from the 0.8 days. I did not come across any bugs working on my prototype. CQL3 and data modeling was a breeze. And there are a plethora of resources on this topic on the web. I would certainly recommend Cassandra for those looking to get a quick hang of NoSql and Column stores. If you are planning to use Cassandra as part of your application and have done the due deligence on the performance side, then, let me assure you - programming with Cassandra should not take any more time than using a ORM framework like JPA/Hibernate. And if you are like me, wanting to write a prototype then you should be able to wrap it all up from zero to running in a single working week. Ping me if you run into any issues using my code, understanding my blog or anything else. Thanks for reading!</p>
+<h4 id="reading-recommendations">Reading Recommendations</h4>
+<ul>
+<li>Good introduction on the subject - <a href="http://shop.oreilly.com/product/0636920010852.do">O'Reilly's Cassandra Definitive Guide</a>, </li>
+<li>Data Modeling - <a href="http://www.ebaytechblog.com/2012/07/16/cassandra-data-modeling-best-practices-part-1/">this</a> wonderful blog by Jay Patel from Ebay</li>
+<li>Performance comparisons - <a href="http://www.datastax.com/dev/blog/2012-in-review-performance">this</a> article really nails it (pay attention to the chart!)</li>
+</ul>
+    </article>
+
+    <hr>
+
+    <div class="category">
+        <strong>Category:</strong>
+        <a href="https://bharath12345.github.io/category/posts.html" class="badge bg-primary">posts</a>
+    </div>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>My Scala Application: Real-time Twitter Volume Grapher For Indian Elections 2014 - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<section class="content">
+    <script type="text/javascript">
+        var pageTitle = "My Scala Application: Real-time Twitter Volume Grapher For Indian Elections 2014";
+        var pageType = "post";
+    </script>
+
+    <h2>
+        <a href="https://bharath12345.github.io/posts/my-scala-application---twitter-volume-grapher-for-indian-election-personalities/">My Scala Application: Real-time Twitter Volume Grapher For Indian Elections 2014</a>
+    </h2>
+
+
+    <section class="byline">
+        Thu 27 February 2014
+    </section>
+    <hr>
+
+    <article>
+        <p>The Indian general elections are around the corner. For software engineers, this time around, there is data to play with and try to predict the outcome. Among all, the data from the social media giants - Twitter and Facebook - is easily accessible for analysis. Though social media may not be the right barometer to judge voter sentiments in a country as big and diverse as India, it is nonetheless a very tempting datasource for anyone curious. So couple of days ago I decided to do a small project - to simply <em>chart</em> the volume of tweets with strings like <em>"modi", "rahul", "kejri" and "india"</em> in it. I thought just a graph of volumes by itself will be interesting to see. So here I present the v1.0 of my <strong>Indian-general-elections-social-media-tracker!</strong></p>
+<div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#the-application">The Application</a><ul>
+<li><a href="#3-seconds-tweet-aggregate-grapher">3 Seconds Tweet Aggregate Grapher</a></li>
+<li><a href="#30-seconds-tweet-aggregate-grapher">30 Seconds Tweet Aggregate Grapher</a></li>
+<li><a href="#5-minutes-tweet-aggregate-grapher">5 Minutes Tweet Aggregate Grapher</a></li>
+<li><a href="#30-minutes-tweet-aggregate-grapher">30 Minutes Tweet Aggregate Grapher</a></li>
+<li><a href="#3-hours-tweet-aggregate-grapher">3 Hours Tweet Aggregate Grapher</a></li>
+</ul>
+</li>
+<li><a href="#design-code-and-logic">Design, Code and Logic</a></li>
+<li><a href="#websocket-addendum">WebSocket Addendum</a></li>
+<li><a href="#final-note">Final Note</a></li>
+</ul>
+</div>
+<h3 id="the-application">The Application</h3>
+<p>The application has 5 different dashboards with a URL for each. Each of these 5 dashboard's have 4 graphs - one for each string (india/modi/rahul/kejri). Here is a quick summary of each dashboard - </p>
+<ul>
+<li>
+<h5 id="3-seconds-tweet-aggregate-grapher">3 Seconds Tweet Aggregate Grapher</h5>
+</li>
+<li>URL: <a href="http://bharathplays.herokuapp.com/twitter/elections/0">http://bharathplays.herokuapp.com/twitter/elections/0</a></li>
+<li>Dashboard Sample Image: <br>
+       <a href="/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-05-58.png"><img alt="image" src="/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-05-58.png =430x238"></a></li>
+<li>
+<p>Details: </p>
+<ul>
+<li>In this graph, a new data-point get created every 3-seconds. It appears as a dot on the chart. A mouse over of the dot shows the exact time and value of the data-point</li>
+<li>The title of the four grid's shows the string the graph is for. For example, the title of the graph showing the line chart for string <em>rahul</em> has the title <strong>Twitter Trends Graph for rahul</strong></li>
+<li>x-axis is time. y-axis is number-of-tweets</li>
+</ul>
+</li>
+<li>
+<h5 id="30-seconds-tweet-aggregate-grapher">30 Seconds Tweet Aggregate Grapher</h5>
+</li>
+<li>URL: <a href="http://bharathplays.herokuapp.com/twitter/elections/1">http://bharathplays.herokuapp.com/twitter/elections/1</a></li>
+<li>Dashboard Sample Image: <br>
+       <a href="/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-06-30.png"><img alt="image" src="/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-06-30.png =430x238"></a></li>
+<li>
+<p>Details: </p>
+<ul>
+<li>In this graph a new data-point gets created on the chart every 30 seconds</li>
+<li>Refer to the details of 3-seconds chart (above) for other info</li>
+</ul>
+</li>
+<li>
+<h5 id="5-minutes-tweet-aggregate-grapher">5 Minutes Tweet Aggregate Grapher</h5>
+</li>
+<li>URL: <a href="http://bharathplays.herokuapp.com/twitter/elections/2">http://bharathplays.herokuapp.com/twitter/elections/2</a></li>
+<li>Dashboard Sample Image:
+       <a href="/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-27-42.png"><img alt="image" src="/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2019-27-42.png =430x238"></a></li>
+<li>
+<p>Details: </p>
+<ul>
+<li>In this graph a new data-point gets created on the chart every 5 minutes (300 seconds)</li>
+<li>Refer to the details of 3-seconds chart (first one above) for other info</li>
+</ul>
+</li>
+<li>
+<h5 id="30-minutes-tweet-aggregate-grapher">30 Minutes Tweet Aggregate Grapher</h5>
+</li>
+<li>URL: <a href="http://bharathplays.herokuapp.com/twitter/elections/3">http://bharathplays.herokuapp.com/twitter/elections/3</a></li>
+<li>Dashboard Sample Image:
+       <a href="/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2023-20-24.png"><img alt="image" src="/images/twitterdashboard/my%20twitter%20dashboard%202014-02-27%2023-20-24.png =430x238"></a></li>
+<li>
+<p>Details: </p>
+<ul>
+<li>In this graph a new data-point gets created on the chart every 30 minutes (1800 seconds)</li>
+<li>Refer to the details of 3-seconds chart (first one above) for other info</li>
+</ul>
+</li>
+<li>
+<h5 id="3-hours-tweet-aggregate-grapher">3 Hours Tweet Aggregate Grapher</h5>
+</li>
+<li>URL: <a href="http://bharathplays.herokuapp.com/twitter/elections/4">http://bharathplays.herokuapp.com/twitter/elections/4</a></li>
+<li>Dashboard Sample Image: [TBD]</li>
+<li>Details: <ul>
+<li>In this graph a new data-point gets created on the chart every 3 hours (10800 seconds)</li>
+<li>Refer to the details of 3-seconds chart (first one above) for other info</li>
+</ul>
+</li>
+</ul>
+<h3 id="design-code-and-logic">Design, Code and Logic</h3>
+<ul>
+<li>The code is on GitHub <a href="https://github.com/bharath12345/playing">here</a></li>
+<li>It uses <a href="http://www.playframework.com/">Play! Framework's</a> capabilities for all UI work which includes templates, URL-routing and WebSockets communication</li>
+<li>To bind to Twitter's stream firehose it uses <a href="http://spray.io/">Spray.IO</a></li>
+<li>All the code is in Scala. It does <em>not</em> use threads and uses the actor-method of concurrency using <a href="http://akka.io/">Akka</a></li>
+<li>Play's capability to do <a href="http://www.playframework.com/documentation/2.2.x/api/scala/index.html#play.api.mvc.WebSocket$">async</a> websocket concurrent <a href="http://www.playframework.com/documentation/2.2.x/api/scala/index.html#play.api.libs.iteratee.Concurrent$">broadcast</a> is leveraged</li>
+<li>It connects to <a href="https://dev.twitter.com/docs/api/1.1/post/statuses/filter">filter</a> API among the many Twitter's streaming APIs</li>
+<li>The part of code which connects to Twitter's streaming APIs and retrieves individual tweets is an extension of <a href="http://www.cakesolutions.net/teamblogs/2013/12/08/streaming-twitter-api-in-akka-and-spray/">this</a> example by <a href="https://twitter.com/honzam399">Jan Machacek</a></li>
+<li>This application does NOT do sentiment analysis but is a brute-force volume grapher. So a higher count for a candidate does not imply positive popularity but just that his name is trending more. </li>
+<li>A keyword string, say <em>Rahul</em>, might appear anywhere in the tweet. That is, it could be anywhere in the text, or may be a part of the hashtag, or may even be part of a user handle that appears in the tweet</li>
+<li>While trying to find a match, I convert the whole tweet to lowercase and then use Java's String <em>contains()</em> to find a match. So the matching is case insensitive - the count for string <em>Rahul</em> includes those for <em>rahul</em>, <em>raHul</em>, <em>rahuL</em> etc. The matching string could also be a substring. So <em>modi</em> will match <em>modified</em>, <em>moditva</em>, <em>amodi</em>, etc. However I took a dump of over 1000 tweets to see how many of those captured did NOT belong to Indian elections - only to find that almost 80% of all tweets captured did concern these candidates and hence elections (you have to take my word on that!)</li>
+<li>One of the main motivations behind the design is to keep it lightweight. Twitter data is voluminous as can be seen by the counts. So the challenge is to serve a huge number of web-clients along with processing the incoming data. By <em>removing</em> the HTTP request-response loop for each update of the graph, a potentially big saving is achieved. Further, data for all 4 graphs in the dashboard is <em>multiplexed</em> over a single WebSocket channel. So every browser client has a single WebSocket channel to the server. This again is a big saving, since, if AJAX were used, then to update each of the 4 graphs would have required one client-to-server call each - which is very very expensive as the number of browser-clients increase</li>
+<li>Actors are a beautiful message-passing abstraction which make erstwhile tasks like managing threads and pools redundant. Please refer to to Akka documentation to know about this paradigm of programming</li>
+<li>The whole application is hosted on Heroku. Heroku allows hosting of Play 2.0 applications and also provides WebSocket support. So the cost of running this application to me is free! :-)</li>
+<li>
+<p>The design flow essence is captured in this image - </p>
+<p><a href="/images/twitterdashboard/algo.png"><img alt="image" src="/images/twitterdashboard/algo.png =1000x200"></a></p>
+</li>
+</ul>
+<h3 id="websocket-addendum">WebSocket Addendum</h3>
+<p>The graph may not appear if you are a behind a proxy which does not tunnel WebSockets (like behind some of the office networks). Also if a firewall blocks WebSockets. But in case you run into any of these issues, then you could use your <strong>mobile device</strong> to see the dashboard. Here is the screenshot from my Android Samsung S2 on my home Wifi. I also checked that the graphing works on my Airtel 2G network fairly well too (the dots in the image below are some mess-up by the mobile screenshot tool)</p>
+<p><a href="/images/twitterdashboard/2014_02_27_19.51.35.png"><img alt="image" src="/images/twitterdashboard/2014_02_27_19.51.35.png =220x200"></a></p>
+<h3 id="final-note">Final Note</h3>
+<p>These graphs are just volumetric. I plan do some simple sentiment analysis next. However, by looking at the graphs and tweets behind them, it is heartening to see the order of popularity of each string. <em>India</em> is most popular among the four but next comes <em>Modi</em> and it is generally not far behind. <em>Rahul</em> seems to appear more than <em>Kejri</em> but both these strings trail a long way behind <em>Modi</em>. With me being a diehard Sri Narendra Modi supporter, these graphs and numbers certainly make me happy and hopefully bode well for the good times to come for my country :-) </p>
+    </article>
+
+    <hr>
+
+    <div class="category">
+        <strong>Category:</strong>
+        <a href="https://bharath12345.github.io/category/posts.html" class="badge bg-primary">posts</a>
+    </div>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>Real Time Dashboard with Camel, ActiveMQ & Dojo... On JBoss7 and using JMS & WebSocket - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<section class="content">
+    <script type="text/javascript">
+        var pageTitle = "Real Time Dashboard with Camel, ActiveMQ & Dojo... On JBoss7 and using JMS & WebSocket";
+        var pageType = "post";
+    </script>
+
+    <h2>
+        <a href="https://bharath12345.github.io/posts/real-time-dashboard-with-camel-activemq-dojo-on-jboss-using-jms--websocket/">Real Time Dashboard with Camel, ActiveMQ & Dojo... On JBoss7 and using JMS & WebSocket</a>
+    </h2>
+
+
+    <section class="byline">
+        Thu 01 August 2013
+    </section>
+    <hr>
+
+    <article>
+        <p>I have built real-time 'stock-ticker' like dashboards. There are many ways to build them. Few months ago I had the opportunity to design one freshly again for an enterprise product. I did a quick sweep at the different technology stacks that can be used to build a highly scalable (design/code and performance scalability) real-time dashboard. There are many technologies for real-time in the browser (like BlazeDS) that are either outdated or on their way out. I came across this very interesting <a href="http://fusesource.com/apache-camel-conference-2012/videos/camelone-2012-charles-moulliard-video/">presentation</a>, <a href="https://github.com/FuseByExample/websocket-activemq-camel">code</a> and <a href="http://cmoulliard.blogspot.in/2012_04_01_archive.html">blog</a> by Charles Moulliard which I found to be a very exciting design. So I sat down to extend what Charles had done to suit my usecase. I would recommend <a href="http://www.amazon.com/The-Definitive-Guide-HTML5-WebSocket/dp/1430247401">this nice book</a> by Apress as a good introduction to the subject of WebSockets. But before getting to the real usecase and seeing why use Camel or ActiveMQ, here is a quick primer to the different techniques one could use to build a real-time dashboard.</p>
+<div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#primer-of-different-techniques">Primer of Different Techniques</a><ul>
+<li><a href="#1-polling-based">1. Polling Based</a></li>
+<li><a href="#2-stateful-and-restful">2. Stateful and RESTful</a></li>
+<li><a href="#3-comet">3. Comet</a></li>
+<li><a href="#4-websocket">4. WebSocket</a></li>
+</ul>
+</li>
+<li><a href="#usecase">Usecase</a></li>
+<li><a href="#design">Design</a></li>
+<li><a href="#the-whys">The Why's?</a><ul>
+<li><a href="#1-why-apache-camel">1. Why Apache Camel?</a></li>
+<li><a href="#2-why-activemq-and-not-camels-native-jms-implementation">2. Why ActiveMQ and not Camel's native JMS implementation?</a></li>
+<li><a href="#3-why-websocket">3. Why WebSocket?</a></li>
+<li><a href="#4-why-jboss7">4. Why JBoss7?</a></li>
+</ul>
+</li>
+<li><a href="#how-to-use-and-results">How to use and results</a></li>
+<li><a href="#my-conclusion">My Conclusion!!</a></li>
+</ul>
+</div>
+<h3 id="primer-of-different-techniques">Primer of Different Techniques</h3>
+<h4 id="1-polling-based">1. Polling Based</h4>
+<p>Ajax requires a client side request to get data to the browser. So the simplest solution is to buld a client side timer based poller. Maybe use JavaScript timers like setInterval or setTimeout (or wrappers from libraries). </p>
+<table class="table table-bordered table-striped table-condensed bs-docs-grid">
+    <tr>
+        <td>Pro</td>
+        <td>Con</td>
+    </tr>
+    <tr>
+        <td>Simplicity</td>
+        <td>If the data being polled is increasing or is large, continuous degradation in performance is natural as data is fetched and rendered each time. If the 'real-time' SLAs call for changes to be shown quickly (< 5 seconds), then continous polling on the client starts to weigh heavy on the data source. It could lead to continously running large number of SQLs. Above all, this would simply not scale if you expect a large number of users and/or large number or real-time data types.</td>
+    </tr>
+</table>
+
+<h4 id="2-stateful-and-restful">2. Stateful and RESTful</h4>
+<p>Maintain 'states' at either server or client to reduce what is queried and transmit size. Actually there are two options,</p>
+<ul>
+<li>Client side stateful</li>
+<li>Server side stateful</li>
+</ul>
+<p>But <a href="http://en.wikipedia.org/wiki/Representational_state_transfer#Constraints">REST mandates</a> the following 2 constrains -</p>
+<div class="highlight"><pre><span></span><code><span class="n">Stateless</span>
+<span class="n">The</span><span class="w"> </span><span class="n">client</span><span class="err">–</span><span class="n">server</span><span class="w"> </span><span class="n">communication</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">further</span><span class="w"> </span><span class="n">constrained</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="n">being</span><span class="w"> </span><span class="n">stored</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">between</span><span class="w"> </span><span class="n">requests</span><span class="o">.</span><span class="w"> </span><span class="n">Each</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="n">contains</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">necessary</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">held</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">client</span><span class="o">.</span>
+
+<span class="n">Cacheable</span>
+<span class="n">As</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="n">Wide</span><span class="w"> </span><span class="n">Web</span><span class="p">,</span><span class="w"> </span><span class="n">clients</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">cache</span><span class="w"> </span><span class="n">responses</span><span class="o">.</span><span class="w"> </span><span class="n">Responses</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">therefore</span><span class="p">,</span><span class="w"> </span><span class="n">implicitly</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">explicitly</span><span class="p">,</span><span class="w"> </span><span class="n">define</span><span class="w"> </span><span class="n">themselves</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cacheable</span><span class="p">,</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">not</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">prevent</span><span class="w"> </span><span class="n">clients</span><span class="w"> </span><span class="n">reusing</span><span class="w"> </span><span class="n">stale</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">inappropriate</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">further</span><span class="w"> </span><span class="n">requests</span><span class="o">.</span><span class="w"> </span><span class="n">Well</span><span class="o">-</span><span class="n">managed</span><span class="w"> </span><span class="n">caching</span><span class="w"> </span><span class="n">partially</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">completely</span><span class="w"> </span><span class="n">eliminates</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">client</span><span class="err">–</span><span class="n">server</span><span class="w"> </span><span class="n">interactions</span><span class="p">,</span><span class="w"> </span><span class="n">further</span><span class="w"> </span><span class="n">improving</span><span class="w"> </span><span class="n">scalability</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">performance</span><span class="o">.</span>
+</code></pre></div>
+
+<p>Am no expert in RESTful design. But I know for sure that many implementations (especially those which have <em>streaming</em> in their name) relax the stateless at server constraint. So, statefulness can go thus -</p>
+<ul>
+<li><strong>Client-side stateful</strong>: Client asks for only the incremental. For example a timestamp based method could be adopted by the client to get the incrementals (by doing so the timestamp becomes the 'state'). There are some wonderful JavaScript frameworks that make state maintenance possible. One can use <a href="http://backbonejs.org">BackboneJS</a> or Dojo's <a href="http://dojotoolkit.org/reference-guide/1.9/dojo/store/Observable.html">Observable</a> pattern to build a store in the browser and update the UI only on the incremental changes. Combined with RESTful HTTP APIs on the server-side, one can build robust applications</li>
+<li><strong>Server-side stateful</strong>: Server can respond with <em>only</em> the incremental when a request from the same client arrives. Server side HTTP API's publish incremental data of different types and filtering. A session handshake or client-subscription is required before the start (server has to maintain state for each client).</li>
+</ul>
+<table class="table table-bordered table-striped table-condensed bs-docs-grid">
+    <tr>
+        <td>Pro</td>
+        <td>Con</td>
+    </tr>
+    <tr>
+        <td>Since only the incremental 'delta' is in transit and re-rendered on the UI, these methods scale in performance. They are well suited for web applications where 3rd party developers could be using your data feed to build user interface or other real-timer services.</td>
+        <td>Maintaining state can quickly become very complex. Multiple types of data, with different incrementals can lead to 'cache-mess'. It leads to many many caches and really big caches. User actions like filtering add considerable complexity to the underlying infra. And despite only incrementals being in transit, it is still a request-response system, making tight SLA's (<5 seconds refresh rate) quite a challenge.</td>
+    </tr>
+</table>
+
+<h4 id="3-comet">3. Comet</h4>
+<p>Comet, Reverse-Ajax et al. are hacks and not solutions. The idea is that the browser makes an Ajax request to the server, which is kept open until the server has new data to send to the browser. Once the server has the event it wants to send, it sends it on this already open channel. And soon after getting a response the browser initiates a new long polling request in order to obtain subsequent events. Multiple frameworks exist to accomplish the job from both server and client side. But the technology is riddled with bugs, browser incompatibilities and is a total mess.</p>
+<h4 id="4-websocket">4. WebSocket</h4>
+<p>Websockets are a new protocol. The protocol specifies for setting up of a full duplex communication channel between client and server on top of HTTP(S). The HTTP header from client side has a "upgrade" field set to <em>websocket</em> and "connection" field set to <em>upgrade</em>. All modern browsers support this by the new JavaScript API WebSocket(). So the question boils down to - whats the best way to handle these upgrade requests on the server side? There are upcoming frameworks like <a href="https://github.com/Atmosphere/atmosphere">Atmosphere</a> which interoperate with popular existing server and client frameworks promising easy adoption.</p>
+<h3 id="usecase">Usecase</h3>
+<p>A real time <em>alerts</em> dashboard. In any monitoring/management/analytics system, events go through multiple stages before getting transformed into an alert needing to be displayed for concerned users. Event pipelines come in many types and JMS is not uncommon. The usecase here is of such a system where event processors pick events to evaluate and filter. The SLAs for critical alerts can be very small time-periods depending on the domain.</p>
+<h3 id="design">Design</h3>
+<p>The image below shows the 5 components of the implementation of my usecase. The code is posted on GitHub <a href="https://github.com/bharath12345/RealTimeDashboard">here</a>.</p>
+<p><strong>1. AsyncHttpClient</strong>: This is just a data feed. In most data-center scenario's the data-feed to IT management/analytics/monitoring services is separated by a firewall. I use <a href="http://www.ning.com/code/2010/03/introducing-nings-asynchronous-http-client-library/">Ning HTTP client</a> - it is based on the superb Jetty NIO2 implementation and works well with JBoss. For the prototype's sake, I have taken the data itself to be just the HTTP headers. It could be anything from the payload also. And it could be from other type of sources like SNMP etc</p>
+<p><strong>2. AsyncHttpServer</strong>: Camel provides a Jetty NIO2 based Async Server implementation. I use that to receive the client connections and pick the data (http headers in my case). </p>
+<p><strong>3. JMS Broker</strong>: I use ActiveMQ. JBoss packages HornetQ natively. But ActiveMQ is by far the most popular JMS broker on planet earth. </p>
+<p><strong>4. Multiple JMS Topics</strong>: The data receiver can publish the received data into a chosen JMS topic (depending on the data received). The first publish is of Serializable Java POJO. The receiver on this JMS topic picks the POJO, transforms it to JSON and publishes to a different set of JMS topic's just for JSON (this is not shown in the image below but can be seen in the code).</p>
+<p><strong>5. Camel JMS to WebSocket Route</strong>: Camel route is used to pick data from the JSON JMS topic and post it to both - WebSocket &amp; log file - together. A final JSON level transformation can be applied in this stage if need be.</p>
+<p><strong>6. JavaScript UI</strong>: A JavaScript WebSocket() connects and waits for JSON messages to appear. Received messages are shown in a grid (Dojo's GridX actually)</p>
+<p><img alt="image" src="/images/camel-websocket/camel%20jms%20websocket.png"></p>
+<h3 id="the-whys">The Why's?</h3>
+<h4 id="1-why-apache-camel">1. Why Apache Camel?</h4>
+<p>(1) I wanted to learn Camel (2) Apache Camel is brilliant for plumbing purposes between modules/services within an enterprise product. The number of supported components is dizzying. Despite the heavy sounding ESB word being thrown around with it I have found it quite easy to grasp and it just works like a charm!  </p>
+<h4 id="2-why-activemq-and-not-camels-native-jms-implementation">2. Why ActiveMQ and not Camel's native JMS implementation?</h4>
+<p>One of my dear friends, <a href="http://in.linkedin.com/in/sumanthn83">Sumanth</a>, pointed this rather subtle mention on performance aspect in Camel's JMS page.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">http</span><span class="p">:</span><span class="c1">//camel.apache.org/jms.html</span>
+
+<span class="nx">The</span><span class="w"> </span><span class="nx">JMS</span><span class="w"> </span><span class="nx">component</span><span class="w"> </span><span class="nx">reuses</span><span class="w"> </span><span class="nx">Spring</span><span class="w"> </span><span class="mi">2</span><span class="err">&#39;</span><span class="nx">s</span><span class="w"> </span><span class="nx">JmsTemplate</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">sending</span><span class="w"> </span><span class="nx">messages</span><span class="p">.</span><span class="w"> </span><span class="nx">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nx">ideal</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">use</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">J2EE</span><span class="w"> </span><span class="nx">container</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">typically</span><span class="w"> </span><span class="nx">requires</span><span class="w"> </span><span class="nx">some</span><span class="w"> </span><span class="nx">caching</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">JMS</span><span class="w"> </span><span class="nx">provider</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">avoid</span><span class="w"> </span><span class="nx">poor</span><span class="w"> </span><span class="nx">performance</span><span class="p">.</span><span class="nx">If</span><span class="w"> </span><span class="nx">you</span><span class="w"> </span><span class="nx">intend</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">use</span><span class="w"> </span><span class="nx">Apache</span><span class="w"> </span><span class="nx">ActiveMQ</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nx">your</span><span class="w"> </span><span class="nx">Message</span><span class="w"> </span><span class="nx">Broker</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">which</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">good</span><span class="w"> </span><span class="kd">choice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nx">ActiveMQ</span><span class="w"> </span><span class="nx">rocks</span><span class="err">…</span>
+</code></pre></div>
+
+<p>Further to this, I am slowly developing an aversion to everything Spring. I opine that it is better to avoid Spring in any new development project of scale. And Camel JMS is based on Spring. So better to use ActiveMQ directly.</p>
+<h4 id="3-why-websocket">3. Why WebSocket?</h4>
+<p>Experts in RESTful design like <a href="http://bill.burkecentral.com/2012/02/28/web-sockets-a-disaster-in-waiting/">Bill Burke</a> denounce WebSockets sharply. There are <a href="http://www.infoq.com/news/2012/02/websockets-rest">others</a> who welcome it anyway. Personally, I like the idea of a full duplex channel on top of HTTP. I dont think WebSockets maybe a good idea for companies and applications to expose there data and services - which exactly is the usecase for RESTful. WebSockets quite beautifully fit within enterprise products/applications where services are consumed internally between modules/known-applications and are deployed in a distributed setup where they cross multiple DMZ. Along with the upcoming <a href="http://apiux.com/2013/07/23/http2-0-initial-draft-released/">draft of HTTP 2.0</a> which will hopefully support -</p>
+<ul>
+<li>Binary</li>
+<li>Connections remain open so long as user stays on the page</li>
+<li>Multiple open streams </li>
+<li>Priorities</li>
+</ul>
+<p>having WebSockets will make HTTP a dependable channel for realtime!</p>
+<h4 id="4-why-jboss7">4. Why JBoss7?</h4>
+<p>In the world of open source Java, JBoss is simply the best application container around. I used the <a href="http://wildfly.org">Wildfly</a> 8.0 Alpha3 for this prototype </p>
+<h3 id="how-to-use-and-results">How to use and results</h3>
+<ol>
+<li>A "mvn clean install" would build the EAR which should be deployed in JBoss 7+</li>
+<li>From the JBoss JMX Console, use the firePostRequests() operation to send HTTP client side requests (com.bharath.http.client)</li>
+</ol>
+<p><img alt="image" src="/images/camel-websocket/jmx.png"></p>
+<p>The snapshot of the dashboard UI -</p>
+<p><img alt="image" src="/images/camel-websocket/dashboard.png"></p>
+<h3 id="my-conclusion">My Conclusion!!</h3>
+<p>Asynchronous processing by pushing to multiple JMS topic's when combined with Apache Camel's routing and WebSocket capabilities can provide for building a truely fast and efficient events/alerts pipeline for a realtime alerts dashboard</p>
+    </article>
+
+    <hr>
+
+    <div class="category">
+        <strong>Category:</strong>
+        <a href="https://bharath12345.github.io/category/posts.html" class="badge bg-primary">posts</a>
+    </div>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>

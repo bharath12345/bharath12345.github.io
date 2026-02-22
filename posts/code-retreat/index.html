@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="thoughts, musings, writings">
+    <meta name="author" content="Bharadwaj">
+
+    <title>Code Retreat - Bharadwaj's Blog</title>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://bharath12345.github.io/feeds/all.atom.xml" title="Bharadwaj's Blog RSS Feed">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://bharath12345.github.io/theme/css/custom.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://bharath12345.github.io/images/favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #483d8b;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://bharath12345.github.io/">Bharadwaj's Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/toc/">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/search.html">Search</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bharath12345.github.io/pages/about/movies/" title="About me">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                            <span class="d-lg-none">About me</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/bharath12345" title="Projects">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span class="d-lg-none">GitHub Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.linkedin.com/in/bharadwajn" title="CV">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                            <span class="d-lg-none">CV</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.youtube.com/user/bharadwajnarasimha" title="Videos">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                            </svg>
+                            <span class="d-lg-none">YouTube Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+<section class="content">
+    <script type="text/javascript">
+        var pageTitle = "Code Retreat";
+        var pageType = "post";
+    </script>
+
+    <h2>
+        <a href="https://bharath12345.github.io/posts/code-retreat/">Code Retreat</a>
+    </h2>
+
+
+    <section class="byline">
+        Mon 14 April 2014
+    </section>
+    <hr>
+
+    <article>
+        <p>Last Saturday I happened to go to my first code retreat. Hosted by <a href="http://www.multunus.com/">Multunus</a> and conducted by the master programmer <a href="https://twitter.com/venkat_s">Venkat Subramaniam</a>, it was a very learnful experience. Here's a sneak-peek of the event from my eyes. </p>
+<h3 id="the-format">The Format</h3>
+<p>Code retreats are day long coding fests. Programmers take a crack at solving <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">Conway's Game of Life</a> in multiple short sessions. Each session is for 45 minutes. Developers work in pairs of two (miniature <a href="http://en.wikipedia.org/wiki/Extreme_programming">extreme programming</a> sessions). Every session starts with a clean slate, that is NO previous code at all. <a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a> is encouraged. After every 45 minute session is a 15 minute standup where everyone get to share the experience and things learnt. And at the end of the standup the group may decide to impose some constraints for the next session... like not-using-classes, no-global-state, no-returns-from-any-methods etc etc. The choice of programming language, frameworks used and design is all left to the pairing team. This meetup had close to 25 programmers who kept up the hacking whole day.</p>
+<p>Generally the 45 minutes time slot is insufficient to solve the puzzle along with writing tests. Especially if one is a newbie to the puzzle or language chosen or design idea. However, the the learning is not in solving the puzzle itself... but it lies in the experience of trying to do so within the setting. </p>
+<p>One can read more about the format and structure of Code Retreat at the community website - <a href="http://coderetreat.org/">http://coderetreat.org</a></p>
+<h3 id="my-experience">My Experience</h3>
+<p>In 5 sessions across the day, I, along with my partner, programmed in 4 languages - Scala, JavaScript, Python and Ruby! Here is a brief on each of my sessions...</p>
+<p>My first session was in Scala. My partner and I both had prior experience with the language. And thankfully my partner had some perspective and prior experience with the problem too. In a quick discussion we zeroed in on a subset of the problem we wanted to tackle (neighbour-finding in Game of Life) and agreed on a simple design. We leapt into coding starting with writing the tests. The test part straightaway exposed my poor knowledge of ScalaTest. Late while writing the code we got stuck in trying to write object equality in Scala - something I could do with my eyes closed in Java. That was the second exposé. We programmed on my partner's system and he used gradle - which was a first for me.</p>
+<p>JavaScript was common lingo with my next partner in the second session. Neither of us had used any testing frameworks in JS ever. That straightaway was an exposé! Since we did not have time to learn a new framework we decided to hand-code the tests. I don't remember the code now but we wrote some code that seemed to solve something. And along the way I re-discovered the right way to write inner functions in JavaScript.</p>
+<p>The next session had me pairing with a guy who wanted a sneak-peek into Scala (he had been a Java guy). This time we used my laptop to code. In order to give him a quick flavour of the language I decided to not use any IDE's and used a text-editor. I wanted to stay clear of ScalaTest and Scala's build system - so as to give my partner a good look at some mass of code and not distract him with externalities. We wrote code + tests in a single Scala script file. While coding I had this nagging realisation that I had not understood the problem well enough and wanted some <em>thinking-time</em> away from coding and just thinking about the puzzle. Lunch was approaching... so I decided to think hard and understand the problem better during lunchtime :-)</p>
+<p>Post-lunch I wanted to approach the problem differently from both design and language perspective. Was delighted to find a partner who could code in Python. This guy had put in some good think-time into the problem too and the approach we came up with was very refreshing for me! He coded away in Python which I found easy to follow and we wrote a lot of code. We were quite close to solving one of the situations in the game when the time ran out. Writing so much code to solve the problem meant that the <em>test</em> code was minimal. However I was beginning to appreciate the complexity and immense freedom of design that this simple looking problem posed at us.</p>
+<p>There were lot of Ruby developers in the group and I was very curious to get to see this language. So I chose a Ruby-man for the last session. This guy was much younger to me but surprised me by his thorough approach to TDD. He insisted on evolving the test code almost simultaneously with the main code and I must admit it initially frustrated me. I would have wanted to write a blob of test code and then write a blob of solution code and keep alternating giving good time to each. But my partner, who was the one coding in Ruby, would not have any of it. He requested that we keep shifting gears between the test-code and solution-code for every few lines of code. I knew he had a good point in what he was suggesting and asked if he could really program like this in his work time. His answer in affirmative was very convincing and I silently appreciated the young programmer's discipline.</p>
+<h3 id="epilogue">Epilogue</h3>
+<p>Its not everyday that I force myself to think on good programming problems and this was an excellent one. That itself made me immensely happy. I was split on approaching the problem from a <em>bottoms-up</em> or <em>top-down</em> approach - which had me thinking about an aspect of design that I had not thought for some time. I don't remember the last time doing pair programming - its a fabulous thing and want to grab every opportunity of doing so in future. The code retreat certainly pushed me away from my comfort zone and thats a great way to learn. Having not solved the problem nags me. One of these days I will sit down to write code that solves Game_Of_Life to at least some extent from few approaches that are brewing in my head. Finally I recommend Code Retreat to all. Try to get yourself a booking the next time it is happening somewhere nearby. </p>
+<p>Last but not the least - heard some wonderful thoughts by Venkat on the endeavour of software development. And saw a wonderful startup in Multunus at its works. The day was delight - a <strong>Big Thank You</strong> to all my partners and all those who made the event possible.</p>
+    </article>
+
+    <hr>
+
+    <div class="category">
+        <strong>Category:</strong>
+        <a href="https://bharath12345.github.io/category/posts.html" class="badge bg-primary">posts</a>
+    </div>
+</section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <p class="text-muted">Powered by Python, Pelican, Bootstrap and GitHub Pages!</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lazy load images -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all images in article content
+            document.querySelectorAll('article img, .content img').forEach(function(img) {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>
