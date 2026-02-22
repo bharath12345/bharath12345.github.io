@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<section class="content">
+    <h2>{{ page.title }}</h2>
+
+    {% if page.subtitle %}
+    <h4>{{ page.subtitle }}</h4>
+    {% endif %}
+
+    <article>
+        {{ page.content }}
+    </article>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+{% if page.custom_js %}
+<!-- Custom JavaScript for this page -->
+{{ page.custom_js }}
+{% endif %}
+{% endblock %}

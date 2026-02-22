@@ -1,21 +1,39 @@
-Bharath's Blog
-======================
+# Bharadwaj's Blog (Pelican)
 
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+This is the Pelican-based version of Bharadwaj's blog, migrated from Jekyll.
 
-This is the repository for my blog - http://bharathwrites.in
+## Technology Stack
 
-### It uses
-* GitHub pages for hosting
-* Jekyll for static blog generation
-* Grunt for JS minify (see the Gruntfile.js for complete list of tasks)
-* Twitter Bootstrap, FontAwesome for the blog's look and feel (etc)
-* UP theme by Carlos Becker
-* Posts use various JavaScript frameworks like Dojo, jQuery, Angular, D3, Stack etc
+- **Static Site Generator**: Pelican (Python)
+- **Theme**: Custom Bootstrap 5 theme
+- **Hosting**: GitHub Pages
+- **Build Tools**: Python-based minification (pelican-minify)
 
-### Install and Build
-* Install RVM and Jekyll
-* Install NodeJS (npm)
-* Run 'npm install' to install project's npm dependencies listed in package.json to the node_modules directory
-* Run 'grunt' to run the grunt tasks and start the Jekyll WebBrick server
-* ToDo: Make use of 'bower' to pull-in JS dependencies (jQuery, Bootstrap etc). After doing this, periodically run 'bower' to update the packages
+## Setup
+
+1. Create and activate virtual environment:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## Development
+
+- `make html` - Generate the site
+- `make serve` - Serve locally at http://localhost:8000
+- `make devserver` - Auto-regenerate and serve
+- `make publish` - Build for production with minification
+- `make github` - Deploy to GitHub Pages
+
+## Structure
+
+- `content/` - Blog posts and pages (Markdown)
+- `content/drafts/` - Draft posts
+- `themes/custom/` - Custom theme files
+- `static/` - Static assets (CSS, JS, images)
+- `output/` - Generated site (not committed)

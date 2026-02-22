@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<section class="content">
+    <script type="text/javascript">
+        var pageTitle = "{{ article.title }}";
+        var pageType = "post";
+    </script>
+
+    <h2>
+        <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+    </h2>
+
+    {% if article.subheading and article.subhead %}
+    <h4>{{ article.subhead }}</h4>
+    {% endif %}
+
+    <section class="byline">
+        {{ article.locale_date }}
+    </section>
+    <hr>
+
+    <article>
+        {{ article.content }}
+    </article>
+
+    <hr>
+
+    {% if article.category %}
+    <div class="category">
+        <strong>Category:</strong>
+        <a href="{{ SITEURL }}/{{ article.category.url }}" class="badge bg-primary">{{ article.category }}</a>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}
+
+{% block extra_js %}
+
+{% if article.custom_js %}
+<!-- Custom JavaScript for this article -->
+{{ article.custom_js }}
+{% endif %}
+{% endblock %}

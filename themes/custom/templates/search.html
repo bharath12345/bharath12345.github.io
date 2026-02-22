@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Search - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<section class="content">
+    <h2>Search</h2>
+    <hr>
+
+    <div class="search-box mb-4">
+        <input type="text" id="search-input" class="form-control form-control-lg" placeholder="Search articles...">
+    </div>
+
+    <div id="search-results">
+        <p class="text-muted">Enter a search term to find articles.</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+// Search index - all articles
+var searchIndex = [
+    {% for article in articles %}
+    {
+        title: {{ article.title|tojson }},
+        url: "{{ SITEURL }}/{{ article.url }}",
+        date: "{{ article.locale_date }}",
+        category: "{{ article.category }}",
+        content: {{ article.content|striptags|tojson }}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+];
+
+// Simple search function
+function performSearch(query) {
+    query = query.toLowerCase().trim();
+
+    if (query.length < 2) {
+        document.getElementById('search-results').innerHTML = '<p class="text-muted">Please enter at least 2 characters to search.</p>';
+        return;
+    }
+
+    var results = [];
+
+    for (var i = 0; i < searchIndex.length; i++) {
+        var article = searchIndex[i];
+        var titleMatch = article.title.toLowerCase().indexOf(query) !== -1;
+        var contentMatch = article.content.toLowerCase().indexOf(query) !== -1;
+
+        if (titleMatch || contentMatch) {
+            // Extract snippet around the match
+            var snippet = '';
+            if (contentMatch) {
+                var contentLower = article.content.toLowerCase();
+                var matchIndex = contentLower.indexOf(query);
+                var start = Math.max(0, matchIndex - 100);
+                var end = Math.min(article.content.length, matchIndex + query.length + 100);
+                snippet = '...' + article.content.substring(start, end) + '...';
+            } else {
+                snippet = article.content.substring(0, 200) + '...';
+            }
+
+            results.push({
+                article: article,
+                snippet: snippet,
+                titleMatch: titleMatch
+            });
+        }
+    }
+
+    // Sort results (title matches first)
+    results.sort(function(a, b) {
+        if (a.titleMatch && !b.titleMatch) return -1;
+        if (!a.titleMatch && b.titleMatch) return 1;
+        return 0;
+    });
+
+    // Display results
+    var resultsHtml = '';
+
+    if (results.length === 0) {
+        resultsHtml = '<p class="text-muted">No results found for "' + query + '".</p>';
+    } else {
+        resultsHtml = '<p class="mb-3"><strong>' + results.length + ' result' + (results.length > 1 ? 's' : '') + ' found</strong></p>';
+        resultsHtml += '<ul class="listing">';
+
+        for (var i = 0; i < results.length; i++) {
+            var result = results[i];
+            resultsHtml += '<li>';
+            resultsHtml += '<h3><a href="' + result.article.url + '">' + result.article.title + '</a></h3>';
+            resultsHtml += '<section class="byline">' + result.article.date + ' | ' + result.article.category + '</section>';
+            resultsHtml += '<p>' + result.snippet + '</p>';
+            resultsHtml += '<hr>';
+            resultsHtml += '</li>';
+        }
+
+        resultsHtml += '</ul>';
+    }
+
+    document.getElementById('search-results').innerHTML = resultsHtml;
+}
+
+// Set up search input handler
+document.addEventListener('DOMContentLoaded', function() {
+    var searchInput = document.getElementById('search-input');
+    var searchTimeout = null;
+
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(function() {
+            performSearch(searchInput.value);
+        }, 300);
+    });
+
+    // Check if there's a query parameter
+    var urlParams = new URLSearchParams(window.location.search);
+    var query = urlParams.get('q');
+    if (query) {
+        searchInput.value = query;
+        performSearch(query);
+    }
+});
+</script>
+{% endblock %}
