@@ -251,6 +251,7 @@ article table th {
 .pagination .page-item.active .page-link {
     background-color: #483d8b;
     border-color: #483d8b;
+    color: white;
 }
 
 /* Navbar Spacing */
@@ -261,6 +262,27 @@ article table th {
 
 .navbar-brand {
     margin-right: 30px;
+}
+
+/* About Section Sub-Navigation */
+.about-subnav {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 0;
+}
+
+.about-subnav .navbar-nav {
+    font-size: 0.95rem;
+}
+
+.about-subnav .nav-link {
+    color: #483d8b;
+    font-weight: 500;
+}
+
+.about-subnav .nav-link:hover {
+    color: #6a5acd;
 }
 
 /* Responsive Utilities for Icons in Navbar */
@@ -286,4 +308,52 @@ img.movieimg {
 
 div.movierow {
     margin: 4px;
+}
+
+/* Poetry Page Formatting (ಕಗ್ಗ) - Two Column Layout */
+.poetry-content {
+    max-width: 100%;
+}
+
+.poetry-stanza {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.poetry-kannada {
+    white-space: pre-line;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.8;
+    color: #2c3e50;
+}
+
+.poetry-english {
+    white-space: pre-line;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #555;
+    font-style: italic;
+}
+
+/* Responsive: Stack on mobile */
+@media (max-width: 768px) {
+    .poetry-stanza {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .poetry-kannada {
+        font-size: 1rem;
+    }
+
+    .poetry-english {
+        font-size: 0.9rem;
+        padding-top: 10px;
+        border-top: 1px dashed #ddd;
+    }
 }

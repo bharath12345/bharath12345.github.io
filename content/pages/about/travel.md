@@ -1,5 +1,4 @@
-Title: My Twitter Timeline
+Title: Travel Fun
 Slug: pages/about/travel
 Template: about
 
-# Travel

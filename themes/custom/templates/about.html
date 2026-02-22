@@ -2,15 +2,15 @@
 
 {% block title %}{{ page.title }} - {{ SITENAME }}{% endblock %}
 
-{% block content %}
-<!-- About Section Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+{% block extra_nav %}
+<!-- About Section Navigation - Secondary Bar -->
+<nav class="navbar navbar-expand-lg navbar-light about-subnav">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aboutNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="aboutNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ SITEURL }}/pages/about/movies/">Movies</a>
                 </li>
@@ -27,7 +27,9 @@
         </div>
     </div>
 </nav>
+{% endblock %}
 
+{% block content %}
 <section class="content">
     <h2>{{ page.title }}</h2>
 
@@ -35,7 +37,7 @@
     <h4>{{ page.subtitle }}</h4>
     {% endif %}
 
-    <article>
+    <article {% if 'resources' in page.slug or 'ಕಗ್ಗ' in page.title %}class="poetry-content"{% endif %}>
         {{ page.content }}
     </article>
 </section>

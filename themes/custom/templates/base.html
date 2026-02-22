@@ -87,6 +87,9 @@
         </div>
     </nav>
 
+    <!-- Secondary Navigation (for About pages, etc.) -->
+    {% block extra_nav %}{% endblock %}
+
     <!-- Main Content -->
     <div class="container main-content">
         {% block content %}{% endblock %}

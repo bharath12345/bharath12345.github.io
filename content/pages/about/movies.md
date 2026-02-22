@@ -1,8 +1,6 @@
-Title: My Twitter Timeline
+Title: Movies I loved
 Slug: pages/about/movies
 Template: about
-
-# Movies
 
 * I love non-fiction. And even if they are fictional, I love movies that leave me feeling better about the world and myself - uplifting sort…
 * The order below is completely random. By no means can I rank them.
