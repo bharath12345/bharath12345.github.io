@@ -16,7 +16,7 @@
                 {{ article.locale_date }}
             </section>
             {% if article.summary %}
-            <p>{{ article.summary }}</p>
+            <p>{{ article.summary|striptags }}</p>
             {% endif %}
             <hr>
         </li>

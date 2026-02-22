@@ -25,7 +25,7 @@ SOCIAL = (
     ('LinkedIn', 'https://www.linkedin.com/in/bharadwaj'),
 )
 
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = 5
 
 # Pagination URLs
 PAGINATION_PATTERNS = (
