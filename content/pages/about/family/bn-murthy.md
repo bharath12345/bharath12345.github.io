@@ -59,8 +59,12 @@ the _giri-pradakshina_ at Devarayana Durga (one of his many projects). The _prad
 was busy even during the walk. Yet, somehow by god’s grace I found walking alone with him at some point. There was no 
 way I could describe my predicament in life to a man like him. But maybe he could spot that I was worried. After 
 walking a long distance without saying anything he said to me something that melted my indecision in a flash – he simply 
-recited the beautiful sholka from DVG’s kagga - ಓರ್ವನೇ ನಿಲುವೇ ನೀನುತ್ಕಟಕ್ಷಣಗಳಲಿ, ಧರ್ಮಸಂಕಟಗಳಲಿ, ಜೀವಸಮರದಲಿ, ನಿರ್ವಾಣದೀಕ್ಷೆಯಲಿ,  
-ನಿರ್ಯಾಣಘಟ್ಟದಲಿ, ನಿರ್ಮಿತ್ರನಿರಲು ಕಲಿ – ಮಂಕುತಿಮ್ಮ. He simply said it and it needed no translation. His slow diction and 
+recited the beautiful sholka from DVG’s kagga - 
+
+ಓರ್ವನೇ ನಿಲುವೇ ನೀನುತ್ಕಟಕ್ಷಣಗಳಲಿ, ಧರ್ಮಸಂಕಟಗಳಲಿ, ಜೀವಸಮರದಲಿ, 
+ನಿರ್ವಾಣದೀಕ್ಷೆಯಲಿ, ನಿರ್ಯಾಣಘಟ್ಟದಲಿ, ನಿರ್ಮಿತ್ರನಿರಲು ಕಲಿ – ಮಂಕುತಿಮ್ಮ. 
+
+He simply said it and it needed no translation. His slow diction and 
 _sandhi-viccheda_ meant I grasped the shloka straightaway. I often think what made him say that. Why exactly this shloka 
 when he could have told me so many others. They say god works in mysterious ways. Maybe divine people are also similar. 
 What he said that day became the light that decided the next important course of action in my life. I did not thank him 
