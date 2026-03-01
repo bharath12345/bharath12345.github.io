@@ -3,7 +3,7 @@
 {% block title %}{{ page.title }} - {{ SITENAME }}{% endblock %}
 
 {% block extra_nav %}
-<!-- About Section Navigation - Secondary Bar -->
+<!-- About Section Navigation - Second Bar -->
 <nav class="navbar navbar-expand-lg navbar-light about-subnav">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aboutNav">
@@ -33,6 +33,25 @@
         </div>
     </div>
 </nav>
+
+<!-- Family Sub-Section Navigation - Third Bar -->
+<nav class="navbar navbar-expand-lg navbar-light family-subnav">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#familyNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="familyNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ SITEURL }}/pages/about/family/bn-murthy/">Shri BN Murthy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ SITEURL }}/pages/about/family/bn-vijay-kumar/">Sri BN Vijay Kumar</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 {% endblock %}
 
 {% block content %}
@@ -41,7 +60,7 @@
     <h4>{{ page.subtitle }}</h4>
     {% endif %}
 
-    <article {% if 'resources' in page.slug or 'ಕಗ್ಗ' in page.title %}class="poetry-content"{% endif %}>
+    <article>
         {{ page.content }}
     </article>
 </section>
@@ -49,7 +68,7 @@
 
 {% block extra_js %}
 <script type="text/javascript">
-    var pageType = "about";
+    var pageType = "family";
     var pageTitle = pageType;
 </script>
 {% if page.custom_js %}

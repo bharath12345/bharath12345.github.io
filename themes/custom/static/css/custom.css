@@ -285,6 +285,27 @@ article table th {
     color: #6a5acd;
 }
 
+/* Family Sub-Section Sub-Navigation */
+.family-subnav {
+    background-color: #e9ecef;
+    border-bottom: 2px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.family-subnav .navbar-nav {
+    font-size: 0.9rem;
+}
+
+.family-subnav .nav-link {
+    color: #483d8b;
+    font-weight: 500;
+}
+
+.family-subnav .nav-link:hover {
+    color: #6a5acd;
+}
+
 /* Responsive Utilities for Icons in Navbar */
 @media (min-width: 992px) {
     .navbar-nav .nav-link span {
