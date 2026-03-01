@@ -41,12 +41,14 @@ visits. As part of his responsibilities in VHP. Of long discussions with my pare
 Listening to their discussions on the political situation of our country, history, bhakti of Lord Rama and Bharata Mata 
 shaped me for the rest of my life.
 
-And then there was the most enjoyable _chaar-dhaam_ yatra with my parents, sister and _dodda mava_. The very fact that he 
-was coming with us, I clearly remember, got my sister and me excited. Why one may ask… He was not someone who cracked 
-jokes or told interesting stories… We were both past our teen ages and wise enough to be excited because we knew that 
-we were headed to the dev-bhoomi in the company of a man no less than a sage. And what a trip it was! I try to re-create 
-the same bhakti that I felt in that trip in my many travels after that one – but it is impossible – because the _sanidhya_ 
+And then there was the most enjoyable _chaar-dhaam_ yatra with my parents, sister and _dodda mava_. The very fact that he
+was coming with us, I clearly remember, got my sister and me excited. Why one may ask… He was not someone who cracked
+jokes or told interesting stories… We were both past our teen ages and wise enough to be excited because we knew that
+we were headed to the dev-bhoomi in the company of a man no less than a sage. And what a trip it was! I try to re-create
+the same bhakti that I felt in that trip in my many travels after that one – but it is impossible – because the _sanidhya_
 of my dodda mava was not there again in any of those trips.
+
+![with Dodda mava, my sister and mother at Kedarnath in 2002](/images/family/doddamava.jpg)
 
 The next memory is during my engineering times. I remember asking him if I could accompany him for a visit to a famous 
 Mutt the next day. Both of us boarding a Govt bus and getting there. And him being ushered into the Mutt with such 
